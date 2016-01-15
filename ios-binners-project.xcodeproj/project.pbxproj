@@ -18,6 +18,7 @@
 		2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */; };
 		2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */; };
 		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
+		2C5CCB4D1C4960DB00E734CE /* BPPickupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4C1C4960DB00E734CE /* BPPickupTableViewCell.swift */; };
 		9C36FADFB34B05BF0F66EF41 /* libPods-ios-binners-project.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRequestPickupViewController.swift; sourceTree = "<group>"; };
 		2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupsViewController.swift; sourceTree = "<group>"; };
 		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
+		2C5CCB4C1C4960DB00E734CE /* BPPickupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupTableViewCell.swift; sourceTree = "<group>"; };
 		E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-binners-project.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-binners-project/Pods-ios-binners-project.release.xcconfig"; sourceTree = "<group>"; };
 		F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios-binners-project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -159,6 +161,7 @@
 				2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */,
 				2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */,
 				2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */,
+				2C5CCB4C1C4960DB00E734CE /* BPPickupTableViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,
 				2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */,
 				1B98D7E41C440AC200B6AA88 /* BPViewController.swift in Sources */,
+				2C5CCB4D1C4960DB00E734CE /* BPPickupTableViewCell.swift in Sources */,
 				2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */,
 				1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */,
 			);
