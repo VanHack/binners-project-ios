@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D7E11C440AC200B6AA88 /* AppDelegate.swift */; };
-		1B98D7E41C440AC200B6AA88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D7E31C440AC200B6AA88 /* ViewController.swift */; };
+		1B98D7E41C440AC200B6AA88 /* BPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D7E31C440AC200B6AA88 /* BPViewController.swift */; };
 		1B98D7E71C440AC200B6AA88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B98D7E51C440AC200B6AA88 /* Main.storyboard */; };
 		1B98D7E91C440AC200B6AA88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B98D7E81C440AC200B6AA88 /* Assets.xcassets */; };
 		1B98D7EC1C440AC200B6AA88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B98D7EA1C440AC200B6AA88 /* LaunchScreen.storyboard */; };
 		1B98D7F71C440AC300B6AA88 /* ios_binners_projectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D7F61C440AC300B6AA88 /* ios_binners_projectTests.swift */; };
 		1B98D8021C440AC300B6AA88 /* ios_binners_projectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D8011C440AC300B6AA88 /* ios_binners_projectUITests.swift */; };
 		1B98D8101C44141000B6AA88 /* BackgroundVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */; };
+		2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */; };
+		2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */; };
+		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
 		9C36FADFB34B05BF0F66EF41 /* libPods-ios-binners-project.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +42,7 @@
 		18919B0009DEF6F8B625DD73 /* Pods-ios-binners-project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-binners-project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-binners-project/Pods-ios-binners-project.debug.xcconfig"; sourceTree = "<group>"; };
 		1B98D7DE1C440AC200B6AA88 /* ios-binners-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-binners-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B98D7E11C440AC200B6AA88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1B98D7E31C440AC200B6AA88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1B98D7E31C440AC200B6AA88 /* BPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPViewController.swift; sourceTree = "<group>"; };
 		1B98D7E61C440AC200B6AA88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B98D7E81C440AC200B6AA88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B98D7EB1C440AC200B6AA88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,6 +55,9 @@
 		1B98D8031C440AC300B6AA88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = BackgroundVideo.mp4; sourceTree = "<group>"; };
 		1B98D8111C4433FB00B6AA88 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRequestPickupViewController.swift; sourceTree = "<group>"; };
+		2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupsViewController.swift; sourceTree = "<group>"; };
+		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
 		E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-binners-project.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-binners-project/Pods-ios-binners-project.release.xcconfig"; sourceTree = "<group>"; };
 		F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios-binners-project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -107,8 +113,8 @@
 		1B98D7E01C440AC200B6AA88 /* ios-binners-project */ = {
 			isa = PBXGroup;
 			children = (
+				2C5CCB451C494B5700E734CE /* ViewControllers */,
 				1B98D7E11C440AC200B6AA88 /* AppDelegate.swift */,
-				1B98D7E31C440AC200B6AA88 /* ViewController.swift */,
 				1B98D7E51C440AC200B6AA88 /* Main.storyboard */,
 				1B98D7E81C440AC200B6AA88 /* Assets.xcassets */,
 				1B98D7EA1C440AC200B6AA88 /* LaunchScreen.storyboard */,
@@ -144,6 +150,17 @@
 				E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		2C5CCB451C494B5700E734CE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1B98D7E31C440AC200B6AA88 /* BPViewController.swift */,
+				2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */,
+				2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */,
+				2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		E10C670EFDB7D29BE8FE622E /* Frameworks */ = {
@@ -337,7 +354,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B98D7E41C440AC200B6AA88 /* ViewController.swift in Sources */,
+				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,
+				2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */,
+				1B98D7E41C440AC200B6AA88 /* BPViewController.swift in Sources */,
+				2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */,
 				1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

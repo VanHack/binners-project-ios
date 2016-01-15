@@ -11,7 +11,7 @@ import AVFoundation
 import TwitterKit
 
 
-class ViewController: UIViewController {
+class BPViewController: UIViewController {
     
     var player: AVPlayer?
     var videoView: UIView?
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
         formView.addSubview(imageview)
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         formView.titleLabel?.font = UIFont.boldSystemFontOfSize(16)
-        formView.setTitle("Log with Resident", forState: UIControlState.Normal)
+        formView.setTitle("Log in as Resident", forState: UIControlState.Normal)
         formView.backgroundColor = UIColor(red: 0, green: 140/255.0, blue: 54/255.0, alpha: 1.0)
         return formView
     }
