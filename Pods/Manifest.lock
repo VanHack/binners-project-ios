@@ -1,4 +1,19 @@
 PODS:
+  - AFNetworking (3.0.4):
+    - AFNetworking/NSURLSession (= 3.0.4)
+    - AFNetworking/Reachability (= 3.0.4)
+    - AFNetworking/Security (= 3.0.4)
+    - AFNetworking/Serialization (= 3.0.4)
+    - AFNetworking/UIKit (= 3.0.4)
+  - AFNetworking/NSURLSession (3.0.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.0.4)
+  - AFNetworking/Security (3.0.4)
+  - AFNetworking/Serialization (3.0.4)
+  - AFNetworking/UIKit (3.0.4):
+    - AFNetworking/NSURLSession
   - Bolts (1.5.1):
     - Bolts/AppLinks (= 1.5.1)
     - Bolts/Tasks (= 1.5.1)
@@ -40,6 +55,7 @@ PODS:
     - TwitterCore (= 1.14.6)
 
 DEPENDENCIES:
+  - AFNetworking (~> 3.0)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -48,6 +64,7 @@ DEPENDENCIES:
   - TwitterKit
 
 SPEC CHECKSUMS:
+  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   Bolts: a12663244b1d3351c738882e71902fc74db54f64
   Fabric: e8296d4a1abb3c5eed770cc86b311c862f51d340
   FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8

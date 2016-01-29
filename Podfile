@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '8.0'
+# platform :ios, '7.1'
 # Uncomment this line if you're using Swift
 # use_frameworks!
 
@@ -10,6 +10,7 @@ pod "FBSDKShareKit";
 pod 'TwitterKit';
 pod 'TwitterCore';
 pod 'GoogleSignIn';
+pod 'AFNetworking', '~> 3.0'
 end
 
 target 'ios-binners-projectTests' do

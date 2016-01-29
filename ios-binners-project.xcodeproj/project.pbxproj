@@ -121,14 +121,9 @@
 		1B98D7E01C440AC200B6AA88 /* ios-binners-project */ = {
 			isa = PBXGroup;
 			children = (
+				2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */,
 				2C5CCB451C494B5700E734CE /* ViewControllers */,
-				1B98D7E11C440AC200B6AA88 /* AppDelegate.swift */,
-				1B98D7E51C440AC200B6AA88 /* Main.storyboard */,
-				1B98D7E81C440AC200B6AA88 /* Assets.xcassets */,
-				1B98D7EA1C440AC200B6AA88 /* LaunchScreen.storyboard */,
-				1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */,
-				1B98D7ED1C440AC200B6AA88 /* Info.plist */,
-				1B98D8111C4433FB00B6AA88 /* Bridging-Header.h */,
+				2C35ADD31C5BCF7B007DA4B6 /* Supporting Files */,
 			);
 			path = "ios-binners-project";
 			sourceTree = "<group>";
@@ -158,6 +153,27 @@
 				E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ServerCommunicationLayer;
+			sourceTree = "<group>";
+		};
+		2C35ADD31C5BCF7B007DA4B6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1B98D7E11C440AC200B6AA88 /* AppDelegate.swift */,
+				1B98D7E51C440AC200B6AA88 /* Main.storyboard */,
+				1B98D7E81C440AC200B6AA88 /* Assets.xcassets */,
+				1B98D7EA1C440AC200B6AA88 /* LaunchScreen.storyboard */,
+				1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */,
+				1B98D7ED1C440AC200B6AA88 /* Info.plist */,
+				1B98D8111C4433FB00B6AA88 /* Bridging-Header.h */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		2C5CCB451C494B5700E734CE /* ViewControllers */ = {
