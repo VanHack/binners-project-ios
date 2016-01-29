@@ -175,11 +175,26 @@ extension BPLoginViewController: FBSDKLoginButtonDelegate
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!){
         
         
-        self.fetchFBUserInfo()
-        {
-                
-        }
+        let loginManager = BPLoginManager.sharedInstance
+        loginManager.authFacebook = FBSDKAccessToken.currentAccessToken().tokenString
         
+        loginManager.fetchFBInfo() {
+            
+            value,error in
+            
+            if error == nil {
+                
+                print(value)
+            }
+            else
+            {
+                print(error)
+            }
+            
+            
+            
+            
+        }
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {

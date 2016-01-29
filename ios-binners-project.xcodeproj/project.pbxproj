@@ -15,6 +15,11 @@
 		1B98D7F71C440AC300B6AA88 /* ios_binners_projectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D7F61C440AC300B6AA88 /* ios_binners_projectTests.swift */; };
 		1B98D8021C440AC300B6AA88 /* ios_binners_projectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D8011C440AC300B6AA88 /* ios_binners_projectUITests.swift */; };
 		1B98D8101C44141000B6AA88 /* BackgroundVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */; };
+		2C1C4D051C5C1D370045821F /* BPLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C4D041C5C1D370045821F /* BPLoginManager.swift */; };
+		2C1C4D071C5C1F530045821F /* BPURLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */; };
+		2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */; };
+		2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */; };
+		2C35ADD91C5BD8B7007DA4B6 /* BPErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */; };
 		2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */; };
 		2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */; };
 		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
@@ -58,6 +63,11 @@
 		1B98D8031C440AC300B6AA88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = BackgroundVideo.mp4; sourceTree = "<group>"; };
 		1B98D8111C4433FB00B6AA88 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		2C1C4D041C5C1D370045821F /* BPLoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPLoginManager.swift; sourceTree = "<group>"; };
+		2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPURLBuilder.swift; sourceTree = "<group>"; };
+		2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerRequestManager.swift; sourceTree = "<group>"; };
+		2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerSettings.swift; sourceTree = "<group>"; };
+		2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPErrors.swift; sourceTree = "<group>"; };
 		2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRequestPickupViewController.swift; sourceTree = "<group>"; };
 		2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupsViewController.swift; sourceTree = "<group>"; };
 		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
@@ -158,6 +168,11 @@
 		2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */,
+				2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */,
+				2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */,
+				2C1C4D041C5C1D370045821F /* BPLoginManager.swift */,
+				2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */,
 			);
 			name = ServerCommunicationLayer;
 			sourceTree = "<group>";
@@ -382,11 +397,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,
+				2C35ADD91C5BD8B7007DA4B6 /* BPErrors.swift in Sources */,
+				2C1C4D071C5C1F530045821F /* BPURLBuilder.swift in Sources */,
 				2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */,
 				1B98D7E41C440AC200B6AA88 /* BPLoginViewController.swift in Sources */,
+				2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */,
 				2C5CCB4D1C4960DB00E734CE /* BPPickupTableViewCell.swift in Sources */,
 				2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */,
 				1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */,
+				2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */,
+				2C1C4D051C5C1D370045821F /* BPLoginManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
