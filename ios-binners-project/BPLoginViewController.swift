@@ -11,7 +11,7 @@ import AVFoundation
 import TwitterKit
 
 
-class BPViewController: UIViewController {
+class BPLoginViewController: UIViewController {
     
     var player: AVPlayer?
     var videoView: UIView?
@@ -33,6 +33,9 @@ class BPViewController: UIViewController {
         player?.play()
         videoView?.addSubview(createForm())
         self.view.addSubview(videoView!)
+        
+        // test purposes only
+        FBSDKLoginManager().logOut()
         
         
     }
@@ -98,6 +101,9 @@ class BPViewController: UIViewController {
     func createFacebookLoginButton(form:UIView, index:Int) -> UIView {
         let formView = FBSDKLoginButton(frame: CGRectMake(0, CGFloat(index * 45) , self.view.frame.width * 0.7, 40))
         formView.center = formView.center
+        formView.delegate = self
+        formView.readPermissions = ["public_profile","email"]
+        
         return formView
     }
     
@@ -143,7 +149,41 @@ class BPViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func fetchFBUserInfo(completion:()->Void)
+    {
+
+        
+        let request = FBSDKGraphRequest(graphPath: "me", parameters: nil, HTTPMethod: "GET")
+        request.startWithCompletionHandler()
+        {
+                connection,user,error in
+            if error == nil
+            {
+                print(" email: \(user["email"])")
+                completion()
+            }
+        }
+        
+        
+    }
 
 
+}
+
+extension BPLoginViewController: FBSDKLoginButtonDelegate
+{
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!){
+        
+        
+        self.fetchFBUserInfo()
+        {
+                
+        }
+        
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        
+    }
 }
 
