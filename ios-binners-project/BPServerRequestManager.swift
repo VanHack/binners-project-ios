@@ -20,29 +20,28 @@ class BPServerRequestManager
 {
     static let sharedInstance = BPServerRequestManager()
     
-    func execute(request:KindOfRequest,urlString:String,manager:AFHTTPSessionManager,param:AnyObject?,completion:(value:AnyObject?,error:ErrorType?)->Void)
+    func execute(request:KindOfRequest,urlString:String,manager:AFHTTPSessionManager,param:AnyObject?,completion:(inner:() throws ->AnyObject) ->Void) throws
     {
         
         guard let url = NSURL(string: urlString) else
         {
-            completion(value: nil,error: Error.URLMalformedError(errorMsg: "Error with URL"))
-            return
+            throw Error.URLMalformedError(errorMsg: "Error with URL")
         }
         
-        switch(request)
-        {
-            case .GET:      executeGET(url,manager:manager,param:param,completion: completion)
-            case .POST:     executePOST(url,manager:manager,param:param,completion: completion)
-            case .DELETE:   completion(value:nil,error:Error.OperationNotSupported(errorMsg: "Operation not supported"))
-            case .PUT:      completion(value:nil,error:Error.OperationNotSupported(errorMsg: "Operation not supported"))
-
             
-        }
+            switch(request)
+            {
+                case .GET:      executeGET(url,manager:manager,param:param,completion: completion)
+                case .POST:     executePOST(url,manager:manager,param:param,completion: completion)
+                case .DELETE:   throw Error.OperationNotSupported(errorMsg: "Operation not supported")
+                case .PUT:      throw Error.OperationNotSupported(errorMsg: "Operation not supported")
+            }
+
         
         
     }
     
-    private func executeGET(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:(value:AnyObject?,error:ErrorType?)->Void)
+    private func executeGET(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:(inner:() throws ->AnyObject) ->Void)
     {
         
        // manager.requestSerializer.setValue(auth, forHTTPHeaderField: "Authorization")
@@ -51,35 +50,34 @@ class BPServerRequestManager
             
             sessionDataTask,response in
             
-            completion(value:response,error:nil)
-            
+            completion(inner: {return response! })
             
             },failure: {
                 
                 (sessionDataTask, error) in
                 
-                completion(value:nil,error:error)
+                completion(inner: {throw error })
+
                 
                 
         })
     }
     
-    private func executePOST(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:(value:AnyObject?,error:ErrorType?)->Void)
+    private func executePOST(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:(inner:()throws->AnyObject)->Void)
     {
-        let manager = AFHTTPSessionManager()
         
         manager.POST(url.absoluteString, parameters: param, progress: nil, success: {
             
             sessionDataTask,response in
             
-            completion(value:response,error:nil)
+            completion(inner: {return response!})
             
             
             },failure: {
                 
                 (sessionDataTask, error) in
                 
-                completion(value:nil,error:error)
+                completion(inner: {throw error})
                 
                 
         })

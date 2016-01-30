@@ -17,30 +17,19 @@ class BPLoginManager
     static let sharedInstance = BPLoginManager()
     
     
-    func fetchFBInfo(completion:(value:AnyObject?,error:ErrorType?)->Void)
-    {
+    func fetchFBInfo(completion:(inner:() throws -> AnyObject) ->Void) throws {
+        
         guard let auth = authFacebook else {
             
-            completion(value: nil, error: Error.FacebookAuthMissing(errorMsg: "FB auth can't be nil"))
-            return
-            
+            throw Error.FacebookAuthMissing(errorMsg: "FB auth can't be nil")
         }
         
         let finalUrl = BPURLBuilder.buildFBUserLoginURL(auth)
         let manager = AFHTTPSessionManager()
         
-        do
-        {
             
-            BPServerRequestManager.sharedInstance.execute(.GET, urlString: finalUrl, manager: manager, param: nil) {
-                
-                value,error in
-                completion(value: value, error: error)
-                
-            }
-            
-            
-        }
+        try BPServerRequestManager.sharedInstance.execute(.GET, urlString: finalUrl, manager: manager, param: nil,completion:completion)
+
         
     }
     
