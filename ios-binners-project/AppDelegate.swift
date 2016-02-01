@@ -16,15 +16,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        // facebook sdk config
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        // google sign in config
+        var configureError: NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        
         
         return true
     }
     
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        
+        var option:String?
+        var option2:String?
+        
+        if #available(iOS 9.0, *) {
+             option = options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String
+             option2 = options[UIApplicationOpenURLOptionsAnnotationKey] as? String
+        } else {
+            // Fallback on earlier versions
+             option = options[UIApplicationLaunchOptionsSourceApplicationKey] as? String
+             option2 = options[UIApplicationLaunchOptionsAnnotationKey] as? String
+
+        }
+        
+
+        return GIDSignIn.sharedInstance().handleURL(url,
+            sourceApplication: option,
+            annotation: option2)
+    }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         
-         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        var options:[String:AnyObject]?
+        
+        if #available(iOS 9.0, *) {
+
+             options = [UIApplicationOpenURLOptionsSourceApplicationKey: sourceApplication!,
+                UIApplicationOpenURLOptionsAnnotationKey: annotation]
+            
+        } else {
+            // Fallback on earlier versions
+             options = [UIApplicationLaunchOptionsSourceApplicationKey: sourceApplication!,
+                UIApplicationLaunchOptionsAnnotationKey: annotation]
+            
+        }
+        
+
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation) ||
+            self.application(application,
+            openURL: url,
+            options: options!)
 
     }
     

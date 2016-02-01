@@ -9,5 +9,5 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Fabric/Fabric.h>
-#import <GoogleSignIn/GoogleSignIn.h>
+#import <Google/SignIn.h>
 #import <AFNetworking/AFNetworking.h>

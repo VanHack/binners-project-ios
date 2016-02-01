@@ -9,7 +9,7 @@ pod "FBSDKLoginKit";
 pod "FBSDKShareKit";
 pod 'TwitterKit';
 pod 'TwitterCore';
-pod 'GoogleSignIn';
+pod 'Google/SignIn';
 pod 'AFNetworking', '~> 3.0'
 end
 

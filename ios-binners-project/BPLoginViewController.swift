@@ -37,6 +37,9 @@ class BPLoginViewController: UIViewController {
         videoView?.addSubview(createForm())
         self.view.addSubview(videoView!)
         
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+        
         // test purposes only
         FBSDKLoginManager().logOut()
         
@@ -208,7 +211,7 @@ extension BPLoginViewController: FBSDKLoginButtonDelegate
         
         do {
             
-            try loginManager.fetchFBInfo() {
+            try loginManager.authenticateFBUserOnBinnersServer() {
                 
                 (inner:() throws -> AnyObject) in
                 
@@ -236,5 +239,56 @@ extension BPLoginViewController: FBSDKLoginButtonDelegate
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         
     }
+}
+
+extension BPLoginViewController : GIDSignInUIDelegate, GIDSignInDelegate
+{
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
+        
+        
+    }
+    
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+        
+        
+        if (error == nil) {
+            
+            loginManager.authGoogle = user.authentication.accessToken
+            
+            do {
+                
+                try loginManager.authenticateGoogleUserOnBinnersServer() {
+                    
+                    (inner:() throws -> AnyObject) in
+                    
+                    do
+                    {
+                        let value = try inner()
+                        print(value)
+                        
+                        
+                    }catch let error
+                    {
+                        print(error)
+                    }
+                    
+                }
+                
+            }catch let error {
+                
+                print(error)
+                
+            }
+
+            
+            
+            
+            
+        } else {
+            print("\(error.localizedDescription)")
+        }
+        
+    }
+
 }
 

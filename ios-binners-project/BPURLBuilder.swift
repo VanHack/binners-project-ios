@@ -20,6 +20,15 @@ class BPURLBuilder {
         return fbUserLoginUrlFinal
     }
     
+    class func buildGoogleUserLoginURL(accessToken:String) -> String
+    {
+        let baseUrl = BPServerSettings.baseServerUrl
+        let googleUserLoginUrl = BPServerSettings.googleLoginUrl
+        let googleUserLoginUrlFinal = "\(baseUrl)\(googleUserLoginUrl)\(accessToken)"
+        
+        return googleUserLoginUrlFinal
+    }
+    
     class func getStandardUserLoginURL() -> String
     {
         let baseUrl = BPServerSettings.baseServerUrl

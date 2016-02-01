@@ -17,6 +17,9 @@
 		1B98D8101C44141000B6AA88 /* BackgroundVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */; };
 		2C1C4D051C5C1D370045821F /* BPLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C4D041C5C1D370045821F /* BPLoginManager.swift */; };
 		2C1C4D071C5C1F530045821F /* BPURLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */; };
+		2C1C4D0F1C5FDA280045821F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */; };
+		2C1C4D101C5FDA280045821F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */; };
+		2C1C4D111C5FDA280045821F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */; };
 		2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */; };
 		2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */; };
 		2C35ADD91C5BD8B7007DA4B6 /* BPErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */; };
@@ -65,6 +68,7 @@
 		1B98D8111C4433FB00B6AA88 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		2C1C4D041C5C1D370045821F /* BPLoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPLoginManager.swift; sourceTree = "<group>"; };
 		2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPURLBuilder.swift; sourceTree = "<group>"; };
+		2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerRequestManager.swift; sourceTree = "<group>"; };
 		2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerSettings.swift; sourceTree = "<group>"; };
 		2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPErrors.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 				1B98D7EA1C440AC200B6AA88 /* LaunchScreen.storyboard */,
 				1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */,
 				1B98D7ED1C440AC200B6AA88 /* Info.plist */,
+				2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */,
 				1B98D8111C4433FB00B6AA88 /* Bridging-Header.h */,
 			);
 			name = "Supporting Files";
@@ -322,6 +327,7 @@
 			files = (
 				1B98D7EC1C440AC200B6AA88 /* LaunchScreen.storyboard in Resources */,
 				1B98D8101C44141000B6AA88 /* BackgroundVideo.mp4 in Resources */,
+				2C1C4D0F1C5FDA280045821F /* GoogleService-Info.plist in Resources */,
 				1B98D7E91C440AC200B6AA88 /* Assets.xcassets in Resources */,
 				1B98D7E71C440AC200B6AA88 /* Main.storyboard in Resources */,
 			);
@@ -331,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C1C4D101C5FDA280045821F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +345,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C1C4D111C5FDA280045821F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

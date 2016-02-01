@@ -13,11 +13,12 @@ class BPLoginManager
 {
     var authBinners:String?
     var authFacebook:String?
+    var authGoogle:String?
     
     static let sharedInstance = BPLoginManager()
     
     
-    func fetchFBInfo(completion:(inner:() throws -> AnyObject) ->Void) throws {
+    func authenticateFBUserOnBinnersServer(completion:(inner:() throws -> AnyObject) ->Void) throws {
         
         guard let auth = authFacebook else {
             
@@ -32,6 +33,23 @@ class BPLoginManager
 
         
     }
+    
+    func authenticateGoogleUserOnBinnersServer(completion:(inner:() throws -> AnyObject) ->Void) throws {
+        
+        guard let auth = authGoogle else {
+            
+            throw Error.GoogleAuthMissing(errorMsg: "Google auth can't be nil")
+        }
+        
+        let finalUrl = BPURLBuilder.buildGoogleUserLoginURL(auth)
+        let manager = AFHTTPSessionManager()
+        
+        
+        try BPServerRequestManager.sharedInstance.execute(.GET, urlString: finalUrl, manager: manager, param: nil,completion:completion)
+        
+        
+    }
+
     
     
     func makeResidentStandardLogin(email:String,password:String,completion:(inner:() throws -> AnyObject) ->Void) throws {
