@@ -60,7 +60,7 @@ class BPLoginViewController: UIViewController {
         formView.addSubview(createFacebookLoginButton(formView, index: 3))
         formView.addSubview(createTwitterLoginButton(formView, index: 4))
         formView.addSubview(createGoogleLoginButton(formView, index: 5))
-        formView.addSubview(createForgoutLoginLink(formView, index: 6))
+        formView.addSubview(createForgotLoginLink(formView, index: 6))
         formView.addSubview(createBinnerLoginLink(formView, index:  7))
         return formView
     }
@@ -136,12 +136,12 @@ class BPLoginViewController: UIViewController {
         return logInButton
     }
     
-    func createForgoutLoginLink(form:UIView, index:Int) -> UIView {
+    func createForgotLoginLink(form:UIView, index:Int) -> UIView {
         let formView = UIButton(frame: CGRectMake(0, CGFloat(index * 45) , self.view.frame.width * 0.7, 40))
         formView.center = formView.center
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         formView.titleLabel?.font = UIFont.systemFontOfSize(16)
-        formView.setTitle("Forgout your password ?", forState: UIControlState.Normal)
+        formView.setTitle("Forgot your password ?", forState: UIControlState.Normal)
         return formView
     }
     
