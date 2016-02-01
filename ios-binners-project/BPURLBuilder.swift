@@ -19,4 +19,13 @@ class BPURLBuilder {
         
         return fbUserLoginUrlFinal
     }
+    
+    class func getStandardUserLoginURL() -> String
+    {
+        let baseUrl = BPServerSettings.baseServerUrl
+        let UserLoginUrl = BPServerSettings.standardLoginUrl
+        let userLoginUrlFinal = "\(baseUrl)\(UserLoginUrl)"
+        
+        return userLoginUrlFinal
+    }
 }

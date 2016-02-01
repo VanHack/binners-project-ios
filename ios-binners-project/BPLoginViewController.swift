@@ -15,6 +15,9 @@ class BPLoginViewController: UIViewController {
     
     var player: AVPlayer?
     var videoView: UIView?
+    var textFieldEmail: UITextField?
+    var textFieldPassword: UITextField?
+    let loginManager = BPLoginManager.sharedInstance
     
     
     override func viewDidLoad() {
@@ -61,12 +64,14 @@ class BPLoginViewController: UIViewController {
     
     func createInputText(form:UIView, index:Int) -> UIView {
         let formView = UITextField(frame: CGRectMake(0, CGFloat(index * 45) , self.view.frame.width * 0.7, 40))
+        formView.autocapitalizationType = .None
         formView.backgroundColor = UIColor.lightGrayColor()
         formView.alpha = 0.85
         formView.layer.cornerRadius = 4.0
         formView.clipsToBounds = true
         formView.placeholder = "email"
         formView.textAlignment = .Center
+        textFieldEmail = formView
         return formView
     }
     
@@ -79,6 +84,7 @@ class BPLoginViewController: UIViewController {
         formView.placeholder = "password"
         formView.secureTextEntry = true
         formView.textAlignment = .Center
+        textFieldPassword = formView
         return formView
     }
     
@@ -95,6 +101,7 @@ class BPLoginViewController: UIViewController {
         formView.titleLabel?.font = UIFont.boldSystemFontOfSize(16)
         formView.setTitle("Log in as Resident", forState: UIControlState.Normal)
         formView.backgroundColor = UIColor(red: 0, green: 140/255.0, blue: 54/255.0, alpha: 1.0)
+        formView.addTarget(self, action: "makeResidentLogin", forControlEvents: .TouchUpInside)
         return formView
     }
     
@@ -144,37 +151,59 @@ class BPLoginViewController: UIViewController {
         return formView
     }
     
+    func makeResidentLogin()
+    {
+        assert(textFieldEmail != nil && textFieldPassword != nil)
+        
+        guard textFieldEmail!.text != "" && textFieldPassword!.text != "" else
+        {
+            print("email and password can't be empty") // change to ui alert view later
+            return
+        }
+        
+        let email = textFieldEmail!.text!
+        let password = textFieldPassword!.text!
+        
+        do {
+            
+            try loginManager.makeResidentStandardLogin(email, password: password, completion: {
+                
+                (inner:() throws -> AnyObject) in
+                
+                do {
+                    
+                    let value = try inner()
+                    print(value)
+                    
+                }catch let error
+                {
+                    print(error)
+                }
+                
+                
+            })
+
+        }catch let error
+        {
+            print(error)
+        }
+        
+        
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func fetchFBUserInfo(completion:()->Void)
-    {
-
-        
-        let request = FBSDKGraphRequest(graphPath: "me", parameters: nil, HTTPMethod: "GET")
-        request.startWithCompletionHandler()
-        {
-                connection,user,error in
-            if error == nil
-            {
-                print(" email: \(user["email"])")
-                completion()
-            }
-        }
-        
-        
-    }
-
 
 }
+
 
 extension BPLoginViewController: FBSDKLoginButtonDelegate
 {
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!){
         
-        let loginManager = BPLoginManager.sharedInstance
         loginManager.authFacebook = FBSDKAccessToken.currentAccessToken().tokenString
         
         do {

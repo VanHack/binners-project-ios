@@ -41,7 +41,7 @@ class BPServerRequestManager
         
     }
     
-    private func executeGET(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:(inner:() throws ->AnyObject) ->Void)
+    internal func executeGET(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:(inner:() throws ->AnyObject) ->Void)
     {
         
        // manager.requestSerializer.setValue(auth, forHTTPHeaderField: "Authorization")
@@ -63,8 +63,10 @@ class BPServerRequestManager
         })
     }
     
-    private func executePOST(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:(inner:()throws->AnyObject)->Void)
+    internal func executePOST(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:(inner:()throws->AnyObject)->Void)
     {
+        
+        manager.requestSerializer = AFJSONRequestSerializer()
         
         manager.POST(url.absoluteString, parameters: param, progress: nil, success: {
             

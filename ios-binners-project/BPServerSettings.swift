@@ -13,4 +13,6 @@ class BPServerSettings
 {
     static let baseServerUrl = "http://dev-b.leomcabral.com/api/v1.0/"
     static let facebookLoginUrl = "auth/facebook/"
+    static let standardLoginUrl = "auth"
+
 }
