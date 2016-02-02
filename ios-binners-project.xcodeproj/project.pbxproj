@@ -24,7 +24,7 @@
 		2C29FBFA1C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29FBF91C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift */; };
 		2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */; };
 		2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */; };
-		2C35ADD91C5BD8B7007DA4B6 /* BPErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */; };
+		2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD81C5BD8B7007DA4B6 /* BPErrorManager.swift */; };
 		2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */; };
 		2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */; };
 		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
@@ -75,7 +75,7 @@
 		2C29FBF91C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageContainerLoginDescriptionViewController.swift; sourceTree = "<group>"; };
 		2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerRequestManager.swift; sourceTree = "<group>"; };
 		2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerSettings.swift; sourceTree = "<group>"; };
-		2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPErrors.swift; sourceTree = "<group>"; };
+		2C35ADD81C5BD8B7007DA4B6 /* BPErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPErrorManager.swift; sourceTree = "<group>"; };
 		2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRequestPickupViewController.swift; sourceTree = "<group>"; };
 		2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupsViewController.swift; sourceTree = "<group>"; };
 		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 			children = (
 				2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */,
 				2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */,
-				2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */,
+				2C35ADD81C5BD8B7007DA4B6 /* BPErrorManager.swift */,
 				2C1C4D041C5C1D370045821F /* BPLoginManager.swift */,
 				2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */,
 			);
@@ -419,7 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,
-				2C35ADD91C5BD8B7007DA4B6 /* BPErrors.swift in Sources */,
+				2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */,
 				2C1C4D071C5C1F530045821F /* BPURLBuilder.swift in Sources */,
 				2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */,
 				1B98D7E41C440AC200B6AA88 /* BPLoginViewController.swift in Sources */,
