@@ -43,7 +43,6 @@ class BPLoginViewController: UIViewController {
         // test purposes only
         FBSDKLoginManager().logOut()
         
-        
     }
     
     func playerItemDidReachEnd() {

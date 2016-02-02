@@ -15,5 +15,6 @@ class BPServerSettings
     static let facebookLoginUrl = "auth/facebook/"
     static let googleLoginUrl = "auth/google/"
     static let standardLoginUrl = "auth"
+    static let residentUsersUrl = "users"
 
 }

@@ -63,6 +63,18 @@ class BPLoginManager
         
         
     }
+    
+    func registerResident(email:String,password:String,completion:(inner:() throws -> AnyObject) ->Void) throws {
+        
+        
+        let finalUrl = BPURLBuilder.getResidentUserRegistrationURL()
+        let manager = AFHTTPSessionManager()
+        let param = ["email":email,"password":password]
+        
+        try BPServerRequestManager.sharedInstance.execute(.POST, urlString: finalUrl, manager: manager, param: param,completion:completion)
+        
+        
+    }
 
     
     

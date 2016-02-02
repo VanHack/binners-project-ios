@@ -37,4 +37,13 @@ class BPURLBuilder {
         
         return userLoginUrlFinal
     }
+    
+    class func getResidentUserRegistrationURL() -> String
+    {
+        let baseUrl = BPServerSettings.baseServerUrl
+        let residentUsersUrl = BPServerSettings.residentUsersUrl
+        let userLoginUrlFinal = "\(baseUrl)\(residentUsersUrl)"
+        
+        return userLoginUrlFinal
+    }
 }
