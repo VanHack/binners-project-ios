@@ -45,6 +45,29 @@ class BPLoginViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        if (userDefaults.boolForKey("FirstAppLaunch") == false)
+        {
+            performSegueWithIdentifier("presentDescriptionPages", sender: self)
+            userDefaults.setBool(true, forKey: "FirstAppLaunch")
+            userDefaults.synchronize()
+
+        }
+        
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "presentDescriptionPages"
+        {
+            // do setup if needed
+        }
+        
+    }
+    
     func playerItemDidReachEnd() {
         player!.seekToTime(kCMTimeZero)
         player?.play()

@@ -3,8 +3,83 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Page View Controller-->
+        <scene sceneID="cdQ-l0-eW3">
+            <objects>
+                <pageViewController storyboardIdentifier="ProjectDescriptionPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="X0L-ja-PIz" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WKA-aJ-hhl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-421" y="-474"/>
+        </scene>
+        <!--Page Container Login Description View Controller-->
+        <scene sceneID="oxP-gR-9ML">
+            <objects>
+                <viewController id="LWC-NM-NWC" customClass="BPPageContainerLoginDescriptionViewController" customModule="ios_binners_project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="azm-M4-rTY"/>
+                        <viewControllerLayoutGuide type="bottom" id="nFj-yI-dkL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DzV-Of-jKg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3G-7V-t8l">
+                                <rect key="frame" x="550" y="565" width="30" height="30"/>
+                                <state key="normal" title="Skip"/>
+                                <connections>
+                                    <action selector="skipButtonPressed:" destination="LWC-NM-NWC" eventType="touchUpInside" id="AfE-LY-Yu4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="f3G-7V-t8l" secondAttribute="trailing" id="adb-sU-IUI"/>
+                            <constraint firstItem="nFj-yI-dkL" firstAttribute="top" secondItem="f3G-7V-t8l" secondAttribute="bottom" constant="5" id="uHa-W6-uJy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="skipButton" destination="f3G-7V-t8l" id="J3O-xy-1Ko"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2uc-zy-wWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1785" y="-851"/>
+        </scene>
+        <!--Page Content Description Login View Controller-->
+        <scene sceneID="zHm-CY-NyU">
+            <objects>
+                <viewController storyboardIdentifier="PageContentDescriptionViewController" id="aTJ-78-wdY" customClass="BPPageContentDescriptionLoginViewController" customModule="ios_binners_project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AIb-QX-1eS"/>
+                        <viewControllerLayoutGuide type="bottom" id="xUS-8C-Rma"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="scF-M8-7An">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IXl-e7-9Sd">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IXl-e7-9Sd" firstAttribute="top" secondItem="scF-M8-7An" secondAttribute="top" id="3An-Uk-kaE"/>
+                            <constraint firstItem="IXl-e7-9Sd" firstAttribute="leading" secondItem="scF-M8-7An" secondAttribute="leading" id="8DT-Pz-8if"/>
+                            <constraint firstItem="IXl-e7-9Sd" firstAttribute="bottom" secondItem="xUS-8C-Rma" secondAttribute="top" id="8gk-Xv-3rL"/>
+                            <constraint firstAttribute="trailing" secondItem="IXl-e7-9Sd" secondAttribute="trailing" id="ZNx-At-4MC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="IXl-e7-9Sd" id="6ti-68-IEc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o3R-iq-fvX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="259" y="-474"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -18,10 +93,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="LWC-NM-NWC" kind="presentation" identifier="presentDescriptionPages" id="Pb9-Zh-Vfq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1033" y="-372"/>
+            <point key="canvasLocation" x="1041" y="-376"/>
         </scene>
         <!--Pickups View Controller-->
         <scene sceneID="vjq-1i-ATR">

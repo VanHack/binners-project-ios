@@ -20,6 +20,8 @@
 		2C1C4D0F1C5FDA280045821F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */; };
 		2C1C4D101C5FDA280045821F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */; };
 		2C1C4D111C5FDA280045821F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */; };
+		2C29FBF81C610AD900C70837 /* BPPageContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29FBF71C610AD900C70837 /* BPPageContentDescriptionLoginViewController.swift */; };
+		2C29FBFA1C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29FBF91C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift */; };
 		2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */; };
 		2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */; };
 		2C35ADD91C5BD8B7007DA4B6 /* BPErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */; };
@@ -69,6 +71,8 @@
 		2C1C4D041C5C1D370045821F /* BPLoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPLoginManager.swift; sourceTree = "<group>"; };
 		2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPURLBuilder.swift; sourceTree = "<group>"; };
 		2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2C29FBF71C610AD900C70837 /* BPPageContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
+		2C29FBF91C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageContainerLoginDescriptionViewController.swift; sourceTree = "<group>"; };
 		2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerRequestManager.swift; sourceTree = "<group>"; };
 		2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerSettings.swift; sourceTree = "<group>"; };
 		2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPErrors.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 		1B98D7E01C440AC200B6AA88 /* ios-binners-project */ = {
 			isa = PBXGroup;
 			children = (
+				2C29FBFB1C611A5B00C70837 /* Util */,
 				2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */,
 				2C5CCB451C494B5700E734CE /* ViewControllers */,
 				2C35ADD31C5BCF7B007DA4B6 /* Supporting Files */,
@@ -167,6 +172,13 @@
 				E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		2C29FBFB1C611A5B00C70837 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 		2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */ = {
@@ -204,6 +216,8 @@
 				2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */,
 				2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */,
 				2C5CCB4C1C4960DB00E734CE /* BPPickupTableViewCell.swift */,
+				2C29FBF71C610AD900C70837 /* BPPageContentDescriptionLoginViewController.swift */,
+				2C29FBF91C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -410,10 +424,12 @@
 				2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */,
 				1B98D7E41C440AC200B6AA88 /* BPLoginViewController.swift in Sources */,
 				2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */,
+				2C29FBFA1C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift in Sources */,
 				2C5CCB4D1C4960DB00E734CE /* BPPickupTableViewCell.swift in Sources */,
 				2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */,
 				1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */,
 				2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */,
+				2C29FBF81C610AD900C70837 /* BPPageContentDescriptionLoginViewController.swift in Sources */,
 				2C1C4D051C5C1D370045821F /* BPLoginManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
