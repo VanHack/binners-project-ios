@@ -8,16 +8,12 @@
 
 import UIKit
 
-class BPPageContentDescriptionLoginViewController: UIViewController {
+class BPPageOneContentDescriptionLoginViewController: UIViewController, PageControlDataSource {
     
-    @IBOutlet weak var imageView: UIImageView!
     var pageIndex:Int?
-    var imageFile:String? 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        imageView.image = UIImage(named: imageFile!)
 
         // Do any additional setup after loading the view.
     }

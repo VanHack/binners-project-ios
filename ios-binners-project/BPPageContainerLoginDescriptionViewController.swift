@@ -8,11 +8,15 @@
 
 import UIKit
 
+protocol PageControlDataSource {
+    var pageIndex:Int? {get set}
+}
+
 class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageViewControllerDataSource {
     
     @IBOutlet weak var skipButton: UIButton!
     var pageViewController:UIPageViewController?
-    var pageImages = ["page1.pdf","page2.pdf","page3.pdf","page4.pdf"]
+    var pages = 4
 
 
     override func viewDidLoad() {
@@ -22,12 +26,11 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
         
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProjectDescriptionPageViewController") as? UIPageViewController
         self.pageViewController!.dataSource = self
-        let startingViewController = self.viewControllerAtIndex(0) as! BPPageContentDescriptionLoginViewController
+        let startingViewController = self.viewControllerAtIndex(0)!
         let viewControllers = [startingViewController]
         
         self.pageViewController?.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
-        
-        // Change the size of page view controller
+        self.pageViewController!.view.backgroundColor = UIColor.binnersGreenColor()
         
         self.addChildViewController(self.pageViewController!)
         self.view.addSubview(self.pageViewController!.view)
@@ -35,13 +38,16 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
         
         // bring button to front
         self.view.bringSubviewToFront(self.skipButton)
+        // configure skip button font
+        skipButton.tintColor = UIColor.binnersSkipButtonColor()
+        skipButton.titleLabel?.font = UIFont.binnersFont()
         
         // configure page control
         
         let pageControl = UIPageControl.appearance()
-        pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
+        pageControl.pageIndicatorTintColor = UIColor.binnersSkipButtonColor()
         pageControl.currentPageIndicatorTintColor =  UIColor.whiteColor()
-        pageControl.backgroundColor = UIColor.whiteColor()
+        pageControl.backgroundColor = UIColor.clearColor()
         
         
     }
@@ -59,7 +65,7 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
-        let index = (viewController as? BPPageContentDescriptionLoginViewController)?.pageIndex
+        let index = (viewController as? PageControlDataSource)?.pageIndex
         
         guard var indexUw = index else {
             
@@ -67,7 +73,7 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
         }
         
         indexUw++
-        if (indexUw == self.pageImages.count) {
+        if (indexUw == self.pages) {
             return nil
         }
         return self.viewControllerAtIndex(indexUw)
@@ -75,14 +81,14 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
-        let index = (viewController as? BPPageContentDescriptionLoginViewController)?.pageIndex
+        let index = (viewController as? PageControlDataSource)?.pageIndex
         
         guard var indexUw = index else {
             
             return nil
         }
         
-        if (indexUw == 0) {
+        if (indexUw == self.pages) {
             return nil;
         }
         
@@ -92,22 +98,29 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
     
     func viewControllerAtIndex(index:Int) -> UIViewController?
     {
-        if self.pageImages.count == 0 || index >= self.pageImages.count {
+        if self.pages == 0 || index >= self.pages {
             return nil
         }
         
-        let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageContentDescriptionViewController") as! BPPageContentDescriptionLoginViewController
+        var pageContentVC:UIViewController?
         
-        // Create a new view controller and pass suitable data.
+        switch (index) {
+            
+        case 0: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageOneContentDescriptionViewController") as! BPPageOneContentDescriptionLoginViewController
+        case 1: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageOneContentDescriptionViewController") as! BPPageOneContentDescriptionLoginViewController
+        case 2: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageOneContentDescriptionViewController") as! BPPageOneContentDescriptionLoginViewController
+        case 3: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageOneContentDescriptionViewController") as! BPPageOneContentDescriptionLoginViewController
+        default: pageContentVC = nil
+            
+        }
+        
 
-        pageContentViewController.imageFile = self.pageImages[index]
-        pageContentViewController.pageIndex = index;
         
-        return pageContentViewController;
+        return pageContentVC
     }
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return self.pageImages.count
+        return self.pages
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
