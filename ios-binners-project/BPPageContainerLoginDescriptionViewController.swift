@@ -107,13 +107,19 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
         switch (index) {
             
         case 0: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageOneContentDescriptionViewController") as! BPPageOneContentDescriptionLoginViewController
-        case 1: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageOneContentDescriptionViewController") as! BPPageOneContentDescriptionLoginViewController
-        case 2: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageOneContentDescriptionViewController") as! BPPageOneContentDescriptionLoginViewController
-        case 3: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageOneContentDescriptionViewController") as! BPPageOneContentDescriptionLoginViewController
+        case 1: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageTwoContentDescriptionViewController") as! BPPageTwoContentDescriptionLoginViewController
+        case 2:  pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageThreeContentDescriptionViewController") as! BPPageThreeContentDescriptionLoginViewController
+        case 3: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageFourContentDescriptionViewController") as! BPPageFourContentDescriptionLoginViewController
         default: pageContentVC = nil
             
         }
         
+        if let page = pageContentVC
+        {
+            var pag = page as! PageControlDataSource
+            pag.pageIndex = index;
+        }
+
 
         
         return pageContentVC
