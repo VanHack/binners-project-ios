@@ -29,6 +29,15 @@ class BPURLBuilder {
         return googleUserLoginUrlFinal
     }
     
+    class func buildTwitterUserLoginURL(accessToken:String) -> String
+    {
+        let baseUrl = BPServerSettings.baseServerUrl
+        let twitterUserLoginUrl = BPServerSettings.twitterLoginUrl
+        let twitterUserLoginUrlFinal = "\(baseUrl)\(twitterUserLoginUrl)\(accessToken)"
+        
+        return twitterUserLoginUrlFinal
+    }
+
     class func getStandardUserLoginURL() -> String
     {
         let baseUrl = BPServerSettings.baseServerUrl

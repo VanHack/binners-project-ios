@@ -122,15 +122,45 @@ class BPLoginViewController: UIViewController {
         formView.center = formView.center
         return formView
     }
-    
+
     func createTwitterLoginButton(form:UIView, index:Int) -> TWTRLogInButton {
         let logInButton = TWTRLogInButton(logInCompletion: { session, error in
-            if (session != nil) {
+            if let unwrappedSession = session {
+                print("User \(unwrappedSession.userName) has logged in")
+
+                self.loginManager.authTwitter = unwrappedSession.authToken
+                
+                do {
+                    
+                    try self.loginManager.authenticateTwitterUserOnBinnersServer() {
+                        
+                        (inner:() throws -> AnyObject) in
+                        
+                        do
+                        {
+                            let value = try inner()
+                            print(value)
+                            
+                            
+                        }catch let error
+                        {
+                            print(error)
+                        }
+                        
+                    }
+                    
+                }catch let error {
+                    
+                    print(error)
+                    
+                }
+
                 
             } else {
-                
+                NSLog("Login error: %@", error!.localizedDescription);
             }
         })
+        
         logInButton.frame = CGRectMake(0, CGFloat(index * 45) , self.view.frame.width * 0.7, 40)
         
         return logInButton
