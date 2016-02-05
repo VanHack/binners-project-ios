@@ -56,7 +56,12 @@ class BPServerRequestManager
                 
                 (sessionDataTask, error) in
                 
-                completion(inner: {throw error })
+                completion(inner: {
+                
+                    let error = try BPErrorManager.processErrorFromServer(error)
+                    throw error
+                
+                })
 
                 
                 
@@ -67,6 +72,7 @@ class BPServerRequestManager
     {
         
         manager.requestSerializer = AFJSONRequestSerializer()
+        manager.responseSerializer = AFJSONResponseSerializer()
         
         manager.POST(url.absoluteString, parameters: param, progress: nil, success: {
             
@@ -79,7 +85,11 @@ class BPServerRequestManager
                 
                 (sessionDataTask, error) in
                 
-                completion(inner: {throw error})
+                completion(inner: {
+                    let error = try BPErrorManager.processErrorFromServer(error)
+                    throw error
+                
+                })
                 
                 
         })

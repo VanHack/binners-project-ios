@@ -51,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return GIDSignIn.sharedInstance().handleURL(url,
             sourceApplication: option,
-            annotation: option2)
+            annotation: option2) ||
+        FBSDKApplicationDelegate.sharedInstance().application(app, openURL: url, sourceApplication: option, annotation: option2)
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {

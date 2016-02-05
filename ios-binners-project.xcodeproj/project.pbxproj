@@ -20,9 +20,27 @@
 		2C1C4D0F1C5FDA280045821F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */; };
 		2C1C4D101C5FDA280045821F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */; };
 		2C1C4D111C5FDA280045821F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */; };
+		2C29FBF81C610AD900C70837 /* BPPageOneContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29FBF71C610AD900C70837 /* BPPageOneContentDescriptionLoginViewController.swift */; };
+		2C29FBFA1C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29FBF91C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift */; };
+		2C29FBFD1C62663F00C70837 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29FBFC1C62663F00C70837 /* UIColor+Extension.swift */; };
+		2C29FC031C626D5800C70837 /* Oxygen-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C29FBFF1C626D5800C70837 /* Oxygen-Bold.ttf */; };
+		2C29FC041C626D5800C70837 /* Oxygen-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C29FBFF1C626D5800C70837 /* Oxygen-Bold.ttf */; };
+		2C29FC051C626D5800C70837 /* Oxygen-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C29FBFF1C626D5800C70837 /* Oxygen-Bold.ttf */; };
+		2C29FC061C626D5800C70837 /* Oxygen-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C29FC001C626D5800C70837 /* Oxygen-BoldItalic.ttf */; };
+		2C29FC071C626D5800C70837 /* Oxygen-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C29FC001C626D5800C70837 /* Oxygen-BoldItalic.ttf */; };
+		2C29FC081C626D5800C70837 /* Oxygen-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C29FC001C626D5800C70837 /* Oxygen-BoldItalic.ttf */; };
+		2C29FC091C626D5800C70837 /* Oxygen-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C29FC011C626D5800C70837 /* Oxygen-Italic.ttf */; };
+		2C29FC0A1C626D5800C70837 /* Oxygen-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C29FC011C626D5800C70837 /* Oxygen-Italic.ttf */; };
+		2C29FC0B1C626D5800C70837 /* Oxygen-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C29FC011C626D5800C70837 /* Oxygen-Italic.ttf */; };
+		2C29FC0C1C626D5800C70837 /* Oxygen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C29FC021C626D5800C70837 /* Oxygen.ttf */; };
+		2C29FC0D1C626D5800C70837 /* Oxygen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C29FC021C626D5800C70837 /* Oxygen.ttf */; };
+		2C29FC0E1C626D5800C70837 /* Oxygen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C29FC021C626D5800C70837 /* Oxygen.ttf */; };
+		2C29FC101C62720900C70837 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29FC0F1C62720900C70837 /* UIFont+Extension.swift */; };
+		2C29FC111C62720900C70837 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29FC0F1C62720900C70837 /* UIFont+Extension.swift */; };
+		2C29FC121C62720900C70837 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29FC0F1C62720900C70837 /* UIFont+Extension.swift */; };
 		2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */; };
 		2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */; };
-		2C35ADD91C5BD8B7007DA4B6 /* BPErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */; };
+		2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD81C5BD8B7007DA4B6 /* BPErrorManager.swift */; };
 		2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */; };
 		2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */; };
 		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
@@ -30,6 +48,9 @@
 		2CC3B2F61C52863200890FD4 /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */; };
 		2CC3B2F81C52869100890FD4 /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */; };
 		8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */; };
+		2CD25EFD1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25EFC1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift */; };
+		2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */; };
+		2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */; };
 		9C36FADFB34B05BF0F66EF41 /* libPods-ios-binners-project.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */; };
 /* End PBXBuildFile section */
 
@@ -70,9 +91,17 @@
 		2C1C4D041C5C1D370045821F /* BPLoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPLoginManager.swift; sourceTree = "<group>"; };
 		2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPURLBuilder.swift; sourceTree = "<group>"; };
 		2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2C29FBF71C610AD900C70837 /* BPPageOneContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageOneContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
+		2C29FBF91C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageContainerLoginDescriptionViewController.swift; sourceTree = "<group>"; };
+		2C29FBFC1C62663F00C70837 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		2C29FBFF1C626D5800C70837 /* Oxygen-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Bold.ttf"; sourceTree = "<group>"; };
+		2C29FC001C626D5800C70837 /* Oxygen-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-BoldItalic.ttf"; sourceTree = "<group>"; };
+		2C29FC011C626D5800C70837 /* Oxygen-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Italic.ttf"; sourceTree = "<group>"; };
+		2C29FC021C626D5800C70837 /* Oxygen.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Oxygen.ttf; sourceTree = "<group>"; };
+		2C29FC0F1C62720900C70837 /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerRequestManager.swift; sourceTree = "<group>"; };
 		2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerSettings.swift; sourceTree = "<group>"; };
-		2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPErrors.swift; sourceTree = "<group>"; };
+		2C35ADD81C5BD8B7007DA4B6 /* BPErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPErrorManager.swift; sourceTree = "<group>"; };
 		2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRequestPickupViewController.swift; sourceTree = "<group>"; };
 		2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupsViewController.swift; sourceTree = "<group>"; };
 		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
@@ -80,6 +109,9 @@
 		2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
 		8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Pods/TwitterKit/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
+		2CD25EFC1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageTwoContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
+		2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageThreeContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
+		2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageFourContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-binners-project.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-binners-project/Pods-ios-binners-project.release.xcconfig"; sourceTree = "<group>"; };
 		F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios-binners-project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,6 +169,7 @@
 		1B98D7E01C440AC200B6AA88 /* ios-binners-project */ = {
 			isa = PBXGroup;
 			children = (
+				2C29FBFB1C611A5B00C70837 /* Util */,
 				2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */,
 				2C5CCB451C494B5700E734CE /* ViewControllers */,
 				2C35ADD31C5BCF7B007DA4B6 /* Supporting Files */,
@@ -171,12 +204,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2C29FBFB1C611A5B00C70837 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				2C29FBFC1C62663F00C70837 /* UIColor+Extension.swift */,
+				2C29FC0F1C62720900C70837 /* UIFont+Extension.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		2C29FBFE1C626D4500C70837 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2C29FBFF1C626D5800C70837 /* Oxygen-Bold.ttf */,
+				2C29FC001C626D5800C70837 /* Oxygen-BoldItalic.ttf */,
+				2C29FC011C626D5800C70837 /* Oxygen-Italic.ttf */,
+				2C29FC021C626D5800C70837 /* Oxygen.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */ = {
 			isa = PBXGroup;
 			children = (
 				2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */,
 				2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */,
-				2C35ADD81C5BD8B7007DA4B6 /* BPErrors.swift */,
+				2C35ADD81C5BD8B7007DA4B6 /* BPErrorManager.swift */,
 				2C1C4D041C5C1D370045821F /* BPLoginManager.swift */,
 				2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */,
 			);
@@ -186,6 +239,7 @@
 		2C35ADD31C5BCF7B007DA4B6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2C29FBFE1C626D4500C70837 /* Fonts */,
 				1B98D7E11C440AC200B6AA88 /* AppDelegate.swift */,
 				1B98D7E51C440AC200B6AA88 /* Main.storyboard */,
 				1B98D7E81C440AC200B6AA88 /* Assets.xcassets */,
@@ -206,6 +260,11 @@
 				2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */,
 				2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */,
 				2C5CCB4C1C4960DB00E734CE /* BPPickupTableViewCell.swift */,
+				2C29FBF71C610AD900C70837 /* BPPageOneContentDescriptionLoginViewController.swift */,
+				2C29FBF91C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift */,
+				2CD25EFC1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift */,
+				2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */,
+				2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -329,9 +388,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C29FC0C1C626D5800C70837 /* Oxygen.ttf in Resources */,
 				1B98D7EC1C440AC200B6AA88 /* LaunchScreen.storyboard in Resources */,
 				1B98D8101C44141000B6AA88 /* BackgroundVideo.mp4 in Resources */,
+				2C29FC091C626D5800C70837 /* Oxygen-Italic.ttf in Resources */,
+				2C29FC061C626D5800C70837 /* Oxygen-BoldItalic.ttf in Resources */,
 				2C1C4D0F1C5FDA280045821F /* GoogleService-Info.plist in Resources */,
+				2C29FC031C626D5800C70837 /* Oxygen-Bold.ttf in Resources */,
 				1B98D7E91C440AC200B6AA88 /* Assets.xcassets in Resources */,
 				8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */,
 				1B98D7E71C440AC200B6AA88 /* Main.storyboard in Resources */,
@@ -342,7 +405,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C29FC071C626D5800C70837 /* Oxygen-BoldItalic.ttf in Resources */,
 				2C1C4D101C5FDA280045821F /* GoogleService-Info.plist in Resources */,
+				2C29FC0D1C626D5800C70837 /* Oxygen.ttf in Resources */,
+				2C29FC0A1C626D5800C70837 /* Oxygen-Italic.ttf in Resources */,
+				2C29FC041C626D5800C70837 /* Oxygen-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +417,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C29FC081C626D5800C70837 /* Oxygen-BoldItalic.ttf in Resources */,
 				2C1C4D111C5FDA280045821F /* GoogleService-Info.plist in Resources */,
+				2C29FC0E1C626D5800C70837 /* Oxygen.ttf in Resources */,
+				2C29FC0B1C626D5800C70837 /* Oxygen-Italic.ttf in Resources */,
+				2C29FC051C626D5800C70837 /* Oxygen-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,16 +494,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,
-				2C35ADD91C5BD8B7007DA4B6 /* BPErrors.swift in Sources */,
+				2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */,
+				2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */,
 				2C1C4D071C5C1F530045821F /* BPURLBuilder.swift in Sources */,
+				2C29FC101C62720900C70837 /* UIFont+Extension.swift in Sources */,
 				2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */,
 				1B98D7E41C440AC200B6AA88 /* BPLoginViewController.swift in Sources */,
+				2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */,
 				2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */,
+				2C29FBFA1C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift in Sources */,
+				2C29FBFD1C62663F00C70837 /* UIColor+Extension.swift in Sources */,
 				2C5CCB4D1C4960DB00E734CE /* BPPickupTableViewCell.swift in Sources */,
 				2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */,
 				1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */,
 				2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */,
+				2C29FBF81C610AD900C70837 /* BPPageOneContentDescriptionLoginViewController.swift in Sources */,
 				2C1C4D051C5C1D370045821F /* BPLoginManager.swift in Sources */,
+				2CD25EFD1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C29FC111C62720900C70837 /* UIFont+Extension.swift in Sources */,
 				1B98D7F71C440AC300B6AA88 /* ios_binners_projectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +527,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C29FC121C62720900C70837 /* UIFont+Extension.swift in Sources */,
 				1B98D8021C440AC300B6AA88 /* ios_binners_projectUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
