@@ -81,7 +81,7 @@ class BPLoginViewController: UIViewController {
         formView.addSubview(createFacebookLoginButton(formView, index: 3))
         formView.addSubview(createTwitterLoginButton(formView, index: 4))
         formView.addSubview(createGoogleLoginButton(formView, index: 5))
-        formView.addSubview(createForgoutLoginLink(formView, index: 6))
+        formView.addSubview(createForgotLoginLink(formView, index: 6))
         formView.addSubview(createBinnerLoginLink(formView, index:  7))
         return formView
     }
@@ -143,26 +143,56 @@ class BPLoginViewController: UIViewController {
         formView.center = formView.center
         return formView
     }
-    
+
     func createTwitterLoginButton(form:UIView, index:Int) -> TWTRLogInButton {
         let logInButton = TWTRLogInButton(logInCompletion: { session, error in
-            if (session != nil) {
+            if let unwrappedSession = session {
+                print("User \(unwrappedSession.userName) has logged in")
+
+                self.loginManager.authTwitter = unwrappedSession.authToken
+                
+                do {
+                    
+                    try self.loginManager.authenticateTwitterUserOnBinnersServer() {
+                        
+                        (inner:() throws -> AnyObject) in
+                        
+                        do
+                        {
+                            let value = try inner()
+                            print(value)
+                            
+                            
+                        }catch let error
+                        {
+                            print(error)
+                        }
+                        
+                    }
+                    
+                }catch let error {
+                    
+                    print(error)
+                    
+                }
+
                 
             } else {
-                
+                NSLog("Login error: %@", error!.localizedDescription);
             }
         })
+        
         logInButton.frame = CGRectMake(0, CGFloat(index * 45) , self.view.frame.width * 0.7, 40)
         
         return logInButton
     }
     
-    func createForgoutLoginLink(form:UIView, index:Int) -> UIView {
+    func createForgotLoginLink(form:UIView, index:Int) -> UIView {
         let formView = UIButton(frame: CGRectMake(0, CGFloat(index * 45) , self.view.frame.width * 0.7, 40))
         formView.center = formView.center
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         formView.titleLabel?.font = UIFont.systemFontOfSize(16)
-        formView.setTitle("Forgout your password ?", forState: UIControlState.Normal)
+        formView.setTitle("Forgot your password ?", forState: UIControlState.Normal)
         return formView
     }
     

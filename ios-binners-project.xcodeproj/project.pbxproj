@@ -47,6 +47,7 @@
 		2C5CCB4D1C4960DB00E734CE /* BPPickupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4C1C4960DB00E734CE /* BPPickupTableViewCell.swift */; };
 		2CC3B2F61C52863200890FD4 /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */; };
 		2CC3B2F81C52869100890FD4 /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */; };
+		8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */; };
 		2CD25EFD1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25EFC1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift */; };
 		2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */; };
 		2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */; };
@@ -107,6 +108,7 @@
 		2C5CCB4C1C4960DB00E734CE /* BPPickupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupTableViewCell.swift; sourceTree = "<group>"; };
 		2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
+		8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Pods/TwitterKit/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		2CD25EFC1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageTwoContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageThreeContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageFourContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 		E10C670EFDB7D29BE8FE622E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */,
 				2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */,
 				2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */,
 				F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */,
@@ -290,6 +293,7 @@
 				1B98D7DC1C440AC200B6AA88 /* Resources */,
 				5CB520D8A68F5846167AC75D /* Embed Pods Frameworks */,
 				F40C97D3C6D0F5A8CCBD6093 /* Copy Pods Resources */,
+				8C3CBFCC1C602C8500691C67 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -392,6 +396,7 @@
 				2C1C4D0F1C5FDA280045821F /* GoogleService-Info.plist in Resources */,
 				2C29FC031C626D5800C70837 /* Oxygen-Bold.ttf in Resources */,
 				1B98D7E91C440AC200B6AA88 /* Assets.xcassets in Resources */,
+				8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */,
 				1B98D7E71C440AC200B6AA88 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +442,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios-binners-project/Pods-ios-binners-project-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		8C3CBFCC1C602C8500691C67 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 04ee03acabd91fb17cbbd8ea2e26455081d99bfb 0030f9cc525a1f574f97a7b2b23f523df7b89e4007fc1abc0e5d06bc36abd240";
 		};
 		E5F21E19D5E18815DEA240F0 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TwitterKit
 
 
 class BPLoginManager
@@ -14,6 +15,7 @@ class BPLoginManager
     var authBinners:String?
     var authFacebook:String?
     var authGoogle:String?
+    var authTwitter:String?
     
     static let sharedInstance = BPLoginManager()
     
@@ -49,9 +51,27 @@ class BPLoginManager
         
         
     }
+    
+    func authenticateTwitterUserOnBinnersServer(completion:(inner:() throws -> AnyObject) -> Void) throws {
+        
+        //guard let auth = authTwitter else {
+        //    throw Error.TwitterAuthMissing(errorMsg: "Twitter auth can't be nil")
+        //}
+        
+        //let finalUrl = BPURLBuilder.buildTwitterUserLoginURL(auth)
+        //let manager = AFHTTPSessionManager()
+        
+        //TODO: Waiting for the API endpoint for twitter auth
+        //try BPServerRequestManager.sharedInstance.execute(.GET, urlString: finalUrl, manager: manager, param: nil, completion: completion)
+        print("TODO: Waiting for the API endpoint for twitter auth")
+        print("loggin out for test purposes")
+        
+        if let session = Twitter.sharedInstance().sessionStore.session() {
+            Twitter.sharedInstance().sessionStore.logOutUserID(session.userID)
+            print("logged out")
+        }
+    }
 
-    
-    
     func makeResidentStandardLogin(email:String,password:String,completion:(inner:() throws -> AnyObject) ->Void) throws {
         
         
