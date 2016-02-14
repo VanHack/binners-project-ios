@@ -14,7 +14,6 @@
 		1B98D7EC1C440AC200B6AA88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B98D7EA1C440AC200B6AA88 /* LaunchScreen.storyboard */; };
 		1B98D7F71C440AC300B6AA88 /* ios_binners_projectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D7F61C440AC300B6AA88 /* ios_binners_projectTests.swift */; };
 		1B98D8021C440AC300B6AA88 /* ios_binners_projectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D8011C440AC300B6AA88 /* ios_binners_projectUITests.swift */; };
-		1B98D8101C44141000B6AA88 /* BackgroundVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */; };
 		2C1C4D051C5C1D370045821F /* BPLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C4D041C5C1D370045821F /* BPLoginManager.swift */; };
 		2C1C4D071C5C1F530045821F /* BPURLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */; };
 		2C1C4D0F1C5FDA280045821F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */; };
@@ -47,10 +46,10 @@
 		2C5CCB4D1C4960DB00E734CE /* BPPickupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4C1C4960DB00E734CE /* BPPickupTableViewCell.swift */; };
 		2CC3B2F61C52863200890FD4 /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */; };
 		2CC3B2F81C52869100890FD4 /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */; };
-		8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */; };
 		2CD25EFD1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25EFC1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift */; };
 		2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */; };
 		2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */; };
+		8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */; };
 		9C36FADFB34B05BF0F66EF41 /* libPods-ios-binners-project.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */; };
 /* End PBXBuildFile section */
 
@@ -86,7 +85,6 @@
 		1B98D7FD1C440AC300B6AA88 /* ios-binners-projectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-binners-projectUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B98D8011C440AC300B6AA88 /* ios_binners_projectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_binners_projectUITests.swift; sourceTree = "<group>"; };
 		1B98D8031C440AC300B6AA88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = BackgroundVideo.mp4; sourceTree = "<group>"; };
 		1B98D8111C4433FB00B6AA88 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		2C1C4D041C5C1D370045821F /* BPLoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPLoginManager.swift; sourceTree = "<group>"; };
 		2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPURLBuilder.swift; sourceTree = "<group>"; };
@@ -108,10 +106,10 @@
 		2C5CCB4C1C4960DB00E734CE /* BPPickupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupTableViewCell.swift; sourceTree = "<group>"; };
 		2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
-		8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Pods/TwitterKit/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		2CD25EFC1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageTwoContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageThreeContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageFourContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
+		8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Pods/TwitterKit/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-binners-project.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-binners-project/Pods-ios-binners-project.release.xcconfig"; sourceTree = "<group>"; };
 		F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios-binners-project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -244,7 +242,6 @@
 				1B98D7E51C440AC200B6AA88 /* Main.storyboard */,
 				1B98D7E81C440AC200B6AA88 /* Assets.xcassets */,
 				1B98D7EA1C440AC200B6AA88 /* LaunchScreen.storyboard */,
-				1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */,
 				1B98D7ED1C440AC200B6AA88 /* Info.plist */,
 				2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */,
 				1B98D8111C4433FB00B6AA88 /* Bridging-Header.h */,
@@ -390,7 +387,6 @@
 			files = (
 				2C29FC0C1C626D5800C70837 /* Oxygen.ttf in Resources */,
 				1B98D7EC1C440AC200B6AA88 /* LaunchScreen.storyboard in Resources */,
-				1B98D8101C44141000B6AA88 /* BackgroundVideo.mp4 in Resources */,
 				2C29FC091C626D5800C70837 /* Oxygen-Italic.ttf in Resources */,
 				2C29FC061C626D5800C70837 /* Oxygen-BoldItalic.ttf in Resources */,
 				2C1C4D0F1C5FDA280045821F /* GoogleService-Info.plist in Resources */,

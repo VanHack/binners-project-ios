@@ -16,6 +16,7 @@ class BPLoginManager
     var authFacebook:String?
     var authGoogle:String?
     var authTwitter:String?
+    var authSecretTwitter:String?
     
     static let sharedInstance = BPLoginManager()
     
@@ -54,16 +55,20 @@ class BPLoginManager
     
     func authenticateTwitterUserOnBinnersServer(completion:(inner:() throws -> AnyObject) -> Void) throws {
         
-        //guard let auth = authTwitter else {
-        //    throw Error.TwitterAuthMissing(errorMsg: "Twitter auth can't be nil")
-        //}
+        guard let auth = authTwitter else {
+            throw Error.TwitterAuthMissing(errorMsg: "Twitter auth can't be nil")
+        }
         
-        //let finalUrl = BPURLBuilder.buildTwitterUserLoginURL(auth)
-        //let manager = AFHTTPSessionManager()
+        guard let authSecret = authSecretTwitter else {
+            throw Error.TwitterAuthMissing(errorMsg: "Twitter auth token secret can't be nil")
+        }
+        
+        let finalUrl = BPURLBuilder.buildTwitterUserLoginURL(auth, accessSecret: authSecret)
+        let manager = AFHTTPSessionManager()
         
         //TODO: Waiting for the API endpoint for twitter auth
-        //try BPServerRequestManager.sharedInstance.execute(.GET, urlString: finalUrl, manager: manager, param: nil, completion: completion)
-        print("TODO: Waiting for the API endpoint for twitter auth")
+        try BPServerRequestManager.sharedInstance.execute(.GET, urlString: finalUrl, manager: manager, param: nil, completion: completion)
+        
         print("loggin out for test purposes")
         
         if let session = Twitter.sharedInstance().sessionStore.session() {
