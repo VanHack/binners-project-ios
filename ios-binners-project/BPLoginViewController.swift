@@ -23,8 +23,8 @@ class BPLoginViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.addSubview(createBackground(self.view))
-        self.view.addSubview(createLogo(self.view, index: 1))
-        self.view.addSubview(createLoginOptionSelector(self.view, index: 2))
+        self.view.addSubview(createLogo(self.view))
+        self.view.addSubview(createLoginOptionSelector(self.view))
         
         self.view.addSubview(createResidentForm())
         
@@ -70,7 +70,7 @@ class BPLoginViewController: UIViewController {
         return imageView
     }
     
-    func createLogo(form:UIView, index:Int) -> UIView {
+    func createLogo(form:UIView) -> UIView {
         let imageName = "login-top-logo"
         let image = UIImage(named: imageName)
         
@@ -86,7 +86,7 @@ class BPLoginViewController: UIViewController {
         return imageView
     }
     
-    func createLoginOptionSelector(form:UIView, index:Int) -> UIView {
+    func createLoginOptionSelector(form:UIView) -> UIView {
         let options = ["Binner", "Resident"]
         
         let segControl = UISegmentedControl(items: options)
@@ -117,18 +117,18 @@ class BPLoginViewController: UIViewController {
             
             case 0:
                 print("Binners login option selected")
-                if let viewWithTag = self.view.viewWithTag(1) {
+                if let viewWithTag = self.view.viewWithTag(999) {
                     viewWithTag.removeFromSuperview()
                 }
                 self.view.addSubview(createBinnerForm())
             case 1:
                 print("Residente login option selected")
-                if let viewWithTag = self.view.viewWithTag(0) {
+                if let viewWithTag = self.view.viewWithTag(998) {
                     viewWithTag.removeFromSuperview()
                 }
-                self.view.addSubview(createBackground(self.view))
-                self.view.addSubview(createLogo(self.view, index: 1))
-                self.view.addSubview(createLoginOptionSelector(self.view, index: 2))
+                //self.view.addSubview(createBackground(self.view))
+                //self.view.addSubview(createLogo(self.view))
+                //self.view.addSubview(createLoginOptionSelector(self.view))
                 self.view.addSubview(createResidentForm())
             default:
                 print("Residente login option selected")
@@ -138,7 +138,7 @@ class BPLoginViewController: UIViewController {
     func createResidentForm() -> UIView {
         let formView = UIView(frame: CGRectMake((self.view.frame.width - (self.view.frame.width * 0.9))/2, ((self.view.frame.height - 340) - 15), self.view.frame.width * 0.9, 340))
         
-        formView.tag = 1
+        formView.tag = 999
         
         formView.addSubview(createInputText(formView, index: 1))
         formView.addSubview(createInputPassword(formView, index:  2))
@@ -157,7 +157,7 @@ class BPLoginViewController: UIViewController {
     func createBinnerForm() -> UIView {
         let formView = UIView(frame: CGRectMake((self.view.frame.width - (self.view.frame.width * 0.9))/2, ((self.view.frame.height - 249) - 15), self.view.frame.width * 0.9, 249))
         
-        formView.tag = 0
+        formView.tag = 998
         
         return formView
     }
