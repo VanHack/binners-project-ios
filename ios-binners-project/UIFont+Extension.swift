@@ -15,4 +15,9 @@ extension UIFont {
         
         return UIFont(name: "Oxygen Regular",size: 16)
     }
+    
+    static func binnerFontName() ->String
+    {
+        return "Oxygen Regular"
+    }
 }

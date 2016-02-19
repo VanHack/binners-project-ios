@@ -18,6 +18,7 @@ class BPLoginViewController: UIViewController {
     var textFieldEmail: UITextField?
     var textFieldPassword: UITextField?
     let loginManager = BPLoginManager.sharedInstance
+    let user = BPUser.sharedInstance
     
     
     override func viewDidLoad() {
@@ -39,6 +40,7 @@ class BPLoginViewController: UIViewController {
         
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
+        
         
         // test purposes only
         FBSDKLoginManager().logOut()
@@ -161,6 +163,7 @@ class BPLoginViewController: UIViewController {
                         {
                             let value = try inner()
                             print(value)
+                            self.dismissViewControllerAnimated(true, completion: nil)
                             
                             
                         }catch let error
@@ -228,6 +231,7 @@ class BPLoginViewController: UIViewController {
                     
                     let value = try inner()
                     print(value)
+                    self.dismissViewControllerAnimated(true, completion: nil)
                     
                 }catch let error
                 {
@@ -270,6 +274,7 @@ extension BPLoginViewController: FBSDKLoginButtonDelegate
                 {
                     let value = try inner()
                     print(value)
+                    self.dismissViewControllerAnimated(true, completion: nil)
                     
                     
                 }catch let error
@@ -316,6 +321,7 @@ extension BPLoginViewController : GIDSignInUIDelegate, GIDSignInDelegate
                     {
                         let value = try inner()
                         print(value)
+                        self.dismissViewControllerAnimated(true, completion: nil)
                         
                         
                     }catch let error
