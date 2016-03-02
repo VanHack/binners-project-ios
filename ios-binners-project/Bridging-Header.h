@@ -11,3 +11,4 @@
 #import <Fabric/Fabric.h>
 #import <Google/SignIn.h>
 #import <AFNetworking/AFNetworking.h>
+#import "BEMAnalogClockView.h"

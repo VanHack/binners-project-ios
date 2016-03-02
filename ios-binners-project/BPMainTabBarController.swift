@@ -120,12 +120,14 @@ class BPMainTabBarController: UITabBarController {
     func buttonPressed(sender:UIButton)
     {
         self.selectedIndex = 1
+        print("dfdf")
+        self.performSegueWithIdentifier("newPickupSegue", sender: self)
     }
     
     override func viewDidAppear(animated: Bool) {
         
         // view hierarchy is already setup by this point, so we can segue from here
-        self.performSegueWithIdentifier("loginSegue", sender: nil)
+        //self.performSegueWithIdentifier("loginSegue", sender: nil)
     }
 
     override func didReceiveMemoryWarning() {

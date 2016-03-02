@@ -15,6 +15,8 @@
 		1B98D7F71C440AC300B6AA88 /* ios_binners_projectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D7F61C440AC300B6AA88 /* ios_binners_projectTests.swift */; };
 		1B98D8021C440AC300B6AA88 /* ios_binners_projectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D8011C440AC300B6AA88 /* ios_binners_projectUITests.swift */; };
 		1B98D8101C44141000B6AA88 /* BackgroundVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */; };
+		2C022F911C877F49003E497F /* KSMHand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C022F8E1C877F49003E497F /* KSMHand.m */; };
+		2C022F921C877F49003E497F /* BEMAnalogClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C022F8F1C877F49003E497F /* BEMAnalogClockView.m */; };
 		2C1C4D051C5C1D370045821F /* BPLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C4D041C5C1D370045821F /* BPLoginManager.swift */; };
 		2C1C4D071C5C1F530045821F /* BPURLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */; };
 		2C1C4D0F1C5FDA280045821F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */; };
@@ -50,6 +52,7 @@
 		2CD25EFD1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25EFC1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift */; };
 		2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */; };
 		2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */; };
+		2CF92CFE1C8615FD00DDB676 /* BPClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */; };
 		8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */; };
 		9C36FADFB34B05BF0F66EF41 /* libPods-ios-binners-project.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */; };
 /* End PBXBuildFile section */
@@ -88,6 +91,10 @@
 		1B98D8031C440AC300B6AA88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B98D80F1C44141000B6AA88 /* BackgroundVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = BackgroundVideo.mp4; sourceTree = "<group>"; };
 		1B98D8111C4433FB00B6AA88 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		2C022F8D1C877F49003E497F /* KSMHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSMHand.h; sourceTree = "<group>"; };
+		2C022F8E1C877F49003E497F /* KSMHand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSMHand.m; sourceTree = "<group>"; };
+		2C022F8F1C877F49003E497F /* BEMAnalogClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAnalogClockView.m; sourceTree = "<group>"; };
+		2C022F901C877F49003E497F /* BEMAnalogClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnalogClockView.h; sourceTree = "<group>"; };
 		2C1C4D041C5C1D370045821F /* BPLoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPLoginManager.swift; sourceTree = "<group>"; };
 		2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPURLBuilder.swift; sourceTree = "<group>"; };
 		2C1C4D0E1C5FDA280045821F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -111,6 +118,7 @@
 		2CD25EFC1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageTwoContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageThreeContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageFourContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
+		2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPClockViewController.swift; sourceTree = "<group>"; };
 		8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Pods/TwitterKit/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-binners-project.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-binners-project/Pods-ios-binners-project.release.xcconfig"; sourceTree = "<group>"; };
 		F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios-binners-project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,6 +264,7 @@
 		2C5CCB451C494B5700E734CE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2CF92CFC1C86157B00DDB676 /* Pickup */,
 				2CBDC96F1C77BBFC00EC0F99 /* IntroductionToApp */,
 				1B98D7E31C440AC200B6AA88 /* BPLoginViewController.swift */,
 				2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */,
@@ -283,6 +292,18 @@
 				2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */,
 			);
 			name = IntroductionToApp;
+			sourceTree = "<group>";
+		};
+		2CF92CFC1C86157B00DDB676 /* Pickup */ = {
+			isa = PBXGroup;
+			children = (
+				2C022F8D1C877F49003E497F /* KSMHand.h */,
+				2C022F8E1C877F49003E497F /* KSMHand.m */,
+				2C022F8F1C877F49003E497F /* BEMAnalogClockView.m */,
+				2C022F901C877F49003E497F /* BEMAnalogClockView.h */,
+				2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */,
+			);
+			name = Pickup;
 			sourceTree = "<group>";
 		};
 		E10C670EFDB7D29BE8FE622E /* Frameworks */ = {
@@ -519,8 +540,11 @@
 				2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */,
 				2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */,
 				2C29FBFA1C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift in Sources */,
+				2C022F911C877F49003E497F /* KSMHand.m in Sources */,
 				2C29FBFD1C62663F00C70837 /* UIColor+Extension.swift in Sources */,
 				2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */,
+				2CF92CFE1C8615FD00DDB676 /* BPClockViewController.swift in Sources */,
+				2C022F921C877F49003E497F /* BEMAnalogClockView.m in Sources */,
 				1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */,
 				2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */,
 				2CBDC96E1C7777FA00EC0F99 /* BPUser.swift in Sources */,
