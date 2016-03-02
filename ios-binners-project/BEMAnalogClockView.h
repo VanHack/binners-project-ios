@@ -191,7 +191,7 @@
  @param hours The hours currently displayed on the clock by the hour hand.
  @param minutes The minutes currently displayed on the clock by the minute hand.
  @param seconds The seconds currently displayed on the clock by the second hand. */
-- (void)currentTimeOnClock:(BEMAnalogClockView *)clock Hours:(NSString *)hours Minutes:(NSString *)minutes Seconds:(NSString *)seconds;
+- (void)currentTimeOnClock:(BEMAnalogClockView *)clock hours:(NSString *)hours minutes:(NSString *)minutes seconds:(NSString *)seconds;
 
 
 //----- DATA SOURCE -----//

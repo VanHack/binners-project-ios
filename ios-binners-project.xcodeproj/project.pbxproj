@@ -204,6 +204,17 @@
 			path = "ios-binners-projectUITests";
 			sourceTree = "<group>";
 		};
+		2C022F931C87810E003E497F /* ClockView */ = {
+			isa = PBXGroup;
+			children = (
+				2C022F8D1C877F49003E497F /* KSMHand.h */,
+				2C022F8E1C877F49003E497F /* KSMHand.m */,
+				2C022F8F1C877F49003E497F /* BEMAnalogClockView.m */,
+				2C022F901C877F49003E497F /* BEMAnalogClockView.h */,
+			);
+			name = ClockView;
+			sourceTree = "<group>";
+		};
 		2C17DCFADAE9076371EA13A0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,10 +308,7 @@
 		2CF92CFC1C86157B00DDB676 /* Pickup */ = {
 			isa = PBXGroup;
 			children = (
-				2C022F8D1C877F49003E497F /* KSMHand.h */,
-				2C022F8E1C877F49003E497F /* KSMHand.m */,
-				2C022F8F1C877F49003E497F /* BEMAnalogClockView.m */,
-				2C022F901C877F49003E497F /* BEMAnalogClockView.h */,
+				2C022F931C87810E003E497F /* ClockView */,
 				2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */,
 			);
 			name = Pickup;

@@ -157,6 +157,7 @@ class BPClockViewController: UIViewController {
         clockView.hourHandAlpha = 0.0
         clockView.minuteHandAlpha = 1.0
         clockView.hourOrMinuteSelected = 1
+        timeMode = .minutes
         clockView.reloadClock()
     }
     func hourButtonClicked() {
@@ -166,6 +167,7 @@ class BPClockViewController: UIViewController {
         clockView.minuteHandAlpha = 0.0
         clockView.hourHandAlpha = 1.0
         clockView.hourOrMinuteSelected = 0
+        timeMode = .hours
         clockView.reloadClock()
     }
 
@@ -178,17 +180,38 @@ class BPClockViewController: UIViewController {
 
 extension BPClockViewController :BEMAnalogClockDelegate {
     
-    func currentTimeOnClock(clock: BEMAnalogClockView!, hours: String!, minutes: String!, seconds: String!) {
+    func currentTimeOnClock(clock: BEMAnalogClockView!, hours: String!,minutes: String!,seconds: String!) {
         
-        self.hoursButton.setTitle(hours, forState: .Normal)
-        self.minutesButton.setTitle(minutes, forState: .Normal)
+        if timeMode == .hours {
+            
+            if clock.hours < 10 {
+                hoursButton.setTitle("0\(hours)", forState: .Normal)
+                
+            } else {
+                hoursButton.setTitle("\(hours)", forState: .Normal)
+                
+            }
+            
+        } else {
+            
+            if clock.minutes < 10 {
+                minutesButton.setTitle("0\(minutes)", forState: .Normal)
+            } else {
+                minutesButton.setTitle("\(minutes)", forState: .Normal)
+            }
+        }
+        
+       
+        
         
     }
     
     func clockDidBeginLoading(clock: BEMAnalogClockView!) {
         
+
         print("clock loading")
     }
+    
     
     func clockDidFinishLoading(clock: BEMAnalogClockView!) {
         
@@ -205,6 +228,7 @@ extension BPClockViewController :BEMAnalogClockDelegate {
             hoursButton.setTitle("\(clock.hours)", forState: .Normal)
 
         }
+        clockView.currentTime = false
         
         
     }
