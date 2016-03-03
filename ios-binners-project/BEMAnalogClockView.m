@@ -307,28 +307,34 @@
     CGFloat angleInRadians = atan2f(translation.y - self.frame.size.height/2, translation.x - self.frame.size.width/2);
     self.oldMinutes = self.minutes;
     self.minutes = ((atan2f((translation.x - self.frame.size.height/2), (translation.y - self.frame.size.width/2)) * -(180/M_PI) + 180))/6;
+    self.hours =  (((atan2f((translation.x - self.frame.size.height/2), (translation.y - self.frame.size.width/2)) * -(180/M_PI) + 180))/6)/5;
     
-    if (self.oldMinutes > 45 && self.minutes < 15) { // If the user drags the minute hand from 59 to 00, updates the hour on the clock.
-        self.hours++;
-    }
-    else if (self.oldMinutes < 15 && self.minutes > 45) { // If the user drags the minute hand from 00 to 59, updates the hour on the clock.
-        self.hours--;
-    }
-    if (self.militaryTime == NO) {
-        if (self.hours >= 13) {
-            self.hours = 1;
-        } else if (self.hours <= 0) {
-            self.hours = 12;
-        }
-    } else {
-        if (self.hours >= 24) {
-            self.hours = 00;
-        } else if (self.hours <= 0) {
-            self.hours = 23;
-        }
-    }
+    
+//    if (self.oldMinutes > 45 && self.minutes < 15) { // If the user drags the minute hand from 59 to 00, updates the hour on the clock.
+//        self.hours++;
+//    }
+//    else if (self.oldMinutes < 15 && self.minutes > 45) { // If the user drags the minute hand from 00 to 59, updates the hour on the clock.
+//        self.hours--;
+//    }
+    
+//    if (self.militaryTime == NO) {
+//        if (self.hours >= 13) {
+//            self.hours = 1;
+//        } else if (self.hours <= 0) {
+//            self.hours = 12;
+//        }
+//    } else {
+//        if (self.hours >= 24) {
+//            self.hours = 00;
+//        } else if (self.hours <= 0) {
+//            self.hours = 23;
+//        }
+//    }
     self.minuteHand.transform = CGAffineTransformMakeRotation(angleInRadians + M_PI/2);
     self.hourHand.transform = CGAffineTransformMakeRotation(angleInRadians + M_PI/2);
+    
+    
+    
 //CGAffineTransformMakeRotation(([self degreesFromHour:self.hours andMinutes:self.minutes])*(M_PI/180));
     
     if ([self.delegate respondsToSelector:@selector(currentTimeOnClock:hours:minutes:seconds:)]) {

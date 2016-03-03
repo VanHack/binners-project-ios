@@ -24,6 +24,8 @@ class BPClockViewController: UIViewController {
     @IBOutlet weak var amButton: UIButton!
     @IBOutlet weak var clockView: BEMAnalogClockView!
     var timeMode:TimeMode = .hours
+    var hours:Int = 0
+    var minutes:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -201,15 +203,10 @@ extension BPClockViewController :BEMAnalogClockDelegate {
             }
         }
         
-       
+       self.hours = clock.hours
+       self.minutes = clock.minutes
         
         
-    }
-    
-    func clockDidBeginLoading(clock: BEMAnalogClockView!) {
-        
-
-        print("clock loading")
     }
     
     
@@ -228,6 +225,8 @@ extension BPClockViewController :BEMAnalogClockDelegate {
             hoursButton.setTitle("\(clock.hours)", forState: .Normal)
 
         }
+        self.hours = clock.hours
+        self.minutes = clock.minutes
         clockView.currentTime = false
         
         
