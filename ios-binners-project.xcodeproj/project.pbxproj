@@ -46,6 +46,7 @@
 		2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */; };
 		2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */; };
 		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
+		2C8A4A711C88C56E00D8E0DB /* BPMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */; };
 		2CBDC96E1C7777FA00EC0F99 /* BPUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBDC96D1C7777FA00EC0F99 /* BPUser.swift */; };
 		2CC3B2F61C52863200890FD4 /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */; };
 		2CC3B2F81C52869100890FD4 /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */; };
@@ -112,6 +113,7 @@
 		2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRequestPickupViewController.swift; sourceTree = "<group>"; };
 		2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupsViewController.swift; sourceTree = "<group>"; };
 		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
+		2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMapViewController.swift; sourceTree = "<group>"; };
 		2CBDC96D1C7777FA00EC0F99 /* BPUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPUser.swift; sourceTree = "<group>"; };
 		2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			children = (
 				2C022F931C87810E003E497F /* ClockView */,
 				2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */,
+				2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */,
 			);
 			name = Pickup;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				1B98D7E41C440AC200B6AA88 /* BPLoginViewController.swift in Sources */,
 				2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */,
 				2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */,
+				2C8A4A711C88C56E00D8E0DB /* BPMapViewController.swift in Sources */,
 				2C29FBFA1C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift in Sources */,
 				2C022F911C877F49003E497F /* KSMHand.m in Sources */,
 				2C29FBFD1C62663F00C70837 /* UIColor+Extension.swift in Sources */,

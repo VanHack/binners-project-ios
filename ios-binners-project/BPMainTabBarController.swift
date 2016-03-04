@@ -126,7 +126,7 @@ class BPMainTabBarController: UITabBarController {
     override func viewDidAppear(animated: Bool) {
         
         // view hierarchy is already setup by this point, so we can segue from here
-       // self.performSegueWithIdentifier("loginSegue", sender: nil)
+        //self.performSegueWithIdentifier("loginSegue", sender: nil)
     }
 
     override func didReceiveMemoryWarning() {

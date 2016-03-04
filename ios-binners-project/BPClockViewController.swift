@@ -65,9 +65,9 @@ class BPClockViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
-        let buttonLeft = UIBarButtonItem(title: "✘", style: .Done, target: self, action: "cancelButtonClicked")
-        buttonLeft.tintColor = UIColor.whiteColor()
-        self.navigationItem.leftBarButtonItem = buttonLeft
+//        let buttonLeft = UIBarButtonItem(title: "✘", style: .Done, target: self, action: "cancelButtonClicked")
+//        buttonLeft.tintColor = UIColor.whiteColor()
+//        self.navigationItem.leftBarButtonItem = buttonLeft
 
     }
     
