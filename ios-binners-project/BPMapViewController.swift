@@ -138,21 +138,21 @@ class BPMapViewController: UIViewController {
         
        let geocoder = CLGeocoder()
         
-        geocoder.geocodeAddressString(address, inRegion: self.mapView.region, completionHandler: {
-            
-            (placemarks:[CLPlacemark]?,error) in
-            
-            if let placemarks = placemarks {
-                
-                for placemark in placemarks {
-                    print(placemark.name)
-                }
-            }
-
-            
-        
-        
-        })
+//        geocoder.geocodeAddressString(address, inRegion: self.mapView.region, completionHandler: {
+//            
+//            (placemarks:[CLPlacemark]?,error) in
+//            
+//            if let placemarks = placemarks {
+//                
+//                for placemark in placemarks {
+//                    print(placemark.name)
+//                }
+//            }
+//
+//            
+//        
+//        
+//        })
         
     }
     
