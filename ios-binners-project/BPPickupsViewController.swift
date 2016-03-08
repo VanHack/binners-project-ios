@@ -10,11 +10,11 @@ import UIKit
 
 class BPPickupsViewController: UIViewController {
 
-    @IBOutlet weak var tableViewPickups: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Do any additional setup after loading the view.
     }
 
@@ -36,22 +36,3 @@ class BPPickupsViewController: UIViewController {
 
 }
 
-extension BPPickupsViewController : UITableViewDataSource, UITableViewDelegate
-{
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        var cell = tableView.dequeueReusableCellWithIdentifier("pickupCell")
-        
-        if cell == nil
-        {
-            cell = BPPickupTableViewCell()
-        }
-        
-        return cell!
-        
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-}
