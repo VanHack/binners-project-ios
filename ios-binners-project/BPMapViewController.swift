@@ -138,21 +138,25 @@ class BPMapViewController: UIViewController {
         
        let geocoder = CLGeocoder()
         
-//        geocoder.geocodeAddressString(address, inRegion: self.mapView.region, completionHandler: {
-//            
-//            (placemarks:[CLPlacemark]?,error) in
-//            
-//            if let placemarks = placemarks {
-//                
-//                for placemark in placemarks {
-//                    print(placemark.name)
-//                }
-//            }
-//
-//            
-//        
-//        
-//        })
+        //CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:theCenter radius:theRadius identifier:theIdentifier];
+        
+        let region = CLCircularRegion(center: self.mapView.region.center, radius: regionRadius * 2.0, identifier: "current")
+        
+        geocoder.geocodeAddressString(address, inRegion: region, completionHandler: {
+            
+            (placemarks:[CLPlacemark]?,error) in
+            
+            if let placemarks = placemarks {
+                
+                for placemark in placemarks {
+                    print(placemark.name)
+                }
+            }
+
+            
+        
+        
+        })
         
     }
     
