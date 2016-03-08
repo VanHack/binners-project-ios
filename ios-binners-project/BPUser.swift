@@ -47,6 +47,7 @@ class BPUser{
         }
     }
     
+    
     func saveUserInfoLocally(info:[String:String])
     {
         // MUST BE SWITCHED TO SOME OTHER WAY WITH ENCRYPTION IN THE FUTURE
@@ -57,10 +58,40 @@ class BPUser{
         let id = info["id"]
         self.email = email
         self.id = id
-
+        
         userDefaults.setObject(info, forKey: "User")
         userDefaults.synchronize()
         
+    }
+
+    
+    func getPickUpHistoryLocations() -> [String] {
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        if (userDefaults.objectForKey("PickupAdressesHistory") == nil)
+        {
+            return []
+        }
+        else
+        {
+            let history = userDefaults.objectForKey("PickupAdressesHistory") as! [String]
+
+            return history
+        }
+
+    }
+    
+    func savePickUpLocationInHistory(location:String) {
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        var history = getPickUpHistoryLocations()
+        
+        history.append(location)
+        
+        userDefaults.setObject(history, forKey: "PickupAdressesHistory")
+        userDefaults.synchronize()
+
     }
     
     func clearUserInfoLocally()

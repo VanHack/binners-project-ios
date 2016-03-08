@@ -47,6 +47,8 @@
 		2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */; };
 		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
 		2C8A4A711C88C56E00D8E0DB /* BPMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */; };
+		2CBA2D2E1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA2D2C1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift */; };
+		2CBA2D2F1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA2D2D1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib */; };
 		2CBDC96E1C7777FA00EC0F99 /* BPUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBDC96D1C7777FA00EC0F99 /* BPUser.swift */; };
 		2CC3B2F61C52863200890FD4 /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */; };
 		2CC3B2F81C52869100890FD4 /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */; };
@@ -114,6 +116,8 @@
 		2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupsViewController.swift; sourceTree = "<group>"; };
 		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
 		2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMapViewController.swift; sourceTree = "<group>"; };
+		2CBA2D2C1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRecentAddressTableViewCell.swift; sourceTree = "<group>"; };
+		2CBA2D2D1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPRecentAddressTableViewCell.xib; sourceTree = "<group>"; };
 		2CBDC96D1C7777FA00EC0F99 /* BPUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPUser.swift; sourceTree = "<group>"; };
 		2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
@@ -287,6 +291,15 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		2CBA2D2B1C8DFAC50048C850 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2CBA2D2C1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift */,
+				2CBA2D2D1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib */,
+			);
+			name = TableViewCell;
+			sourceTree = "<group>";
+		};
 		2CBDC96C1C7777BA00EC0F99 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +323,7 @@
 		2CF92CFC1C86157B00DDB676 /* Pickup */ = {
 			isa = PBXGroup;
 			children = (
+				2CBA2D2B1C8DFAC50048C850 /* TableViewCell */,
 				2C022F931C87810E003E497F /* ClockView */,
 				2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */,
 				2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */,
@@ -437,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C29FC0C1C626D5800C70837 /* Oxygen.ttf in Resources */,
+				2CBA2D2F1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib in Resources */,
 				1B98D7EC1C440AC200B6AA88 /* LaunchScreen.storyboard in Resources */,
 				1B98D8101C44141000B6AA88 /* BackgroundVideo.mp4 in Resources */,
 				2C29FC091C626D5800C70837 /* Oxygen-Italic.ttf in Resources */,
@@ -560,6 +575,7 @@
 				1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */,
 				2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */,
 				2CBDC96E1C7777FA00EC0F99 /* BPUser.swift in Sources */,
+				2CBA2D2E1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift in Sources */,
 				2C29FBF81C610AD900C70837 /* BPPageOneContentDescriptionLoginViewController.swift in Sources */,
 				2C1C4D051C5C1D370045821F /* BPLoginManager.swift in Sources */,
 				2CD25EFD1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift in Sources */,
