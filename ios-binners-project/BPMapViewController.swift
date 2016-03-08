@@ -148,9 +148,9 @@ class BPMapViewController: UIViewController {
             
             if let placemarks = placemarks {
                 
-                for placemark in placemarks {
-                    print(placemark.name)
-                }
+//                for placemark in placemarks {
+//                    print(placemark.name)
+//                }
             }
 
             
