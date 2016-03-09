@@ -33,7 +33,7 @@ class BPURLBuilder {
     {
         let baseUrl = BPServerSettings.baseServerUrl
         let twitterUserLoginUrl = BPServerSettings.twitterLoginUrl
-        let twitterUserLoginUrlFinal = "\(baseUrl)\(twitterUserLoginUrl)\(accessToken)\(accessSecret)"
+        let twitterUserLoginUrlFinal = "\(baseUrl)\(twitterUserLoginUrl)/\(accessToken)/\(accessSecret)"
         
         return twitterUserLoginUrlFinal
     }

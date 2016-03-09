@@ -323,7 +323,7 @@ class BPLoginViewController: UIViewController {
                     self.loginManager.authTwitter = unwrappedSession.authToken
                     self.loginManager.authSecretTwitter = unwrappedSession.authTokenSecret
                     
-                    do {
+                    /* do {
                         
                         try self.loginManager.authenticateTwitterUserOnBinnersServer() {
                             
@@ -346,7 +346,7 @@ class BPLoginViewController: UIViewController {
                         
                         print(error)
                         
-                    }
+                    } */
                     
                 } else {
                     NSLog("Login error: %@", error!.localizedDescription);
@@ -380,6 +380,9 @@ class BPLoginViewController: UIViewController {
         guard textFieldEmail!.text != "" && textFieldPassword!.text != "" else
         {
             print("email and password can't be empty") // change to ui alert view later
+            
+            BPMessageFactory.makeMessage(BPMessageType.ALERT, message: "Please inform your email and password").show()
+        
             return
         }
         
@@ -400,6 +403,7 @@ class BPLoginViewController: UIViewController {
                 }catch let error
                 {
                     print(error)
+   
                 }
                 
                 

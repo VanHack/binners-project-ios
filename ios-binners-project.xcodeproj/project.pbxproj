@@ -50,6 +50,7 @@
 		2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */; };
 		2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */; };
 		8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */; };
+		8C406DDA1C7286A600A8223D /* BPMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C406DD91C7286A600A8223D /* BPMessageFactory.swift */; };
 		9C36FADFB34B05BF0F66EF41 /* libPods-ios-binners-project.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,7 @@
 		2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageThreeContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageFourContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Pods/TwitterKit/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
+		8C406DD91C7286A600A8223D /* BPMessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMessageFactory.swift; sourceTree = "<group>"; };
 		E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-binners-project.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-binners-project/Pods-ios-binners-project.release.xcconfig"; sourceTree = "<group>"; };
 		F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios-binners-project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -167,6 +169,7 @@
 		1B98D7E01C440AC200B6AA88 /* ios-binners-project */ = {
 			isa = PBXGroup;
 			children = (
+				8C406DDB1C728C2A00A8223D /* Factories */,
 				2C29FBFB1C611A5B00C70837 /* Util */,
 				2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */,
 				2C5CCB451C494B5700E734CE /* ViewControllers */,
@@ -264,6 +267,14 @@
 				2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8C406DDB1C728C2A00A8223D /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				8C406DD91C7286A600A8223D /* BPMessageFactory.swift */,
+			);
+			name = Factories;
 			sourceTree = "<group>";
 		};
 		E10C670EFDB7D29BE8FE622E /* Frameworks */ = {
@@ -500,6 +511,7 @@
 				2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */,
 				2C29FBFA1C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift in Sources */,
 				2C29FBFD1C62663F00C70837 /* UIColor+Extension.swift in Sources */,
+				8C406DDA1C7286A600A8223D /* BPMessageFactory.swift in Sources */,
 				2C5CCB4D1C4960DB00E734CE /* BPPickupTableViewCell.swift in Sources */,
 				2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */,
 				1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */,
