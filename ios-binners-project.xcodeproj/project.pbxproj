@@ -55,6 +55,8 @@
 		2CD25EFD1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25EFC1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift */; };
 		2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */; };
 		2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */; };
+		2CDB35771C920505005945B7 /* BPMapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB35761C920505005945B7 /* BPMapTasks.swift */; };
+		2CDB35791C93421D005945B7 /* BPLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB35781C93421D005945B7 /* BPLocation.swift */; };
 		2CF92CFE1C8615FD00DDB676 /* BPClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */; };
 		8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */; };
 		9C36FADFB34B05BF0F66EF41 /* libPods-ios-binners-project.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */; };
@@ -124,6 +126,8 @@
 		2CD25EFC1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageTwoContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageThreeContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageFourContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
+		2CDB35761C920505005945B7 /* BPMapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMapTasks.swift; sourceTree = "<group>"; };
+		2CDB35781C93421D005945B7 /* BPLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPLocation.swift; sourceTree = "<group>"; };
 		2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPClockViewController.swift; sourceTree = "<group>"; };
 		8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Pods/TwitterKit/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-binners-project.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-binners-project/Pods-ios-binners-project.release.xcconfig"; sourceTree = "<group>"; };
@@ -304,6 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				2CBDC96D1C7777FA00EC0F99 /* BPUser.swift */,
+				2CDB35761C920505005945B7 /* BPMapTasks.swift */,
+				2CDB35781C93421D005945B7 /* BPLocation.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -556,6 +562,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CDB35791C93421D005945B7 /* BPLocation.swift in Sources */,
 				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,
 				2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */,
 				2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */,
@@ -565,6 +572,7 @@
 				1B98D7E41C440AC200B6AA88 /* BPLoginViewController.swift in Sources */,
 				2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */,
 				2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */,
+				2CDB35771C920505005945B7 /* BPMapTasks.swift in Sources */,
 				2C8A4A711C88C56E00D8E0DB /* BPMapViewController.swift in Sources */,
 				2C29FBFA1C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift in Sources */,
 				2C022F911C877F49003E497F /* KSMHand.m in Sources */,
@@ -721,6 +729,7 @@
 			baseConfigurationReference = 18919B0009DEF6F8B625DD73 /* Pods-ios-binners-project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "ios-binners-project/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -738,6 +747,7 @@
 			baseConfigurationReference = E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "ios-binners-project/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (

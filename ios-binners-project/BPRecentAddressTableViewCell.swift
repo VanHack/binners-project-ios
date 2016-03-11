@@ -11,9 +11,11 @@ import UIKit
 class BPRecentAddressTableViewCell: UITableViewCell {
 
     @IBOutlet weak var locationLabel: UILabel!
-    var location:String = "" {
+    
+    var location:BPLocation? {
         didSet {
-            locationLabel.text = location
+            locationLabel.text = location!.address
+
         }
     }
     

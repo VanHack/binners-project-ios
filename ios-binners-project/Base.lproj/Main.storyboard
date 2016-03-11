@@ -241,21 +241,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mPU-cy-sVd">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8N4-Jx-O8s" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                            </mapView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="mPU-cy-sVd" secondAttribute="trailing" id="FMQ-kE-vtH"/>
-                            <constraint firstItem="mr1-eb-E9X" firstAttribute="top" secondItem="mPU-cy-sVd" secondAttribute="bottom" id="aDA-nE-Smu"/>
-                            <constraint firstItem="mPU-cy-sVd" firstAttribute="top" secondItem="rJR-Ck-4sX" secondAttribute="bottom" id="eeD-0J-oOJ"/>
-                            <constraint firstItem="mPU-cy-sVd" firstAttribute="leading" secondItem="fpU-dO-Sfj" secondAttribute="leading" id="wtz-tN-Rar"/>
+                            <constraint firstItem="8N4-Jx-O8s" firstAttribute="top" secondItem="rJR-Ck-4sX" secondAttribute="bottom" id="FD7-wc-vKl"/>
+                            <constraint firstItem="8N4-Jx-O8s" firstAttribute="leading" secondItem="fpU-dO-Sfj" secondAttribute="leading" id="Pgy-rS-OAM"/>
+                            <constraint firstItem="mr1-eb-E9X" firstAttribute="top" secondItem="8N4-Jx-O8s" secondAttribute="bottom" id="g3m-lG-63I"/>
+                            <constraint firstAttribute="trailing" secondItem="8N4-Jx-O8s" secondAttribute="trailing" id="qGi-SP-rP2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="A4R-Zv-kQ1"/>
                     <connections>
-                        <outlet property="mapView" destination="mPU-cy-sVd" id="erH-Na-LNb"/>
+                        <outlet property="mapView" destination="8N4-Jx-O8s" id="IMF-30-fcs"/>
                         <segue destination="oVU-4N-QEH" kind="show" identifier="toClockVCSegue" id="YJZ-JJ-r7m"/>
                     </connections>
                 </viewController>
