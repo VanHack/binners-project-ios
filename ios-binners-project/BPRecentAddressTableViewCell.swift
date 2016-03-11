@@ -31,6 +31,7 @@ class BPRecentAddressTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.binnersGray1()
         self.locationLabel.font = UIFont.binnersFontWithSize(13)
         self.locationLabel.textColor = UIColor.binnersDarkGray1()
+        self.locationLabel.adjustsFontSizeToFitWidth = true
         
     }
 

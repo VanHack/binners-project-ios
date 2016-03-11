@@ -26,7 +26,7 @@ class BPMapTasks: NSObject {
         
         if let lookupAddress = address {
             
-            var geocodeURLString = baseURLGeocode + "address=" + lookupAddress
+            var geocodeURLString = baseURLGeocode + "address=" + lookupAddress + ",Vancouver&components=country:ca&latlng=49.246292,-123.116226"
             geocodeURLString = geocodeURLString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
             
             let geocodeURL = NSURL(string: geocodeURLString)
@@ -71,7 +71,6 @@ class BPMapTasks: NSObject {
 
 
                 }catch let error {
-                    print(error)
                     completionHandler(status: "error", success: false)
 
                 }

@@ -213,6 +213,28 @@
             </objects>
             <point key="canvasLocation" x="917" y="360"/>
         </scene>
+        <!--Calendar View Controller-->
+        <scene sceneID="7g2-0G-yz2">
+            <objects>
+                <viewController id="Qxw-tN-C47" customClass="BPCalendarViewController" customModule="ios_binners_project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fhG-JX-lum"/>
+                        <viewControllerLayoutGuide type="bottom" id="y9s-HT-HHZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8Ju-Id-quT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gAp-O3-YMb"/>
+                    <connections>
+                        <segue destination="oVU-4N-QEH" kind="show" identifier="toClockSegue" id="4oK-lk-jrs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qrj-PQ-e98" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="917" y="2822"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="njt-xI-JmE">
             <objects>
@@ -222,7 +244,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Erf-xt-T8d" kind="relationship" relationship="rootViewController" id="1RU-qI-GNF"/>
+                        <segue destination="Erf-xt-T8d" kind="relationship" relationship="rootViewController" id="KgW-Lh-aMj"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSw-YU-Rys" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -248,16 +270,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="8N4-Jx-O8s" firstAttribute="top" secondItem="rJR-Ck-4sX" secondAttribute="bottom" id="6s0-Ey-5OC"/>
                             <constraint firstItem="8N4-Jx-O8s" firstAttribute="top" secondItem="rJR-Ck-4sX" secondAttribute="bottom" id="FD7-wc-vKl"/>
                             <constraint firstItem="8N4-Jx-O8s" firstAttribute="leading" secondItem="fpU-dO-Sfj" secondAttribute="leading" id="Pgy-rS-OAM"/>
                             <constraint firstItem="mr1-eb-E9X" firstAttribute="top" secondItem="8N4-Jx-O8s" secondAttribute="bottom" id="g3m-lG-63I"/>
                             <constraint firstAttribute="trailing" secondItem="8N4-Jx-O8s" secondAttribute="trailing" id="qGi-SP-rP2"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FD7-wc-vKl"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="A4R-Zv-kQ1"/>
                     <connections>
                         <outlet property="mapView" destination="8N4-Jx-O8s" id="IMF-30-fcs"/>
-                        <segue destination="oVU-4N-QEH" kind="show" identifier="toClockVCSegue" id="YJZ-JJ-r7m"/>
+                        <segue destination="Qxw-tN-C47" kind="show" identifier="toCalendarSegue" id="j6h-bf-og5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3t-9T-rzX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -402,7 +430,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdb-Rc-d7T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917" y="2723"/>
+            <point key="canvasLocation" x="917" y="3591"/>
         </scene>
         <!--Item-->
         <scene sceneID="ey5-Rg-QPf">

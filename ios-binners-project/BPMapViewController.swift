@@ -26,6 +26,7 @@ class BPMapViewController: UIViewController {
     let mapTasks = BPMapTasks()
     private var kvoContext: UInt8 = 1
     var didFindMyLocation = false
+    var marker:GMSMarker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,7 +159,19 @@ class BPMapViewController: UIViewController {
     }
     
     func checkmarkButtonClicked() {
-        self.performSegueWithIdentifier("toClockVCSegue", sender: self)
+        
+        if self.marker != nil {
+            self.performSegueWithIdentifier("toCalendarSegue", sender: self)
+
+        } else {
+            let actionSheet = UIAlertView(title: "Warning", message: "Please, provide an address", delegate: self, cancelButtonTitle: "Ok")
+            actionSheet.show()
+        }
+       
+        
+        
+        
+        
     }
     func cancelButtonClicked() {
         self.mapView.removeObserver(self, forKeyPath: "myLocation")
@@ -166,7 +179,7 @@ class BPMapViewController: UIViewController {
     }
     
     func centerMapOnLocation(location: CLLocation) {
-        self.mapView.camera = GMSCameraPosition.cameraWithTarget(location.coordinate, zoom: 10.0)
+        self.mapView.camera = GMSCameraPosition.cameraWithTarget(location.coordinate, zoom: 15.0)
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
@@ -267,6 +280,30 @@ extension BPMapViewController : UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        mapView.clear()
+        view.endEditing(true)
+        
+        let cellSelected = tableView.cellForRowAtIndexPath(indexPath) as! BPRecentAddressTableViewCell
+        
+        if let location = cellSelected.location {
+            
+            let clLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+            centerMapOnLocation(clLocation)
+            let  position = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+            marker = GMSMarker(position: position)
+            marker.title = location.address
+            marker.map = mapView
+
+            
+        }
+        
+        
+        
+        
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         if self.filteredHistory.count == 0 && self.searchResults.count == 0 {
@@ -360,6 +397,14 @@ extension UITableView {
             
         })
     }
+}
+
+extension BPMapViewController: UIAlertViewDelegate {
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        
+    }
+    
 }
 
 extension BPMapViewController : GMSMapViewDelegate {
