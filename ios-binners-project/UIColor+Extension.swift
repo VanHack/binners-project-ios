@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 extension UIColor {
     
     convenience init(red: Int, green: Int, blue: Int) {
@@ -32,9 +33,36 @@ extension UIColor {
         return UIColor(netHex: 0x369a3f)
     }
     
+    static func binnersGreenColor2() -> UIColor
+    {
+        return UIColor(netHex: 0x9bc69e)
+    }
+    
     static func binnersSkipButtonColor() -> UIColor
     {
         return UIColor(netHex: 0x0d220f)
     }
+    static func binnersGray1() -> UIColor {
+        
+        return UIColor(netHex: 0xf1efef)
+
+    }
+    static func binnersGray2() -> UIColor {
+        
+        return UIColor(netHex: 0xe0e2e4)
+        
+    }
+    static func binnersGray3() -> UIColor {
+        
+        return UIColor(netHex: 0xcccfd3)
+        
+    }
+    static func binnersDarkGray1() -> UIColor {
+        
+        return UIColor(netHex: 0x4d5155)
+        
+    }
+    
+
     
 }

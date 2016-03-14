@@ -17,6 +17,7 @@ class BPLoginViewController: UIViewController {
     var textFieldPassword: UITextField?
 
     let loginManager = BPLoginManager.sharedInstance
+    let user = BPUser.sharedInstance
     
     
     override func viewDidLoad() {
@@ -30,6 +31,7 @@ class BPLoginViewController: UIViewController {
         
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
+        
         
         // test purposes only
         FBSDKLoginManager().logOut()
@@ -326,6 +328,7 @@ class BPLoginViewController: UIViewController {
                     /* do {
                         
                         try self.loginManager.authenticateTwitterUserOnBinnersServer() {
+
                             
                             (inner:() throws -> AnyObject) in
                             
@@ -391,6 +394,9 @@ class BPLoginViewController: UIViewController {
         
         do {
             
+            performSegueWithIdentifier("dashboardSegue", sender: self)
+            
+            /*
             try loginManager.makeResidentStandardLogin(email, password: password, completion: {
                 
                 (inner:() throws -> AnyObject) in
@@ -399,6 +405,7 @@ class BPLoginViewController: UIViewController {
                     
                     let value = try inner()
                     print(value)
+                    self.dismissViewControllerAnimated(true, completion: nil)
                     
                 }catch let error
                 {
@@ -408,6 +415,7 @@ class BPLoginViewController: UIViewController {
                 
                 
             })
+            */
 
         }catch let error
         {
@@ -442,6 +450,7 @@ extension BPLoginViewController: FBSDKLoginButtonDelegate
                 {
                     let value = try inner()
                     print(value)
+                    self.dismissViewControllerAnimated(true, completion: nil)
                     
                     
                 }catch let error
@@ -488,6 +497,7 @@ extension BPLoginViewController : GIDSignInUIDelegate, GIDSignInDelegate
                     {
                         let value = try inner()
                         print(value)
+                        self.dismissViewControllerAnimated(true, completion: nil)
                         
                         
                     }catch let error

@@ -13,6 +13,18 @@ extension UIFont {
     
     static func binnersFont() ->UIFont? {
         
-        return UIFont(name: "Oxygen Regular",size: 16)
+        return UIFont(name: "Oxygen",size: 16)
+    }
+    
+    static func binnersFontWithSize(size:CGFloat) ->UIFont? {
+        
+        return UIFont(name: "Oxygen",size: size)
+    }
+    
+    
+    static func binnerFontName() ->String
+    {
+        return "Oxygen"
     }
 }
+
