@@ -111,10 +111,6 @@ class BPMainTabBarController: UITabBarController {
         textLabel.textAlignment = .Center
         button.addSubview(textLabel)
         
-        
-
-        
-        
     }
     
     func buttonPressed(sender:UIButton)

@@ -65,7 +65,8 @@ class BPClockViewController: UIViewController {
     
     func setupNavigationBar() {
         
-        let buttonRight = UIBarButtonItem(title: "✔︎", style: .Done, target: self, action: "checkmarkButtonClicked")
+        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: "checkmarkButtonClicked")
+        buttonRight.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
         buttonRight.tintColor = UIColor.whiteColor()
         
         self.navigationItem.rightBarButtonItem = buttonRight

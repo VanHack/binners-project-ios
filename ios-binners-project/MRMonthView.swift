@@ -19,6 +19,7 @@ class MRMonthView: UIView {
     private var viewContainerDays:UIView?
     private var dayButtons:[MRDayOfTheMonthButton] = []
     private var daySelected:String?
+    var buttonsArrowColor:UIColor = UIColor.binnersGreenColor()
     var date = NSDate()
     
     
@@ -362,6 +363,7 @@ class MRMonthView: UIView {
             width,
             30.0)
         buttonLeft.setTitle("<", forState: .Normal)
+        buttonLeft.tintColor = buttonsArrowColor
         buttonLeft.backgroundColor = UIColor.clearColor()
         buttonLeft.center.y = labelDayOfTheMonth!.center.y
         buttonLeft.titleLabel!.font = UIFont.systemFontOfSize(20)
@@ -378,6 +380,7 @@ class MRMonthView: UIView {
             width,
             30.0)
         buttonRight.setTitle(">", forState: .Normal)
+        buttonRight.tintColor = buttonsArrowColor
         buttonRight.backgroundColor = UIColor.clearColor()
         buttonRight.center.y = labelDayOfTheMonth!.center.y
         buttonRight.titleLabel!.font = UIFont.systemFontOfSize(20)
@@ -442,6 +445,7 @@ class MRMonthView: UIView {
             30.0,
             30.0)
         buttonLeft.setTitle("<", forState: .Normal)
+        buttonLeft.tintColor = buttonsArrowColor
         buttonLeft.backgroundColor = UIColor.clearColor()
         buttonLeft.center.y = viewContainerMonthAndYear!.center.y
         buttonLeft.titleLabel!.font = UIFont.systemFontOfSize(20)
@@ -458,6 +462,7 @@ class MRMonthView: UIView {
             30.0,
             30.0)
         buttonRight.setTitle(">", forState: .Normal)
+        buttonRight.tintColor = buttonsArrowColor
         buttonRight.backgroundColor = UIColor.clearColor()
         buttonRight.center.y = viewContainerMonthAndYear!.center.y
         buttonRight.titleLabel!.font = UIFont.systemFontOfSize(20)

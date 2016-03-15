@@ -147,7 +147,17 @@ class BPMapViewController: UIViewController {
     
     func setupNavigationBar() {
         
-        let buttonRight = UIBarButtonItem(title: "✔︎", style: .Done, target: self, action: "checkmarkButtonClicked")
+        let barButtonBack = UIBarButtonItem(title: "Back", style: .Done, target: nil, action: nil)
+        barButtonBack.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
+        self.navigationItem.backBarButtonItem = barButtonBack
+        UINavigationBar.appearance().backIndicatorImage = UIImage()
+        
+        
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage()
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        
+        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: "checkmarkButtonClicked")
+        buttonRight.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
         buttonRight.tintColor = UIColor.whiteColor()
         
         self.navigationItem.rightBarButtonItem = buttonRight
