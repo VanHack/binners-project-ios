@@ -12,9 +12,9 @@ class BPRecentAddressTableViewCell: UITableViewCell {
 
     @IBOutlet weak var locationLabel: UILabel!
     
-    var location:BPLocation? {
+    var address:BPAddress? {
         didSet {
-            locationLabel.text = location!.address
+            locationLabel.text = address!.formattedAddress
 
         }
     }

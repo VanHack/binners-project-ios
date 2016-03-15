@@ -13,7 +13,7 @@ class BPMapTasks: NSObject {
     
     let baseURLGeocode = "https://maps.googleapis.com/maps/api/geocode/json?"
     
-    var resultsList:[BPLocation] = []
+    var resultsList:[BPAddress] = []
     
     override init() {
         super.init()
@@ -45,15 +45,17 @@ class BPMapTasks: NSObject {
                         
                         for result in allResults {
                             
-                            // Keep the most important values.
-                            let address = result["formatted_address"] as! String
+                            let formattedAddress = result["formatted_address"] as! String
                             let geometry = result["geometry"] as! Dictionary<NSObject, AnyObject>
                             let longitude = ((geometry["location"] as! Dictionary<NSObject, AnyObject>)["lng"] as! NSNumber).doubleValue
                             let latitude = ((geometry["location"] as! Dictionary<NSObject, AnyObject>)["lat"] as! NSNumber).doubleValue
                             
-                            let location = BPLocation(name: "", address: address, longitude: longitude, latitude: latitude)
+                            let location = CLLocationCoordinate2DMake(latitude, longitude)
+                            let address = BPAddress()
+                            address.formattedAddress = formattedAddress
+                            address.location = location
                             
-                            self.resultsList.append(location)
+                            self.resultsList.append(address)
 
                         }
                         dispatch_async(dispatch_get_main_queue(), {

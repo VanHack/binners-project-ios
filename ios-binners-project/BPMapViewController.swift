@@ -16,9 +16,9 @@ class BPMapViewController: UIViewController {
 
     var tableView:UITableView?
     var searchBar:UISearchBar?
-    var history:[BPLocation]            = []
-    var filteredHistory:[BPLocation]    = []
-    var searchResults:[BPLocation]  = []
+    var history:[BPAddress]            = []
+    var filteredHistory:[BPAddress]    = []
+    var searchResults:[BPAddress]  = []
     let cellHeight:CGFloat          = 60.0
     let headerHeight:CGFloat        = 30.0
     let regionRadius: CLLocationDistance = 1000
@@ -27,6 +27,7 @@ class BPMapViewController: UIViewController {
     private var kvoContext: UInt8 = 1
     var didFindMyLocation = false
     var marker:GMSMarker!
+    var pickup:BPPickup = BPPickup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,9 +82,15 @@ class BPMapViewController: UIViewController {
     
     func addTestPickupAddresses() {
         
-        let location1   = BPLocation(name: "", address: "N & 16th st, Lincoln - NE", longitude: 0.0, latitude: 0.0)
-        let location2   = BPLocation(name: "", address: "1600 Pensylvania Ave NW", longitude: 0.0, latitude: 0.0)
-        let location3   = BPLocation(name: "", address: "1600 Pensylvania Ave NW", longitude: 0.0, latitude: 0.0)
+        let location1 = BPAddress()
+        location1.formattedAddress = "N & 16th st, Lincoln - NE"
+        location1.location = CLLocationCoordinate2DMake(0.0,0.0)
+        let location2 = BPAddress()
+        location2.formattedAddress = "1600 Pensylvania Ave NW"
+        location2.location = CLLocationCoordinate2DMake(0.0,0.0)
+        let location3 = BPAddress()
+        location3.formattedAddress = "1600 Pensylvania Ave NW"
+        location3.location = CLLocationCoordinate2DMake(0.0,0.0)
         
         self.history.append(location1)
         self.history.append(location2)
@@ -160,19 +167,24 @@ class BPMapViewController: UIViewController {
     
     func checkmarkButtonClicked() {
         
-        if self.marker != nil {
+        if self.pickup.address != nil {
+            
             self.performSegueWithIdentifier("toCalendarSegue", sender: self)
 
         } else {
             let actionSheet = UIAlertView(title: "Warning", message: "Please, provide an address", delegate: self, cancelButtonTitle: "Ok")
             actionSheet.show()
         }
-       
-        
-        
-        
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toCalendarSegue" {
+            let destVc = segue.destinationViewController as! BPCalendarViewController
+            destVc.pickup = self.pickup
+        }
+    }
+    
     func cancelButtonClicked() {
         self.mapView.removeObserver(self, forKeyPath: "myLocation")
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -184,10 +196,10 @@ class BPMapViewController: UIViewController {
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         filteredHistory = history.filter {
-            location in
+            address in
             
-            let address = location.address
-            return address.lowercaseString.containsString(searchText.lowercaseString)
+            let streetAddress = address.formattedAddress
+            return streetAddress.lowercaseString.containsString(searchText.lowercaseString)
             
         }
         self.tableView!.reloadData()
@@ -266,12 +278,12 @@ extension BPMapViewController : UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.section == 0 && self.filteredHistory.count > 0 {
             if  self.searchBar!.text != "" {
-                cell!.location = filteredHistory[indexPath.row]
+                cell!.address = filteredHistory[indexPath.row]
             } else {
-                cell!.location = history[indexPath.row]
+                cell!.address = history[indexPath.row]
             }
         } else {
-            cell!.location = self.searchResults[indexPath.row]
+            cell!.address = self.searchResults[indexPath.row]
         }
         
        
@@ -287,14 +299,15 @@ extension BPMapViewController : UITableViewDelegate, UITableViewDataSource {
         
         let cellSelected = tableView.cellForRowAtIndexPath(indexPath) as! BPRecentAddressTableViewCell
         
-        if let location = cellSelected.location {
+        if let address = cellSelected.address {
             
-            let clLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+            let clLocation = CLLocation(latitude: address.location.latitude, longitude: address.location.longitude)
             centerMapOnLocation(clLocation)
-            let  position = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+            let  position = CLLocationCoordinate2DMake(address.location.latitude, address.location.longitude)
             marker = GMSMarker(position: position)
-            marker.title = location.address
+            marker.title = address.formattedAddress
             marker.map = mapView
+            self.pickup.address = address
 
             
         }

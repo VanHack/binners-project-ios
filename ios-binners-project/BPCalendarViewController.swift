@@ -11,6 +11,7 @@ import UIKit
 class BPCalendarViewController: UIViewController {
     
     var monthView: MRMonthView!
+    var pickup:BPPickup?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +28,6 @@ class BPCalendarViewController: UIViewController {
         
         self.view.addSubview(monthView!)
         
-
-        // Do any additional setup after loading the view.
     }
     
     func setupNavigationBar() {
@@ -63,14 +62,18 @@ class BPCalendarViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+        if segue.identifier == "toClockSegue" {
+            
+            let destVC = segue.destinationViewController as! BPClockViewController
+            pickup?.date = self.monthView.date
+            destVC.pickup = self.pickup
+        }
     }
-    */
 
 }

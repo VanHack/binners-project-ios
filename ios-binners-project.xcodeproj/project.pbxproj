@@ -46,6 +46,10 @@
 		2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */; };
 		2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */; };
 		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
+		2C73BFDE1C971E33001FBFD4 /* BPPickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */; };
+		2C73BFE01C971F77001FBFD4 /* BPAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */; };
+		2C73BFE21C97204B001FBFD4 /* BPReedemables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFE11C97204B001FBFD4 /* BPReedemables.swift */; };
+		2C73BFE41C975B64001FBFD4 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFE31C975B64001FBFD4 /* NSDate+Extension.swift */; };
 		2C8A4A711C88C56E00D8E0DB /* BPMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */; };
 		2CBA2D2E1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA2D2C1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift */; };
 		2CBA2D2F1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA2D2D1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib */; };
@@ -56,11 +60,10 @@
 		2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */; };
 		2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */; };
 		2CDB35771C920505005945B7 /* BPMapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB35761C920505005945B7 /* BPMapTasks.swift */; };
-		2CDB35791C93421D005945B7 /* BPLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB35781C93421D005945B7 /* BPLocation.swift */; };
 		2CDB357F1C9371D7005945B7 /* MRDayOfTheMonthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB357B1C9371D7005945B7 /* MRDayOfTheMonthButton.swift */; };
 		2CDB35801C9371D7005945B7 /* MRMonthCalendarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB357C1C9371D7005945B7 /* MRMonthCalendarDelegate.swift */; };
-		2CDB35811C9371D7005945B7 /* MRMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB357D1C9371D7005945B7 /* MRMonthView.swift */; };
-		2CDB35821C9371D7005945B7 /* MRMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB357E1C9371D7005945B7 /* MRMonthViewController.swift */; };
+		2CDB35811C9371D7005945B7 /* MRMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB357D1C9371D7005945B7 /* MRMonthViewController.swift */; };
+		2CDB35821C9371D7005945B7 /* MRMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB357E1C9371D7005945B7 /* MRMonthView.swift */; };
 		2CDB35841C937203005945B7 /* BPCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB35831C937203005945B7 /* BPCalendarViewController.swift */; };
 		2CF92CFE1C8615FD00DDB676 /* BPClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */; };
 		8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */; };
@@ -122,6 +125,10 @@
 		2C5CCB461C494BCA00E734CE /* BPRequestPickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRequestPickupViewController.swift; sourceTree = "<group>"; };
 		2C5CCB481C494C2700E734CE /* BPPickupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupsViewController.swift; sourceTree = "<group>"; };
 		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
+		2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickup.swift; sourceTree = "<group>"; };
+		2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPAddress.swift; sourceTree = "<group>"; };
+		2C73BFE11C97204B001FBFD4 /* BPReedemables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPReedemables.swift; sourceTree = "<group>"; };
+		2C73BFE31C975B64001FBFD4 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMapViewController.swift; sourceTree = "<group>"; };
 		2CBA2D2C1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRecentAddressTableViewCell.swift; sourceTree = "<group>"; };
 		2CBA2D2D1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPRecentAddressTableViewCell.xib; sourceTree = "<group>"; };
@@ -132,11 +139,10 @@
 		2CD25EFE1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageThreeContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPageFourContentDescriptionLoginViewController.swift; sourceTree = "<group>"; };
 		2CDB35761C920505005945B7 /* BPMapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMapTasks.swift; sourceTree = "<group>"; };
-		2CDB35781C93421D005945B7 /* BPLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPLocation.swift; sourceTree = "<group>"; };
 		2CDB357B1C9371D7005945B7 /* MRDayOfTheMonthButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRDayOfTheMonthButton.swift; sourceTree = "<group>"; };
 		2CDB357C1C9371D7005945B7 /* MRMonthCalendarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRMonthCalendarDelegate.swift; sourceTree = "<group>"; };
-		2CDB357D1C9371D7005945B7 /* MRMonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRMonthView.swift; sourceTree = "<group>"; };
-		2CDB357E1C9371D7005945B7 /* MRMonthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRMonthViewController.swift; sourceTree = "<group>"; };
+		2CDB357D1C9371D7005945B7 /* MRMonthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRMonthViewController.swift; sourceTree = "<group>"; };
+		2CDB357E1C9371D7005945B7 /* MRMonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRMonthView.swift; sourceTree = "<group>"; };
 		2CDB35831C937203005945B7 /* BPCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPCalendarViewController.swift; sourceTree = "<group>"; };
 		2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPClockViewController.swift; sourceTree = "<group>"; };
 		8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Pods/TwitterKit/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
@@ -249,6 +255,7 @@
 			children = (
 				2C29FBFC1C62663F00C70837 /* UIColor+Extension.swift */,
 				2C29FC0F1C62720900C70837 /* UIFont+Extension.swift */,
+				2C73BFE31C975B64001FBFD4 /* NSDate+Extension.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -319,7 +326,9 @@
 			children = (
 				2CBDC96D1C7777FA00EC0F99 /* BPUser.swift */,
 				2CDB35761C920505005945B7 /* BPMapTasks.swift */,
-				2CDB35781C93421D005945B7 /* BPLocation.swift */,
+				2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */,
+				2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */,
+				2C73BFE11C97204B001FBFD4 /* BPReedemables.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -341,8 +350,8 @@
 			children = (
 				2CDB357B1C9371D7005945B7 /* MRDayOfTheMonthButton.swift */,
 				2CDB357C1C9371D7005945B7 /* MRMonthCalendarDelegate.swift */,
-				2CDB357D1C9371D7005945B7 /* MRMonthView.swift */,
-				2CDB357E1C9371D7005945B7 /* MRMonthViewController.swift */,
+				2CDB357D1C9371D7005945B7 /* MRMonthViewController.swift */,
+				2CDB357E1C9371D7005945B7 /* MRMonthView.swift */,
 			);
 			name = Calendar;
 			sourceTree = "<group>";
@@ -585,29 +594,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CDB35791C93421D005945B7 /* BPLocation.swift in Sources */,
 				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,
+				2C73BFE01C971F77001FBFD4 /* BPAddress.swift in Sources */,
 				2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */,
 				2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */,
 				2CDB35841C937203005945B7 /* BPCalendarViewController.swift in Sources */,
 				2C1C4D071C5C1F530045821F /* BPURLBuilder.swift in Sources */,
+				2C73BFE41C975B64001FBFD4 /* NSDate+Extension.swift in Sources */,
 				2C29FC101C62720900C70837 /* UIFont+Extension.swift in Sources */,
 				2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */,
 				1B98D7E41C440AC200B6AA88 /* BPLoginViewController.swift in Sources */,
 				2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */,
-				2CDB35821C9371D7005945B7 /* MRMonthViewController.swift in Sources */,
+				2CDB35821C9371D7005945B7 /* MRMonthView.swift in Sources */,
 				2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */,
 				2CDB35771C920505005945B7 /* BPMapTasks.swift in Sources */,
 				2C8A4A711C88C56E00D8E0DB /* BPMapViewController.swift in Sources */,
+				2C73BFE21C97204B001FBFD4 /* BPReedemables.swift in Sources */,
 				2CDB35801C9371D7005945B7 /* MRMonthCalendarDelegate.swift in Sources */,
 				2C29FBFA1C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift in Sources */,
 				2C022F911C877F49003E497F /* KSMHand.m in Sources */,
 				2C29FBFD1C62663F00C70837 /* UIColor+Extension.swift in Sources */,
 				2C5CCB471C494BCA00E734CE /* BPRequestPickupViewController.swift in Sources */,
 				2CF92CFE1C8615FD00DDB676 /* BPClockViewController.swift in Sources */,
+				2C73BFDE1C971E33001FBFD4 /* BPPickup.swift in Sources */,
 				2C022F921C877F49003E497F /* BEMAnalogClockView.m in Sources */,
 				1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */,
-				2CDB35811C9371D7005945B7 /* MRMonthView.swift in Sources */,
+				2CDB35811C9371D7005945B7 /* MRMonthViewController.swift in Sources */,
 				2CDB357F1C9371D7005945B7 /* MRDayOfTheMonthButton.swift in Sources */,
 				2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */,
 				2CBDC96E1C7777FA00EC0F99 /* BPUser.swift in Sources */,
