@@ -13,6 +13,11 @@ enum TimeMode {
     case minutes
 }
 
+enum TimePeriod {
+    case am
+    case pm
+}
+
 
 class BPClockViewController: UIViewController {
 
@@ -26,6 +31,8 @@ class BPClockViewController: UIViewController {
     var timeMode:TimeMode = .hours
     var hours:Int = 0
     var minutes:Int = 0
+    var pickup:BPPickup?
+    var timePeriod:TimePeriod = .am
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,9 +72,6 @@ class BPClockViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
-//        let buttonLeft = UIBarButtonItem(title: "✘", style: .Done, target: self, action: "cancelButtonClicked")
-//        buttonLeft.tintColor = UIColor.whiteColor()
-//        self.navigationItem.leftBarButtonItem = buttonLeft
 
     }
     
@@ -77,6 +81,18 @@ class BPClockViewController: UIViewController {
     
     func checkmarkButtonClicked() {
         print("next one up is...")
+        
+        var hours = Int(self.hoursButton.titleLabel!.text!)!
+        let minutes = Int(self.minutesButton.titleLabel!.text!)!
+
+        if timePeriod == .pm {
+            hours += 12
+        }
+        
+        self.pickup?.date = self.pickup?.date.changeHour(hours)
+        self.pickup?.date = self.pickup?.date.changeMinute(minutes)
+
+        
     }
     
     func configureClock() {
@@ -99,6 +115,7 @@ class BPClockViewController: UIViewController {
     
     func aMButtonClicked() {
         
+        timePeriod = .am
         amButton.layer.masksToBounds = true
         amButton.layer.cornerRadius = amButton.layer.bounds.height / 2.0
         amButton.backgroundColor = UIColor.binnersGreenColor()
@@ -112,6 +129,7 @@ class BPClockViewController: UIViewController {
     
     func pMButtonClicked() {
         
+        timePeriod = .pm
         pmButton.layer.masksToBounds = true
         pmButton.layer.cornerRadius = amButton.layer.bounds.height / 2.0
         pmButton.backgroundColor = UIColor.binnersGreenColor()

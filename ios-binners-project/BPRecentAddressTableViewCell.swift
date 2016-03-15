@@ -11,9 +11,11 @@ import UIKit
 class BPRecentAddressTableViewCell: UITableViewCell {
 
     @IBOutlet weak var locationLabel: UILabel!
-    var location:String = "" {
+    
+    var address:BPAddress? {
         didSet {
-            locationLabel.text = location
+            locationLabel.text = address!.formattedAddress
+
         }
     }
     
@@ -29,6 +31,7 @@ class BPRecentAddressTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.binnersGray1()
         self.locationLabel.font = UIFont.binnersFontWithSize(13)
         self.locationLabel.textColor = UIColor.binnersDarkGray1()
+        self.locationLabel.adjustsFontSizeToFitWidth = true
         
     }
 

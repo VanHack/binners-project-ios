@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import TwitterKit
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Twitter skd config
         Fabric.with([Twitter.self])
+        GMSServices.provideAPIKey("AIzaSyD3Jbm9orOVMiuz4RvrzWd2E9a8Ub2-s0k")
         
         
         return true
