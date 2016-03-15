@@ -33,6 +33,7 @@ enum Error : ErrorType
     case OperationNotSupported(errorMsg:String)
     case FacebookAuthMissing(errorMsg:String)
     case GoogleAuthMissing(errorMsg:String)
+    case TwitterAuthMissing(errorMsg:String)
     case AuthMissing(errorMsg:String)
     case InvalidErrorType(erroMSg:String)
     case InvalidInformationProvided(errorCode:String, errorMsg:String)

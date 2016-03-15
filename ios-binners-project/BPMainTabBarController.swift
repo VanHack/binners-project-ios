@@ -119,7 +119,7 @@ class BPMainTabBarController: UITabBarController {
     
     func buttonPressed(sender:UIButton)
     {
-        self.selectedIndex = 1
+        self.selectedIndex = 0
         self.performSegueWithIdentifier("newPickupSegue", sender: self)
     }
     

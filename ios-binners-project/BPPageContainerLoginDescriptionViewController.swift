@@ -16,31 +16,34 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
     
     @IBOutlet weak var skipButton: UIButton!
     var pageViewController:UIPageViewController?
-    var pages = 4
+    var pages = 3
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProjectDescriptionPageViewController") as? UIPageViewController
+        
         self.pageViewController!.dataSource = self
+        
         let startingViewController = self.viewControllerAtIndex(0)!
+        
         let viewControllers = [startingViewController]
         
         self.pageViewController?.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
+        
         self.pageViewController!.view.backgroundColor = UIColor.binnersGreenColor()
         
         self.addChildViewController(self.pageViewController!)
+        
         self.view.addSubview(self.pageViewController!.view)
+        
         self.pageViewController!.didMoveToParentViewController(self)
         
-        // bring button to front
-        self.view.bringSubviewToFront(self.skipButton)
         // configure skip button font
-        skipButton.tintColor = UIColor.binnersSkipButtonColor()
-        skipButton.titleLabel?.font = UIFont.binnersFont()
+        self.skipButton.tintColor = UIColor.binnersSkipButtonColor()
+        self.skipButton.titleLabel?.font = UIFont.binnersFont()
+        self.view.bringSubviewToFront(self.skipButton)
         
         // configure page control
         
@@ -98,18 +101,14 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
     
     func viewControllerAtIndex(index:Int) -> UIViewController?
     {
-        if self.pages == 0 || index >= self.pages {
-            return nil
-        }
         
         var pageContentVC:UIViewController?
         
         switch (index) {
             
-        case 0: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageOneContentDescriptionViewController") as! BPPageOneContentDescriptionLoginViewController
-        case 1: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageTwoContentDescriptionViewController") as! BPPageTwoContentDescriptionLoginViewController
-        case 2:  pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageThreeContentDescriptionViewController") as! BPPageThreeContentDescriptionLoginViewController
-        case 3: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageFourContentDescriptionViewController") as! BPPageFourContentDescriptionLoginViewController
+        case 0: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageTwoContentDescriptionViewController") as! BPPageTwoContentDescriptionLoginViewController
+        case 1: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageThreeContentDescriptionViewController") as! BPPageThreeContentDescriptionLoginViewController
+        case 2:  pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageFourContentDescriptionViewController") as! BPPageFourContentDescriptionLoginViewController
         default: pageContentVC = nil
             
         }
