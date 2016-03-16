@@ -37,7 +37,8 @@ class BPClockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.view.backgroundColor = UIColor.binnersGrayBackgroundColor()
+
         setupNavigationBar()
         configureClock()
         configureButtonsAndLabels()
@@ -76,12 +77,7 @@ class BPClockViewController: UIViewController {
 
     }
     
-    func cancelButtonClicked() {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     func checkmarkButtonClicked() {
-        print("next one up is...")
         
         var hours = Int(self.hoursButton.titleLabel!.text!)!
         let minutes = Int(self.minutesButton.titleLabel!.text!)!
@@ -93,6 +89,7 @@ class BPClockViewController: UIViewController {
         self.pickup?.date = self.pickup?.date.changeHour(hours)
         self.pickup?.date = self.pickup?.date.changeMinute(minutes)
 
+        self.performSegueWithIdentifier("quantitySegue", sender: self)
         
     }
     
@@ -190,6 +187,16 @@ class BPClockViewController: UIViewController {
         clockView.hourOrMinuteSelected = 0
         timeMode = .hours
         clockView.reloadClock()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "quantitySegue" {
+            
+            let destVc = segue.destinationViewController as! BPQuantityViewController
+            destVc.pickup = pickup
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
