@@ -12,4 +12,3 @@
 #import <Google/SignIn.h>
 #import <AFNetworking/AFNetworking.h>
 #import "BEMAnalogClockView.h"
-#import "ELCImagePickerController.h"
