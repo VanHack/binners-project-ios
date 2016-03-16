@@ -512,6 +512,10 @@
                             <constraint firstItem="Oc9-PA-3nX" firstAttribute="leading" secondItem="Vqf-ay-cRv" secondAttribute="leadingMargin" constant="10" id="zcm-zE-3he"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="quantityButton" destination="Oc9-PA-3nX" id="BDq-s6-uuh"/>
+                        <outlet property="takeAPictureButton" destination="pY9-0p-1ao" id="Lyn-gX-bdj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ous-dY-1md" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

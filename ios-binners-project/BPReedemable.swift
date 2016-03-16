@@ -8,20 +8,20 @@
 
 import UIKit
 
-class BPReedemables: NSObject {
+class BPReedemable: NSObject {
     
-    var quantity:Int!
-    var pictures:[UIImage]!
+    var quantity:String!
+    var picture:UIImage!
     
     
-    init(quantity:Int) {
+    init(quantity:String) {
         
         self.quantity = quantity
     }
     
-    init(pictures:[UIImage]) {
+    init(picture:UIImage) {
         
-        self.pictures = pictures
+        self.picture = picture
     }
 
 }
