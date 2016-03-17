@@ -27,21 +27,19 @@ class BPCalendarViewController: UIViewController {
             self.view.frame.size.height))
         
         self.view.addSubview(monthView!)
-        
+        monthView.buttonsArrowColor = UIColor.binnersGreenColor()
+
     }
     
     func setupNavigationBar() {
         
-        let buttonRight = UIBarButtonItem(title: "✔︎", style: .Done, target: self, action: "checkmarkButtonClicked")
+        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: "checkmarkButtonClicked")
+        buttonRight.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
         buttonRight.tintColor = UIColor.whiteColor()
         
         self.navigationItem.rightBarButtonItem = buttonRight
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        
-        let buttonLeft = UIBarButtonItem(title: "✘", style: .Done, target: self, action: "cancelButtonClicked")
-        buttonLeft.tintColor = UIColor.whiteColor()
-        self.navigationItem.leftBarButtonItem = buttonLeft
         
     }
     
@@ -50,9 +48,7 @@ class BPCalendarViewController: UIViewController {
         self.performSegueWithIdentifier("toClockSegue", sender: self)
    
     }
-    func cancelButtonClicked() {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+
 
 
 

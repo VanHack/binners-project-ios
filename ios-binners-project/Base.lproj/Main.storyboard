@@ -6,6 +6,7 @@
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Page View Controller-->
@@ -426,11 +427,99 @@
                         <outlet property="labelTwoDots" destination="e1H-Hz-6qs" id="3Bk-Am-hM5"/>
                         <outlet property="minutesButton" destination="C6Q-WY-WsY" id="iei-Ww-wjV"/>
                         <outlet property="pmButton" destination="aXs-QE-BKT" id="yHU-3i-Uwl"/>
+                        <segue destination="6Mc-4x-82Q" kind="show" identifier="quantitySegue" id="RnP-SC-R8d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdb-Rc-d7T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="917" y="3591"/>
+        </scene>
+        <!--Quantity View Controller-->
+        <scene sceneID="gdp-B4-F2H">
+            <objects>
+                <viewController id="6Mc-4x-82Q" customClass="BPQuantityViewController" customModule="ios_binners_project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cAX-mw-XDC"/>
+                        <viewControllerLayoutGuide type="bottom" id="OJH-nw-758"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vqf-ay-cRv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of bottles and cans:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBi-1f-Hfp">
+                                <rect key="frame" x="30" y="224" width="217.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oc9-PA-3nX" customClass="UIButton">
+                                <rect key="frame" x="30" y="265" width="540" height="60"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pY9-0p-1ao" customClass="UIButton">
+                                <rect key="frame" x="30" y="420" width="540" height="150"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a picture!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3U-q7-TRh">
+                                <rect key="frame" x="30" y="386" width="112.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4r4-VR-TLs">
+                                <rect key="frame" x="30" y="345" width="540" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give us a rough estime of how many reedemables you have for pick-up" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIy-He-vFk">
+                                <rect key="frame" x="30" y="94" width="540" height="41"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(No less than 15 bottles please!)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwU-6J-Fqf">
+                                <rect key="frame" x="30" y="135" width="540" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="vwU-6J-Fqf" secondAttribute="trailing" constant="10" id="3P8-9b-Ghe"/>
+                            <constraint firstItem="k3U-q7-TRh" firstAttribute="top" secondItem="4r4-VR-TLs" secondAttribute="bottom" constant="20" id="5fU-p5-bhD"/>
+                            <constraint firstItem="OJH-nw-758" firstAttribute="top" secondItem="pY9-0p-1ao" secondAttribute="bottom" constant="30" id="84Y-EN-PQD"/>
+                            <constraint firstItem="k3U-q7-TRh" firstAttribute="height" secondItem="Vqf-ay-cRv" secondAttribute="height" multiplier="0.04" id="Df1-a2-TBa"/>
+                            <constraint firstItem="Oc9-PA-3nX" firstAttribute="height" secondItem="Vqf-ay-cRv" secondAttribute="height" multiplier="0.1" id="ESS-WZ-As4"/>
+                            <constraint firstItem="pY9-0p-1ao" firstAttribute="leading" secondItem="Vqf-ay-cRv" secondAttribute="leadingMargin" constant="10" id="H7Y-qS-djf"/>
+                            <constraint firstItem="k3U-q7-TRh" firstAttribute="leading" secondItem="Vqf-ay-cRv" secondAttribute="leadingMargin" constant="10" id="II8-aO-jRa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4r4-VR-TLs" secondAttribute="trailing" constant="10" id="MZ4-cp-fPg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dIy-He-vFk" secondAttribute="trailing" constant="10" id="N0f-Ex-pyy"/>
+                            <constraint firstItem="4r4-VR-TLs" firstAttribute="leading" secondItem="Vqf-ay-cRv" secondAttribute="leadingMargin" constant="10" id="Nla-EK-ofB"/>
+                            <constraint firstItem="SBi-1f-Hfp" firstAttribute="leading" secondItem="Vqf-ay-cRv" secondAttribute="leadingMargin" constant="10" id="Oh5-kl-TbQ"/>
+                            <constraint firstItem="pY9-0p-1ao" firstAttribute="top" secondItem="k3U-q7-TRh" secondAttribute="bottom" constant="10" id="Rmf-N0-AfE"/>
+                            <constraint firstItem="SBi-1f-Hfp" firstAttribute="height" secondItem="Vqf-ay-cRv" secondAttribute="height" multiplier="0.04" id="ZZv-k7-M4e"/>
+                            <constraint firstItem="dIy-He-vFk" firstAttribute="top" secondItem="cAX-mw-XDC" secondAttribute="bottom" constant="30" id="aoq-KD-xNb"/>
+                            <constraint firstItem="4r4-VR-TLs" firstAttribute="top" secondItem="Oc9-PA-3nX" secondAttribute="bottom" constant="20" id="jdm-rd-D3o"/>
+                            <constraint firstItem="dIy-He-vFk" firstAttribute="leading" secondItem="Vqf-ay-cRv" secondAttribute="leadingMargin" constant="10" id="l2u-Cu-eXy"/>
+                            <constraint firstItem="Oc9-PA-3nX" firstAttribute="top" secondItem="SBi-1f-Hfp" secondAttribute="bottom" constant="17" id="l3r-RM-0cU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Oc9-PA-3nX" secondAttribute="trailing" constant="10" id="lUO-RU-Lbz"/>
+                            <constraint firstItem="vwU-6J-Fqf" firstAttribute="top" secondItem="dIy-He-vFk" secondAttribute="bottom" id="nqq-EZ-mEt"/>
+                            <constraint firstItem="pY9-0p-1ao" firstAttribute="height" secondItem="Vqf-ay-cRv" secondAttribute="height" multiplier="0.25" id="pgD-CL-CqG"/>
+                            <constraint firstItem="vwU-6J-Fqf" firstAttribute="leading" secondItem="Vqf-ay-cRv" secondAttribute="leadingMargin" constant="10" id="qnt-5P-BUN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pY9-0p-1ao" secondAttribute="trailing" constant="10" id="z8g-e0-tnu"/>
+                            <constraint firstItem="Oc9-PA-3nX" firstAttribute="leading" secondItem="Vqf-ay-cRv" secondAttribute="leadingMargin" constant="10" id="zcm-zE-3he"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="quantityButton" destination="Oc9-PA-3nX" id="BDq-s6-uuh"/>
+                        <outlet property="takeAPictureButton" destination="pY9-0p-1ao" id="Lyn-gX-bdj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ous-dY-1md" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="917" y="4340"/>
         </scene>
         <!--Item-->
         <scene sceneID="ey5-Rg-QPf">
