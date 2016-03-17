@@ -53,6 +53,9 @@
 		2C8A4A711C88C56E00D8E0DB /* BPMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */; };
 		2CBA2D2E1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA2D2C1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift */; };
 		2CBA2D2F1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA2D2D1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib */; };
+		2CBB5BED1C99E8E300D58BFF /* BPReviewPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBB5BEC1C99E8E300D58BFF /* BPReviewPickupViewController.swift */; };
+		2CBB5BF11C99F02C00D58BFF /* BPMapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBB5BEF1C99F02C00D58BFF /* BPMapTableViewCell.swift */; };
+		2CBB5BF21C99F02C00D58BFF /* BPMapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBB5BF01C99F02C00D58BFF /* BPMapTableViewCell.xib */; };
 		2CBDC96E1C7777FA00EC0F99 /* BPUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBDC96D1C7777FA00EC0F99 /* BPUser.swift */; };
 		2CC3B2F61C52863200890FD4 /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */; };
 		2CC3B2F81C52869100890FD4 /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */; };
@@ -132,6 +135,9 @@
 		2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMapViewController.swift; sourceTree = "<group>"; };
 		2CBA2D2C1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRecentAddressTableViewCell.swift; sourceTree = "<group>"; };
 		2CBA2D2D1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPRecentAddressTableViewCell.xib; sourceTree = "<group>"; };
+		2CBB5BEC1C99E8E300D58BFF /* BPReviewPickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPReviewPickupViewController.swift; sourceTree = "<group>"; };
+		2CBB5BEF1C99F02C00D58BFF /* BPMapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMapTableViewCell.swift; sourceTree = "<group>"; };
+		2CBB5BF01C99F02C00D58BFF /* BPMapTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPMapTableViewCell.xib; sourceTree = "<group>"; };
 		2CBDC96D1C7777FA00EC0F99 /* BPUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPUser.swift; sourceTree = "<group>"; };
 		2CC3B2F51C52863200890FD4 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		2CC3B2F71C52869100890FD4 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
@@ -321,6 +327,15 @@
 			name = TableViewCell;
 			sourceTree = "<group>";
 		};
+		2CBB5BEE1C99EFFD00D58BFF /* TableViewReviewCells */ = {
+			isa = PBXGroup;
+			children = (
+				2CBB5BEF1C99F02C00D58BFF /* BPMapTableViewCell.swift */,
+				2CBB5BF01C99F02C00D58BFF /* BPMapTableViewCell.xib */,
+			);
+			name = TableViewReviewCells;
+			sourceTree = "<group>";
+		};
 		2CBDC96C1C7777BA00EC0F99 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +373,7 @@
 		2CF92CFC1C86157B00DDB676 /* Pickup */ = {
 			isa = PBXGroup;
 			children = (
+				2CBB5BEE1C99EFFD00D58BFF /* TableViewReviewCells */,
 				2CDB357A1C937128005945B7 /* Calendar */,
 				2CBA2D2B1C8DFAC50048C850 /* TableViewCell */,
 				2C022F931C87810E003E497F /* ClockView */,
@@ -365,6 +381,7 @@
 				2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */,
 				2CDB35831C937203005945B7 /* BPCalendarViewController.swift */,
 				2C73BFE71C98994B001FBFD4 /* BPQuantityViewController.swift */,
+				2CBB5BEC1C99E8E300D58BFF /* BPReviewPickupViewController.swift */,
 			);
 			name = Pickup;
 			sourceTree = "<group>";
@@ -493,6 +510,7 @@
 				1B98D7EC1C440AC200B6AA88 /* LaunchScreen.storyboard in Resources */,
 				2C29FC091C626D5800C70837 /* Oxygen-Italic.ttf in Resources */,
 				2C29FC061C626D5800C70837 /* Oxygen-BoldItalic.ttf in Resources */,
+				2CBB5BF21C99F02C00D58BFF /* BPMapTableViewCell.xib in Resources */,
 				2C1C4D0F1C5FDA280045821F /* GoogleService-Info.plist in Resources */,
 				2C29FC031C626D5800C70837 /* Oxygen-Bold.ttf in Resources */,
 				1B98D7E91C440AC200B6AA88 /* Assets.xcassets in Resources */,
@@ -595,12 +613,14 @@
 			files = (
 				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,
 				2C73BFE01C971F77001FBFD4 /* BPAddress.swift in Sources */,
+				2CBB5BF11C99F02C00D58BFF /* BPMapTableViewCell.swift in Sources */,
 				2C73BFE61C98827F001FBFD4 /* BPMessageFactory.swift in Sources */,
 				2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */,
 				2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */,
 				2CDB35841C937203005945B7 /* BPCalendarViewController.swift in Sources */,
 				2C73BFE81C98994B001FBFD4 /* BPQuantityViewController.swift in Sources */,
 				2C1C4D071C5C1F530045821F /* BPURLBuilder.swift in Sources */,
+				2CBB5BED1C99E8E300D58BFF /* BPReviewPickupViewController.swift in Sources */,
 				2C73BFE41C975B64001FBFD4 /* NSDate+Extension.swift in Sources */,
 				2C29FC101C62720900C70837 /* UIFont+Extension.swift in Sources */,
 				2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */,

@@ -11,7 +11,7 @@ import MapKit
 
 class BPPickup: NSObject {
 
-    var item:BPReedemable!
+    var reedemable:BPReedemable!
     var date:NSDate!
     var instructions:String!
     var address:BPAddress!

@@ -121,22 +121,32 @@ class BPQuantityViewController:  UIViewController {
     
     func nextButtonClicked() {
         
+        guard quantitySelection != .Nothing else {
+            
+            BPMessageFactory.makeMessage(.ERROR, message: "You must select a number of items or a photo").show()
+            return
+        }
+        
         var reedemable:BPReedemable!
         
         if quantitySelection == .Photo {
             
              reedemable = BPReedemable(picture: self.takeAPictureButton!.imageView!.image!)
         }
-        else if quantitySelection == .Number {
+        else {
             
              reedemable = BPReedemable(quantity: self.quantityButton!.titleLabel!.text!)
-            
-        } else {
-            BPMessageFactory.makeMessage(.ERROR, message: "You must select a number of items or a photo").show()
         }
         
-        
-        print("next page is review information")
+        self.pickup!.reedemable = reedemable
+        self.performSegueWithIdentifier("reviewInfoSegue", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "reviewInfoSegue" {
+            let destVc = segue.destinationViewController as! BPReviewPickupViewController
+            destVc.pickup = self.pickup
+        }
     }
     
     
