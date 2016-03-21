@@ -51,6 +51,12 @@
 		2C73BFE61C98827F001FBFD4 /* BPMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFE51C98827F001FBFD4 /* BPMessageFactory.swift */; };
 		2C73BFE81C98994B001FBFD4 /* BPQuantityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFE71C98994B001FBFD4 /* BPQuantityViewController.swift */; };
 		2C8A4A711C88C56E00D8E0DB /* BPMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */; };
+		2C921EEF1CA06DFA00B2FA46 /* BPDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C921EED1CA06DFA00B2FA46 /* BPDateTableViewCell.swift */; };
+		2C921EF01CA06DFA00B2FA46 /* BPDateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C921EEE1CA06DFA00B2FA46 /* BPDateTableViewCell.xib */; };
+		2C921EF41CA07AD700B2FA46 /* BPQuantityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C921EF21CA07AD700B2FA46 /* BPQuantityTableViewCell.swift */; };
+		2C921EF51CA07AD700B2FA46 /* BPQuantityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C921EF31CA07AD700B2FA46 /* BPQuantityTableViewCell.xib */; };
+		2C921EF81CA0888B00B2FA46 /* BPIntructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C921EF61CA0888B00B2FA46 /* BPIntructionsTableViewCell.swift */; };
+		2C921EF91CA0888B00B2FA46 /* BPIntructionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C921EF71CA0888B00B2FA46 /* BPIntructionsTableViewCell.xib */; };
 		2CBA2D2E1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA2D2C1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift */; };
 		2CBA2D2F1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA2D2D1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib */; };
 		2CBB5BED1C99E8E300D58BFF /* BPReviewPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBB5BEC1C99E8E300D58BFF /* BPReviewPickupViewController.swift */; };
@@ -133,6 +139,12 @@
 		2C73BFE51C98827F001FBFD4 /* BPMessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMessageFactory.swift; sourceTree = "<group>"; };
 		2C73BFE71C98994B001FBFD4 /* BPQuantityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPQuantityViewController.swift; sourceTree = "<group>"; };
 		2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMapViewController.swift; sourceTree = "<group>"; };
+		2C921EED1CA06DFA00B2FA46 /* BPDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPDateTableViewCell.swift; sourceTree = "<group>"; };
+		2C921EEE1CA06DFA00B2FA46 /* BPDateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPDateTableViewCell.xib; sourceTree = "<group>"; };
+		2C921EF21CA07AD700B2FA46 /* BPQuantityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPQuantityTableViewCell.swift; sourceTree = "<group>"; };
+		2C921EF31CA07AD700B2FA46 /* BPQuantityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPQuantityTableViewCell.xib; sourceTree = "<group>"; };
+		2C921EF61CA0888B00B2FA46 /* BPIntructionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPIntructionsTableViewCell.swift; sourceTree = "<group>"; };
+		2C921EF71CA0888B00B2FA46 /* BPIntructionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPIntructionsTableViewCell.xib; sourceTree = "<group>"; };
 		2CBA2D2C1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRecentAddressTableViewCell.swift; sourceTree = "<group>"; };
 		2CBA2D2D1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPRecentAddressTableViewCell.xib; sourceTree = "<group>"; };
 		2CBB5BEC1C99E8E300D58BFF /* BPReviewPickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPReviewPickupViewController.swift; sourceTree = "<group>"; };
@@ -332,6 +344,12 @@
 			children = (
 				2CBB5BEF1C99F02C00D58BFF /* BPMapTableViewCell.swift */,
 				2CBB5BF01C99F02C00D58BFF /* BPMapTableViewCell.xib */,
+				2C921EED1CA06DFA00B2FA46 /* BPDateTableViewCell.swift */,
+				2C921EEE1CA06DFA00B2FA46 /* BPDateTableViewCell.xib */,
+				2C921EF21CA07AD700B2FA46 /* BPQuantityTableViewCell.swift */,
+				2C921EF31CA07AD700B2FA46 /* BPQuantityTableViewCell.xib */,
+				2C921EF61CA0888B00B2FA46 /* BPIntructionsTableViewCell.swift */,
+				2C921EF71CA0888B00B2FA46 /* BPIntructionsTableViewCell.xib */,
 			);
 			name = TableViewReviewCells;
 			sourceTree = "<group>";
@@ -505,6 +523,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C921EF91CA0888B00B2FA46 /* BPIntructionsTableViewCell.xib in Resources */,
 				2C29FC0C1C626D5800C70837 /* Oxygen.ttf in Resources */,
 				2CBA2D2F1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib in Resources */,
 				1B98D7EC1C440AC200B6AA88 /* LaunchScreen.storyboard in Resources */,
@@ -515,7 +534,9 @@
 				2C29FC031C626D5800C70837 /* Oxygen-Bold.ttf in Resources */,
 				1B98D7E91C440AC200B6AA88 /* Assets.xcassets in Resources */,
 				8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */,
+				2C921EF51CA07AD700B2FA46 /* BPQuantityTableViewCell.xib in Resources */,
 				1B98D7E71C440AC200B6AA88 /* Main.storyboard in Resources */,
+				2C921EF01CA06DFA00B2FA46 /* BPDateTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,18 +635,21 @@
 				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,
 				2C73BFE01C971F77001FBFD4 /* BPAddress.swift in Sources */,
 				2CBB5BF11C99F02C00D58BFF /* BPMapTableViewCell.swift in Sources */,
+				2C921EF81CA0888B00B2FA46 /* BPIntructionsTableViewCell.swift in Sources */,
 				2C73BFE61C98827F001FBFD4 /* BPMessageFactory.swift in Sources */,
 				2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */,
 				2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */,
 				2CDB35841C937203005945B7 /* BPCalendarViewController.swift in Sources */,
 				2C73BFE81C98994B001FBFD4 /* BPQuantityViewController.swift in Sources */,
 				2C1C4D071C5C1F530045821F /* BPURLBuilder.swift in Sources */,
+				2C921EEF1CA06DFA00B2FA46 /* BPDateTableViewCell.swift in Sources */,
 				2CBB5BED1C99E8E300D58BFF /* BPReviewPickupViewController.swift in Sources */,
 				2C73BFE41C975B64001FBFD4 /* NSDate+Extension.swift in Sources */,
 				2C29FC101C62720900C70837 /* UIFont+Extension.swift in Sources */,
 				2C5CCB491C494C2700E734CE /* BPPickupsViewController.swift in Sources */,
 				1B98D7E41C440AC200B6AA88 /* BPLoginViewController.swift in Sources */,
 				2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */,
+				2C921EF41CA07AD700B2FA46 /* BPQuantityTableViewCell.swift in Sources */,
 				2CDB35821C9371D7005945B7 /* MRMonthView.swift in Sources */,
 				2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */,
 				2CDB35771C920505005945B7 /* BPMapTasks.swift in Sources */,

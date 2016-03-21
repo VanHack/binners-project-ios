@@ -10,6 +10,35 @@ import UIKit
 
 extension NSDate {
     
+    func printDate() ->String {
+     
+        return "\(self.dayMonthYear().1)/\(self.dayMonthYear().0)/\(self.dayMonthYear().2)"
+    }
+    
+    func printTime() -> String{
+        
+        var timePeriod = "am"
+        var minute:String = "\(self.getMinute())"
+        var hour:String = "\(self.getHour())"
+        
+        var hourValue:Int = self.getHour()
+        if self.getHour() > 12 {
+            timePeriod = "pm"
+            hourValue = hourValue - 12
+            hour = "\(hourValue)"
+        }
+        
+        
+        if self.getMinute() < 10 {
+            minute = "0\(self.getMinute())"
+        }
+        
+        if hourValue < 10 {
+            hour = "0\(hourValue)"
+        }
+        
+        return "\(hour):\(minute) " + timePeriod
+    }
     
     func dayMonthYear() -> (Int,Int,Int)
     {
@@ -28,6 +57,22 @@ extension NSDate {
         let date = calendar.dateFromComponents(components)
         return date!
     }
+    
+    func getHour() ->Int {
+        
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Year,.Month,.Day,.WeekOfMonth,.Weekday,.Hour,.Minute], fromDate: self)
+        
+        return components.hour
+    }
+    
+    func getMinute() ->Int {
+        
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Year,.Month,.Day,.WeekOfMonth,.Weekday,.Hour,.Minute], fromDate: self)
+        return components.minute
+    }
+
     
     func changeHour(hour:Int) ->NSDate {
         

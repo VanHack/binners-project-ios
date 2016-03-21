@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15E33e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="BPDateTableViewCell" customModule="ios_binners_project" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="101.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiV-xe-ar8">
+                        <rect key="frame" x="18" y="18" width="38" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycg-dy-Stf">
+                        <rect key="frame" x="202" y="18" width="36" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:00pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoR-R1-kkf">
+                        <rect key="frame" x="18" y="53" width="100" height="33.5"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03/03/1991" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSM-PW-PCL">
+                        <rect key="frame" x="202" y="53.5" width="100" height="33.5"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="rg1-Iz-r0e"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="hSM-PW-PCL" secondAttribute="trailing" constant="10" id="5YJ-wV-fbb"/>
+                    <constraint firstItem="hSM-PW-PCL" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.25" id="7Ha-q3-Yk3"/>
+                    <constraint firstItem="KiV-xe-ar8" firstAttribute="leading" secondItem="SoR-R1-kkf" secondAttribute="leading" id="9j1-qi-6an"/>
+                    <constraint firstItem="hSM-PW-PCL" firstAttribute="height" secondItem="SoR-R1-kkf" secondAttribute="height" id="APu-HW-6pr"/>
+                    <constraint firstItem="hSM-PW-PCL" firstAttribute="top" secondItem="ycg-dy-Stf" secondAttribute="bottom" constant="15" id="DTd-mY-fKi"/>
+                    <constraint firstItem="ycg-dy-Stf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="Lvg-xB-iun"/>
+                    <constraint firstItem="KiV-xe-ar8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="Slu-ZZ-4Ay"/>
+                    <constraint firstItem="SoR-R1-kkf" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.33" id="T6S-mt-apc"/>
+                    <constraint firstItem="hSM-PW-PCL" firstAttribute="leading" secondItem="SoR-R1-kkf" secondAttribute="trailing" constant="100" id="XiZ-9d-mjy"/>
+                    <constraint firstItem="SoR-R1-kkf" firstAttribute="top" secondItem="KiV-xe-ar8" secondAttribute="bottom" constant="15" id="Y0r-UC-HpY"/>
+                    <constraint firstItem="KiV-xe-ar8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="ZqQ-nf-exR"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ycg-dy-Stf" secondAttribute="trailing" constant="17" id="agS-Jv-L63"/>
+                    <constraint firstItem="SoR-R1-kkf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="kjz-sK-VyT"/>
+                    <constraint firstItem="SoR-R1-kkf" firstAttribute="width" secondItem="hSM-PW-PCL" secondAttribute="width" id="pgm-6Y-IAa"/>
+                    <constraint firstItem="ycg-dy-Stf" firstAttribute="leading" secondItem="hSM-PW-PCL" secondAttribute="leading" id="qUi-T1-AX1"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="Slu-ZZ-4Ay"/>
+                        <exclude reference="agS-Jv-L63"/>
+                        <exclude reference="7Ha-q3-Yk3"/>
+                        <exclude reference="XiZ-9d-mjy"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="ycg-dy-Stf" id="CLz-gd-lwl"/>
+                <outlet property="dateSelectedLabel" destination="hSM-PW-PCL" id="91I-pN-dG3"/>
+                <outlet property="timeLabel" destination="KiV-xe-ar8" id="wrw-Jc-Fm2"/>
+                <outlet property="timeSelectedLabel" destination="SoR-R1-kkf" id="Y1k-vt-XCp"/>
+            </connections>
+            <point key="canvasLocation" x="301" y="368"/>
+        </tableViewCell>
+    </objects>
+</document>

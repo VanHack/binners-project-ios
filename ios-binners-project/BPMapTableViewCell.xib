@@ -17,15 +17,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZVi-71-gWh" customClass="GMSMapView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="233.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="217.5"/>
                         <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZg-Ub-Q9y" customClass="UILabel">
-                        <rect key="frame" x="10" y="277" width="300" height="33"/>
+                        <rect key="frame" x="10" y="260.5" width="300" height="49.5"/>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick-up Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5c-Dk-pRt">
-                        <rect key="frame" x="18" y="248.5" width="284" height="21"/>
+                        <rect key="frame" x="18" y="232.5" width="284" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -37,7 +37,7 @@
                     <constraint firstItem="cZg-Ub-Q9y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Qjs-Nf-CLm"/>
                     <constraint firstItem="ZVi-71-gWh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ZhF-LM-ZDg"/>
                     <constraint firstItem="Y5c-Dk-pRt" firstAttribute="top" secondItem="ZVi-71-gWh" secondAttribute="bottom" constant="15" id="bD1-U4-xv7"/>
-                    <constraint firstItem="cZg-Ub-Q9y" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.1" id="i4c-51-y3B"/>
+                    <constraint firstItem="cZg-Ub-Q9y" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.15" id="i4c-51-y3B"/>
                     <constraint firstItem="Y5c-Dk-pRt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="j8U-PR-hlE"/>
                     <constraint firstAttribute="trailing" secondItem="ZVi-71-gWh" secondAttribute="trailing" id="m1p-Bp-gcp"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Y5c-Dk-pRt" secondAttribute="trailing" constant="10" id="qlW-AS-2QV"/>
@@ -48,6 +48,7 @@
             <connections>
                 <outlet property="locationLabel" destination="cZg-Ub-Q9y" id="KJr-Ki-0va"/>
                 <outlet property="mapView" destination="ZVi-71-gWh" id="ARr-Bn-MP4"/>
+                <outlet property="pickupTextLabel" destination="Y5c-Dk-pRt" id="hc6-4M-zD2"/>
             </connections>
             <point key="canvasLocation" x="316" y="391.5"/>
         </tableViewCell>

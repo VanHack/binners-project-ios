@@ -11,11 +11,42 @@ import GoogleMaps
 
 class BPMapTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var locationLabel: UILabel! {
+        didSet {
+            self.locationLabel!.textAlignment = .Center
+            self.locationLabel!.font = UIFont.binnersFontWithSize(15.0)
+        }
+    }
+    @IBOutlet weak var mapView: GMSMapView! {
+        
+        didSet {
+            self.mapView.settings.setAllGesturesEnabled(false)
+        }
+    }
+    @IBOutlet weak var pickupTextLabel: UILabel! {
+        didSet {
+            self.pickupTextLabel!.font = UIFont.binnersFontWithSize(17.0)
+
+        }
+    }
+    
+    var address:BPAddress? {
+        
+        didSet {
+            self.locationLabel.text = address!.formattedAddress
+            self.mapView.camera = GMSCameraPosition.cameraWithLatitude(address!.location.latitude, longitude: address!.location.longitude, zoom: 15.0)
+            let  position = CLLocationCoordinate2DMake(address!.location.latitude, address!.location.longitude)
+            let marker = GMSMarker(position: position)
+            marker.map = mapView
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.locationLabel.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.binnersGrayBackgroundColor()
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

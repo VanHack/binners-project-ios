@@ -16,10 +16,24 @@ class BPReviewPickupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        configureTableView()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func configureTableView() {
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        var cellNib = UINib(nibName: "BPMapTableViewCell", bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: "mapTableViewCell")
+        cellNib = UINib(nibName: "BPDateTableViewCell", bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: "dateTableViewCell")
+        cellNib = UINib(nibName: "BPQuantityTableViewCell", bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: "quantityTableViewCell")
+        cellNib = UINib(nibName: "BPIntructionsTableViewCell", bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: "instructionsTableViewCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,19 +65,57 @@ extension BPReviewPickupViewController : UITableViewDelegate, UITableViewDataSou
         return 4
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        switch (indexPath.row) {
+        case 0: return 331.0
+        case 1: return 100.0
+        case 2:
+            if self.pickup!.reedemable.picture == nil {
+            return 100.0
+            } else { return 300.0 }
+        case 3: return 157.0
+        default: return 10.0
+        }
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell:UITableViewCell!
+        var cell:UITableViewCell?
         
         switch indexPath.row {
-        case 0: cell = BPMapTableViewCell() as BPMapTableViewCell
-        let cellMap = cell as! BPMapTableViewCell
-        cellMap.locationLabel.text = self.pickup!.address.formattedAddress
-        default: cell = UITableViewCell()
+        case 0: cell = self.tableView.dequeueReusableCellWithIdentifier("mapTableViewCell") as! BPMapTableViewCell
+                let cellMap = cell as! BPMapTableViewCell
+                cellMap.address = self.pickup!.address
+                cell = cellMap
+        case 1: cell = self.tableView.dequeueReusableCellWithIdentifier("dateTableViewCell") as! BPDateTableViewCell
+                let cellDate = cell as! BPDateTableViewCell
+                cellDate.date = pickup!.date
+                cell = cellDate
+        case 2: cell = self.tableView.dequeueReusableCellWithIdentifier("quantityTableViewCell") as! BPQuantityTableViewCell
+                let cellQuantity = cell as! BPQuantityTableViewCell
+                cellQuantity.reedemable = self.pickup!.reedemable
+                cell = cellQuantity
+        case 3: cell = self.tableView.dequeueReusableCellWithIdentifier("instructionsTableViewCell") as! BPIntructionsTableViewCell
+                let cellInstructions = cell as! BPIntructionsTableViewCell
+                cellInstructions.instructions = "go to the door and knock."
+                cellInstructions.finishedPickupDelegate = self
+                cell = cellInstructions
+        default:cell = UITableViewCell()
+            
         }
         
-        return cell
+        return cell!
         
     }
     
 }
+extension BPReviewPickupViewController : FinishedPickupDelegate {
+    
+    func finishPickupButtonClicked() {
+        print("finished")
+    }
+    
+    
+}
+
