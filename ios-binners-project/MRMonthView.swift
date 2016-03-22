@@ -338,7 +338,8 @@ class MRMonthView: UIView {
             0,
             (labelDayOfTheWeek!.frame.size.height * 2) + labelDayOfTheWeek!.frame.origin.y,
             120.0,
-            110.0))
+            self.frame.size.height * 0.20))
+
         labelDayOfTheMonth!.center.x = labelDayOfTheWeek!.center.x
         labelDayOfTheMonth!.font = UIFont.systemFontOfSize(100.0)
         labelDayOfTheMonth!.text = "7"

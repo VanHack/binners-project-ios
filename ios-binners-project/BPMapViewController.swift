@@ -438,7 +438,7 @@ extension BPMapViewController : GMSMapViewDelegate {
 extension BPMapViewController : CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-            centerMapOnLocation(locationManager.location!)
+           // centerMapOnLocation(locationManager.location!)
 
     }
 

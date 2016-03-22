@@ -18,16 +18,33 @@ class BPCalendarViewController: UIViewController {
         
         setupNavigationBar()
         
+        self.view.backgroundColor = UIColor.binnersGrayBackgroundColor()
+        
         let originY = self.navigationController!.navigationBar.frame.size.height
         
         monthView = MRMonthView(frame: CGRectMake(
-            self.view.frame.origin.x,
-            originY,
-            self.view.frame.size.width,
-            self.view.frame.size.height))
+            self.view.frame.origin.x + (self.view.frame.size.width * 0.05),
+            originY + (self.view.frame.size.height * 0.1),
+            self.view.frame.size.width * 0.9,
+            self.view.frame.size.height * 0.80))
         
         self.view.addSubview(monthView!)
         monthView.buttonsArrowColor = UIColor.binnersGreenColor()
+        
+        
+        let descriptionLabel = UILabel(frame: CGRectMake(
+            self.view.frame.origin.x + (self.view.frame.size.width * 0.05),
+            originY,
+            self.view.frame.size.width * 0.9,
+            self.view.frame.size.height * 0.2))
+        
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.font = UIFont.boldSystemFontOfSize(15.0)
+        descriptionLabel.text = "Please provide your preferred date for a pick-up."
+        descriptionLabel.textAlignment = .Center
+        
+        self.view.addSubview(descriptionLabel)
+
 
     }
     
