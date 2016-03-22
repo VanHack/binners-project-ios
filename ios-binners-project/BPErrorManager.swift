@@ -37,5 +37,6 @@ enum Error : ErrorType
     case AuthMissing(errorMsg:String)
     case InvalidErrorType(erroMSg:String)
     case InvalidInformationProvided(errorCode:String, errorMsg:String)
+    case DataBaseError(errorMsg:String)
 
 }
