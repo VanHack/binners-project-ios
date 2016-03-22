@@ -12,6 +12,7 @@ pod 'TwitterCore';
 pod 'Google/SignIn';
 pod 'AFNetworking', '~> 3.0'
 pod 'GoogleMaps'
+pod 'Realm'
 end
 
 target 'ios-binners-projectTests' do
