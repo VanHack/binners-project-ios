@@ -8,59 +8,72 @@
 
 import UIKit
 
-class BPUser{
+class BPUser : RLMObject {
     
-    static let sharedInstance = BPUser()
+    static var sharedInstance = BPUser()
     
     var email:String?
     var id:String?
     var address:String?
+    var completedPickups:RLMArray?
+    var notCompletedPickups:RLMArray?
+    let persistence = RLMRealm.defaultRealm()
     
     private init(email:String,id:String)
     {
+        super.init()
         self.email = email
         self.id = id
     }
     
-    private init() {}
+    private override init() {super.init()}
 
     // if the user already exists in our persistent store, we can fetch his info and login without the need of entering information in the username or password field
-    func getUserInfoFromLocalPersistenceStorage() -> Bool
+    func getUserFromLocalPersistenceStorage() -> Bool
     {
+        let user:BPUser? = BPUser.objectsWithPredicate(NSPredicate(format: "id == \(self.id)")).firstObject() as? BPUser
         
-        // MUST BE SWITCHED TO SOME OTHER WAY WITH ENCRYPTION IN THE FUTURE
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        if (userDefaults.objectForKey("User") == nil)
-        {
+        if let user = user {
+            
+            self.id = user.id
+            self.address = user.address
+            self.email = user.email
+            return true
+            
+        } else {
             return false
         }
-        else
-        {
-            let info = userDefaults.objectForKey("User") as! [String:String]
-            let email = info["email"]
-            let id = info["id"]
-            
-            self.email = email
-            self.id = id
-            
-            return true
-        }
+        
     }
     
     
-    func saveUserInfoLocally(info:[String:String])
+    func saveUserLocally() throws
     {
-        // MUST BE SWITCHED TO SOME OTHER WAY WITH ENCRYPTION IN THE FUTURE
         
-        let userDefaults = NSUserDefaults.standardUserDefaults()
         
-        let email = info["email"]
-        let id = info["id"]
-        self.email = email
-        self.id = id
-        
-        userDefaults.setObject(info, forKey: "User")
-        userDefaults.synchronize()
+        do {
+            let user:BPUser? = BPUser.objectsWithPredicate(NSPredicate(format: "id == \(self.id)")).firstObject() as? BPUser
+            
+            if var user = user {
+                
+                persistence.beginWriteTransaction()
+                user = self
+                try persistence.commitWriteTransaction()
+                
+            } else {
+                
+                try persistence.transactionWithBlock({
+                    _ in
+                    persistence.addObject(self)
+                    
+                })
+            }
+            
+            
+
+        }catch _ {
+            throw Error.DataBaseError(errorMsg: "Error saving to database")
+        }
         
     }
 
@@ -94,11 +107,22 @@ class BPUser{
 
     }
     
-    func clearUserInfoLocally()
+    func clearUserInfoLocally() throws
     {
         let appDomain = NSBundle.mainBundle().bundleIdentifier
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
         NSUserDefaults.standardUserDefaults().synchronize()
+        
+        persistence.beginWriteTransaction()
+        persistence.deleteAllObjects()
+        
+        do {
+            try persistence.commitWriteTransaction()
+
+        }catch _ {
+            throw Error.DataBaseError(errorMsg: "Error saving to database")
+        }
+        
     }
 
 }
