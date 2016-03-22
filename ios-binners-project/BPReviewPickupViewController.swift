@@ -98,7 +98,7 @@ extension BPReviewPickupViewController : UITableViewDelegate, UITableViewDataSou
                 cell = cellQuantity
         case 3: cell = self.tableView.dequeueReusableCellWithIdentifier("instructionsTableViewCell") as! BPIntructionsTableViewCell
                 let cellInstructions = cell as! BPIntructionsTableViewCell
-                cellInstructions.instructions = "go to the door and knock."
+                cellInstructions.instructions = self.pickup!.instructions
                 cellInstructions.finishedPickupDelegate = self
                 cell = cellInstructions
         default:cell = UITableViewCell()

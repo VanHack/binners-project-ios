@@ -115,6 +115,7 @@ class BPQuantityViewController:  UIViewController {
         
         self.navigationItem.rightBarButtonItem = buttonRight
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
+        self.title = "Quantity"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
     }
@@ -139,12 +140,12 @@ class BPQuantityViewController:  UIViewController {
         }
         
         self.pickup!.reedemable = reedemable
-        self.performSegueWithIdentifier("reviewInfoSegue", sender: self)
+        self.performSegueWithIdentifier("additionalNotesSegue", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "reviewInfoSegue" {
-            let destVc = segue.destinationViewController as! BPReviewPickupViewController
+        if segue.identifier == "additionalNotesSegue" {
+            let destVc = segue.destinationViewController as! BPAdditionalNotesController
             destVc.pickup = self.pickup
         }
     }

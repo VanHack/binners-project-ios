@@ -56,6 +56,7 @@ class BPCalendarViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = buttonRight
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
+        self.title = "Date"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
     }
@@ -65,9 +66,6 @@ class BPCalendarViewController: UIViewController {
         self.performSegueWithIdentifier("toClockSegue", sender: self)
    
     }
-
-
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
