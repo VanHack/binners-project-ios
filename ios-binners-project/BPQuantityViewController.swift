@@ -115,6 +115,7 @@ class BPQuantityViewController:  UIViewController {
         
         self.navigationItem.rightBarButtonItem = buttonRight
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
+        self.title = "Quantity"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
     }

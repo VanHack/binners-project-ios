@@ -17,8 +17,22 @@ class BPReviewPickupViewController: UIViewController {
         super.viewDidLoad()
         
         configureTableView()
+        setupNavigationBar()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func setupNavigationBar() {
+        
+        let buttonRight = UIBarButtonItem(title: "Edit", style: .Done, target: self, action: "nextButtonClicked")
+        buttonRight.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
+        buttonRight.tintColor = UIColor.whiteColor()
+        
+        self.navigationItem.rightBarButtonItem = buttonRight
+        self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
+        self.title = "Review your information"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        
     }
     
     func configureTableView() {

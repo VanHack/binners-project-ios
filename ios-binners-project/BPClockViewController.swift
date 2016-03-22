@@ -72,6 +72,7 @@ class BPClockViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = buttonRight
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
+        self.title = "Time"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
 
