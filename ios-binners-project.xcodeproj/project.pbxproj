@@ -71,9 +71,9 @@
 		2CDB35771C920505005945B7 /* BPMapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB35761C920505005945B7 /* BPMapTasks.swift */; };
 		2CDB357F1C9371D7005945B7 /* MRDayOfTheMonthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB357B1C9371D7005945B7 /* MRDayOfTheMonthButton.swift */; };
 		2CDB35801C9371D7005945B7 /* MRMonthCalendarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB357C1C9371D7005945B7 /* MRMonthCalendarDelegate.swift */; };
-		2CDB35811C9371D7005945B7 /* MRMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB357D1C9371D7005945B7 /* MRMonthViewController.swift */; };
 		2CDB35821C9371D7005945B7 /* MRMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB357E1C9371D7005945B7 /* MRMonthView.swift */; };
 		2CDB35841C937203005945B7 /* BPCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB35831C937203005945B7 /* BPCalendarViewController.swift */; };
+		2CF0F5BF1CA1F44F005055C2 /* BPAdditionalNotesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0F5BE1CA1F44F005055C2 /* BPAdditionalNotesController.swift */; };
 		2CF92CFE1C8615FD00DDB676 /* BPClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */; };
 		8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */; };
 		9C36FADFB34B05BF0F66EF41 /* libPods-ios-binners-project.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1980177329BA402A982E7F1 /* libPods-ios-binners-project.a */; };
@@ -159,9 +159,9 @@
 		2CDB35761C920505005945B7 /* BPMapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMapTasks.swift; sourceTree = "<group>"; };
 		2CDB357B1C9371D7005945B7 /* MRDayOfTheMonthButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRDayOfTheMonthButton.swift; sourceTree = "<group>"; };
 		2CDB357C1C9371D7005945B7 /* MRMonthCalendarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRMonthCalendarDelegate.swift; sourceTree = "<group>"; };
-		2CDB357D1C9371D7005945B7 /* MRMonthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRMonthViewController.swift; sourceTree = "<group>"; };
 		2CDB357E1C9371D7005945B7 /* MRMonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRMonthView.swift; sourceTree = "<group>"; };
 		2CDB35831C937203005945B7 /* BPCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPCalendarViewController.swift; sourceTree = "<group>"; };
+		2CF0F5BE1CA1F44F005055C2 /* BPAdditionalNotesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPAdditionalNotesController.swift; sourceTree = "<group>"; };
 		2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPClockViewController.swift; sourceTree = "<group>"; };
 		8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Pods/TwitterKit/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-binners-project.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-binners-project/Pods-ios-binners-project.release.xcconfig"; sourceTree = "<group>"; };
@@ -382,7 +382,6 @@
 			children = (
 				2CDB357B1C9371D7005945B7 /* MRDayOfTheMonthButton.swift */,
 				2CDB357C1C9371D7005945B7 /* MRMonthCalendarDelegate.swift */,
-				2CDB357D1C9371D7005945B7 /* MRMonthViewController.swift */,
 				2CDB357E1C9371D7005945B7 /* MRMonthView.swift */,
 			);
 			name = Calendar;
@@ -398,6 +397,7 @@
 				2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */,
 				2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */,
 				2CDB35831C937203005945B7 /* BPCalendarViewController.swift */,
+				2CF0F5BE1CA1F44F005055C2 /* BPAdditionalNotesController.swift */,
 				2C73BFE71C98994B001FBFD4 /* BPQuantityViewController.swift */,
 				2CBB5BEC1C99E8E300D58BFF /* BPReviewPickupViewController.swift */,
 			);
@@ -664,10 +664,10 @@
 				2C73BFDE1C971E33001FBFD4 /* BPPickup.swift in Sources */,
 				2C022F921C877F49003E497F /* BEMAnalogClockView.m in Sources */,
 				1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */,
-				2CDB35811C9371D7005945B7 /* MRMonthViewController.swift in Sources */,
 				2CDB357F1C9371D7005945B7 /* MRDayOfTheMonthButton.swift in Sources */,
 				2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */,
 				2CBDC96E1C7777FA00EC0F99 /* BPUser.swift in Sources */,
+				2CF0F5BF1CA1F44F005055C2 /* BPAdditionalNotesController.swift in Sources */,
 				2CBA2D2E1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift in Sources */,
 				2C1C4D051C5C1D370045821F /* BPLoginManager.swift in Sources */,
 				2CD25EFD1C62915D00ACDEA5 /* BPPageTwoContentDescriptionLoginViewController.swift in Sources */,

@@ -173,8 +173,8 @@ class MRMonthView: UIView {
                 String(date.getPastMonth().dayMonthYear().1),
                 String(date.getPastMonth().dayMonthYear().2)), atIndex: 0)
             
-            currentDay--
-            daysOutOfTheMonth--
+            currentDay -= 1
+            daysOutOfTheMonth -= 1
         }
         
         
@@ -192,14 +192,14 @@ class MRMonthView: UIView {
         var index:Int = weekDay
         for _ in 1...2 {
             
-            for ; index <= 7; index++ {//in weekDay..<= 7 {
+            for ; index <= 7; index += 1 {//in weekDay..<= 7 {
             
             daysStrings.append((
             String(dayInit),
             String(index),
             String(date.getNextMonth().dayMonthYear().1),
             String(date.getNextMonth().dayMonthYear().2)))
-            dayInit++
+            dayInit += 1
             
             }
             index = 1
@@ -418,11 +418,22 @@ class MRMonthView: UIView {
         labelYear?.textColor = UIColor.calendarSeparationColor()
 
         
+//        viewContainerMonthAndYear = UIView(frame: CGRectMake(
+//            0,
+//            separationView!.frame.origin.y - (labelMonth!.frame.size.height * 3),
+//            labelMonth!.frame.size.width + labelYear!.frame.size.width,
+//            labelMonth!.frame.size.height))
+        
+        
+        let posY = ((labelDayOfTheMonth!.frame.origin.y + labelDayOfTheMonth!.frame.size.height +
+                    separationView!.frame.origin.y) / 2) - labelMonth!.frame.size.height/2 - 7
+            
         viewContainerMonthAndYear = UIView(frame: CGRectMake(
             0,
-            separationView!.frame.origin.y - (labelMonth!.frame.size.height * 3),
+            posY ,
             labelMonth!.frame.size.width + labelYear!.frame.size.width,
             labelMonth!.frame.size.height))
+        
         viewContainerMonthAndYear!.center.x = labelDayOfTheMonth!.center.x
 
         
