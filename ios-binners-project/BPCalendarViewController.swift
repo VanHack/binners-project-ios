@@ -39,7 +39,7 @@ class BPCalendarViewController: UIViewController {
             self.view.frame.size.height * 0.2))
         
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.font = UIFont.boldSystemFontOfSize(15.0)
+        descriptionLabel.font = UIFont.boldSystemFontOfSize(12.0)
         descriptionLabel.text = "Please provide your preferred date for a pick-up."
         descriptionLabel.textAlignment = .Center
         

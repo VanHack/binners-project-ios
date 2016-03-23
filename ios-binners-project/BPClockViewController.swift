@@ -28,6 +28,10 @@ class BPClockViewController: UIViewController {
     @IBOutlet weak var pmButton: UIButton!
     @IBOutlet weak var amButton: UIButton!
     @IBOutlet weak var clockView: BEMAnalogClockView!
+    var viewInitialized = false
+    
+    @IBOutlet weak var labelDescription: UILabel!
+    
     var timeMode:TimeMode = .hours
     var hours:Int = 0
     var minutes:Int = 0
@@ -39,10 +43,13 @@ class BPClockViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.binnersGrayBackgroundColor()
 
+        self.labelDescription.sizeToFit()
+        self.labelDescription.adjustsFontSizeToFitWidth = true
+        
         setupNavigationBar()
         configureClock()
         configureButtonsAndLabels()
-        checkIfNowIsPMorAM()
+        //checkIfNowIsPMorAM()
     }
     
     func checkIfNowIsPMorAM() {
@@ -61,6 +68,15 @@ class BPClockViewController: UIViewController {
             pMButtonClicked()
         }
         
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+        if !viewInitialized {
+            checkIfNowIsPMorAM()
+            viewInitialized = true
+        }
         
     }
     
@@ -167,6 +183,10 @@ class BPClockViewController: UIViewController {
         
         labelAmPm.textColor = UIColor.binnersGreenColor()
         labelAmPm.alpha = 0.5
+        
+        
+        self.view.bringSubviewToFront(amButton)
+        self.view.bringSubviewToFront(pmButton)
     }
     
     func minuteButtonClicked() {
