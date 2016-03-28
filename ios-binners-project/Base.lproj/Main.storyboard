@@ -388,7 +388,7 @@
                                 </constraints>
                                 <state key="normal" title="PM"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please provide you prefrerred pick-up time. A binner will arrive at the time you specify." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LQc-F0-zWS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please provide you preferred pick-up time. A binner will arrive at the time you specify." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LQc-F0-zWS">
                                 <rect key="frame" x="41" y="79" width="331" height="51.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -477,9 +477,9 @@
                                 <exclude reference="bQi-Ud-WLO"/>
                                 <exclude reference="ghB-rk-CJC"/>
                                 <exclude reference="vUz-2I-UkR"/>
-                                <exclude reference="U8n-BI-Tj8"/>
                                 <exclude reference="K2u-ht-glU"/>
                                 <exclude reference="irp-Qp-zTe"/>
+                                <exclude reference="U8n-BI-Tj8"/>
                                 <exclude reference="Nmw-6o-WC9"/>
                                 <exclude reference="O5J-8t-Dg1"/>
                             </mask>
@@ -542,14 +542,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give us a rough estime of how many reedemables you have for pick-up" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIy-He-vFk">
-                                <rect key="frame" x="30" y="94" width="354" height="41"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <rect key="frame" x="30" y="94" width="354" height="33.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(No less than 15 bottles please!)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwU-6J-Fqf">
-                                <rect key="frame" x="30" y="135" width="354" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="30" y="127.5" width="354" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -633,7 +633,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pfw-5R-pgq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917" y="5102"/>
+            <point key="canvasLocation" x="924" y="5355"/>
         </scene>
         <!--Item-->
         <scene sceneID="ey5-Rg-QPf">

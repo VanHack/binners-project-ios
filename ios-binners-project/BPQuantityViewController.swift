@@ -20,9 +20,9 @@ class BPQuantityViewController:  UIViewController {
     var imagePicker:UIImagePickerController!
     var valuePicker:UIPickerView!
     var values = [
-        "15 - 25(About 2 grocery bags)",
-        "26 - 35(About 4 grocery bags)",
-        "36 - 50(About 1/2 garbage bag)",
+        "15 - 25 (About 2 grocery bags)",
+        "26 - 35 (About 4 grocery bags)",
+        "36 - 50 (About 1/2 garbage bag)",
         "51+ (About 1 black garbage bag)"]
     var quantitySelection:QuantitySelection = .Nothing
     @IBOutlet weak var quantityButton: UIButton!
