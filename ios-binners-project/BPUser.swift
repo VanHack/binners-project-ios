@@ -10,23 +10,28 @@ import UIKit
 
 class BPUser : RLMObject {
     
-    static var sharedInstance = BPUser()
+    static let sharedInstance = BPUser()
     
-    var email:String?
-    var id:String?
-    var address:String?
-    var completedPickups:RLMArray?
-    var notCompletedPickups:RLMArray?
-    let persistence = RLMRealm.defaultRealm()
+    dynamic var email:String?
+    dynamic var id:String?
+    dynamic var address:String?
     
-    private init(email:String,id:String)
+    init(email:String,id:String,address:String?)
     {
         super.init()
         self.email = email
         self.id = id
+        self.address = address
     }
     
-    private override init() {super.init()}
+     override init() {
+        super.init()
+    }
+    
+    func = (argument:BPUser) {
+    
+    self.id = arugment.id
+    }
 
     // if the user already exists in our persistent store, we can fetch his info and login without the need of entering information in the username or password field
     func getUserFromLocalPersistenceStorage() -> Bool
@@ -49,7 +54,7 @@ class BPUser : RLMObject {
     
     func saveUserLocally() throws
     {
-        
+        let persistence = RLMRealm.defaultRealm()
         
         do {
             let user:BPUser? = BPUser.objectsWithPredicate(NSPredicate(format: "id == \(self.id)")).firstObject() as? BPUser
@@ -112,6 +117,7 @@ class BPUser : RLMObject {
         let appDomain = NSBundle.mainBundle().bundleIdentifier
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
         NSUserDefaults.standardUserDefaults().synchronize()
+        let persistence = RLMRealm.defaultRealm()
         
         persistence.beginWriteTransaction()
         persistence.deleteAllObjects()
@@ -124,5 +130,7 @@ class BPUser : RLMObject {
         }
         
     }
+    
 
 }
+

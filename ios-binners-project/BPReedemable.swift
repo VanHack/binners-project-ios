@@ -15,12 +15,12 @@ class BPReedemable: NSObject {
     
     
     init(quantity:String) {
-        
+        super.init()
         self.quantity = quantity
     }
     
     init(picture:UIImage) {
-        
+        super.init()
         self.picture = picture
     }
 

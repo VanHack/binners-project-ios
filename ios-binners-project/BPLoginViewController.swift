@@ -394,9 +394,6 @@ class BPLoginViewController: UIViewController {
         
         do {
             
-            performSegueWithIdentifier("dashboardSegue", sender: self)
-            
-            /*
             try loginManager.makeResidentStandardLogin(email, password: password, completion: {
                 
                 (inner:() throws -> AnyObject) in
@@ -404,7 +401,11 @@ class BPLoginViewController: UIViewController {
                 do {
                     
                     let value = try inner()
-                    print(value)
+                    
+                    let user = try BPServerResponseParser.processResponse(value) as! BPUser
+                    
+                    
+                    print(user)
                     self.dismissViewControllerAnimated(true, completion: nil)
                     
                 }catch let error
@@ -415,7 +416,7 @@ class BPLoginViewController: UIViewController {
                 
                 
             })
-            */
+            
 
         }catch let error
         {
