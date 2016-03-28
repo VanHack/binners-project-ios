@@ -28,10 +28,10 @@ class BPUser : RLMObject {
         super.init()
     }
     
-    func = (argument:BPUser) {
-    
-    self.id = arugment.id
-    }
+//    func = (argument:BPUser) {
+//    
+//    self.id = arugment.id
+//    }
 
     // if the user already exists in our persistent store, we can fetch his info and login without the need of entering information in the username or password field
     func getUserFromLocalPersistenceStorage() -> Bool
