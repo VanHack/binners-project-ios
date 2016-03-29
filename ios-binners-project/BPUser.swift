@@ -28,15 +28,15 @@ class BPUser : RLMObject {
         super.init()
     }
     
-//    func = (argument:BPUser) {
-//    
-//    self.id = arugment.id
-//    }
+     func copyUserData (argument:BPUser) {
+        self.id = argument.id
+        self.email = argument.email
+        self.address = argument.address
+    }
 
-    // if the user already exists in our persistent store, we can fetch his info and login without the need of entering information in the username or password field
     func getUserFromLocalPersistenceStorage() -> Bool
     {
-        let user:BPUser? = BPUser.objectsWithPredicate(NSPredicate(format: "id == \(self.id)")).firstObject() as? BPUser
+        let user:BPUser? = BPUser.allObjects().firstObject() as? BPUser
         
         if let user = user {
             
@@ -57,7 +57,7 @@ class BPUser : RLMObject {
         let persistence = RLMRealm.defaultRealm()
         
         do {
-            let user:BPUser? = BPUser.objectsWithPredicate(NSPredicate(format: "id == \(self.id)")).firstObject() as? BPUser
+            let user:BPUser? = BPUser.objectsWithPredicate(NSPredicate(format: "id = \(self.id!)")).firstObject() as? BPUser
             
             if var user = user {
                 
@@ -80,6 +80,31 @@ class BPUser : RLMObject {
             throw Error.DataBaseError(errorMsg: "Error saving to database")
         }
         
+    }
+    
+    func getUserAuthToken() -> String? {
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        if (userDefaults.objectForKey("token") == nil)
+        {
+            return nil
+        }
+        else
+        {
+            let token = userDefaults.stringForKey("token")
+            
+            return token
+        }
+
+    }
+    
+    func saveAuthToken(token:String) {
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        userDefaults.setObject(token, forKey: "token")
+        userDefaults.synchronize()
+
     }
 
     

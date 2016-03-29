@@ -402,10 +402,8 @@ class BPLoginViewController: UIViewController {
                     
                     let value = try inner()
                     
-                    let user = try BPServerResponseParser.processResponse(value) as! BPUser
-                    
-                    
-                    print(user)
+                    let token = try BPServerResponseParser.parseTokenFromServerResponse(value) 
+                    BPUser.sharedInstance.saveAuthToken(token)
                     self.dismissViewControllerAnimated(true, completion: nil)
                     
                 }catch let error

@@ -23,6 +23,15 @@ class BPServerResponseParser {
         
     }
     
+    class func parseTokenFromServerResponse(object:AnyObject) throws ->String {
+        
+        if object["token"] != nil {
+            return object["token"] as! String
+        } else {
+            throw Error.InvalidErrorType(erroMSg: "Invalid data format")
+
+        }
+    }
     
     class func processUserResponse(object:AnyObject) -> BPUser {
         
