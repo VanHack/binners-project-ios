@@ -133,7 +133,7 @@ class BPLoginViewController: UIViewController {
                 //self.view.addSubview(createLoginOptionSelector(self.view))
                 self.view.addSubview(createResidentForm())
             default:
-                print("Residente login option selected")
+                print("Resident login option selected")
         }
     }
     
@@ -206,7 +206,7 @@ class BPLoginViewController: UIViewController {
         let image = UIImage(named: imageName)
 
         //Screen and divider dimensions
-        let imageWidth = CGFloat(280)
+        let imageWidth = CGFloat(form.frame.width)
         let imageHeight = CGFloat(8)
         
         //Positioning the divider horizonatally centered
@@ -219,7 +219,7 @@ class BPLoginViewController: UIViewController {
     func createFacebookLoginButton(form:UIView, index:Int) -> UIView {
         
         //Screen and divider dimensions
-        let buttomWidth = CGFloat(86)
+        let buttomWidth = CGFloat(form.frame.width/3 - 10)
         let buttomHeight = CGFloat(40)
         
         let formView = UIButton(frame: CGRectMake(0, 200, buttomWidth, buttomHeight))
@@ -289,7 +289,7 @@ class BPLoginViewController: UIViewController {
     }
     
     func createGoogleLoginButton(form:UIView, index:Int) -> UIView {
-        let buttomWidth = CGFloat(86)
+        let buttomWidth = CGFloat(form.frame.width/3 - 10)
         let buttomHeight = CGFloat(40)
         let formView = UIButton(frame: CGRectMake(buttomWidth+10, 200, buttomWidth, buttomHeight))
         let imageName = "login-google-buttom"
@@ -306,7 +306,7 @@ class BPLoginViewController: UIViewController {
     }
 
     func createTwitterLoginButton(form:UIView, index:Int) -> UIView {
-        let buttomWidth = CGFloat(86)
+        let buttomWidth = CGFloat(form.frame.width/3 - 10)
         let buttomHeight = CGFloat(40)
         let formView = UIButton(frame: CGRectMake((buttomWidth*2)+20, 200, buttomWidth, buttomHeight))
         let imageName = "login-twitter-buttom"
@@ -373,7 +373,12 @@ class BPLoginViewController: UIViewController {
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         formView.titleLabel?.font = UIFont.systemFontOfSize(11)
         formView.setTitle("Forgot your password?", forState: UIControlState.Normal)
+        formView.addTarget(self, action: #selector(presentForgotPasswordForm), forControlEvents: .TouchUpInside)
         return formView
+    }
+    
+    func presentForgotPasswordForm() {
+        
     }
     
     func makeResidentLogin()
