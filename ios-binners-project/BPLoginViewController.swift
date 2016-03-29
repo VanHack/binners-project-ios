@@ -32,6 +32,8 @@ class BPLoginViewController: UIViewController {
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
         
+        self.view.bringSubviewToFront(self.view.viewWithTag(124)!)
+        
         
         // test purposes only
         FBSDKLoginManager().logOut()
@@ -85,13 +87,19 @@ class BPLoginViewController: UIViewController {
         let imageView = UIImageView(frame: CGRectMake((screenWidth/2) - (imageWidth/2), 40, imageWidth, imageHeight))
         
         imageView.image = image!
+        imageView.tag = 122
         return imageView
     }
     
     func createLoginOptionSelector(form:UIView) -> UIView {
+        
+        let logoView = form.viewWithTag(122)
+        let initYPos = logoView!.frame.height + logoView!.frame.origin.y + logoView!.frame.height * 0.1 + 5
+        
         let options = ["Binner", "Resident"]
         
         let segControl = UISegmentedControl(items: options)
+        segControl.tag = 124
         
         // Style the Segmented Control
         segControl.layer.cornerRadius = 5.0
@@ -103,7 +111,7 @@ class BPLoginViewController: UIViewController {
         // Set up Frame and SegmentedControl
         let screenWidth = CGFloat(form.frame.width)
         
-        segControl.frame = CGRectMake((screenWidth/2) - (235/2), 150, 235, 29)
+        segControl.frame = CGRectMake((screenWidth/2) - (235/2), initYPos, 235, 29)
 
         // Add target action method
         segControl.addTarget(self, action: "segmentedControlOptionChanged:", forControlEvents: .ValueChanged)
@@ -165,7 +173,15 @@ class BPLoginViewController: UIViewController {
     }
     
     func createInputText(form:UIView, index:Int) -> UIView {
-        let formView = UITextField(frame: CGRectMake(0, 10, form.frame.width , 20))
+        
+        let yPosButton = CGFloat((165) / 2)
+        let segControl = self.view.viewWithTag(124)
+        let convertedRect = self.view.convertRect(segControl!.frame, toView: form)
+        //let yPos = convertedRect.origin.y + convertedRect.height + form.frame.size.height * 0.05
+        let yPos = (yPosButton + convertedRect.origin.y + convertedRect.height) / 2 - 5
+        
+        let formView = UITextField(frame: CGRectMake(0, yPos, form.frame.width , 20))
+        formView.tag = 123
         formView.autocapitalizationType = .None
         formView.background = UIImage(named: "login-email-input-field.png")
         formView.textColor = UIColor.whiteColor()
@@ -178,7 +194,11 @@ class BPLoginViewController: UIViewController {
     }
     
     func createInputPassword(form:UIView, index:Int) -> UIView {
-        let formView = UITextField(frame: CGRectMake(0, 50, form.frame.width , 20))
+        
+        let viewEmail = form.viewWithTag(123)
+        let initialPos = viewEmail!.frame.origin.y + viewEmail!.frame.height + viewEmail!.frame.height * 0.9
+        
+        let formView = UITextField(frame: CGRectMake(0, initialPos, form.frame.width , 20))
         formView.autocapitalizationType = .None
         formView.background = UIImage(named: "login-password-input-field.png")
         formView.secureTextEntry = true
@@ -187,11 +207,15 @@ class BPLoginViewController: UIViewController {
             NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
         formView.textAlignment = .Center
         textFieldPassword = formView
+        formView.tag = 121
         return formView
     }
     
     func createButton(form:UIView, index:Int) -> UIView {
-        let formView = UIButton(frame: CGRectMake(0, 100, form.frame.width, 35))
+        
+        let yPos = (165) / 2 + form.frame.size.height * 0.1
+        
+        let formView = UIButton(frame: CGRectMake(0, yPos, form.frame.width, 35))
         formView.backgroundColor = UIColor.darkGrayColor()
         formView.layer.cornerRadius = 4.0
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
