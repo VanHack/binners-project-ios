@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E33e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="j5j-et-0Me">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="j5j-et-0Me">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -584,12 +584,12 @@
                     <connections>
                         <outlet property="quantityButton" destination="Oc9-PA-3nX" id="BDq-s6-uuh"/>
                         <outlet property="takeAPictureButton" destination="pY9-0p-1ao" id="Lyn-gX-bdj"/>
-                        <segue destination="1hJ-At-fPl" kind="show" identifier="reviewInfoSegue" id="DSn-Dr-Nly"/>
+                        <segue destination="mMx-9l-G7R" kind="show" identifier="additionalNotesSegue" id="CKR-Pk-xf6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ous-dY-1md" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917" y="4465"/>
+            <point key="canvasLocation" x="897" y="4497"/>
         </scene>
         <!--Review Pickup View Controller-->
         <scene sceneID="umC-Tg-glH">
@@ -633,7 +633,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pfw-5R-pgq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="924" y="5355"/>
+            <point key="canvasLocation" x="892" y="6339"/>
         </scene>
         <!--Item-->
         <scene sceneID="ey5-Rg-QPf">
@@ -912,6 +912,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USJ-9d-zoU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="266" y="-2388"/>
+        </scene>
+        <!--Additional Notes Controller-->
+        <scene sceneID="Jok-SC-qRn">
+            <objects>
+                <viewController id="mMx-9l-G7R" customClass="BPAdditionalNotesController" customModule="ios_binners_project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tO7-RK-Iit"/>
+                        <viewControllerLayoutGuide type="bottom" id="htF-Je-DTX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ihe-gc-5ID">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please provide any further instructions for the binner." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iN-hA-6lr">
+                                <rect key="frame" x="90" y="72" width="235" height="61"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Let's make it easy for your local binner to find your bottles and cans! Leave them any notes about where to get the pick-up." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vM-kn-LdP">
+                                <rect key="frame" x="39" y="141" width="337" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dTy-YM-EYd">
+                                <rect key="frame" x="20" y="214" width="374" height="495"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="dTy-YM-EYd" firstAttribute="top" secondItem="1vM-kn-LdP" secondAttribute="bottom" constant="8" id="Hl6-SD-p5A"/>
+                            <constraint firstItem="dTy-YM-EYd" firstAttribute="top" secondItem="tO7-RK-Iit" secondAttribute="bottom" constant="150" id="QJD-aX-iVD"/>
+                            <constraint firstItem="htF-Je-DTX" firstAttribute="top" secondItem="dTy-YM-EYd" secondAttribute="bottom" constant="27" id="WGQ-Td-03e"/>
+                            <constraint firstItem="dTy-YM-EYd" firstAttribute="leading" secondItem="Ihe-gc-5ID" secondAttribute="leadingMargin" id="YQx-VV-O15"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1vM-kn-LdP" secondAttribute="trailing" constant="18.5" id="bBk-u7-Utv"/>
+                            <constraint firstItem="7iN-hA-6lr" firstAttribute="top" secondItem="tO7-RK-Iit" secondAttribute="bottom" constant="8" id="bUk-d4-Ahc"/>
+                            <constraint firstItem="7iN-hA-6lr" firstAttribute="centerX" secondItem="Ihe-gc-5ID" secondAttribute="centerX" id="bvx-Gp-X4E"/>
+                            <constraint firstItem="dTy-YM-EYd" firstAttribute="trailing" secondItem="Ihe-gc-5ID" secondAttribute="trailingMargin" id="gvD-A1-nGG"/>
+                            <constraint firstItem="7iN-hA-6lr" firstAttribute="leading" secondItem="Ihe-gc-5ID" secondAttribute="leadingMargin" constant="70" id="iDY-yq-bx3"/>
+                            <constraint firstItem="1vM-kn-LdP" firstAttribute="top" secondItem="7iN-hA-6lr" secondAttribute="bottom" constant="8" id="n6i-Sg-Pck"/>
+                            <constraint firstItem="1vM-kn-LdP" firstAttribute="leading" secondItem="Ihe-gc-5ID" secondAttribute="leadingMargin" constant="19" id="nfF-2f-KOt"/>
+                            <constraint firstItem="1vM-kn-LdP" firstAttribute="top" secondItem="tO7-RK-Iit" secondAttribute="bottom" constant="77" id="pWF-33-Fz5"/>
+                            <constraint firstItem="1vM-kn-LdP" firstAttribute="leading" secondItem="Ihe-gc-5ID" secondAttribute="leadingMargin" constant="28" id="ukg-N0-Xcb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7iN-hA-6lr" secondAttribute="trailing" constant="69" id="xl2-fB-wVy"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="bvx-Gp-X4E"/>
+                                <exclude reference="ukg-N0-Xcb"/>
+                                <exclude reference="Hl6-SD-p5A"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="boldLabel" destination="7iN-hA-6lr" id="gwt-sO-3qA"/>
+                        <outlet property="txtViewAddNote" destination="dTy-YM-EYd" id="DNx-E9-10F"/>
+                        <segue destination="1hJ-At-fPl" kind="show" identifier="reviewPickupSegue" id="ofQ-A8-xYf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w5a-G7-sPz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="897" y="5374"/>
         </scene>
     </scenes>
     <resources>
