@@ -28,9 +28,16 @@ extension UIColor {
         return UIColor(red: redValue/255.0, green: greenValue/255.0, blue: blueValue/255.0, alpha: alpha)
     }
     
+    
     static func calendarSeparationColor() -> UIColor
     {
         return UIColor(netHex: 0xd0d4d9)
+    }
+    
+    
+    static func binnersMapBlueColor() -> UIColor
+    {
+        return UIColor(netHex: 0x006DE8)
     }
     
     static func binnersGrayBackgroundColor() -> UIColor

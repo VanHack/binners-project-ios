@@ -17,21 +17,26 @@ class BPMainTabBarController: UITabBarController {
 
         // Do any additional setup after loading the view.
         
-        self.tabBar.barTintColor = UIColor.binnersGreenColor()
+        self.tabBar.barTintColor = UIColor.whiteColor()
+        self.tabBar.translucent = false
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.whiteColor()], forState: .Normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.grayColor()], forState: .Normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.whiteColor()], forState: .Selected)
         
         let tabItems = self.tabBar.items
         let tabItem0 = tabItems![0]
         let tabItem1 = tabItems![1]
         let tabItem2 = tabItems![2]
-        tabItem0.title = "Current pick-ups"
-        tabItem1.title = "New Pick-up"
-        tabItem2.title = "Donate"
+        let tabItem3 = tabItems![3]
+        let tabItem4 = tabItems![4]
+        tabItem0.title = "History"
+        tabItem1.title = "On-Going"
+        tabItem2.title = "New Pickup"
+        tabItem3.title = "Notifications"
+        tabItem4.title = "Donate"
         
         
-        self.addCenterButtonWithViewButtonView(self, action: "buttonPressed:")
+        //self.addCenterButtonWithViewButtonView(self, action: "buttonPressed:")
         self.setupNavigationBar()
 
     }
@@ -126,7 +131,7 @@ class BPMainTabBarController: UITabBarController {
         let user = BPUser.sharedInstance
         
         if (user.getUserAuthToken() == nil) {
-            self.performSegueWithIdentifier("loginSegue", sender: nil)
+            //self.performSegueWithIdentifier("loginSegue", sender: nil)
         }
         
         

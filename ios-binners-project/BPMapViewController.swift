@@ -150,11 +150,6 @@ class BPMapViewController: UIViewController {
         let barButtonBack = UIBarButtonItem(title: "Back", style: .Done, target: nil, action: nil)
         barButtonBack.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
         self.navigationItem.backBarButtonItem = barButtonBack
-        UINavigationBar.appearance().backIndicatorImage = UIImage()
-        
-        
-        UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage()
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         
         let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: "checkmarkButtonClicked")
         buttonRight.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
@@ -163,12 +158,7 @@ class BPMapViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = buttonRight
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.title = "Location"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        
-        let buttonLeft = UIBarButtonItem(title: "✘", style: .Done, target: self, action: "cancelButtonClicked")
-        buttonLeft.tintColor = UIColor.whiteColor()
-        self.navigationItem.leftBarButtonItem = buttonLeft
-        
+            
     }
 
     override func didReceiveMemoryWarning() {
@@ -190,9 +180,10 @@ class BPMapViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toCalendarSegue" {
-            let destVc = segue.destinationViewController as! BPCalendarViewController
-            destVc.pickup = self.pickup
+        if segue.identifier == "newPickupSegue" {
+            var destVc = segue.destinationViewController as! UINavigationController
+            let calendarVC = destVc.viewControllers[0] as! BPCalendarViewController
+            calendarVC.pickup = self.pickup
         }
     }
     
@@ -242,6 +233,12 @@ class BPMapViewController: UIViewController {
         })
         
     }
+    
+    func goToNewPickup() {
+        self.performSegueWithIdentifier("newPickupSegue", sender: self)
+    }
+    
+    
     
 
 }
@@ -318,6 +315,7 @@ extension BPMapViewController : UITableViewDelegate, UITableViewDataSource {
             marker = GMSMarker(position: position)
             marker.title = address.formattedAddress
             marker.map = mapView
+            mapView.selectedMarker = marker
             self.pickup.address = address
 
             
@@ -433,6 +431,21 @@ extension BPMapViewController: UIAlertViewDelegate {
 
 extension BPMapViewController : GMSMapViewDelegate {
     
+    func mapView(mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        
+        let button = UIButton(frame: CGRectMake(0,0,200,30))
+        button.setTitle("+ Request pickup here", forState: .Normal)
+        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        button.backgroundColor = UIColor.binnersMapBlueColor()
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        
+        return button;
+    }
+    
+    func mapView(mapView: GMSMapView, didTapInfoWindowOfMarker marker: GMSMarker) {
+        goToNewPickup()
+    }
     
 }
 

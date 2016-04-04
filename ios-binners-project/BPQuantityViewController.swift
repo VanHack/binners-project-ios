@@ -147,6 +147,9 @@ class BPQuantityViewController:  UIViewController {
         if segue.identifier == "additionalNotesSegue" {
             let destVc = segue.destinationViewController as! BPAdditionalNotesController
             destVc.pickup = self.pickup
+        } else {
+            let destVc = segue.destinationViewController as! BPReviewPickupViewController
+            destVc.pickup = self.pickup
         }
     }
     
