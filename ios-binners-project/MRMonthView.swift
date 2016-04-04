@@ -277,17 +277,20 @@ class MRMonthView: UIView {
 
     internal func markDaySelected() {
         
+        var selected = false
+        
         if let daySelect = daySelected {
             
             date = date.changeDay(Int(daySelect)!)
             
             for button in dayButtons {
                 
-                if (Int(button.day_dayOfTheWeek_Month_Year!.0) == date.dayMonthYear().0 && Int(button.day_dayOfTheWeek_Month_Year!.2) == date.dayMonthYear().1) {
+                if (Int(button.day_dayOfTheWeek_Month_Year!.0) == date.dayMonthYear().0 && Int(button.day_dayOfTheWeek_Month_Year!.2) == date.dayMonthYear().1 && !selected) {
                     
                     button.setSelectedDay(UIColor.binnersGreenColor())
                     self.labelDayOfTheMonth!.text = "\(date.dayMonthYear().0)"
                     self.labelDayOfTheWeek!.text = date.dayOfWeekLiteral()
+                    selected = true
 
                 }
                 else {
