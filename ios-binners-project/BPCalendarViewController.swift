@@ -68,6 +68,10 @@ class BPCalendarViewController: UIViewController {
         
     }
     
+    func cancelButtonClicked() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func checkmarkButtonClicked() {
         
         self.performSegueWithIdentifier("toClockSegue", sender: self)
