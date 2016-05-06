@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class BPUser : RLMObject {
     
@@ -153,6 +154,25 @@ class BPUser : RLMObject {
         }catch _ {
             throw Error.DataBaseError(errorMsg: "Error saving to database")
         }
+        
+    }
+    
+    func fetchOnGoingPickups(completion:(pickups:[BPPickup]?,error:ErrorType?)->Void) {
+        
+        var pickups = [BPPickup]()
+        
+        let pickup = BPPickup()
+        pickup.address = BPAddress()
+        pickup.date = NSDate()
+        pickup.instructions = "Don't do anything"
+        pickup.address.location = CLLocationCoordinate2D(latitude: 49.2827, longitude: -123.1207)
+        
+        for _ in 0...5 {
+            
+            pickups.append(pickup)
+        }
+        
+        completion(pickups: pickups,error: nil)
         
     }
     

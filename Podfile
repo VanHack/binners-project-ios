@@ -13,6 +13,7 @@ pod 'Google/SignIn';
 pod 'AFNetworking', '~> 3.0'
 pod 'GoogleMaps'
 pod 'Realm'
+pod 'FlatUIKit'
 end
 
 target 'ios-binners-projectTests' do

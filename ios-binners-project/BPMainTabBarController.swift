@@ -16,17 +16,7 @@ class BPMainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        self.tabBar.barTintColor = UIColor.whiteColor()
-        self.tabBar.tintColor = UIColor.whiteColor()
-        self.tabBar.translucent = false
-        
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.binnersGreenColor()], forState: .Normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.whiteColor()], forState: .Selected)
-        UITabBar.appearance().selectionIndicatorImage = UIImage().makeImageWithColorAndSize(UIColor.binnersGreenColor(), size: CGSizeMake(tabBar.frame.width/5, tabBar.frame.height))
-        
-
-        
+        setupTabBar()
         
         var tabItems = self.tabBar.items
         let tabItem0 = tabItems![0]
@@ -34,11 +24,6 @@ class BPMainTabBarController: UITabBarController {
         let tabItem2 = tabItems![2]
         let tabItem3 = tabItems![3]
         let tabItem4 = tabItems![4]
-
-        tabItem0.selectedImage = UIImage(named:"history")
-        tabItem0.image = tabItem0.selectedImage?.makeImageWithColorAndSize(UIColor.binnersGreenColor(), size: tabItem0.selectedImage!.size)
-        tabItem0.image = UIImage(named:"history")
-        tabItem0
         
         tabItem0.title = "History"
         tabItem1.title = "On-Going"
@@ -46,17 +31,28 @@ class BPMainTabBarController: UITabBarController {
         tabItem3.title = "Notifications"
         tabItem4.title = "Donate"
         
-        // Uses the original colors for your images, so they aren't not rendered as grey automatically.
-//        for item in self.tabBar.items! as [UITabBarItem] {
-//            if let image = item.image {
-//                item.image = image.imageWithRenderingMode(.AlwaysOriginal)
-//            }
-//        }
-        
-        
-        //self.addCenterButtonWithViewButtonView(self, action: "buttonPressed:")
         self.setupNavigationBar()
 
+    }
+    
+    func setupTabBar() {
+        
+        self.tabBar.tintColor = UIColor.whiteColor()
+        self.tabBar.translucent = false
+        
+        let unselectedColor = UIColor.grayColor()
+        self.tabBar.configureFlatTabBarWithColor(UIColor.whiteColor(), selectedColor: unselectedColor)
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:unselectedColor], forState: .Normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.whiteColor()], forState: .Selected)
+        
+        UITabBar.appearance().selectionIndicatorImage = UIImage().makeImageWithColorAndSize(UIColor.binnersGreenColor(), size: CGSizeMake(tabBar.frame.width/5, tabBar.frame.height))
+        
+        for item in self.tabBar.items! {
+            item.image = item.selectedImage?.imageWithColor(unselectedColor).imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        }
+
+        
     }
     
     func showLateralMenu()

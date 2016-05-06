@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FlatUIKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-ios-binners-project.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,11 +47,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1728F6EB10178635AA868C6CEC74954F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>3D417356AB9DCA5B17565C7420759161</key>
 		<dict>
 			<key>primary</key>
@@ -62,22 +62,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>825313832C51539E179A0040468BB18C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC2407793325876550427E0E35BBE3C2</key>
+		<key>D246A46D3D4989AA687776181153063E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E923A5E2A0B4E031BA5E9A8EE6715021</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>F21523DE0EE1E35B265242490D97EE4C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6369DCF9EF8959EE460063E1C27CF48</key>
 		<dict>
 			<key>primary</key>
 			<true/>
