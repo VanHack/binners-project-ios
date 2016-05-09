@@ -40,7 +40,6 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     
     // MARK: Collection View setup
     func configureCollectionView() {
-        //self.collectionView!.registerClass(BPOnGoingPickupCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView?.backgroundColor = UIColor.binnersGray1()
         
         let flowLayout =  BPCustomCollectionViewFlowLayout()
@@ -49,6 +48,9 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         self.collectionView!.collectionViewLayout = flowLayout
         self.collectionView!.setNeedsLayout()
         self.collectionView!.setNeedsDisplay()
+        
+        let edgeInsets = UIEdgeInsetsMake((self.navigationController?.navigationBar.frame.height)! * 0.7,0,0, 0)
+        self.collectionView?.contentInset = edgeInsets
 
     }
 
