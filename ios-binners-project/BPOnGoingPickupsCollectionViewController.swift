@@ -42,7 +42,7 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     func configureCollectionView() {
         self.collectionView?.backgroundColor = UIColor.binnersGray1()
         
-        let flowLayout =  BPCustomCollectionViewFlowLayout()
+        let flowLayout =  UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSizeMake(self.view.frame.width * 0.9 , self.view.frame.height * 0.23)
         flowLayout.scrollDirection = .Vertical
         self.collectionView!.collectionViewLayout = flowLayout
@@ -132,4 +132,12 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     }
     */
 
+}
+extension BPOnGoingPickupsCollectionViewController : UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 20
+    }
+    
+    
 }

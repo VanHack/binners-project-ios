@@ -167,7 +167,7 @@ class BPUser : RLMObject {
         pickup.instructions = "Don't do anything"
         pickup.address.location = CLLocationCoordinate2D(latitude: 49.2827, longitude: -123.1207)
         
-        for _ in 0...5 {
+        for _ in 0...5{
             
             pickups.append(pickup)
         }

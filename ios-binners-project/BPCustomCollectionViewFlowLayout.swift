@@ -13,11 +13,20 @@ class BPCustomCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         
         let answer = super.layoutAttributesForElementsInRect(rect)
+
+        var answersCopy = [UICollectionViewLayoutAttributes]()
         
-        for i in 1..<answer!.count {
+        for i in 0..<answer!.count {
             
-            let currentLayoutAttributes = answer![i]
-            let prevLayoutAttributes = answer![i - 1]
+            let element = answer![i]
+            answersCopy.append(element.copy() as! UICollectionViewLayoutAttributes)
+        }
+        
+        
+        for i in 1..<answersCopy.count {
+            
+            let currentLayoutAttributes = answersCopy[i]
+            let prevLayoutAttributes = answersCopy[i - 1]
             let maximumSpacing = CGFloat(20.0)
             let origin = CGRectGetMaxY(prevLayoutAttributes.frame)
             
@@ -28,7 +37,7 @@ class BPCustomCollectionViewFlowLayout: UICollectionViewFlowLayout {
             }
             
         }
-        return answer
+        return answersCopy
     }
 
 }

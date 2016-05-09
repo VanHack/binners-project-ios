@@ -24,16 +24,39 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var labelBinnerName: UILabel!
     @IBOutlet weak var labelTimeText: UILabel!
     @IBOutlet weak var labelTime: UILabel!
+    @IBOutlet weak var cancelPickupButton: UIButton!
     let formatter:NSDateFormatter = NSDateFormatter()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor.whiteColor()
         setupViewCorners()
+        setupLabels()
+        cancelPickupButton.imageView?.contentMode = .ScaleAspectFit
+        cancelPickupButton.imageView!.image = cancelPickupButton.imageView!.image!.imageWithRenderingMode(.AlwaysTemplate)
+        cancelPickupButton.tintColor = UIColor.grayColor()
+    }
+    
+    func setupLabels() {
+        labelPickupStatus.font = UIFont.boldSystemFontOfSize(labelPickupStatus.font.pointSize)
+        labelTime.font = UIFont.boldSystemFontOfSize(13)
+        labelBinnerName.font = UIFont.boldSystemFontOfSize(13)
+        labelDate.font = UIFont.boldSystemFontOfSize(13)
+        
+        labelTimeText.font = UIFont.boldSystemFontOfSize(12)
+        labelBinnerText.font = UIFont.boldSystemFontOfSize(12)
+        labelDateText.font = UIFont.boldSystemFontOfSize(12)
+        
+        labelBinnerName.textColor = UIColor.binnersGreenColor()
+        labelBinnerText.textColor = UIColor.grayColor()
+        labelTimeText.textColor = UIColor.grayColor()
+        labelDateText.textColor = UIColor.grayColor()
+        labelPickupStatus.textColor = UIColor.binnersGreenColor()
+
     }
     
     func setupCell() {
-        labelPickupStatus.text = "completed"
+        labelPickupStatus.text = "Completed"
         formatter.timeStyle = .NoStyle
         formatter.dateStyle = .ShortStyle
         labelDate.text = formatter.stringFromDate(pickup.date)
