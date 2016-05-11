@@ -145,7 +145,7 @@ class BPMainTabBarController: UITabBarController {
         let user = BPUser.sharedInstance
         
         if (user.getUserAuthToken() == nil) {
-            self.performSegueWithIdentifier("loginSegue", sender: nil)
+            //self.performSegueWithIdentifier("loginSegue", sender: nil)
         }
         
         

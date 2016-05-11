@@ -74,7 +74,16 @@ class BPCalendarViewController: UIViewController {
     
     func checkmarkButtonClicked() {
         
-        self.performSegueWithIdentifier("toClockSegue", sender: self)
+        let calendarDate = self.monthView.date.changeHour(0).changeMinute(0)
+        let todaysDate = NSDate().changeMinute(0).changeHour(0)
+        
+        if calendarDate.compare(todaysDate) == .OrderedAscending  {
+            // month view's date is earlier than today's date
+            BPMessageFactory.makeMessage(.ALERT, message: "You can't go back to the past, lol").show()
+            
+        } else {
+            self.performSegueWithIdentifier("toClockSegue", sender: self)
+        }
    
     }
 

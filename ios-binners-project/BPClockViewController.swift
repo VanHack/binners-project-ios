@@ -103,10 +103,18 @@ class BPClockViewController: UIViewController {
             hours += 12
         }
         
-        self.pickup?.date = self.pickup?.date.changeHour(hours)
-        self.pickup?.date = self.pickup?.date.changeMinute(minutes)
-
-        self.performSegueWithIdentifier("quantitySegue", sender: self)
+        let pickupDate = self.pickup?.date.changeHour(hours - 3).changeMinute(minutes)
+        
+        if(pickupDate!.compare(NSDate()) == .OrderedAscending) { // hour on clock is earlier than hour now
+            BPMessageFactory.makeMessage(.ALERT, message: "You have to schedule the pickup for at least X hours before it happens").show()
+            
+        } else {
+            self.pickup?.date = self.pickup?.date.changeHour(hours)
+            self.pickup?.date = self.pickup?.date.changeMinute(minutes)
+            self.performSegueWithIdentifier("quantitySegue", sender: self)
+        }
+        
+        
         
     }
     
