@@ -86,17 +86,9 @@ class BPUser : RLMObject {
     func getUserAuthToken() -> String? {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        if (userDefaults.objectForKey("token") == nil)
-        {
-            return nil
-        }
-        else
-        {
-            let token = userDefaults.stringForKey("token")
-            
-            return token
-        }
-
+        
+        return userDefaults.stringForKey("token")
+        
     }
     
     func saveAuthToken(token:String) {
@@ -173,6 +165,23 @@ class BPUser : RLMObject {
         }
         
         completion(pickups: pickups,error: nil)
+        
+    }
+    
+    func postPickupInBackgroundWithBock(pickup:BPPickup,completion:(inner:()throws->AnyObject)->Void)throws {
+        
+        let wrapper = BPObjectWrapper()
+        try wrapper.wrapObject(pickup)
+        
+        let url = BPURLBuilder.getPostPickupURL()
+        let manager = AFHTTPSessionManager()
+        
+        assert(wrapper.header != nil)
+        
+        manager.requestSerializer.setValue(wrapper.header!, forHTTPHeaderField: "Authorization")
+        
+       try BPServerRequestManager.sharedInstance.execute(.POST, urlString: url, manager: manager, param: wrapper.body, completion: completion)
+        
         
     }
     

@@ -44,8 +44,6 @@ class BPServerRequestManager
     internal func executeGET(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:(inner:() throws ->AnyObject) ->Void)
     {
         
-       // manager.requestSerializer.setValue(auth, forHTTPHeaderField: "Authorization")
-        
         manager.GET(url.absoluteString, parameters: param, progress: nil, success: {
             
             sessionDataTask,response in

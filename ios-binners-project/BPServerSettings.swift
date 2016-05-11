@@ -17,5 +17,6 @@ class BPServerSettings
     static let twitterLoginUrl = "auth/twitter"
     static let standardLoginUrl = "auth"
     static let residentUsersUrl = "users"
-
+    static let pickupUrl = "pickup"
+    
 }

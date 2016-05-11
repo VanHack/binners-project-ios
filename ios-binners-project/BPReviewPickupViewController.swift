@@ -115,6 +115,32 @@ extension BPReviewPickupViewController : FinishedPickupDelegate {
     
     func finishPickupButtonClicked() {
         print("finished")
+        
+        do {
+            try BPUser.sharedInstance.postPickupInBackgroundWithBock(pickup!, completion: {
+                
+                (inner:() throws -> AnyObject) in
+                
+                do
+                {
+                    let value = try inner()
+                    print(value)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    
+                    
+                }catch let error
+                {
+                    print(error)
+                }
+                
+            })
+        }
+        catch let error {
+            print(error)
+        }
+        
+
+        
     }
     
     

@@ -55,12 +55,8 @@ class BPLoginViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "presentDescriptionPages"
-        {
-            // do setup if needed
-        }
-        
-        if segue.identifier == "loginSegue"
+
+         if segue.identifier == "loginSegue"
         {
             print("loginSegue")
         }

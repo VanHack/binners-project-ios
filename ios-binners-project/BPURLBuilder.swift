@@ -37,6 +37,13 @@ class BPURLBuilder {
         
         return twitterUserLoginUrlFinal
     }
+    
+    class func getPostPickupURL() ->String {
+        
+        let baseUrl = BPServerSettings.baseServerUrl
+        let pickupURL = BPServerSettings.pickupUrl
+        return "\(baseUrl)\(pickupURL)"
+    }
 
     class func getStandardUserLoginURL() -> String
     {

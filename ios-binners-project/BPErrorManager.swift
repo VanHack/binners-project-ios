@@ -39,5 +39,6 @@ enum Error : ErrorType
     case InvalidInformationProvided(errorCode:String, errorMsg:String)
     case DataBaseError(errorMsg:String)
     case InvalidDataFormat(errorMsg:String)
+    case InvalidObjectWrapper(errorMsg:String)
 
 }
