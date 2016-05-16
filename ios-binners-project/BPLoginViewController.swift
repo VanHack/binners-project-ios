@@ -173,7 +173,6 @@ class BPLoginViewController: UIViewController {
         let yPosButton = CGFloat((165) / 2)
         let segControl = self.view.viewWithTag(124)
         let convertedRect = self.view.convertRect(segControl!.frame, toView: form)
-        //let yPos = convertedRect.origin.y + convertedRect.height + form.frame.size.height * 0.05
         let yPos = (yPosButton + convertedRect.origin.y + convertedRect.height) / 2 - 5
         
         let formView = UITextField(frame: CGRectMake(0, yPos, form.frame.width , 20))
@@ -275,11 +274,12 @@ class BPLoginViewController: UIViewController {
                             
                             (inner:() throws -> AnyObject) in
                             
-                            do
-                            {
+                            do {
                                 let value = try inner()
-                                print(value)
-                                
+                                let user = try BPParser.parseUserFrom(value)
+                                 BPUser.setup(user.token, address: user.address, userID: user.id, email: user.email)
+                                try BPUser.sharedInstance().saveAuthToken()
+                                self.dismissViewControllerAnimated(true, completion: nil)
                                 
                             }catch let error
                             {
@@ -427,8 +427,8 @@ class BPLoginViewController: UIViewController {
                     
                     let value = try inner()
                     
-                    let token = try BPServerResponseParser.parseTokenFromServerResponse(value) 
-                    BPUser.sharedInstance.saveAuthToken(token)
+                    let token = try BPParser.parseTokenFromServerResponse(value)
+                    try BPUser.sharedInstance().saveAuthToken()
                     self.dismissViewControllerAnimated(true, completion: nil)
                     
                 }catch let error
@@ -455,46 +455,6 @@ class BPLoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-}
-
-
-extension BPLoginViewController: FBSDKLoginButtonDelegate
-{
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!){
-        
-        loginManager.authFacebook = FBSDKAccessToken.currentAccessToken().tokenString
-        
-        do {
-            
-            try loginManager.authenticateFBUserOnBinnersServer() {
-                
-                (inner:() throws -> AnyObject) in
-                
-                do
-                {
-                    let value = try inner()
-                    print(value)
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                    
-                    
-                }catch let error
-                {
-                    print(error)
-                }
-                
-            }
-
-        }catch let error {
-            
-            print(error)
-            
-        }
-        
-    }
-    
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        
-    }
 }
 
 extension BPLoginViewController : GIDSignInUIDelegate, GIDSignInDelegate

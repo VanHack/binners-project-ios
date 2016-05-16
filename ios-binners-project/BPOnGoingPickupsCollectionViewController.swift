@@ -20,20 +20,26 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         configureCollectionView()
         
-        user.fetchOnGoingPickups() {
-            
-            (pickups,error) in
-            
-            if error == nil {
-                self.onGoingPickups = pickups!
-                self.dataFetched = true
-                self.collectionView?.reloadData()
+        do {
+            try user().fetchOnGoingPickups() {
                 
-            } else {
-                BPMessageFactory.makeMessage(.ERROR, message: "Could not fetch pickups").show()
+                (pickups,error) in
+                
+                if error == nil {
+                    self.onGoingPickups = pickups!
+                    self.dataFetched = true
+                    self.collectionView?.reloadData()
+                    
+                } else {
+                    BPMessageFactory.makeMessage(.ERROR, message: "Could not fetch pickups").show()
+                }
+                
             }
-            
+        }catch _ {
+            BPMessageFactory.makeMessage(.ERROR, message: "error").show()
         }
+        
+
 
     }
     

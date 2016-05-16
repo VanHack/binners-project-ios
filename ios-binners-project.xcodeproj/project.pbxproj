@@ -78,7 +78,7 @@
 		2CF0F5BF1CA1F44F005055C2 /* BPAdditionalNotesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0F5BE1CA1F44F005055C2 /* BPAdditionalNotesController.swift */; };
 		2CF0F5C21CA9C3CA005055C2 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0F5C11CA9C3CA005055C2 /* RLMSupport.swift */; };
 		2CF0F5C41CA9CBAE005055C2 /* BPUserPickups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0F5C31CA9CBAE005055C2 /* BPUserPickups.swift */; };
-		2CF0F5C61CA9CE81005055C2 /* BPServerResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0F5C51CA9CE81005055C2 /* BPServerResponseParser.swift */; };
+		2CF0F5C61CA9CE81005055C2 /* BPParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0F5C51CA9CE81005055C2 /* BPParser.swift */; };
 		2CF92CFE1C8615FD00DDB676 /* BPClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */; };
 		2CFBF6C01CBC0C2300524F62 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFBF6BF1CBC0C2300524F62 /* UIImage+Extension.swift */; };
 		8C3CBFCE1C602D0D00691C67 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */; };
@@ -172,7 +172,7 @@
 		2CF0F5BE1CA1F44F005055C2 /* BPAdditionalNotesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPAdditionalNotesController.swift; sourceTree = "<group>"; };
 		2CF0F5C11CA9C3CA005055C2 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
 		2CF0F5C31CA9CBAE005055C2 /* BPUserPickups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPUserPickups.swift; sourceTree = "<group>"; };
-		2CF0F5C51CA9CE81005055C2 /* BPServerResponseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerResponseParser.swift; sourceTree = "<group>"; };
+		2CF0F5C51CA9CE81005055C2 /* BPParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPParser.swift; sourceTree = "<group>"; };
 		2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPClockViewController.swift; sourceTree = "<group>"; };
 		2CFBF6BF1CBC0C2300524F62 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		8C3CBFCD1C602D0D00691C67 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Pods/TwitterKit/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
@@ -313,7 +313,7 @@
 				2C35ADD81C5BD8B7007DA4B6 /* BPErrorManager.swift */,
 				2C1C4D041C5C1D370045821F /* BPLoginManager.swift */,
 				2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */,
-				2CF0F5C51CA9CE81005055C2 /* BPServerResponseParser.swift */,
+				2CF0F5C51CA9CE81005055C2 /* BPParser.swift */,
 			);
 			name = ServerCommunicationLayer;
 			sourceTree = "<group>";
@@ -698,7 +698,7 @@
 				2C73BFE41C975B64001FBFD4 /* NSDate+Extension.swift in Sources */,
 				2CDDE5B81CDBBA2800B8A533 /* BPOnGoingPickupCollectionViewCell.swift in Sources */,
 				2C29FC101C62720900C70837 /* UIFont+Extension.swift in Sources */,
-				2CF0F5C61CA9CE81005055C2 /* BPServerResponseParser.swift in Sources */,
+				2CF0F5C61CA9CE81005055C2 /* BPParser.swift in Sources */,
 				2CFBF6C01CBC0C2300524F62 /* UIImage+Extension.swift in Sources */,
 				1B98D7E41C440AC200B6AA88 /* BPLoginViewController.swift in Sources */,
 				2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */,

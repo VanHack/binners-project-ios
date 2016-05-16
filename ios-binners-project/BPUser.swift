@@ -9,46 +9,48 @@
 import UIKit
 import MapKit
 
+private var _userInstance: BPUser!
+
 class BPUser : RLMObject {
     
-    static let sharedInstance = BPUser()
+    dynamic var email:String!
+    dynamic var id:String!
+    dynamic var address:String!
+    dynamic var token:String!
+    private static var setupOnceToken: dispatch_once_t = 0
     
-    dynamic var email:String?
-    dynamic var id:String?
-    dynamic var address:String?
-    
-    init(email:String,id:String,address:String?)
+    init(token:String,email:String,id:String,address:String?)
     {
         super.init()
+        self.token = token
+        self.address = address
         self.email = email
         self.id = id
-        self.address = address
     }
     
      override init() {
         super.init()
     }
     
-     func copyUserData (argument:BPUser) {
-        self.id = argument.id
-        self.email = argument.email
-        self.address = argument.address
+    class func setup(token:String,address:String?,userID:String,email:String) -> BPUser {
+        dispatch_once(&setupOnceToken) {
+            _userInstance = BPUser(token: token, email: email, id: userID, address: address)
+        }
+        return _userInstance
+    }
+    
+    class func sharedInstance() throws -> BPUser {
+        if _userInstance == nil {
+            throw Error.UserNotInitializedError(msg:"User not initialized, call setup() first")
+        }
+        
+        return _userInstance
     }
 
-    func getUserFromLocalPersistenceStorage() -> Bool
+
+    func getUserFromLocalPersistenceStorage() -> BPUser?
     {
-        let user:BPUser? = BPUser.allObjects().firstObject() as? BPUser
-        
-        if let user = user {
-            
-            self.id = user.id
-            self.address = user.address
-            self.email = user.email
-            return true
-            
-        } else {
-            return false
-        }
+        return BPUser.allObjects().firstObject() as? BPUser
         
     }
     
@@ -83,7 +85,7 @@ class BPUser : RLMObject {
         
     }
     
-    func getUserAuthToken() -> String? {
+    class func getUserAuthToken() -> String? {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
@@ -91,11 +93,11 @@ class BPUser : RLMObject {
         
     }
     
-    func saveAuthToken(token:String) {
+    func saveAuthToken() {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
-        userDefaults.setObject(token, forKey: "token")
+        userDefaults.setObject(self.token, forKey: "token")
         userDefaults.synchronize()
 
     }

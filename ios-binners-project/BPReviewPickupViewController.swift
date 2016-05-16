@@ -117,7 +117,7 @@ extension BPReviewPickupViewController : FinishedPickupDelegate {
         print("finished")
         
         do {
-            try BPUser.sharedInstance.postPickupInBackgroundWithBock(pickup!, completion: {
+            try BPUser.sharedInstance().postPickupInBackgroundWithBock(pickup!, completion: {
                 
                 (inner:() throws -> AnyObject) in
                 

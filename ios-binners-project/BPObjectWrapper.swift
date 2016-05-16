@@ -17,8 +17,8 @@ class BPObjectWrapper {
         
         if let pickup = object as? BPPickup {
             
-            body = wrapPickupToHeader(pickup)
-            header = BPUser.sharedInstance.getUserAuthToken()
+            body = try wrapPickupToHeader(pickup)
+            header = try BPUser.sharedInstance().token
             
         } else {
             throw Error.InvalidObjectWrapper(errorMsg: "Invalid object wrapping")
@@ -26,7 +26,7 @@ class BPObjectWrapper {
     }
     
     
-    private func wrapPickupToHeader(pickup:BPPickup) -> AnyObject {
+    private func wrapPickupToHeader(pickup:BPPickup)throws -> AnyObject {
         
         let items = [
             "quantity": String(pickup.reedemable.quantity)
@@ -41,15 +41,21 @@ class BPObjectWrapper {
             "location": location
         ]
         
-        let pickupDic = [
-            "requester": BPUser.sharedInstance.id!,
-            "address": address,
-            "time": pickup.date,
-            "instructions": pickup.instructions,
-            "items": [items]
-        ]
+        do {
+            let pickupDic = [
+                "requester": try BPUser.sharedInstance().id,
+                "address": address,
+                "time": pickup.date,
+                "instructions": pickup.instructions,
+                "items": [items]
+            ]
+            return pickupDic
+        }catch {
+            throw Error.InvalidObjectWrapper(errorMsg: "Invalid object wrapping")
+        }
+        
 
-        return pickupDic
+        
         
     }
 

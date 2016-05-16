@@ -40,5 +40,6 @@ enum Error : ErrorType
     case DataBaseError(errorMsg:String)
     case InvalidDataFormat(errorMsg:String)
     case InvalidObjectWrapper(errorMsg:String)
+    case UserNotInitializedError(msg:String)
 
 }

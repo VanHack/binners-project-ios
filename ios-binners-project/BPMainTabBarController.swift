@@ -142,10 +142,8 @@ class BPMainTabBarController: UITabBarController {
         
         // view hierarchy is already setup by this point, so we can segue from here
         
-        let user = BPUser.sharedInstance
-        
-        if (user.getUserAuthToken() == nil) {
-            //self.performSegueWithIdentifier("loginSegue", sender: nil)
+        if (BPUser.getUserAuthToken() == nil) {
+            self.performSegueWithIdentifier("loginSegue", sender: nil)
         }
         
         
