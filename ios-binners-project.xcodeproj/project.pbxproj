@@ -236,7 +236,6 @@
 				2CDDE5B91CDBECA800B8A533 /* CollectionViewLayout */,
 				2CBDC96C1C7777BA00EC0F99 /* Models */,
 				2C29FBFB1C611A5B00C70837 /* Util */,
-				2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */,
 				2C5CCB451C494B5700E734CE /* ViewControllers */,
 				2C35ADD31C5BCF7B007DA4B6 /* Supporting Files */,
 			);
@@ -308,6 +307,7 @@
 		2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				2C0BC2D51CE3793900663F9E /* BPObjectWrapper.swift */,
 				2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */,
 				2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */,
 				2C35ADD81C5BD8B7007DA4B6 /* BPErrorManager.swift */,
@@ -378,7 +378,7 @@
 				2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */,
 				2C73BFE11C97204B001FBFD4 /* BPReedemable.swift */,
 				2CF0F5C31CA9CBAE005055C2 /* BPUserPickups.swift */,
-				2C0BC2D51CE3793900663F9E /* BPObjectWrapper.swift */,
+				2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */,
 			);
 			name = Models;
 			sourceTree = "<group>";
