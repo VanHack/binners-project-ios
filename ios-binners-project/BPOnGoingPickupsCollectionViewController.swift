@@ -12,6 +12,9 @@ private let reuseIdentifier = "OnGoingPickupCell"
 
 class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     
+    var activityIndicator:UIActivityIndicatorView!
+    let refreshControl = UIRefreshControl()
+    var labelEmptyCollectionView:UILabel!
     var dataFetched = false
     var user = BPUser.sharedInstance
     var onGoingPickups:[BPPickup] = []
@@ -19,30 +22,44 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-        
-        do {
-            try user().fetchOnGoingPickups() {
-                
-                (pickups,error) in
-                
-                if error == nil {
-                    self.onGoingPickups = pickups!
-                    self.dataFetched = true
-                    self.collectionView?.reloadData()
-                    
-                } else {
-                    BPMessageFactory.makeMessage(.ERROR, message: "Could not fetch pickups").show()
-                }
-                
-            }
-        }catch _ {
-            BPMessageFactory.makeMessage(.ERROR, message: "error").show()
-        }
-        
-
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,50,50))
+        activityIndicator.activityIndicatorViewStyle = .Gray
+        configureEmptyLabel()
+        configureRefreshControl()
 
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !dataFetched {
+            fetchPickups()
+        }
+    }
+    
+    func configureRefreshControl() {
+        refreshControl.backgroundColor = UIColor.binnersGray1()
+        refreshControl.tintColor = UIColor.grayColor()
+        refreshControl.addTarget(self, action: #selector(fetchPickups), forControlEvents: .ValueChanged)
+        self.collectionView!.addSubview(refreshControl)
+    }
+
+    func showEmptyLabelIfValid() {
+        if onGoingPickups.count == 0 {
+            self.collectionView?.backgroundView = labelEmptyCollectionView
+        } else {
+            self.collectionView?.backgroundView = nil
+        }
+    }
+    
+    func configureEmptyLabel() {
+        labelEmptyCollectionView = UILabel(frame: CGRectMake(50,0,self.view.frame.width - 100,80))
+        labelEmptyCollectionView.font = UIFont.binnersFontWithSize(17.0)
+        labelEmptyCollectionView.textAlignment = .Center
+        labelEmptyCollectionView.text = "There are no pickups at the moment. Please pull to refresh."
+        labelEmptyCollectionView.numberOfLines = 0
+        labelEmptyCollectionView.sizeToFit()
+    }
     
     // MARK: Collection View setup
     func configureCollectionView() {
@@ -54,6 +71,7 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         self.collectionView!.collectionViewLayout = flowLayout
         self.collectionView!.setNeedsLayout()
         self.collectionView!.setNeedsDisplay()
+        self.collectionView!.alwaysBounceVertical = true
         
         let edgeInsets = UIEdgeInsetsMake((self.navigationController?.navigationBar.frame.height)! * 0.7,0,0, 0)
         self.collectionView?.contentInset = edgeInsets
@@ -65,31 +83,18 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        if !dataFetched {return 0}
         return 1
     }
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        
+
         if !dataFetched {return 0}
-        else {
-            return onGoingPickups.count
-        }
+        return onGoingPickups.count
         
     }
 
@@ -102,41 +107,50 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         
         cell?.pickup = onGoingPickups[indexPath.row]
     
-        // Configure the cell
     
         return cell!
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     
+    func reloadCollectionViewData() {
+        self.dataFetched = true
+        self.collectionView?.reloadData()
     }
-    */
+    
+    func startActivityIndicator() {
+        self.view.addSubview(activityIndicator)
+        self.activityIndicator.center = self.view.center
+        activityIndicator.startAnimating()
+    }
+    
+    func fetchPickups() {
+        
+        startActivityIndicator()
+        do {
+            try user().fetchOnGoingPickups() { inner in
+                do {
+                    let pickups = try inner()
+                    self.onGoingPickups = pickups
+                    self.showEmptyLabelIfValid()
+                    self.reloadCollectionViewData()
+                }catch {
+                    self.showCouldNotFetchPickupsError()
+                }
+                self.refreshControl.endRefreshing()
+                self.activityIndicator.removeFromSuperview()
+                
+            }
+        }catch {
+            showCouldNotFetchPickupsError()
+            refreshControl.endRefreshing()
+            self.activityIndicator.removeFromSuperview()
+        }
+    }
+    
+    func showCouldNotFetchPickupsError() {
+        self.showEmptyLabelIfValid()
+        BPMessageFactory.makeMessage(.ERROR, message: "Could not fetch pickups").show()
+    }
+
 
 }
 extension BPOnGoingPickupsCollectionViewController : UICollectionViewDelegateFlowLayout {

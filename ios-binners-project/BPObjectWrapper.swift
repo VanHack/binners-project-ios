@@ -17,7 +17,7 @@ class BPObjectWrapper {
         
         if let pickup = object as? BPPickup {
             
-            body = try wrapPickupToHeader(pickup)
+            body = try wrapPickup(pickup)
             header = try BPUser.sharedInstance().token
             
         } else {
@@ -26,7 +26,7 @@ class BPObjectWrapper {
     }
     
     
-    private func wrapPickupToHeader(pickup:BPPickup)throws -> AnyObject {
+    private func wrapPickup(pickup:BPPickup)throws -> AnyObject {
         
         let items = [
             "quantity": String(pickup.reedemable.quantity)

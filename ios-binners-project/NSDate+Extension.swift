@@ -21,6 +21,7 @@ extension NSDate {
         var minute:String = "\(self.getMinute())"
         var hour:String = "\(self.getHour())"
         
+        print(hour)
         var hourValue:Int = self.getHour()
         if self.getHour() > 12 {
             timePeriod = "pm"

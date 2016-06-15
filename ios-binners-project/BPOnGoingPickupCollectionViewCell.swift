@@ -56,7 +56,7 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
     }
     
     func setupCell() {
-        labelPickupStatus.text = "Completed"
+        labelPickupStatus.text = pickup.status
         formatter.timeStyle = .NoStyle
         formatter.dateStyle = .ShortStyle
         labelDate.text = formatter.stringFromDate(pickup.date)
@@ -71,9 +71,8 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
     }
     
     func setupViewCorners() {
-        self.layer.masksToBounds = false
+        self.layer.masksToBounds = true
         self.layer.cornerRadius = 7.0
-        self.layer.shadowColor = UIColor.blackColor().CGColor
         self.layer.shadowOpacity = 0.2
         self.layer.shadowRadius = 2.0
         self.layer.shadowOffset = CGSizeMake(-2.0, 2.0)

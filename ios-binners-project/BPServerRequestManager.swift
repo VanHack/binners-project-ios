@@ -69,9 +69,6 @@ class BPServerRequestManager
     internal func executePOST(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:(inner:()throws->AnyObject)->Void)
     {
         
-        manager.requestSerializer = AFJSONRequestSerializer()
-        manager.responseSerializer = AFJSONResponseSerializer()
-        
         manager.POST(url.absoluteString, parameters: param, progress: nil, success: {
             
             sessionDataTask,response in

@@ -100,6 +100,15 @@ class BPLoginManager
         
         
     }
+    
+    func revalidateAuthToken(token:String,completion:(inner:() throws -> AnyObject) ->Void) throws {
+        
+        
+        let finalUrl = BPURLBuilder.getAuthTokenRevalidateURL()
+        let manager = AFHTTPSessionManager()
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
+        try BPServerRequestManager.sharedInstance.execute(.POST, urlString: finalUrl, manager: manager, param: nil,completion:completion)
+    }
 
     
     

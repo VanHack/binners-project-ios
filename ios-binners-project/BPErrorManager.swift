@@ -21,7 +21,7 @@ class BPErrorManager
             throw Error.InvalidErrorType(erroMSg: "Invalid Error type")
         }
         
-        return Error.InvalidInformationProvided(errorCode: errorDetails!["errorCode"] as! String, errorMsg: errorDetails!["message"] as! String)
+        return Error.InvalidInformationProvided(errorCode: String(errorParsed["statusCode"] as! Int), errorMsg: errorParsed["error"] as! String)
         
     }
 }
@@ -41,5 +41,7 @@ enum Error : ErrorType
     case InvalidDataFormat(errorMsg:String)
     case InvalidObjectWrapper(errorMsg:String)
     case UserNotInitializedError(msg:String)
+    case InvalidAuthToken(msg:String)
+    case InvalidDateFormat(msg:String)
 
 }

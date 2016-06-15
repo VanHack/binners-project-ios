@@ -16,7 +16,6 @@ class BPMapViewController: UIViewController {
 
     var tableView:UITableView?
     var searchBar:UISearchBar?
-    var history:[BPAddress]            = []
     var filteredHistory:[BPAddress]    = []
     var searchResults:[BPAddress]  = []
     let cellHeight:CGFloat          = 60.0
@@ -29,11 +28,25 @@ class BPMapViewController: UIViewController {
     var marker:GMSMarker!
     var pickup:BPPickup = BPPickup()
     
+    var history:[BPAddress] {
+        
+        do {
+            
+            guard let historyList = try BPUser.sharedInstance().loadPickupAdressHistory() else {
+                return []
+            }
+            return historyList
+        } catch {
+            BPMessageFactory.makeMessage(.ERROR, message: "User not initialized").show()
+        }
+        return []
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        addTestPickupAddresses()
+        filteredHistory.appendContentsOf(history)
+
         setupNavigationBar()
         setupMap()
         setupSearchBarAndTableView()
@@ -80,28 +93,8 @@ class BPMapViewController: UIViewController {
         
     }
     
-    func addTestPickupAddresses() {
-        
-        let location1 = BPAddress()
-        location1.formattedAddress = "N & 16th st, Lincoln - NE"
-        location1.location = CLLocationCoordinate2DMake(0.0,0.0)
-        let location2 = BPAddress()
-        location2.formattedAddress = "1600 Pensylvania Ave NW"
-        location2.location = CLLocationCoordinate2DMake(0.0,0.0)
-        let location3 = BPAddress()
-        location3.formattedAddress = "1600 Pensylvania Ave NW"
-        location3.location = CLLocationCoordinate2DMake(0.0,0.0)
-        
-        self.history.append(location1)
-        self.history.append(location2)
-        self.history.append(location3)
-        
-        filteredHistory.appendContentsOf(self.history)
-        
-    }
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        
+        super.touchesBegan(touches, withEvent: event)
         let touch = event!.allTouches()
         
         if ((self.searchBar!.isFirstResponder()) && (touch!.first != self.searchBar)) {
@@ -110,7 +103,6 @@ class BPMapViewController: UIViewController {
             self.mapView.userInteractionEnabled = true
         }
         
-        super.touchesBegan(touches, withEvent: event)
     }
     
     func setupSearchBarAndTableView() {
@@ -147,15 +139,6 @@ class BPMapViewController: UIViewController {
     
     func setupNavigationBar() {
         
-        let barButtonBack = UIBarButtonItem(title: "Back", style: .Done, target: nil, action: nil)
-        barButtonBack.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
-        self.navigationItem.backBarButtonItem = barButtonBack
-        
-        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: "checkmarkButtonClicked")
-        buttonRight.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
-        buttonRight.tintColor = UIColor.whiteColor()
-        
-        self.navigationItem.rightBarButtonItem = buttonRight
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.title = "Location"
             
@@ -166,23 +149,16 @@ class BPMapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func checkmarkButtonClicked() {
-        
-        if self.pickup.address != nil {
-            
-            self.performSegueWithIdentifier("toCalendarSegue", sender: self)
-
-        } else {
-            let actionSheet = UIAlertView(title: "Warning", message: "Please, provide an address", delegate: self, cancelButtonTitle: "Ok")
-            actionSheet.show()
-        }
-        
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "newPickupSegue" {
-            var destVc = segue.destinationViewController as! UINavigationController
+            let destVc = segue.destinationViewController as! UINavigationController
             let calendarVC = destVc.viewControllers[0] as! BPCalendarViewController
+            do {
+                try BPUser.sharedInstance().addAddressToHistory(self.pickup.address)
+            }catch {
+                print("should not enter here")
+            }
+            
             calendarVC.pickup = self.pickup
         }
     }
@@ -197,13 +173,21 @@ class BPMapViewController: UIViewController {
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
-        filteredHistory = history.filter {
-            address in
-            
-            let streetAddress = address.formattedAddress
-            return streetAddress.lowercaseString.containsString(searchText.lowercaseString)
-            
+         let trimmedString = searchText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        if trimmedString != "" {
+            filteredHistory = history.filter {
+                address in
+                
+                let streetAddress = address.formattedAddress
+                return streetAddress.lowercaseString.containsString(searchText.lowercaseString)
+                
+            }
+        } else {
+            filteredHistory = history
         }
+        
+        
         self.tableView!.reloadData()
         self.tableView!.adjustHeightOfTableView()
        
@@ -253,7 +237,7 @@ extension BPMapViewController : UISearchBarDelegate {
             searchCoordinatesForAddress(searchBar.text!)
         }
         filterContentForSearchText(searchBar.text!)
-        
+
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {

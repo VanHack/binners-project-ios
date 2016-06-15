@@ -140,10 +140,39 @@ class BPMainTabBarController: UITabBarController {
     
     override func viewDidAppear(animated: Bool) {
         
-        // view hierarchy is already setup by this point, so we can segue from here
+        do {
+            try BPUser.sharedInstance().saveAuthToken()
+        }catch _ {}
+        
         
         if (BPUser.getUserAuthToken() == nil) {
             self.performSegueWithIdentifier("loginSegue", sender: nil)
+        } else {
+            
+            func background() {
+                
+                do {
+                    
+                    try BPLoginManager.sharedInstance.revalidateAuthToken(BPUser.getUserAuthToken()!, completion: {
+                        inner in
+                        do{
+                            try BPUser.setupFromFunc(inner)
+                        }catch _ {
+                            BPMessageFactory.makeMessage(.ERROR, message: "Invalid user token, please login again").show()
+                            self.performSegueWithIdentifier("loginSegue", sender: nil)
+                        }
+                        
+                    })
+                    
+                } catch _ {
+                    dispatch_async(dispatch_get_main_queue()) {
+                    BPMessageFactory.makeMessage(.ERROR, message: "Invalid user token, please login again").show()
+                    self.performSegueWithIdentifier("loginSegue", sender: nil)
+                    }
+                }
+
+            }
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), background)
         }
         
         

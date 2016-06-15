@@ -44,22 +44,45 @@ class BPURLBuilder {
         let pickupURL = BPServerSettings.pickupUrl
         return "\(baseUrl)\(pickupURL)"
     }
+    
+    class func getGetPickupsURL() ->String {
+        
+        let baseUrl = BPServerSettings.baseServerUrl
+        let pickupURL = BPServerSettings.pickupRetriveUrl
+        return "\(baseUrl)\(pickupURL)"
+    }
+
 
     class func getStandardUserLoginURL() -> String
     {
         let baseUrl = BPServerSettings.baseServerUrl
         let UserLoginUrl = BPServerSettings.standardLoginUrl
-        let userLoginUrlFinal = "\(baseUrl)\(UserLoginUrl)"
         
-        return userLoginUrlFinal
+        return "\(baseUrl)\(UserLoginUrl)"
     }
     
     class func getResidentUserRegistrationURL() -> String
     {
         let baseUrl = BPServerSettings.baseServerUrl
         let residentUsersUrl = BPServerSettings.residentUsersUrl
-        let userLoginUrlFinal = "\(baseUrl)\(residentUsersUrl)"
         
-        return userLoginUrlFinal
+        return "\(baseUrl)\(residentUsersUrl)"
     }
+    
+    class func getAuthTokenRevalidateURL() -> String {
+        let baseUrl = BPServerSettings.baseServerUrl
+        let revalidateUrl = BPServerSettings.revalidateTokenUrl
+        
+        return "\(baseUrl)\(revalidateUrl)"
+
+    }
+    
+    class func buildPickupPhotoUploadURL(pickupId:String) -> String {
+        let baseUrl = BPServerSettings.baseServerUrl
+        let finalPartUrl = BPServerSettings.photoUploadUrl
+        
+        return "\(baseUrl)\(pickupId)\(finalPartUrl)"
+        
+    }
+    
 }

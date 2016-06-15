@@ -18,5 +18,8 @@ class BPServerSettings
     static let standardLoginUrl = "auth"
     static let residentUsersUrl = "users"
     static let pickupUrl = "pickup"
+    static let revalidateTokenUrl = "auth/revalidate"
+    static let photoUploadUrl = "photos"
+    static let pickupRetriveUrl = "pickups"
     
 }

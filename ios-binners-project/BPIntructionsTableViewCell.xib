@@ -31,7 +31,7 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Fy-su-n9w">
                         <rect key="frame" x="8" y="106.5" width="304" height="42.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <state key="normal" title="Finish you Pickup"/>
+                        <state key="normal" title="Post pickup"/>
                     </button>
                 </subviews>
                 <constraints>

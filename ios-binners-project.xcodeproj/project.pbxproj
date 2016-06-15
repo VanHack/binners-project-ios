@@ -42,6 +42,8 @@
 		2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */; };
 		2C35ADD71C5BD50E007DA4B6 /* BPServerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */; };
 		2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD81C5BD8B7007DA4B6 /* BPErrorManager.swift */; };
+		2C38B6AF1D0F211F00EB37DE /* BPRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38B6AE1D0F211F00EB37DE /* BPRating.swift */; };
+		2C38B6B11D108D4400EB37DE /* BPEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38B6B01D108D4400EB37DE /* BPEncoder.swift */; };
 		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
 		2C73BFDE1C971E33001FBFD4 /* BPPickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */; };
 		2C73BFE01C971F77001FBFD4 /* BPAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */; };
@@ -136,6 +138,8 @@
 		2C35ADD41C5BD39E007DA4B6 /* BPServerRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerRequestManager.swift; sourceTree = "<group>"; };
 		2C35ADD61C5BD50E007DA4B6 /* BPServerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPServerSettings.swift; sourceTree = "<group>"; };
 		2C35ADD81C5BD8B7007DA4B6 /* BPErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPErrorManager.swift; sourceTree = "<group>"; };
+		2C38B6AE1D0F211F00EB37DE /* BPRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRating.swift; sourceTree = "<group>"; };
+		2C38B6B01D108D4400EB37DE /* BPEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPEncoder.swift; sourceTree = "<group>"; };
 		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
 		2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickup.swift; sourceTree = "<group>"; };
 		2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPAddress.swift; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 				2C29FC0F1C62720900C70837 /* UIFont+Extension.swift */,
 				2C73BFE31C975B64001FBFD4 /* NSDate+Extension.swift */,
 				2CFBF6BF1CBC0C2300524F62 /* UIImage+Extension.swift */,
+				2C38B6B01D108D4400EB37DE /* BPEncoder.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 			children = (
 				2CBDC96D1C7777FA00EC0F99 /* BPUser.swift */,
 				2CDB35761C920505005945B7 /* BPMapTasks.swift */,
+				2C38B6AE1D0F211F00EB37DE /* BPRating.swift */,
 				2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */,
 				2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */,
 				2C73BFE11C97204B001FBFD4 /* BPReedemable.swift */,
@@ -708,6 +714,7 @@
 				2CDB35771C920505005945B7 /* BPMapTasks.swift in Sources */,
 				2CDDE5B41CDBB8CC00B8A533 /* BPOnGoingPickupsCollectionViewController.swift in Sources */,
 				2C8A4A711C88C56E00D8E0DB /* BPMapViewController.swift in Sources */,
+				2C38B6B11D108D4400EB37DE /* BPEncoder.swift in Sources */,
 				2C73BFE21C97204B001FBFD4 /* BPReedemable.swift in Sources */,
 				2CDB35801C9371D7005945B7 /* MRMonthCalendarDelegate.swift in Sources */,
 				2CF0F5C41CA9CBAE005055C2 /* BPUserPickups.swift in Sources */,
@@ -720,6 +727,7 @@
 				2C022F921C877F49003E497F /* BEMAnalogClockView.m in Sources */,
 				1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */,
 				2CDB357F1C9371D7005945B7 /* MRDayOfTheMonthButton.swift in Sources */,
+				2C38B6AF1D0F211F00EB37DE /* BPRating.swift in Sources */,
 				2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */,
 				2CBDC96E1C7777FA00EC0F99 /* BPUser.swift in Sources */,
 				2CDDE5BB1CDD2C2200B8A533 /* BPCustomCollectionViewFlowLayout.swift in Sources */,

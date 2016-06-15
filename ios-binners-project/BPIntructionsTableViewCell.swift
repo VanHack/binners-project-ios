@@ -10,7 +10,7 @@ import UIKit
 
 protocol FinishedPickupDelegate {
     
-    func finishPickupButtonClicked()
+    func finishPickupButtonClicked(sender:UIButton)
 }
 
 class BPIntructionsTableViewCell: UITableViewCell {
@@ -20,7 +20,7 @@ class BPIntructionsTableViewCell: UITableViewCell {
         didSet {
             buttonFinish.backgroundColor = UIColor.binnersGreenColor()
             buttonFinish.tintColor = UIColor.whiteColor()
-            buttonFinish.addTarget(self, action: "buttonFinishClicked", forControlEvents: .TouchUpInside)
+            buttonFinish.addTarget(self, action: #selector(buttonFinishClicked), forControlEvents: .TouchUpInside)
             buttonFinish.layer.cornerRadius = 10
             buttonFinish.clipsToBounds = true
         }
@@ -35,8 +35,8 @@ class BPIntructionsTableViewCell: UITableViewCell {
     }
     var finishedPickupDelegate:FinishedPickupDelegate?
     
-    func buttonFinishClicked() {
-        finishedPickupDelegate?.finishPickupButtonClicked()
+    func buttonFinishClicked(sender:UIButton) {
+        finishedPickupDelegate?.finishPickupButtonClicked(sender)
     }
     
     override func awakeFromNib() {

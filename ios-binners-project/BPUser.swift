@@ -11,25 +11,28 @@ import MapKit
 
 private var _userInstance: BPUser!
 
-class BPUser : RLMObject {
+class BPUser {
     
-    dynamic var email:String!
-    dynamic var id:String!
-    dynamic var address:String!
-    dynamic var token:String!
+    var email:String!
+    var id:String!
+    var address:String!
+    var token:String!
     private static var setupOnceToken: dispatch_once_t = 0
     
     init(token:String,email:String,id:String,address:String?)
     {
-        super.init()
         self.token = token
         self.address = address
         self.email = email
         self.id = id
     }
     
-     override init() {
-        super.init()
+    class func setupFromFunc(inner:()throws->AnyObject) throws {
+
+        let value = try inner()
+        let user = try BPParser.parseUserFrom(value)
+        BPUser.setup(user.token, address: user.address, userID: user.id, email: user.email)
+    
     }
     
     class func setup(token:String,address:String?,userID:String,email:String) -> BPUser {
@@ -46,45 +49,46 @@ class BPUser : RLMObject {
         
         return _userInstance
     }
-
-
-    func getUserFromLocalPersistenceStorage() -> BPUser?
-    {
-        return BPUser.allObjects().firstObject() as? BPUser
+    
+    func loadPickupAdressHistory() -> [BPAddress]? {
         
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if let addressListEncoded = userDefaults.objectForKey("addressList") as? NSArray {
+            return BPEncoder.convertNSArrayWithDataToSwiftArray(addressListEncoded) as? [BPAddress]
+        }
+        return nil
     }
     
-    
-    func saveUserLocally() throws
-    {
-        let persistence = RLMRealm.defaultRealm()
+    func addAddressToHistory(address:BPAddress) {
         
-        do {
-            let user:BPUser? = BPUser.objectsWithPredicate(NSPredicate(format: "id = \(self.id!)")).firstObject() as? BPUser
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+
+        if let codedAddressList = userDefaults.objectForKey("addressList") as? NSArray  {
             
-            if var user = user {
+            let codedAddressMutableList = NSMutableArray(array: codedAddressList)
+            
+            let historyList = BPEncoder.convertNSArrayWithDataToSwiftArray(codedAddressList) as! [BPAddress]
+            
+            if !historyList.contains({addressIt in return addressIt == address}) {
+                let encodedAddress = NSKeyedArchiver.archivedDataWithRootObject(address)
                 
-                persistence.beginWriteTransaction()
-                user = self
-                try persistence.commitWriteTransaction()
-                
-            } else {
-                
-                try persistence.transactionWithBlock({
-                    _ in
-                    persistence.addObject(self)
-                    
-                })
+                if codedAddressMutableList.count >= 5 {
+                    codedAddressMutableList.removeObjectAtIndex(codedAddressMutableList.count - 1)
+                    codedAddressMutableList.insertObject(encodedAddress, atIndex: 0)
+                }else {
+                    codedAddressMutableList.insertObject(encodedAddress, atIndex: 0)
+                }
+
+                userDefaults.setObject(codedAddressMutableList, forKey: "addressList")
             }
             
-            
-
-        }catch _ {
-            throw Error.DataBaseError(errorMsg: "Error saving to database")
+        } else {
+            let addressList = NSArray(array: [NSKeyedArchiver.archivedDataWithRootObject(address)])
+            userDefaults.setValue(addressList, forKey: "addressList")
         }
-        
     }
-    
+
     class func getUserAuthToken() -> String? {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -97,9 +101,11 @@ class BPUser : RLMObject {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
-        userDefaults.setObject(self.token, forKey: "token")
-        userDefaults.synchronize()
-
+        if self.token != nil {
+            userDefaults.setObject(self.token, forKey: "token")
+            userDefaults.synchronize()
+        }
+        
     }
 
     
@@ -151,22 +157,33 @@ class BPUser : RLMObject {
         
     }
     
-    func fetchOnGoingPickups(completion:(pickups:[BPPickup]?,error:ErrorType?)->Void) {
+    func fetchOnGoingPickups(completion:(inner:()throws->[BPPickup])->Void)throws {
         
-        var pickups = [BPPickup]()
-        
-        let pickup = BPPickup()
-        pickup.address = BPAddress()
-        pickup.date = NSDate()
-        pickup.instructions = "Don't do anything"
-        pickup.address.location = CLLocationCoordinate2D(latitude: 49.2827, longitude: -123.1207)
-        
-        for _ in 0...5{
-            
-            pickups.append(pickup)
+        guard token != nil else {
+            throw Error.InvalidAuthToken(msg: "Invalid user token")
+
         }
         
-        completion(pickups: pickups,error: nil)
+        let url = BPURLBuilder.getGetPickupsURL()
+        let manager = AFHTTPSessionManager()
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
+
+        try BPServerRequestManager.sharedInstance.execute(.GET, urlString: url, manager: manager, param: nil, completion: {
+        pickupsFunc in
+            
+            completion( inner: {
+            
+                let pickupsListDictionary = try pickupsFunc() as! [[String:AnyObject]]
+                print(pickupsListDictionary)
+                
+                let pickups = try pickupsListDictionary.map({ dictionary -> BPPickup in return try BPParser.parsePickupFrom(dictionary) })
+                
+            return pickups
+            })
+        
+            
+        })
+        
         
     }
     
@@ -182,10 +199,11 @@ class BPUser : RLMObject {
         
         manager.requestSerializer.setValue(wrapper.header!, forHTTPHeaderField: "Authorization")
         
-       try BPServerRequestManager.sharedInstance.execute(.POST, urlString: url, manager: manager, param: wrapper.body, completion: completion)
+        try BPServerRequestManager.sharedInstance.execute(.POST, urlString: url, manager: manager, param: wrapper.body, completion: completion)
         
         
     }
+    
     
 
 }

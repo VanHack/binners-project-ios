@@ -11,12 +11,14 @@ import UIKit
 class BPReviewPickupViewController: UIViewController {
 
     var pickup:BPPickup?
+    var activityIndicator:UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTableView()
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,50,50))
 
         // Do any additional setup after loading the view.
     }
@@ -109,12 +111,21 @@ extension BPReviewPickupViewController : UITableViewDelegate, UITableViewDataSou
         
     }
     
+    func showPostPickupErrorAndEnablePostButton(sender:UIButton) {
+        
+        self.activityIndicator.removeFromSuperview()
+        sender.enabled = true
+        BPMessageFactory.makeMessage(.ERROR, message: "There was an error while uploading the pickup").show()
+    }
+    
 }
 
 extension BPReviewPickupViewController : FinishedPickupDelegate {
     
-    func finishPickupButtonClicked() {
-        print("finished")
+    func finishPickupButtonClicked(sender:UIButton) {
+        sender.enabled = false
+        sender.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
         
         do {
             try BPUser.sharedInstance().postPickupInBackgroundWithBock(pickup!, completion: {
@@ -123,20 +134,21 @@ extension BPReviewPickupViewController : FinishedPickupDelegate {
                 
                 do
                 {
-                    let value = try inner()
-                    print(value)
+                    try inner()
+                    self.activityIndicator.removeFromSuperview()
                     self.dismissViewControllerAnimated(true, completion: nil)
+                    sender.enabled = true
                     
-                    
-                }catch let error
-                {
-                    print(error)
+                }catch {
+                    self.showPostPickupErrorAndEnablePostButton(sender)
                 }
+                
                 
             })
         }
-        catch let error {
-            print(error)
+        catch {
+            showPostPickupErrorAndEnablePostButton(sender)
+            
         }
         
 

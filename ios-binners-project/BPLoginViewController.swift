@@ -34,6 +34,9 @@ class BPLoginViewController: UIViewController {
         
         self.view.bringSubviewToFront(self.view.viewWithTag(124)!)
         
+        textFieldEmail?.text = "matheus.ruschel@gmail.com"
+        textFieldPassword?.text = "12345"
+        
         
         // test purposes only
         FBSDKLoginManager().logOut()
@@ -159,6 +162,30 @@ class BPLoginViewController: UIViewController {
         return formView
     }
     
+    func createAnAccountLink(form:UIView, index:Int) -> UIView {
+        let formView = UIButton(frame: CGRectMake(0, form.frame.height - 40, 120, 27))
+        formView.center = formView.center
+        formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        formView.titleLabel?.font = UIFont.systemFontOfSize(11)
+        formView.setTitle("Create an account", forState: UIControlState.Normal)
+        return formView
+    }
+    
+    func createForgotPasswordLink(form:UIView, index:Int) -> UIView {
+        let formView = UIButton(frame: CGRectMake(form.frame.width - 120, form.frame.height - 40, 120, 27))
+        formView.center = formView.center
+        formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        formView.titleLabel?.font = UIFont.systemFontOfSize(11)
+        formView.setTitle("Forgot your password?", forState: UIControlState.Normal)
+        formView.addTarget(self, action: #selector(presentForgotPasswordForm), forControlEvents: .TouchUpInside)
+        return formView
+    }
+    
+    func presentForgotPasswordForm() {
+        
+    }
+
+    
     
     func createBinnerForm() -> UIView {
         let formView = UIView(frame: CGRectMake((self.view.frame.width - (self.view.frame.width * 0.9))/2, ((self.view.frame.height - 249) - 15), self.view.frame.width * 0.9, 249))
@@ -253,6 +280,8 @@ class BPLoginViewController: UIViewController {
         return formView
     }
     
+    // MARK: Login - FB
+    
     func loginWithFacebook(sender:UIButton) {
         let fbloginManager = FBSDKLoginManager()
         fbloginManager.logInWithReadPermissions(["public_profile", "email"], handler: {(result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
@@ -275,11 +304,7 @@ class BPLoginViewController: UIViewController {
                             (inner:() throws -> AnyObject) in
                             
                             do {
-                                let value = try inner()
-                                let user = try BPParser.parseUserFrom(value)
-                                 BPUser.setup(user.token, address: user.address, userID: user.id, email: user.email)
-                                try BPUser.sharedInstance().saveAuthToken()
-                                self.dismissViewControllerAnimated(true, completion: nil)
+                               try self.saveUserInfoFromResultAndDismissViewController(inner)
                                 
                             }catch let error
                             {
@@ -308,6 +333,7 @@ class BPLoginViewController: UIViewController {
         FBSDKAccessToken.setCurrentAccessToken(nil)
     }
     
+    
     func createGoogleLoginButton(form:UIView, index:Int) -> UIView {
         let buttomWidth = CGFloat(form.frame.width/3 - 10)
         let buttomHeight = CGFloat(40)
@@ -335,6 +361,8 @@ class BPLoginViewController: UIViewController {
         formView.addTarget(self, action: "loginWithTwitter:", forControlEvents: UIControlEvents.TouchUpInside)
         return formView
     }
+    
+    // MARK: Login - TWITTER
     
     func loginWithTwitter(sender: UIButton) {
         Twitter.sharedInstance().logInWithCompletion(
@@ -377,29 +405,7 @@ class BPLoginViewController: UIViewController {
             })
     }
     
-   
-    func createAnAccountLink(form:UIView, index:Int) -> UIView {
-        let formView = UIButton(frame: CGRectMake(0, form.frame.height - 40, 120, 27))
-        formView.center = formView.center
-        formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        formView.titleLabel?.font = UIFont.systemFontOfSize(11)
-        formView.setTitle("Create an account", forState: UIControlState.Normal)
-        return formView
-    }
- 
-    func createForgotPasswordLink(form:UIView, index:Int) -> UIView {
-        let formView = UIButton(frame: CGRectMake(form.frame.width - 120, form.frame.height - 40, 120, 27))
-        formView.center = formView.center
-        formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        formView.titleLabel?.font = UIFont.systemFontOfSize(11)
-        formView.setTitle("Forgot your password?", forState: UIControlState.Normal)
-        formView.addTarget(self, action: #selector(presentForgotPasswordForm), forControlEvents: .TouchUpInside)
-        return formView
-    }
-    
-    func presentForgotPasswordForm() {
-        
-    }
+    // MARK: Login - Resident
     
     func makeResidentLogin()
     {
@@ -424,15 +430,11 @@ class BPLoginViewController: UIViewController {
                 (inner:() throws -> AnyObject) in
                 
                 do {
-                    
-                    let value = try inner()
-                    print(value)
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    try self.saveUserInfoFromResultAndDismissViewController(inner)
                     
                 }catch let error
                 {
                     print(error)
-   
                 }
                 
                 
@@ -446,6 +448,11 @@ class BPLoginViewController: UIViewController {
         
         
         
+    }
+    
+    func saveUserInfoFromResultAndDismissViewController(inner:()throws->AnyObject) throws {
+        try BPUser.setupFromFunc(inner)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -462,6 +469,8 @@ extension BPLoginViewController : GIDSignInUIDelegate, GIDSignInDelegate
         
     }
     
+    // MARK: Login - Resident
+    
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
         
         
@@ -477,10 +486,7 @@ extension BPLoginViewController : GIDSignInUIDelegate, GIDSignInDelegate
                     
                     do
                     {
-                        let value = try inner()
-                        print(value)
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                        
+                        try self.saveUserInfoFromResultAndDismissViewController(inner)
                         
                     }catch let error
                     {
