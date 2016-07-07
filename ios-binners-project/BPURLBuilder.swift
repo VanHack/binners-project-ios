@@ -11,7 +11,7 @@ import Foundation
 
 class BPURLBuilder {
     
-    class func buildFBUserLoginURL(accessToken:String) -> String
+    static func buildFBUserLoginURL(accessToken:String) -> String
     {
         let baseUrl = BPServerSettings.baseServerUrl
         let fbUserLoginUrl = BPServerSettings.facebookLoginUrl
@@ -20,7 +20,7 @@ class BPURLBuilder {
         return fbUserLoginUrlFinal
     }
     
-    class func buildGoogleUserLoginURL(accessToken:String) -> String
+    static func buildGoogleUserLoginURL(accessToken:String) -> String
     {
         let baseUrl = BPServerSettings.baseServerUrl
         let googleUserLoginUrl = BPServerSettings.googleLoginUrl
@@ -29,7 +29,7 @@ class BPURLBuilder {
         return googleUserLoginUrlFinal
     }
     
-    class func buildTwitterUserLoginURL(accessToken:String, accessSecret:String) -> String
+    static func buildTwitterUserLoginURL(accessToken:String, accessSecret:String) -> String
     {
         let baseUrl = BPServerSettings.baseServerUrl
         let twitterUserLoginUrl = BPServerSettings.twitterLoginUrl
@@ -38,14 +38,14 @@ class BPURLBuilder {
         return twitterUserLoginUrlFinal
     }
     
-    class func getPostPickupURL() ->String {
+    static func getPostPickupURL() ->String {
         
         let baseUrl = BPServerSettings.baseServerUrl
         let pickupURL = BPServerSettings.pickupUrl
         return "\(baseUrl)\(pickupURL)"
     }
     
-    class func getGetPickupsURL() ->String {
+    static func getGetPickupsURL() ->String {
         
         let baseUrl = BPServerSettings.baseServerUrl
         let pickupURL = BPServerSettings.pickupRetriveUrl
@@ -53,7 +53,7 @@ class BPURLBuilder {
     }
 
 
-    class func getStandardUserLoginURL() -> String
+    static func getStandardUserLoginURL() -> String
     {
         let baseUrl = BPServerSettings.baseServerUrl
         let UserLoginUrl = BPServerSettings.standardLoginUrl
@@ -61,7 +61,7 @@ class BPURLBuilder {
         return "\(baseUrl)\(UserLoginUrl)"
     }
     
-    class func getResidentUserRegistrationURL() -> String
+    static func getResidentUserRegistrationURL() -> String
     {
         let baseUrl = BPServerSettings.baseServerUrl
         let residentUsersUrl = BPServerSettings.residentUsersUrl
@@ -69,7 +69,7 @@ class BPURLBuilder {
         return "\(baseUrl)\(residentUsersUrl)"
     }
     
-    class func getAuthTokenRevalidateURL() -> String {
+    static func getAuthTokenRevalidateURL() -> String {
         let baseUrl = BPServerSettings.baseServerUrl
         let revalidateUrl = BPServerSettings.revalidateTokenUrl
         
@@ -77,7 +77,7 @@ class BPURLBuilder {
 
     }
     
-    class func buildPickupPhotoUploadURL(pickupId:String) -> String {
+    static func buildPickupPhotoUploadURL(pickupId:String) -> String {
         let baseUrl = BPServerSettings.baseServerUrl
         let finalPartUrl = BPServerSettings.photoUploadUrl
         

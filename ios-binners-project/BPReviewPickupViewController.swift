@@ -128,7 +128,7 @@ extension BPReviewPickupViewController : FinishedPickupDelegate {
         self.activityIndicator.startAnimating()
         
         do {
-            try BPUser.sharedInstance().postPickupInBackgroundWithBock(pickup!, completion: {
+            try pickup!.postPickupInBackgroundWithBock({
                 
                 (inner:() throws -> AnyObject) in
                 

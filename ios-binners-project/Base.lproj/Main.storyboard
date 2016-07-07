@@ -113,12 +113,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o3R-iq-fvX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="245" y="-386"/>
+            <point key="canvasLocation" x="-421" y="-1146"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="BPLoginViewController" customModule="ios_binners_project" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="BYZ-38-t0r" customClass="BPLoginViewController" customModule="ios_binners_project" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -130,11 +130,12 @@
                     </view>
                     <connections>
                         <segue destination="LWC-NM-NWC" kind="presentation" identifier="presentDescriptionPages" id="Pb9-Zh-Vfq"/>
+                        <segue destination="j5j-et-0Me" kind="presentation" identifier="MainMenuSegue" id="xyh-FQ-ZRw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1153" y="-855"/>
+            <point key="canvasLocation" x="1061" y="-281"/>
         </scene>
         <!--Item-->
         <scene sceneID="9jw-Ah-gTr">
@@ -343,7 +344,7 @@
         <!--Navigation Controller-->
         <scene sceneID="oY9-Zy-Cu5">
             <objects>
-                <navigationController id="j5j-et-0Me" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="tabViewController" id="j5j-et-0Me" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QDO-ye-c3i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -354,7 +355,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JoF-wK-U0n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-355" y="690"/>
+            <point key="canvasLocation" x="-527" y="690"/>
         </scene>
         <!--Item-->
         <scene sceneID="EgK-yn-QUz">

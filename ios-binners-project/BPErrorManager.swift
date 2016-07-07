@@ -16,32 +16,19 @@ class BPErrorManager
     {
         let errorParsed = try NSJSONSerialization.JSONObjectWithData(error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! NSData, options:NSJSONReadingOptions.AllowFragments)
         
-        guard let errorDetails = errorParsed["details"] else
+        guard let _ = errorParsed["details"] else
         {
-            throw Error.InvalidErrorType(erroMSg: "Invalid Error type")
+            throw Error.ErrorWithMsg(errorMsg: "Invalid Error type")
         }
         
-        return Error.InvalidInformationProvided(errorCode: String(errorParsed["statusCode"] as! Int), errorMsg: errorParsed["error"] as! String)
+        return Error.ErrorWithCode(errorCode: String(errorParsed["statusCode"] as! Int), errorMsg: errorParsed["error"] as! String)
         
     }
 }
 
 enum Error : ErrorType
 {
-    case URLMalformedError(errorMsg:String)
-    case RequestError(errorCode:String, errorMsg:String)
-    case OperationNotSupported(errorMsg:String)
-    case FacebookAuthMissing(errorMsg:String)
-    case GoogleAuthMissing(errorMsg:String)
-    case TwitterAuthMissing(errorMsg:String)
-    case AuthMissing(errorMsg:String)
-    case InvalidErrorType(erroMSg:String)
-    case InvalidInformationProvided(errorCode:String, errorMsg:String)
-    case DataBaseError(errorMsg:String)
-    case InvalidDataFormat(errorMsg:String)
-    case InvalidObjectWrapper(errorMsg:String)
-    case UserNotInitializedError(msg:String)
-    case InvalidAuthToken(msg:String)
-    case InvalidDateFormat(msg:String)
+    case ErrorWithMsg(errorMsg:String)
+    case ErrorWithCode(errorCode:String, errorMsg:String)
 
 }

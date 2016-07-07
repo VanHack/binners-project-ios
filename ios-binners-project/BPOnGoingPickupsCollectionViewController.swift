@@ -126,7 +126,7 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         
         startActivityIndicator()
         do {
-            try user().fetchOnGoingPickups() { inner in
+            try BPPickup.fetchOnGoingPickups() { inner in
                 do {
                     let pickups = try inner()
                     self.onGoingPickups = pickups

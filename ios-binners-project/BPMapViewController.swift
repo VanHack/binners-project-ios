@@ -29,17 +29,8 @@ class BPMapViewController: UIViewController {
     var pickup:BPPickup = BPPickup()
     
     var history:[BPAddress] {
-        
-        do {
-            
-            guard let historyList = try BPUser.sharedInstance().loadPickupAdressHistory() else {
-                return []
-            }
-            return historyList
-        } catch {
-            BPMessageFactory.makeMessage(.ERROR, message: "User not initialized").show()
-        }
-        return []
+        guard let historyList = BPUser.loadPickupAdressHistory() else { return [] }
+        return historyList
     }
     
     override func viewDidLoad() {
@@ -153,12 +144,8 @@ class BPMapViewController: UIViewController {
         if segue.identifier == "newPickupSegue" {
             let destVc = segue.destinationViewController as! UINavigationController
             let calendarVC = destVc.viewControllers[0] as! BPCalendarViewController
-            do {
-                try BPUser.sharedInstance().addAddressToHistory(self.pickup.address)
-            }catch {
-                print("should not enter here")
-            }
-            
+            BPUser.addAddressToHistory(self.pickup.address)
+
             calendarVC.pickup = self.pickup
         }
     }

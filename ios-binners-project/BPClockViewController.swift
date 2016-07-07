@@ -183,11 +183,11 @@ class BPClockViewController: UIViewController {
             hoursButton.alpha = 0.5
         }
 
-        amButton.addTarget(self, action: "aMButtonClicked", forControlEvents: .TouchUpInside)
-        pmButton.addTarget(self, action: "pMButtonClicked", forControlEvents: .TouchUpInside)
+        amButton.addTarget(self, action: #selector(BPClockViewController.aMButtonClicked), forControlEvents: .TouchUpInside)
+        pmButton.addTarget(self, action: #selector(BPClockViewController.pMButtonClicked), forControlEvents: .TouchUpInside)
 
-        minutesButton.addTarget(self, action: "minuteButtonClicked", forControlEvents: .TouchUpInside)
-        hoursButton.addTarget(self, action: "hourButtonClicked", forControlEvents: .TouchUpInside)
+        minutesButton.addTarget(self, action: #selector(BPClockViewController.minuteButtonClicked), forControlEvents: .TouchUpInside)
+        hoursButton.addTarget(self, action: #selector(BPClockViewController.hourButtonClicked), forControlEvents: .TouchUpInside)
         
         labelAmPm.textColor = UIColor.binnersGreenColor()
         labelAmPm.alpha = 0.5

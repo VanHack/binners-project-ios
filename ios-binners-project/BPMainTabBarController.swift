@@ -66,7 +66,7 @@ class BPMainTabBarController: UITabBarController {
         let button = UIBarButtonItem(
             image: UIImage(named: "1455939101_menu-alt.png"),
             style: .Done, target: self,
-            action: "showLateralMenu")
+            action: #selector(BPMainTabBarController.showLateralMenu))
         
         button.tintColor = UIColor.whiteColor() 
         
@@ -139,43 +139,7 @@ class BPMainTabBarController: UITabBarController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        
-        do {
-            try BPUser.sharedInstance().saveAuthToken()
-        }catch _ {}
-        
-        
-        if (BPUser.getUserAuthToken() == nil) {
-            self.performSegueWithIdentifier("loginSegue", sender: nil)
-        } else {
-            
-            func background() {
-                
-                do {
-                    
-                    try BPLoginManager.sharedInstance.revalidateAuthToken(BPUser.getUserAuthToken()!, completion: {
-                        inner in
-                        do{
-                            try BPUser.setupFromFunc(inner)
-                        }catch _ {
-                            BPMessageFactory.makeMessage(.ERROR, message: "Invalid user token, please login again").show()
-                            self.performSegueWithIdentifier("loginSegue", sender: nil)
-                        }
-                        
-                    })
-                    
-                } catch _ {
-                    dispatch_async(dispatch_get_main_queue()) {
-                    BPMessageFactory.makeMessage(.ERROR, message: "Invalid user token, please login again").show()
-                    self.performSegueWithIdentifier("loginSegue", sender: nil)
-                    }
-                }
-
-            }
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), background)
-        }
-        
-        
+        super.viewDidAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {

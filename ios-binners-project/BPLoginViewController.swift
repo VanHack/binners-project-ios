@@ -10,13 +10,14 @@ import UIKit
 import AVFoundation
 import TwitterKit
 
+let mainMenuSegueIdentifier = "MainMenuSegue"
 
 class BPLoginViewController: UIViewController {
     
     var textFieldEmail: UITextField?
     var textFieldPassword: UITextField?
 
-    let loginManager = BPLoginManager.sharedInstance
+    var loginManager = BPLoginManager.sharedInstance
     let user = BPUser.sharedInstance
     
     
@@ -113,7 +114,7 @@ class BPLoginViewController: UIViewController {
         segControl.frame = CGRectMake((screenWidth/2) - (235/2), initYPos, 235, 29)
 
         // Add target action method
-        segControl.addTarget(self, action: "segmentedControlOptionChanged:", forControlEvents: .ValueChanged)
+        segControl.addTarget(self, action: #selector(BPLoginViewController.segmentedControlOptionChanged(_:)), forControlEvents: .ValueChanged)
         
         return segControl
     }
@@ -243,7 +244,7 @@ class BPLoginViewController: UIViewController {
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         formView.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
         formView.setTitle("Login", forState: UIControlState.Normal)
-        formView.addTarget(self, action: "makeResidentLogin", forControlEvents: .TouchUpInside)
+        formView.addTarget(self, action: #selector(BPLoginViewController.makeResidentLogin), forControlEvents: .TouchUpInside)
         return formView
     }
     
@@ -275,7 +276,7 @@ class BPLoginViewController: UIViewController {
         
         formView.setImage(image, forState: .Normal)
         
-        formView.addTarget(self, action: "loginWithFacebook:", forControlEvents: UIControlEvents.TouchUpInside)
+        formView.addTarget(self, action: #selector(BPLoginViewController.loginWithFacebook(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         return formView
     }
@@ -341,7 +342,7 @@ class BPLoginViewController: UIViewController {
         let imageName = "login-google-buttom"
         let image = UIImage(named: imageName)
         formView.setImage(image, forState: .Normal)
-        formView.addTarget(self, action: "loginWithGoogle:", forControlEvents: UIControlEvents.TouchUpInside)
+        formView.addTarget(self, action: #selector(BPLoginViewController.loginWithGoogle(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         return formView
     }
     
@@ -358,7 +359,7 @@ class BPLoginViewController: UIViewController {
         let imageName = "login-twitter-buttom"
         let image = UIImage(named: imageName)
         formView.setImage(image, forState: .Normal)
-        formView.addTarget(self, action: "loginWithTwitter:", forControlEvents: UIControlEvents.TouchUpInside)
+        formView.addTarget(self, action: #selector(BPLoginViewController.loginWithTwitter(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         return formView
     }
     
@@ -451,8 +452,8 @@ class BPLoginViewController: UIViewController {
     }
     
     func saveUserInfoFromResultAndDismissViewController(inner:()throws->AnyObject) throws {
-        try BPUser.setupFromFunc(inner)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        try BPUser.setup(inner)
+        self.performSegueWithIdentifier(mainMenuSegueIdentifier, sender: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -464,10 +465,6 @@ class BPLoginViewController: UIViewController {
 
 extension BPLoginViewController : GIDSignInUIDelegate, GIDSignInDelegate
 {
-    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
-        
-        
-    }
     
     // MARK: Login - Resident
     

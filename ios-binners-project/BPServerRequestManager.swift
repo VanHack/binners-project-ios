@@ -20,41 +20,45 @@ class BPServerRequestManager
 {
     static let sharedInstance = BPServerRequestManager()
     
-    func execute(request:KindOfRequest,urlString:String,manager:AFHTTPSessionManager,param:AnyObject?,completion:(inner:() throws ->AnyObject) ->Void) throws
+    func execute(request:KindOfRequest,
+                 urlString:String,
+                 manager:AFHTTPSessionManager,
+                 param:AnyObject?,
+                 completion:((inner:() throws ->AnyObject) ->Void)?) throws
     {
         
         guard let url = NSURL(string: urlString) else
         {
-            throw Error.URLMalformedError(errorMsg: "Error with URL")
+            throw Error.ErrorWithMsg(errorMsg: "Error with URL")
         }
         
-            
-            switch(request)
-            {
-                case .GET:      executeGET(url,manager:manager,param:param,completion: completion)
-                case .POST:     executePOST(url,manager:manager,param:param,completion: completion)
-                case .DELETE:   throw Error.OperationNotSupported(errorMsg: "Operation not supported")
-                case .PUT:      throw Error.OperationNotSupported(errorMsg: "Operation not supported")
-            }
-
+        
+        switch(request)
+        {
+        case .GET:      executeGET(url,manager:manager,param:param,completion: completion)
+        case .POST:     executePOST(url,manager:manager,param:param,completion: completion)
+        case .DELETE:   throw Error.ErrorWithMsg(errorMsg: "Operation not supported")
+        case .PUT:      throw Error.ErrorWithMsg(errorMsg: "Operation not supported")
+        }
+        
         
         
     }
     
-    internal func executeGET(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:(inner:() throws ->AnyObject) ->Void)
+    internal func executeGET(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:((inner:() throws ->AnyObject) ->Void)?)
     {
         
         manager.GET(url.absoluteString, parameters: param, progress: nil, success: {
             
-            sessionDataTask,response in
+            _,response in
             
-            completion(inner: {return response! })
+            completion?(inner: {return response! })
             
             },failure: {
                 
-                (sessionDataTask, error) in
+                (_, error) in
                 
-                completion(inner: {
+                completion?(inner: {
                 
                     let error = try BPErrorManager.processErrorFromServer(error)
                     throw error
@@ -66,21 +70,21 @@ class BPServerRequestManager
         })
     }
     
-    internal func executePOST(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:(inner:()throws->AnyObject)->Void)
+    internal func executePOST(url:NSURL,manager:AFHTTPSessionManager,param:AnyObject?,completion:((inner:()throws->AnyObject)->Void)?)
     {
         
         manager.POST(url.absoluteString, parameters: param, progress: nil, success: {
             
-            sessionDataTask,response in
+            _,response in
             
-            completion(inner: {return response!})
+            completion?(inner: {return response!})
             
             
             },failure: {
                 
-                (sessionDataTask, error) in
+                (_, error) in
                 
-                completion(inner: {
+                completion?(inner: {
                     let error = try BPErrorManager.processErrorFromServer(error)
                     throw error
                 
@@ -89,6 +93,7 @@ class BPServerRequestManager
                 
         })
     }
+    
 
     
 }

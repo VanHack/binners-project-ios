@@ -78,8 +78,6 @@
 		2CDDE5B81CDBBA2800B8A533 /* BPOnGoingPickupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDDE5B71CDBBA2800B8A533 /* BPOnGoingPickupCollectionViewCell.swift */; };
 		2CDDE5BB1CDD2C2200B8A533 /* BPCustomCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDDE5BA1CDD2C2200B8A533 /* BPCustomCollectionViewFlowLayout.swift */; };
 		2CF0F5BF1CA1F44F005055C2 /* BPAdditionalNotesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0F5BE1CA1F44F005055C2 /* BPAdditionalNotesController.swift */; };
-		2CF0F5C21CA9C3CA005055C2 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0F5C11CA9C3CA005055C2 /* RLMSupport.swift */; };
-		2CF0F5C41CA9CBAE005055C2 /* BPUserPickups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0F5C31CA9CBAE005055C2 /* BPUserPickups.swift */; };
 		2CF0F5C61CA9CE81005055C2 /* BPParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0F5C51CA9CE81005055C2 /* BPParser.swift */; };
 		2CF92CFE1C8615FD00DDB676 /* BPClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */; };
 		2CFBF6C01CBC0C2300524F62 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFBF6BF1CBC0C2300524F62 /* UIImage+Extension.swift */; };
@@ -174,8 +172,6 @@
 		2CDDE5B71CDBBA2800B8A533 /* BPOnGoingPickupCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPOnGoingPickupCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CDDE5BA1CDD2C2200B8A533 /* BPCustomCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPCustomCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		2CF0F5BE1CA1F44F005055C2 /* BPAdditionalNotesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPAdditionalNotesController.swift; sourceTree = "<group>"; };
-		2CF0F5C11CA9C3CA005055C2 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
-		2CF0F5C31CA9CBAE005055C2 /* BPUserPickups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPUserPickups.swift; sourceTree = "<group>"; };
 		2CF0F5C51CA9CE81005055C2 /* BPParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPParser.swift; sourceTree = "<group>"; };
 		2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPClockViewController.swift; sourceTree = "<group>"; };
 		2CFBF6BF1CBC0C2300524F62 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -287,7 +283,6 @@
 		2C29FBFB1C611A5B00C70837 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				2CF0F5C11CA9C3CA005055C2 /* RLMSupport.swift */,
 				2C73BFE51C98827F001FBFD4 /* BPMessageFactory.swift */,
 				2C29FBFC1C62663F00C70837 /* UIColor+Extension.swift */,
 				2C29FC0F1C62720900C70837 /* UIFont+Extension.swift */,
@@ -341,6 +336,7 @@
 		2C5CCB451C494B5700E734CE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2CC68E421D2D4233000C5F6E /* ViewModel */,
 				2CDDE5B21CDBB7E400B8A533 /* Login */,
 				2CDDE5B11CDBB7D100B8A533 /* OnGoingPickups */,
 				2CF92CFC1C86157B00DDB676 /* Pickup */,
@@ -383,7 +379,6 @@
 				2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */,
 				2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */,
 				2C73BFE11C97204B001FBFD4 /* BPReedemable.swift */,
-				2CF0F5C31CA9CBAE005055C2 /* BPUserPickups.swift */,
 				2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */,
 			);
 			name = Models;
@@ -398,6 +393,13 @@
 				2CD25F001C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift */,
 			);
 			name = IntroductionToApp;
+			sourceTree = "<group>";
+		};
+		2CC68E421D2D4233000C5F6E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		2CDB357A1C937128005945B7 /* Calendar */ = {
@@ -717,11 +719,9 @@
 				2C38B6B11D108D4400EB37DE /* BPEncoder.swift in Sources */,
 				2C73BFE21C97204B001FBFD4 /* BPReedemable.swift in Sources */,
 				2CDB35801C9371D7005945B7 /* MRMonthCalendarDelegate.swift in Sources */,
-				2CF0F5C41CA9CBAE005055C2 /* BPUserPickups.swift in Sources */,
 				2C29FBFA1C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift in Sources */,
 				2C022F911C877F49003E497F /* KSMHand.m in Sources */,
 				2C29FBFD1C62663F00C70837 /* UIColor+Extension.swift in Sources */,
-				2CF0F5C21CA9C3CA005055C2 /* RLMSupport.swift in Sources */,
 				2CF92CFE1C8615FD00DDB676 /* BPClockViewController.swift in Sources */,
 				2C73BFDE1C971E33001FBFD4 /* BPPickup.swift in Sources */,
 				2C022F921C877F49003E497F /* BEMAnalogClockView.m in Sources */,

@@ -9,9 +9,10 @@
 import Foundation
 
 
-class BPServerSettings
+struct BPServerSettings
 {
-    static let baseServerUrl = "http://dev-b.leomcabral.com/api/v1.0/"
+    //static let baseServerUrl = "http://dev-b.leomcabral.com/api/v1.0/"
+    static let baseServerUrl = "http://binners.herokuapp.com/api/v1.0/"
     static let facebookLoginUrl = "auth/facebook/"
     static let googleLoginUrl = "auth/google/"
     static let twitterLoginUrl = "auth/twitter"

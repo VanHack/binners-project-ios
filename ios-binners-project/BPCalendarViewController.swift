@@ -50,10 +50,10 @@ class BPCalendarViewController: UIViewController {
     
     func setupNavigationBar() {
         
-        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: "checkmarkButtonClicked")
+        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: #selector(BPCalendarViewController.checkmarkButtonClicked))
         buttonRight.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
         buttonRight.tintColor = UIColor.whiteColor()
-        let buttonLeft = UIBarButtonItem(title: "✘", style: .Done, target: self, action: "cancelButtonClicked")
+        let buttonLeft = UIBarButtonItem(title: "✘", style: .Done, target: self, action: #selector(BPCalendarViewController.cancelButtonClicked))
         buttonLeft.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = buttonLeft
         self.navigationItem.rightBarButtonItem = buttonRight

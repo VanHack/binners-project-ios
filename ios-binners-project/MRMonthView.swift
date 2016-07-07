@@ -371,7 +371,7 @@ class MRMonthView: UIView {
         buttonLeft.backgroundColor = UIColor.clearColor()
         buttonLeft.center.y = labelDayOfTheMonth!.center.y
         buttonLeft.titleLabel!.font = UIFont.systemFontOfSize(20)
-        buttonLeft.addTarget(self, action: "goToPreviousDay", forControlEvents: .TouchUpInside)
+        buttonLeft.addTarget(self, action: #selector(MRMonthView.goToPreviousDay), forControlEvents: .TouchUpInside)
         
         // add target to left button
         
@@ -388,7 +388,7 @@ class MRMonthView: UIView {
         buttonRight.backgroundColor = UIColor.clearColor()
         buttonRight.center.y = labelDayOfTheMonth!.center.y
         buttonRight.titleLabel!.font = UIFont.systemFontOfSize(20)
-        buttonRight.addTarget(self, action: "goToNextDay", forControlEvents: .TouchUpInside)
+        buttonRight.addTarget(self, action: #selector(MRMonthView.goToNextDay), forControlEvents: .TouchUpInside)
         
         // add target to right button
 
@@ -419,14 +419,6 @@ class MRMonthView: UIView {
             30.0))
         labelYear!.text = "2016"
         labelYear?.textColor = UIColor.calendarSeparationColor()
-
-        
-//        viewContainerMonthAndYear = UIView(frame: CGRectMake(
-//            0,
-//            separationView!.frame.origin.y - (labelMonth!.frame.size.height * 3),
-//            labelMonth!.frame.size.width + labelYear!.frame.size.width,
-//            labelMonth!.frame.size.height))
-        
         
         let posY = ((labelDayOfTheMonth!.frame.origin.y + labelDayOfTheMonth!.frame.size.height +
                     separationView!.frame.origin.y) / 2) - labelMonth!.frame.size.height/2 - 7
@@ -438,8 +430,6 @@ class MRMonthView: UIView {
             labelMonth!.frame.size.height))
         
         viewContainerMonthAndYear!.center.x = labelDayOfTheMonth!.center.x
-
-        
         
         viewContainerMonthAndYear!.addSubview(labelMonth!)
         viewContainerMonthAndYear!.addSubview(labelYear!)
@@ -464,9 +454,7 @@ class MRMonthView: UIView {
         buttonLeft.backgroundColor = UIColor.clearColor()
         buttonLeft.center.y = viewContainerMonthAndYear!.center.y
         buttonLeft.titleLabel!.font = UIFont.systemFontOfSize(20)
-        buttonLeft.addTarget(self, action: "didGoToPreviousMonth", forControlEvents: .TouchUpInside)
-        
-        // add target to left button
+        buttonLeft.addTarget(self, action: #selector(MRMonthView.didGoToPreviousMonth), forControlEvents: .TouchUpInside)
         
         // right button
         
@@ -481,7 +469,7 @@ class MRMonthView: UIView {
         buttonRight.backgroundColor = UIColor.clearColor()
         buttonRight.center.y = viewContainerMonthAndYear!.center.y
         buttonRight.titleLabel!.font = UIFont.systemFontOfSize(20)
-        buttonRight.addTarget(self, action: "didGoToNextMonth", forControlEvents: .TouchUpInside)
+        buttonRight.addTarget(self, action: #selector(MRMonthView.didGoToNextMonth), forControlEvents: .TouchUpInside)
         
         // add target to right button
         
@@ -584,7 +572,7 @@ class MRMonthView: UIView {
             weekDayButton.number = weekIndexInit + (index * 7)
             weekDayButton.setTitle("\(weekDayButton.number!)", forState: .Normal)
             weekDayButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            weekDayButton.addTarget(self, action: "didSelectDate:", forControlEvents: .TouchUpInside)
+            weekDayButton.addTarget(self, action: #selector(MRMonthView.didSelectDate(_:)), forControlEvents: .TouchUpInside)
             
             viewContainerDays!.addSubview(weekDayButton)
             dayButtons.append(weekDayButton)

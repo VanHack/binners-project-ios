@@ -37,7 +37,7 @@ class BPQuantityViewController:  UIViewController {
         setupButtons()
         
         
-        let gesture = UITapGestureRecognizer(target: self, action: "dismissPicker")
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(BPQuantityViewController.dismissPicker))
         self.view.addGestureRecognizer(gesture)
     }
     
@@ -75,10 +75,10 @@ class BPQuantityViewController:  UIViewController {
     func setupButtons() {
         
         quantityButton.backgroundColor = UIColor.whiteColor()
-        quantityButton.addTarget(self, action: "openValuePicker", forControlEvents: .TouchUpInside)
+        quantityButton.addTarget(self, action: #selector(BPQuantityViewController.openValuePicker), forControlEvents: .TouchUpInside)
         quantityButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         takeAPictureButton.backgroundColor = UIColor.whiteColor()
-        takeAPictureButton.addTarget(self, action: "openCamera", forControlEvents: .TouchUpInside)
+        takeAPictureButton.addTarget(self, action: #selector(BPQuantityViewController.openCamera), forControlEvents: .TouchUpInside)
         
     }
     
@@ -109,7 +109,7 @@ class BPQuantityViewController:  UIViewController {
     
     func setupNavigationBar() {
         
-        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: "nextButtonClicked")
+        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: #selector(BPQuantityViewController.nextButtonClicked))
         buttonRight.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
         buttonRight.tintColor = UIColor.whiteColor()
         

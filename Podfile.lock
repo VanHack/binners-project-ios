@@ -54,9 +54,6 @@ PODS:
   - GoogleSymbolUtilities (1.0.3)
   - GoogleUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0.0)
-  - Realm (0.98.5):
-    - Realm/Headers (= 0.98.5)
-  - Realm/Headers (0.98.5)
   - TwitterCore (1.15.1):
     - Fabric
   - TwitterKit (1.15.1):
@@ -70,7 +67,6 @@ DEPENDENCIES:
   - FlatUIKit
   - Google/SignIn
   - GoogleMaps
-  - Realm
   - TwitterCore
   - TwitterKit
 
@@ -91,7 +87,6 @@ SPEC CHECKSUMS:
   GoogleSignIn: 79929b51e6299c69f1197bbd9c7a1367d523ecd8
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
-  Realm: db08379969e45cea2edd1c3c0a090fe9e22d2d2f
   TwitterCore: 12983a7464e34afbbf18881347898a9db526ac71
   TwitterKit: b5821570887ec2d77650fa232eaec175665dc443
 

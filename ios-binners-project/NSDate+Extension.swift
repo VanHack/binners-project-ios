@@ -110,7 +110,7 @@ extension NSDate {
             
             dayStrings.append((String(index),String(weekDay),String(date.dayMonthYear().1),String(date.dayMonthYear().2)))
             
-            weekDay++
+            weekDay += 1
             
             if weekDay > 7
             {

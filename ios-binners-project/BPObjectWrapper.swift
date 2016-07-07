@@ -17,46 +17,12 @@ class BPObjectWrapper {
         
         if let pickup = object as? BPPickup {
             
-            body = try wrapPickup(pickup)
-            header = try BPUser.sharedInstance().token
+            body = try pickup.mapToData()
+            header = BPUser.sharedInstance().token
             
         } else {
-            throw Error.InvalidObjectWrapper(errorMsg: "Invalid object wrapping")
+            throw Error.ErrorWithMsg(errorMsg: "Invalid object wrapping")
         }
-    }
-    
-    
-    private func wrapPickup(pickup:BPPickup)throws -> AnyObject {
-        
-        let items = [
-            "quantity": String(pickup.reedemable.quantity)
-        ]
-        
-        let location = [
-            "coordinates": [pickup.address.location.latitude,pickup.address.location.longitude]
-        ]
-        
-        let address = [
-            "street": pickup.address.formattedAddress,
-            "location": location
-        ]
-        
-        do {
-            let pickupDic = [
-                "requester": try BPUser.sharedInstance().id,
-                "address": address,
-                "time": pickup.date,
-                "instructions": pickup.instructions,
-                "items": [items]
-            ]
-            return pickupDic
-        }catch {
-            throw Error.InvalidObjectWrapper(errorMsg: "Invalid object wrapping")
-        }
-        
-
-        
-        
     }
 
 }

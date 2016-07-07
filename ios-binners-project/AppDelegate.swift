@@ -11,6 +11,9 @@ import Fabric
 import TwitterKit
 import GoogleMaps
 
+let loginVCID = "loginViewController"
+let mainTabBarVCID = "tabViewController"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -25,14 +28,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // google sign in config
         var configureError: NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
         // Twitter skd config
         Fabric.with([Twitter.self])
         GMSServices.provideAPIKey("AIzaSyD3Jbm9orOVMiuz4RvrzWd2E9a8Ub2-s0k")
         
+        pickLoginViewController()
         
         return true
+    }
+    
+    func pickLoginViewController() {
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if (BPUser.loadUser() != nil) {
+            // set root vc to main tab bar
+            self.window?.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier(mainTabBarVCID)
+
+        } else {
+            // set root vc to login vc
+            self.window?.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier(loginVCID)
+        }
+        
     }
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {

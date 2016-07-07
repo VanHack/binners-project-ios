@@ -58,18 +58,12 @@ class BPMapTasks: NSObject {
                             self.resultsList.append(address)
 
                         }
-                        dispatch_async(dispatch_get_main_queue(), {
-                            completionHandler(status: status, success: true)
-
-                            })
                         
                     }
-                    else {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            completionHandler(status: status, success: true)
-                            
-                            })
-                    } 
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completionHandler(status: status, success: true)
+                        
+                    })
 
 
                 }catch let error {

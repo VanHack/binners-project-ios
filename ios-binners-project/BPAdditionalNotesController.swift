@@ -27,7 +27,7 @@ class BPAdditionalNotesController: UIViewController,UITextViewDelegate  {
     
     func setupNavigationBar() {
         
-        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: "nextButtonClicked")
+        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: #selector(BPAdditionalNotesController.nextButtonClicked))
         buttonRight.tintColor = UIColor.whiteColor()
         
         self.navigationItem.rightBarButtonItem = buttonRight

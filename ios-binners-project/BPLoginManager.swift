@@ -9,6 +9,12 @@
 import Foundation
 import TwitterKit
 
+protocol LoginListener {
+    
+    func didLoginUserWithError(error:ErrorType)
+    
+}
+
 
 class BPLoginManager
 {
@@ -17,6 +23,7 @@ class BPLoginManager
     var authGoogle:String?
     var authTwitter:String?
     var authSecretTwitter:String?
+    var loginListener:LoginListener?
     
     static let sharedInstance = BPLoginManager()
     
@@ -25,7 +32,7 @@ class BPLoginManager
         
         guard let auth = authFacebook else {
             
-            throw Error.FacebookAuthMissing(errorMsg: "FB auth can't be nil")
+            throw Error.ErrorWithMsg(errorMsg: "FB auth can't be nil")
         }
         
         let finalUrl = BPURLBuilder.buildFBUserLoginURL(auth)
@@ -41,7 +48,7 @@ class BPLoginManager
         
         guard let auth = authGoogle else {
             
-            throw Error.GoogleAuthMissing(errorMsg: "Google auth can't be nil")
+            throw Error.ErrorWithMsg(errorMsg: "Google auth can't be nil")
         }
         
         let finalUrl = BPURLBuilder.buildGoogleUserLoginURL(auth)
@@ -56,11 +63,11 @@ class BPLoginManager
     func authenticateTwitterUserOnBinnersServer(completion:(inner:() throws -> AnyObject) -> Void) throws {
         
         guard let auth = authTwitter else {
-            throw Error.TwitterAuthMissing(errorMsg: "Twitter auth can't be nil")
+            throw Error.ErrorWithMsg(errorMsg: "Twitter auth can't be nil")
         }
         
         guard let authSecret = authSecretTwitter else {
-            throw Error.TwitterAuthMissing(errorMsg: "Twitter auth token secret can't be nil")
+            throw Error.ErrorWithMsg(errorMsg: "Twitter auth token secret can't be nil")
         }
         
         let finalUrl = BPURLBuilder.buildTwitterUserLoginURL(auth, accessSecret: authSecret)
@@ -85,8 +92,6 @@ class BPLoginManager
         let param = ["email":email,"password":password]
         
         try BPServerRequestManager.sharedInstance.execute(.POST, urlString: finalUrl, manager: manager, param: param,completion:completion)
-        
-        
     }
     
     func registerResident(email:String,password:String,completion:(inner:() throws -> AnyObject) ->Void) throws {
@@ -108,6 +113,31 @@ class BPLoginManager
         let manager = AFHTTPSessionManager()
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
         try BPServerRequestManager.sharedInstance.execute(.POST, urlString: finalUrl, manager: manager, param: nil,completion:completion)
+    }
+    
+    func loginUserInBackground() throws {
+        
+        
+        if let token = BPUser.sharedInstance().token {
+            
+            let finalUrl = BPURLBuilder.getAuthTokenRevalidateURL()
+            let manager = AFHTTPSessionManager()
+            manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
+            try BPServerRequestManager.sharedInstance.execute(.POST, urlString: finalUrl, manager: manager, param: nil,completion: {
+                inner in
+                
+                do {
+                    try BPUser.setup(inner)
+                }catch let error {
+                    self.loginListener?.didLoginUserWithError(error)
+                }
+                
+                
+                
+            })
+        }
+        
+        
     }
 
     
