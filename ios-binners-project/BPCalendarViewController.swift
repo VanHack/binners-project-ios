@@ -5,6 +5,7 @@
 //  Created by Matheus Ruschel on 3/11/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
+// swiftlint:disable trailing_whitespace
 
 import UIKit
 
@@ -22,21 +23,21 @@ class BPCalendarViewController: UIViewController {
         
         let originY = self.navigationController!.navigationBar.frame.size.height
         
-        monthView = MRMonthView(frame: CGRectMake(
-            self.view.frame.origin.x + (self.view.frame.size.width * 0.05),
-            originY + (self.view.frame.size.height * 0.1),
-            self.view.frame.size.width * 0.9,
-            self.view.frame.size.height * 0.80))
+        monthView = MRMonthView(frame: CGRect(
+            x: self.view.frame.origin.x + (self.view.frame.size.width * 0.05),
+            y: originY + (self.view.frame.size.height * 0.1),
+            width: self.view.frame.size.width * 0.9,
+            height: self.view.frame.size.height * 0.80))
         
         self.view.addSubview(monthView!)
         monthView.buttonsArrowColor = UIColor.binnersGreenColor()
         
         
-        let descriptionLabel = UILabel(frame: CGRectMake(
-            self.view.frame.origin.x + (self.view.frame.size.width * 0.05),
-            originY,
-            self.view.frame.size.width * 0.9,
-            self.view.frame.size.height * 0.2))
+        let descriptionLabel = UILabel(frame: CGRect(
+            x: self.view.frame.origin.x + (self.view.frame.size.width * 0.05),
+            y: originY,
+            width: self.view.frame.size.width * 0.9,
+            height: self.view.frame.size.height * 0.2))
         
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = UIFont.boldSystemFontOfSize(12.0)
@@ -50,16 +51,27 @@ class BPCalendarViewController: UIViewController {
     
     func setupNavigationBar() {
         
-        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: #selector(BPCalendarViewController.checkmarkButtonClicked))
-        buttonRight.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
+        let buttonRight = UIBarButtonItem(
+            title: "Next",
+            style: .Done,
+            target: self,
+            action: #selector(BPCalendarViewController.checkmarkButtonClicked))
+        buttonRight.setTitleTextAttributes(
+            [NSFontAttributeName:UIFont.binnersFontWithSize(16)!],
+            forState: .Normal)
         buttonRight.tintColor = UIColor.whiteColor()
-        let buttonLeft = UIBarButtonItem(title: "✘", style: .Done, target: self, action: #selector(BPCalendarViewController.cancelButtonClicked))
+        let buttonLeft = UIBarButtonItem(
+            title: "✘",
+            style: .Done,
+            target: self,
+            action: #selector(BPCalendarViewController.cancelButtonClicked))
         buttonLeft.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = buttonLeft
         self.navigationItem.rightBarButtonItem = buttonRight
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.title = "Date"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
         UINavigationBar.appearance().backIndicatorImage = UIImage()
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage()
@@ -101,7 +113,9 @@ class BPCalendarViewController: UIViewController {
 
         if segue.identifier == "toClockSegue" {
             
-            let destVC = segue.destinationViewController as! BPClockViewController
+            guard let destVC = segue.destinationViewController as? BPClockViewController else {
+                fatalError("could not convert view controller")
+            }
             pickup?.date = self.monthView.date
             destVC.pickup = self.pickup
         }

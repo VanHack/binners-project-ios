@@ -5,7 +5,7 @@
 //  Created by Matheus Ruschel on 3/16/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
-
+// swiftlint:disable trailing_whitespace
 import UIKit
 import GoogleMaps
 
@@ -34,8 +34,13 @@ class BPMapTableViewCell: UITableViewCell {
         
         didSet {
             self.locationLabel.text = address!.formattedAddress
-            self.mapView.camera = GMSCameraPosition.cameraWithLatitude(address!.location.latitude, longitude: address!.location.longitude, zoom: 15.0)
-            let  position = CLLocationCoordinate2DMake(address!.location.latitude, address!.location.longitude)
+            self.mapView.camera = GMSCameraPosition.cameraWithLatitude(
+                address!.location.latitude,
+                longitude: address!.location.longitude,
+                zoom: 15.0)
+            let  position = CLLocationCoordinate2DMake(
+                address!.location.latitude,
+                address!.location.longitude)
             let marker = GMSMarker(position: position)
             marker.map = mapView
         }

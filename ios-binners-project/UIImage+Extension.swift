@@ -13,7 +13,7 @@ extension UIImage {
     func makeImageWithColorAndSize(color: UIColor, size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
-        UIRectFill(CGRectMake(0, 0, size.width, size.height))
+        UIRectFill(CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
@@ -26,7 +26,7 @@ extension UIImage {
         CGContextTranslateCTM(context, 0, self.size.height)
         CGContextScaleCTM(context, 1.0, -1.0)
         CGContextSetBlendMode(context, CGBlendMode.Normal)
-        let rect = CGRectMake(0, 0, self.size.width, self.size.height)
+        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
         CGContextClipToMask(context, rect, self.CGImage)
         color.setFill()
         CGContextFillRect(context, rect)

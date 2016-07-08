@@ -5,7 +5,7 @@
 //  Created by Matheus Ruschel on 1/15/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
-
+// swiftlint:disable trailing_whitespace
 import UIKit
 
 class BPMainTabBarController: UITabBarController {
@@ -43,13 +43,24 @@ class BPMainTabBarController: UITabBarController {
         let unselectedColor = UIColor.grayColor()
         self.tabBar.configureFlatTabBarWithColor(UIColor.whiteColor(), selectedColor: unselectedColor)
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:unselectedColor], forState: .Normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.whiteColor()], forState: .Selected)
+        UITabBarItem.appearance().setTitleTextAttributes(
+            [NSForegroundColorAttributeName:unselectedColor],
+            forState: .Normal)
+        UITabBarItem.appearance().setTitleTextAttributes(
+            [NSForegroundColorAttributeName:UIColor.whiteColor()],
+            forState: .Selected)
         
-        UITabBar.appearance().selectionIndicatorImage = UIImage().makeImageWithColorAndSize(UIColor.binnersGreenColor(), size: CGSizeMake(tabBar.frame.width/5, tabBar.frame.height))
+        UITabBar.appearance().selectionIndicatorImage =
+            UIImage().makeImageWithColorAndSize(
+                UIColor.binnersGreenColor(),
+                size: CGSize(
+                    width: tabBar.frame.width/5,
+                    height: tabBar.frame.height))
         
         for item in self.tabBar.items! {
-            item.image = item.selectedImage?.imageWithColor(unselectedColor).imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+            item.image = item.selectedImage?.imageWithColor(
+                unselectedColor).imageWithRenderingMode(
+                UIImageRenderingMode.AlwaysOriginal)
         }
 
         
@@ -73,7 +84,8 @@ class BPMainTabBarController: UITabBarController {
         self.navigationItem.leftBarButtonItem = button
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.navigationController?.navigationBar.topItem?.title = "Binner's Project"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName : UIColor.whiteColor()]
         self.navigationController?.navigationBar.backgroundColor = UIColor.binnersGreenColor()
     }
     
@@ -82,7 +94,7 @@ class BPMainTabBarController: UITabBarController {
     {
         
         let button = UIButton(type: .Custom)
-        button.frame = CGRectMake(0.0, 0.0,120.0, 120.0)
+        button.frame = CGRect(x: 0.0, y: 0.0,width: 120.0, height: 120.0)
         button.backgroundColor = UIColor.binnersGreenColor()
         button.layer.cornerRadius = 0.5 * button.bounds.size.width
         button.clipsToBounds = true
@@ -92,9 +104,7 @@ class BPMainTabBarController: UITabBarController {
         if heightDifference < 0
         {
             button.center = self.tabBar.center
-        }
-        else
-        {
+        } else {
             let center = self.tabBar.center
             button.center = center
         }
@@ -106,11 +116,11 @@ class BPMainTabBarController: UITabBarController {
         
         // label setup
         
-        let plusLabel = UILabel(frame: CGRectMake(
-            (button.frame.size.width / 2.0) - 15.0,
-            button.frame.size.height * 0.1,
-            30.0,
-            40.0))
+        let plusLabel = UILabel(frame: CGRect(
+            x: (button.frame.size.width / 2.0) - 15.0,
+            y: button.frame.size.height * 0.1,
+            width: 30.0,
+            height: 40.0))
         plusLabel.text = "+"
         plusLabel.font = UIFont.systemFontOfSize(40)
         plusLabel.textColor = UIColor.whiteColor()
@@ -118,11 +128,11 @@ class BPMainTabBarController: UITabBarController {
         plusLabel.textAlignment = .Center
         button.addSubview(plusLabel)
         
-        let textLabel = UILabel(frame: CGRectMake(
-            (button.frame.size.width / 2.0) - (button.frame.size.width / 2.0),
-            plusLabel.frame.origin.y + plusLabel.frame.size.height,
-            button.frame.size.width,
-            20.0))
+        let textLabel = UILabel(frame: CGRect(
+            x: (button.frame.size.width / 2.0) - (button.frame.size.width / 2.0),
+            y: plusLabel.frame.origin.y + plusLabel.frame.size.height,
+            width: button.frame.size.width,
+            height: 20.0))
         textLabel.text = "New Pick-Up"
         textLabel.font = UIFont.systemFontOfSize(10)
         textLabel.textColor = UIColor.whiteColor()

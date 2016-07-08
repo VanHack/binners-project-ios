@@ -20,7 +20,9 @@ class BPIntructionsTableViewCell: UITableViewCell {
         didSet {
             buttonFinish.backgroundColor = UIColor.binnersGreenColor()
             buttonFinish.tintColor = UIColor.whiteColor()
-            buttonFinish.addTarget(self, action: #selector(buttonFinishClicked), forControlEvents: .TouchUpInside)
+            buttonFinish.addTarget(self,
+                                   action: #selector(buttonFinishClicked),
+                                   forControlEvents: .TouchUpInside)
             buttonFinish.layer.cornerRadius = 10
             buttonFinish.clipsToBounds = true
         }

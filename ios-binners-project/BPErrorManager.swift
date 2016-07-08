@@ -14,14 +14,24 @@ class BPErrorManager
     
     class func processErrorFromServer(error:NSError) throws ->ErrorType
     {
-        let errorParsed = try NSJSONSerialization.JSONObjectWithData(error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! NSData, options:NSJSONReadingOptions.AllowFragments)
         
-        guard let _ = errorParsed["details"] else
+        guard let errorUserInfoData =
+            error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as? NSData else {
+                throw Error.ErrorWithMsg(errorMsg: "Invalid Error type")
+
+        }
+        
+        let errorParsed = try NSJSONSerialization.JSONObjectWithData(
+            errorUserInfoData,
+            options:NSJSONReadingOptions.AllowFragments)
+        
+        guard let errorDetails = errorParsed["details"] as? Int,
+        errorMSg = errorParsed["error"] as? String else
         {
             throw Error.ErrorWithMsg(errorMsg: "Invalid Error type")
         }
         
-        return Error.ErrorWithCode(errorCode: String(errorParsed["statusCode"] as! Int), errorMsg: errorParsed["error"] as! String)
+        return Error.ErrorWithCode(errorCode: String(errorDetails), errorMsg: errorMSg)
         
     }
 }

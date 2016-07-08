@@ -5,7 +5,7 @@
 //  Created by Matheus Ruschel on 5/5/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
-
+// swiftlint:disable trailing_whitespace
 import UIKit
 
 private let reuseIdentifier = "OnGoingPickupCell"
@@ -22,7 +22,11 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,50,50))
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(
+            x: 0,
+            y: 0,
+            width: 50,
+            height: 50))
         activityIndicator.activityIndicatorViewStyle = .Gray
         configureEmptyLabel()
         configureRefreshControl()
@@ -53,7 +57,11 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     }
     
     func configureEmptyLabel() {
-        labelEmptyCollectionView = UILabel(frame: CGRectMake(50,0,self.view.frame.width - 100,80))
+        labelEmptyCollectionView = UILabel(frame: CGRect(
+            x: 50,
+            y: 0,
+            width: self.view.frame.width - 100,
+            height: 80))
         labelEmptyCollectionView.font = UIFont.binnersFontWithSize(17.0)
         labelEmptyCollectionView.textAlignment = .Center
         labelEmptyCollectionView.text = "There are no pickups at the moment. Please pull to refresh."
@@ -66,14 +74,20 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         self.collectionView?.backgroundColor = UIColor.binnersGray1()
         
         let flowLayout =  UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSizeMake(self.view.frame.width * 0.9 , self.view.frame.height * 0.23)
+        flowLayout.itemSize = CGSize(
+            width: self.view.frame.width * 0.9 ,
+            height: self.view.frame.height * 0.23)
         flowLayout.scrollDirection = .Vertical
         self.collectionView!.collectionViewLayout = flowLayout
         self.collectionView!.setNeedsLayout()
         self.collectionView!.setNeedsDisplay()
         self.collectionView!.alwaysBounceVertical = true
         
-        let edgeInsets = UIEdgeInsetsMake((self.navigationController?.navigationBar.frame.height)! * 0.7,0,0, 0)
+        let edgeInsets = UIEdgeInsets(
+            top: (self.navigationController?.navigationBar.frame.height)! * 0.7,
+            left: 0,
+            bottom: 0,
+            right: 0)
         self.collectionView?.contentInset = edgeInsets
 
     }
@@ -91,15 +105,23 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     }
 
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(
+        collectionView: UICollectionView,
+        numberOfItemsInSection section: Int) -> Int {
 
         if !dataFetched {return 0}
         return onGoingPickups.count
         
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as? BPOnGoingPickupCollectionViewCell
+    override func collectionView(
+        collectionView: UICollectionView,
+        cellForItemAtIndexPath indexPath: NSIndexPath)
+        -> UICollectionViewCell {
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+            reuseIdentifier,
+            forIndexPath: indexPath)
+            as? BPOnGoingPickupCollectionViewCell
         
         if cell == nil {
             cell = BPOnGoingPickupCollectionViewCell()
@@ -132,14 +154,14 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
                     self.onGoingPickups = pickups
                     self.showEmptyLabelIfValid()
                     self.reloadCollectionViewData()
-                }catch {
+                } catch {
                     self.showCouldNotFetchPickupsError()
                 }
                 self.refreshControl.endRefreshing()
                 self.activityIndicator.removeFromSuperview()
                 
             }
-        }catch {
+        } catch {
             showCouldNotFetchPickupsError()
             refreshControl.endRefreshing()
             self.activityIndicator.removeFromSuperview()
@@ -155,7 +177,9 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
 }
 extension BPOnGoingPickupsCollectionViewController : UICollectionViewDelegateFlowLayout {
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                               minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 20
     }
     

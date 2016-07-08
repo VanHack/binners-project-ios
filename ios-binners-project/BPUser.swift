@@ -5,7 +5,7 @@
 //  Created by Matheus Ruschel on 2/19/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
-
+// swiftlint:disable trailing_whitespace
 import UIKit
 import MapKit
 
@@ -33,8 +33,7 @@ final class BPUser {
         guard
         let email = userDefaults.stringForKey("email"),
         let id = userDefaults.stringForKey("id"),
-        let token = userDefaults.stringForKey("token")
-            else {
+        let token = userDefaults.stringForKey("token") else {
                 return nil
         }
         let address = userDefaults.stringForKey("address")
@@ -50,12 +49,13 @@ final class BPUser {
         userDefaults.synchronize()
     }
     
-    class func setup(inner:()throws->AnyObject) throws {
+    class func setup(inner:()throws->AnyObject) throws -> BPUser {
 
         let value = try inner()
         let user = try mapToModel(value)
         BPUser.setup(user.token,address: user.address, userID: user.id, email: user.email)
         BPUser.sharedInstance().saveUser()
+        return BPUser.sharedInstance()
     
     }
     
@@ -74,17 +74,17 @@ final class BPUser {
         return _userInstance
     }
     
-    class func loadPickupAdressHistory() -> [BPAddress]? {
+    class func loadPickupAdressHistory() throws -> [BPAddress]? {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
         if let addressListEncoded = userDefaults.objectForKey("addressList") as? NSArray {
-            return BPEncoder.convertNSArrayWithDataToSwiftArray(addressListEncoded) as? [BPAddress]
+            return try BPEncoder.convertNSArrayWithDataToSwiftArray(addressListEncoded) as? [BPAddress]
         }
         return nil
     }
     
-    class func addAddressToHistory(address:BPAddress) {
+    class func addAddressToHistory(address:BPAddress) throws {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
 
@@ -92,7 +92,11 @@ final class BPUser {
             
             let codedAddressMutableList = NSMutableArray(array: codedAddressList)
             
-            let historyList = BPEncoder.convertNSArrayWithDataToSwiftArray(codedAddressList) as! [BPAddress]
+            guard let historyList =
+                try BPEncoder.convertNSArrayWithDataToSwiftArray(codedAddressList)
+                    as? [BPAddress] else {
+                fatalError("could not convert array")
+            }
             
             if !historyList.contains({addressIt in return addressIt == address}) {
                 let encodedAddress = NSKeyedArchiver.archivedDataWithRootObject(address)
@@ -100,7 +104,7 @@ final class BPUser {
                 if codedAddressMutableList.count >= 5 {
                     codedAddressMutableList.removeObjectAtIndex(codedAddressMutableList.count - 1)
                     codedAddressMutableList.insertObject(encodedAddress, atIndex: 0)
-                }else {
+                } else {
                     codedAddressMutableList.insertObject(encodedAddress, atIndex: 0)
                 }
 
@@ -113,8 +117,7 @@ final class BPUser {
         }
     }
 
-    class func clearUserInfoLocally()
-    {
+    class func clearUserInfoLocally() {
         let appDomain = NSBundle.mainBundle().bundleIdentifier
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
         NSUserDefaults.standardUserDefaults().synchronize()
@@ -131,17 +134,18 @@ extension BPUser : Mappable {
         
         let token = try BPParser.parseTokenFromServerResponse(object)
         
-        if let user = object["user"] {
-            
-            return BPUser(token: token,email: user!["email"] as! String,
-                          id: user!["_id"] as! String,
-                          address: nil)
-            
-        } else {
+        guard
+        let user = object["user"],
+        let email = user!["email"] as? String,
+        let id = user!["_id"] as? String else {
             throw Error.ErrorWithMsg(errorMsg: "Invalid data format")
         }
+            
+        return BPUser(token: token,
+                      email: email,
+                      id: id,
+                      address: nil)
 
     }
     
 }
-

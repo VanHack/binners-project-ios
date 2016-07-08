@@ -5,7 +5,7 @@
 //  Created by Matheus Ruschel on 3/15/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
-
+// swiftlint:disable trailing_whitespace
 import UIKit
 
 enum QuantitySelection {
@@ -37,7 +37,8 @@ class BPQuantityViewController:  UIViewController {
         setupButtons()
         
         
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(BPQuantityViewController.dismissPicker))
+        let gesture = UITapGestureRecognizer(target: self,
+                                             action: #selector(BPQuantityViewController.dismissPicker))
         self.view.addGestureRecognizer(gesture)
     }
     
@@ -60,11 +61,11 @@ class BPQuantityViewController:  UIViewController {
     
     func setupValuePicker() {
         
-        valuePicker = UIPickerView(frame: CGRectMake(
-            self.view.frame.origin.x,
-            self.view.frame.size.height,
-            self.view.frame.size.width,
-            self.view.frame.size.height * 0.33
+        valuePicker = UIPickerView(frame: CGRect(
+            x: self.view.frame.origin.x,
+            y: self.view.frame.size.height,
+            width: self.view.frame.size.width,
+            height: self.view.frame.size.height * 0.33
             ))
         
         valuePicker.backgroundColor = UIColor.whiteColor()
@@ -75,10 +76,14 @@ class BPQuantityViewController:  UIViewController {
     func setupButtons() {
         
         quantityButton.backgroundColor = UIColor.whiteColor()
-        quantityButton.addTarget(self, action: #selector(BPQuantityViewController.openValuePicker), forControlEvents: .TouchUpInside)
+        quantityButton.addTarget(self,
+                                 action: #selector(BPQuantityViewController.openValuePicker),
+                                 forControlEvents: .TouchUpInside)
         quantityButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         takeAPictureButton.backgroundColor = UIColor.whiteColor()
-        takeAPictureButton.addTarget(self, action: #selector(BPQuantityViewController.openCamera), forControlEvents: .TouchUpInside)
+        takeAPictureButton.addTarget(self,
+                                     action: #selector(BPQuantityViewController.openCamera),
+                                     forControlEvents: .TouchUpInside)
         
     }
     
@@ -109,14 +114,20 @@ class BPQuantityViewController:  UIViewController {
     
     func setupNavigationBar() {
         
-        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: #selector(BPQuantityViewController.nextButtonClicked))
-        buttonRight.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
+        let buttonRight = UIBarButtonItem(title: "Next",
+                                          style: .Done,
+                                          target: self,
+                                          action: #selector(BPQuantityViewController.nextButtonClicked))
+        buttonRight.setTitleTextAttributes(
+            [NSFontAttributeName:UIFont.binnersFontWithSize(16)!],
+            forState: .Normal)
         buttonRight.tintColor = UIColor.whiteColor()
         
         self.navigationItem.rightBarButtonItem = buttonRight
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.title = "Quantity"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
     }
     
@@ -124,7 +135,8 @@ class BPQuantityViewController:  UIViewController {
         
         guard quantitySelection != .Nothing else {
             
-            BPMessageFactory.makeMessage(.ERROR, message: "You must select a number of items or a photo").show()
+            BPMessageFactory.makeMessage(.ERROR,
+                                         message: "You must select a number of items or a photo").show()
             return
         }
         
@@ -133,8 +145,7 @@ class BPQuantityViewController:  UIViewController {
         if quantitySelection == .Photo {
             
              reedemable = BPReedemable(picture: self.takeAPictureButton!.imageView!.image!)
-        }
-        else {
+        } else {
             
              reedemable = BPReedemable(quantity: self.quantityButton!.titleLabel!.text!)
         }
@@ -145,11 +156,11 @@ class BPQuantityViewController:  UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "additionalNotesSegue" {
-            let destVc = segue.destinationViewController as! BPAdditionalNotesController
-            destVc.pickup = self.pickup
+            let destVc = segue.destinationViewController as? BPAdditionalNotesController
+            destVc!.pickup = self.pickup
         } else {
-            let destVc = segue.destinationViewController as! BPReviewPickupViewController
-            destVc.pickup = self.pickup
+            let destVc = segue.destinationViewController as? BPReviewPickupViewController
+            destVc!.pickup = self.pickup
         }
     }
     
@@ -163,7 +174,10 @@ class BPQuantityViewController:  UIViewController {
 }
 extension BPQuantityViewController : UIImagePickerControllerDelegate {
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(
+        picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
          let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         takeAPictureButton.imageView!.contentMode = .ScaleAspectFill

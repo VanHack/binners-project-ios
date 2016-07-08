@@ -5,22 +5,22 @@
 //  Created by Matheus Ruschel on 3/14/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
-
+// swiftlint:disable trailing_whitespace
 import UIKit
 import MapKit
 
 final class BPPickup : AnyObject {
 
-    var reedemable:BPReedemable!
-    var date:NSDate!
-    var instructions:String!
-    var address:BPAddress!
-    var id:String!
-    var rating:BPRating?
-    var binnerID:String?
-    var status:String? = "Ongoing"
+    var reedemable: BPReedemable!
+    var date: NSDate!
+    var instructions: String!
+    var address: BPAddress!
+    var id: String!
+    var rating: BPRating?
+    var binnerID: String?
+    var status: String? = "Ongoing"
     
-    init(id:String?, instructions:String, date:NSDate, reedemable:BPReedemable,address:BPAddress) {
+    init(id: String?, instructions: String, date: NSDate, reedemable: BPReedemable, address: BPAddress) {
         
         self.id = id
         self.instructions = instructions
@@ -43,7 +43,12 @@ final class BPPickup : AnyObject {
         
         manager.requestSerializer.setValue(wrapper.header!, forHTTPHeaderField: "Authorization")
         
-        try BPServerRequestManager.sharedInstance.execute(.POST, urlString: url, manager: manager, param: wrapper.body, completion: completion)
+        try BPServerRequestManager.sharedInstance.execute(
+            .POST,
+            urlString: url,
+            manager: manager,
+            param: wrapper.body,
+            completion: completion)
         
         
     }
@@ -59,14 +64,28 @@ final class BPPickup : AnyObject {
         let manager = AFHTTPSessionManager()
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
         
-        try BPServerRequestManager.sharedInstance.execute(.GET, urlString: url, manager: manager, param: nil, completion: {
+        try BPServerRequestManager.sharedInstance.execute(
+            .GET,
+            urlString: url,
+            manager: manager,
+            param: nil,
+            completion: {
+                
             pickupsFunc in
             
             completion( inner: {
                 
-                let pickupsListDictionary = try pickupsFunc() as! [[String:AnyObject]]
+                guard let pickupsListDictionary = try pickupsFunc() as? [[String:AnyObject]] else {
+                    throw Error.ErrorWithMsg(errorMsg: "Could not convert file from server")
+                }
                 
-                let pickups = try pickupsListDictionary.map({ dictionary -> BPPickup in return try BPPickup.mapToModel(dictionary) })
+                let pickups = try pickupsListDictionary.map( {
+                    
+                    dictionary -> BPPickup in
+                    
+                    return try BPPickup.mapToModel(dictionary)
+                
+                })
                 
                 return pickups
             })
@@ -85,7 +104,7 @@ final class BPPickup : AnyObject {
             let finalUrl = BPURLBuilder.buildPickupPhotoUploadURL(id)
             let manager = AFHTTPSessionManager()
             
-            manager.POST(finalUrl, parameters: nil, constructingBodyWithBlock:{ formData in
+            manager.POST(finalUrl, parameters: nil, constructingBodyWithBlock: { formData in
                 
                 let imageData = UIImageJPEGRepresentation(self.reedemable.picture, 0.5)
                 formData.appendPartWithFormData(imageData!, name: "pickupImage")
@@ -150,7 +169,11 @@ extension BPPickup : Mappable {
         address.formattedAddress = addressString
         address.location = CLLocationCoordinate2D(latitude: coordinates[0], longitude: coordinates[1])
         
-        return BPPickup(id: id, instructions: instructions, date: dateObject, reedemable: reedemable, address: address)
+        return BPPickup(id: id,
+                        instructions: instructions,
+                        date: dateObject,
+                        reedemable: reedemable,
+                        address: address)
         
     }
 

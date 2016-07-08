@@ -18,7 +18,8 @@ class BPReviewPickupViewController: UIViewController {
         super.viewDidLoad()
         
         configureTableView()
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,50,50))
+        activityIndicator = UIActivityIndicatorView(
+            frame: CGRect(x: 0,y: 0,width: 50,height: 50))
 
         // Do any additional setup after loading the view.
     }
@@ -86,22 +87,30 @@ extension BPReviewPickupViewController : UITableViewDelegate, UITableViewDataSou
         var cell:UITableViewCell?
         
         switch indexPath.row {
-        case 0: cell = self.tableView.dequeueReusableCellWithIdentifier("mapTableViewCell") as! BPMapTableViewCell
-                let cellMap = cell as! BPMapTableViewCell
-                cellMap.address = self.pickup!.address
+        case 0: cell =
+            self.tableView.dequeueReusableCellWithIdentifier("mapTableViewCell")
+            as? BPMapTableViewCell
+                let cellMap = cell as? BPMapTableViewCell
+                cellMap!.address = self.pickup!.address
                 cell = cellMap
-        case 1: cell = self.tableView.dequeueReusableCellWithIdentifier("dateTableViewCell") as! BPDateTableViewCell
-                let cellDate = cell as! BPDateTableViewCell
-                cellDate.date = pickup!.date
+        case 1: cell =
+            self.tableView.dequeueReusableCellWithIdentifier("dateTableViewCell")
+            as? BPDateTableViewCell
+                let cellDate = cell as? BPDateTableViewCell
+                cellDate!.date = pickup!.date
                 cell = cellDate
-        case 2: cell = self.tableView.dequeueReusableCellWithIdentifier("quantityTableViewCell") as! BPQuantityTableViewCell
-                let cellQuantity = cell as! BPQuantityTableViewCell
-                cellQuantity.reedemable = self.pickup!.reedemable
+        case 2: cell =
+            self.tableView.dequeueReusableCellWithIdentifier("quantityTableViewCell")
+            as? BPQuantityTableViewCell
+                let cellQuantity = cell as? BPQuantityTableViewCell
+                cellQuantity!.reedemable = self.pickup!.reedemable
                 cell = cellQuantity
-        case 3: cell = self.tableView.dequeueReusableCellWithIdentifier("instructionsTableViewCell") as! BPIntructionsTableViewCell
-                let cellInstructions = cell as! BPIntructionsTableViewCell
-                cellInstructions.instructions = self.pickup!.instructions
-                cellInstructions.finishedPickupDelegate = self
+        case 3: cell =
+            self.tableView.dequeueReusableCellWithIdentifier("instructionsTableViewCell")
+            as? BPIntructionsTableViewCell
+                let cellInstructions = cell as? BPIntructionsTableViewCell
+                cellInstructions!.instructions = self.pickup!.instructions
+                cellInstructions!.finishedPickupDelegate = self
                 cell = cellInstructions
         default:cell = UITableViewCell()
             
@@ -139,14 +148,13 @@ extension BPReviewPickupViewController : FinishedPickupDelegate {
                     self.dismissViewControllerAnimated(true, completion: nil)
                     sender.enabled = true
                     
-                }catch {
+                } catch {
                     self.showPostPickupErrorAndEnablePostButton(sender)
                 }
                 
                 
             })
-        }
-        catch {
+        } catch {
             showPostPickupErrorAndEnablePostButton(sender)
             
         }
@@ -157,4 +165,3 @@ extension BPReviewPickupViewController : FinishedPickupDelegate {
     
     
 }
-

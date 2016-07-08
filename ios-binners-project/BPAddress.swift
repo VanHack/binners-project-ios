@@ -5,22 +5,30 @@
 //  Created by Matheus Ruschel on 3/14/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
-
+// swiftlint:disable trailing_whitespace
 import UIKit
 import MapKit
 
-class BPAddress: NSObject ,NSCoding {
 
-    var formattedAddress:String!
-    var location:CLLocationCoordinate2D!
+class BPAddress: NSObject, NSCoding {
+
+    var formattedAddress: String!
+    var location: CLLocationCoordinate2D!
     
     
     required convenience init(coder decoder: NSCoder) {
         self.init()
-        self.formattedAddress = decoder.decodeObjectForKey("formattedAddress") as! String
-        let latitude = decoder.decodeObjectForKey("latitude") as! Double
-        let longitude = decoder.decodeObjectForKey("longitude") as! Double
         
+        guard
+        let formattedAddress = decoder.decodeObjectForKey("formattedAddress") as? String,
+        latitude = decoder.decodeObjectForKey("latitude") as? Double,
+        longitude = decoder.decodeObjectForKey("longitude") as? Double else {
+            
+            fatalError("Could not decode object")
+        }
+
+        
+        self.formattedAddress = formattedAddress
         self.location = CLLocationCoordinate2DMake(latitude, longitude)
 
     }
@@ -34,6 +42,7 @@ class BPAddress: NSObject ,NSCoding {
 }
 func == (lhs:BPAddress, rhs:BPAddress) -> Bool {
     
-    return (lhs.location.latitude == rhs.location.latitude) && (lhs.location.longitude == rhs.location.longitude)
+    return (lhs.location.latitude == rhs.location.latitude) &&
+        (lhs.location.longitude == rhs.location.longitude)
     
 }

@@ -17,15 +17,20 @@ struct BPEncoder {
         let encodedArray = NSMutableArray()
         
         for encodedObject in dataArray { encodedArray.addObject(encodedObject) }
-        
-        return encodedArray.copy() as! NSArray
+        return encodedArray as NSArray
     }
     
-    static func convertNSArrayWithDataToSwiftArray(encodedObjects:NSArray) -> [AnyObject] {
+    static func convertNSArrayWithDataToSwiftArray(encodedObjects:NSArray) throws -> [AnyObject] {
         
         var objectList = [AnyObject]()
         for encodedObject in encodedObjects {
-            objectList.append(NSKeyedUnarchiver.unarchiveObjectWithData(encodedObject as! NSData)!)
+            
+            guard let encodedObjectData = encodedObject as? NSData,
+            unarchivedData = NSKeyedUnarchiver.unarchiveObjectWithData(encodedObjectData) else {
+                throw Error.ErrorWithMsg(errorMsg: "Could not convert NSArray to Swift Array")
+            }
+            
+            objectList.append(unarchivedData)
         }
         
         return objectList

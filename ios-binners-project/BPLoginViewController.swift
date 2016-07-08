@@ -5,7 +5,7 @@
 //  Created by Rodrigo de Souza Reis on 11/01/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
-
+// swiftlint:disable trailing_whitespace
 import UIKit
 import AVFoundation
 import TwitterKit
@@ -16,11 +16,8 @@ class BPLoginViewController: UIViewController {
     
     var textFieldEmail: UITextField?
     var textFieldPassword: UITextField?
+    var loginViewModel = BPLoginViewModel()
 
-    var loginManager = BPLoginManager.sharedInstance
-    let user = BPUser.sharedInstance
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,13 +28,13 @@ class BPLoginViewController: UIViewController {
         self.view.addSubview(createResidentForm())
         
         GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().delegate = self
         
         self.view.bringSubviewToFront(self.view.viewWithTag(124)!)
         
         textFieldEmail?.text = "matheus.ruschel@gmail.com"
         textFieldPassword?.text = "12345"
         
+        self.loginViewModel.loginDelegate = self
         
         // test purposes only
         FBSDKLoginManager().logOut()
@@ -46,10 +43,8 @@ class BPLoginViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
-        
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        if (userDefaults.boolForKey("FirstAppLaunch") == false)
-        {
+        if userDefaults.boolForKey("FirstAppLaunch") == false {
             performSegueWithIdentifier("presentDescriptionPages", sender: self)
             userDefaults.setBool(true, forKey: "FirstAppLaunch")
             userDefaults.synchronize()
@@ -59,22 +54,22 @@ class BPLoginViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-         if segue.identifier == "loginSegue"
-        {
-            print("loginSegue")
-        }
+        
     }
     
-    func createBackground(form:UIView) -> UIView {
+    func createBackground(form: UIView) -> UIView {
         let imageName = "login-background"
         let image = UIImage(named: imageName)
-        let imageView = UIImageView(frame: CGRectMake(0, 0, form.frame.width, form.frame.height))
+        let imageView = UIImageView(frame: CGRect(
+            x: 0,
+            y: 0,
+            width: form.frame.width,
+            height: form.frame.height))
         imageView.image = image!
         return imageView
     }
     
-    func createLogo(form:UIView) -> UIView {
+    func createLogo(form: UIView) -> UIView {
         let imageName = "login-top-logo"
         let image = UIImage(named: imageName)
         
@@ -84,17 +79,24 @@ class BPLoginViewController: UIViewController {
         let imageHeight = CGFloat(80)
 
         //Positioning the logo horizonatally centered
-        let imageView = UIImageView(frame: CGRectMake((screenWidth/2) - (imageWidth/2), 40, imageWidth, imageHeight))
+        let imageView = UIImageView(frame: CGRect(
+            x: (screenWidth/2) - (imageWidth/2),
+            y: 40,
+            width: imageWidth,
+            height: imageHeight))
         
         imageView.image = image!
         imageView.tag = 122
         return imageView
     }
     
-    func createLoginOptionSelector(form:UIView) -> UIView {
+    func createLoginOptionSelector(form: UIView) -> UIView {
         
         let logoView = form.viewWithTag(122)
-        let initYPos = logoView!.frame.height + logoView!.frame.origin.y + logoView!.frame.height * 0.1 + 5
+        let initYPos =
+            logoView!.frame.height +
+            logoView!.frame.origin.y +
+            logoView!.frame.height * 0.1 + 5
         
         let options = ["Binner", "Resident"]
         
@@ -111,10 +113,17 @@ class BPLoginViewController: UIViewController {
         // Set up Frame and SegmentedControl
         let screenWidth = CGFloat(form.frame.width)
         
-        segControl.frame = CGRectMake((screenWidth/2) - (235/2), initYPos, 235, 29)
+        segControl.frame = CGRect(
+            x: (screenWidth/2) - (235/2),
+            y: initYPos,
+            width: 235,
+            height: 29)
 
         // Add target action method
-        segControl.addTarget(self, action: #selector(BPLoginViewController.segmentedControlOptionChanged(_:)), forControlEvents: .ValueChanged)
+        segControl.addTarget(
+            self,
+            action: #selector(BPLoginViewController.segmentedControlOptionChanged(_:)),
+            forControlEvents: .ValueChanged)
         
         return segControl
     }
@@ -146,7 +155,11 @@ class BPLoginViewController: UIViewController {
     }
     
     func createResidentForm() -> UIView {
-        let formView = UIView(frame: CGRectMake((self.view.frame.width - (self.view.frame.width * 0.9))/2, ((self.view.frame.height - 340) - 15), self.view.frame.width * 0.9, 340))
+        let formView = UIView(frame: CGRect(
+            x: (self.view.frame.width - (self.view.frame.width * 0.9))/2,
+            y: ((self.view.frame.height - 340) - 15),
+            width: self.view.frame.width * 0.9,
+            height: 340))
         
         formView.tag = 999
         
@@ -163,8 +176,12 @@ class BPLoginViewController: UIViewController {
         return formView
     }
     
-    func createAnAccountLink(form:UIView, index:Int) -> UIView {
-        let formView = UIButton(frame: CGRectMake(0, form.frame.height - 40, 120, 27))
+    func createAnAccountLink(form: UIView, index: Int) -> UIView {
+        let formView = UIButton(frame: CGRect(
+            x: 0,
+            y: form.frame.height - 40,
+            width: 120,
+            height: 27))
         formView.center = formView.center
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         formView.titleLabel?.font = UIFont.systemFontOfSize(11)
@@ -172,13 +189,19 @@ class BPLoginViewController: UIViewController {
         return formView
     }
     
-    func createForgotPasswordLink(form:UIView, index:Int) -> UIView {
-        let formView = UIButton(frame: CGRectMake(form.frame.width - 120, form.frame.height - 40, 120, 27))
+    func createForgotPasswordLink(form: UIView, index: Int) -> UIView {
+        let formView = UIButton(frame: CGRect(
+            x: form.frame.width - 120,
+            y: form.frame.height - 40,
+            width: 120,
+            height: 27))
         formView.center = formView.center
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         formView.titleLabel?.font = UIFont.systemFontOfSize(11)
         formView.setTitle("Forgot your password?", forState: UIControlState.Normal)
-        formView.addTarget(self, action: #selector(presentForgotPasswordForm), forControlEvents: .TouchUpInside)
+        formView.addTarget(self,
+                           action: #selector(presentForgotPasswordForm),
+                           forControlEvents: .TouchUpInside)
         return formView
     }
     
@@ -189,66 +212,87 @@ class BPLoginViewController: UIViewController {
     
     
     func createBinnerForm() -> UIView {
-        let formView = UIView(frame: CGRectMake((self.view.frame.width - (self.view.frame.width * 0.9))/2, ((self.view.frame.height - 249) - 15), self.view.frame.width * 0.9, 249))
+        let formView = UIView(frame: CGRect(
+            x: (self.view.frame.width - (self.view.frame.width * 0.9))/2,
+            y: ((self.view.frame.height - 249) - 15),
+            width: self.view.frame.width * 0.9,
+            height: 249))
         
         formView.tag = 998
         
         return formView
     }
     
-    func createInputText(form:UIView, index:Int) -> UIView {
+    func createInputText(form: UIView, index: Int) -> UIView {
         
         let yPosButton = CGFloat((165) / 2)
         let segControl = self.view.viewWithTag(124)
         let convertedRect = self.view.convertRect(segControl!.frame, toView: form)
         let yPos = (yPosButton + convertedRect.origin.y + convertedRect.height) / 2 - 5
         
-        let formView = UITextField(frame: CGRectMake(0, yPos, form.frame.width , 20))
+        let formView = UITextField(frame: CGRect(x: 0,
+            y: yPos,
+            width: form.frame.width,
+            height: 20))
         formView.tag = 123
         formView.autocapitalizationType = .None
         formView.background = UIImage(named: "login-email-input-field.png")
         formView.textColor = UIColor.whiteColor()
         formView.attributedPlaceholder =
-            NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+            NSAttributedString(string: "Email",
+                               attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
         formView.textAlignment = .Center
         
         textFieldEmail = formView
         return formView
     }
     
-    func createInputPassword(form:UIView, index:Int) -> UIView {
+    func createInputPassword(form: UIView, index: Int) -> UIView {
         
         let viewEmail = form.viewWithTag(123)
-        let initialPos = viewEmail!.frame.origin.y + viewEmail!.frame.height + viewEmail!.frame.height * 0.9
+        let initialPos = viewEmail!.frame.origin.y +
+            viewEmail!.frame.height +
+            viewEmail!.frame.height * 0.9
         
-        let formView = UITextField(frame: CGRectMake(0, initialPos, form.frame.width , 20))
+        let formView = UITextField(frame: CGRect(
+            x: 0,
+            y: initialPos,
+            width: form.frame.width,
+            height: 20))
         formView.autocapitalizationType = .None
         formView.background = UIImage(named: "login-password-input-field.png")
         formView.secureTextEntry = true
         formView.textColor = UIColor.whiteColor()
         formView.attributedPlaceholder =
-            NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+            NSAttributedString(string: "Password",
+                               attributes:
+                [NSForegroundColorAttributeName : UIColor.whiteColor()])
         formView.textAlignment = .Center
         textFieldPassword = formView
         formView.tag = 121
         return formView
     }
     
-    func createButton(form:UIView, index:Int) -> UIView {
+    func createButton(form: UIView, index: Int) -> UIView {
         
         let yPos = (165) / 2 + form.frame.size.height * 0.1
         
-        let formView = UIButton(frame: CGRectMake(0, yPos, form.frame.width, 35))
+        let formView = UIButton(frame: CGRect(x: 0,
+            y: yPos,
+            width: form.frame.width,
+            height: 35))
         formView.backgroundColor = UIColor.darkGrayColor()
         formView.layer.cornerRadius = 4.0
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         formView.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
         formView.setTitle("Login", forState: UIControlState.Normal)
-        formView.addTarget(self, action: #selector(BPLoginViewController.makeResidentLogin), forControlEvents: .TouchUpInside)
+        formView.addTarget(self,
+                           action: #selector(BPLoginViewController.makeResidentLogin),
+                           forControlEvents: .TouchUpInside)
         return formView
     }
     
-    func createOrDivider(form:UIView, index:Int) -> UIView {
+    func createOrDivider(form: UIView, index: Int) -> UIView {
         let imageName = "login-divider-between-logins"
         let image = UIImage(named: imageName)
 
@@ -257,203 +301,111 @@ class BPLoginViewController: UIViewController {
         let imageHeight = CGFloat(8)
         
         //Positioning the divider horizonatally centered
-        let imageView = UIImageView(frame: CGRectMake(0, 165, imageWidth, imageHeight))
+        let imageView = UIImageView(frame: CGRect(x: 0,
+            y: 165,
+            width: imageWidth,
+            height: imageHeight))
         
         imageView.image = image!
         return imageView
     }
     
-    func createFacebookLoginButton(form:UIView, index:Int) -> UIView {
+    func createFacebookLoginButton(form: UIView, index: Int) -> UIView {
         
         //Screen and divider dimensions
         let buttomWidth = CGFloat(form.frame.width/3 - 10)
         let buttomHeight = CGFloat(40)
         
-        let formView = UIButton(frame: CGRectMake(0, 200, buttomWidth, buttomHeight))
+        let formView = UIButton(frame: CGRect(x: 0,
+            y: 200,
+            width: buttomWidth,
+            height: buttomHeight))
         
         let imageName = "login-facebook-buttom"
         let image = UIImage(named: imageName)
         
         formView.setImage(image, forState: .Normal)
         
-        formView.addTarget(self, action: #selector(BPLoginViewController.loginWithFacebook(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        formView.addTarget(self,
+                           action: #selector(BPLoginViewController.loginWithFacebook(_:)),
+                           forControlEvents: UIControlEvents.TouchUpInside)
         
         return formView
     }
     
-    // MARK: Login - FB
-    
-    func loginWithFacebook(sender:UIButton) {
-        let fbloginManager = FBSDKLoginManager()
-        fbloginManager.logInWithReadPermissions(["public_profile", "email"], handler: {(result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
-            if (error != nil) {
-                // Process error
-                self.removeFbData()
-            } else if result.isCancelled {
-                // User Cancellation
-                self.removeFbData()
-            } else {
-                //Success
-                if result.grantedPermissions.contains("email") && result.grantedPermissions.contains("public_profile") {
-                    //Do work
-                    self.loginManager.authFacebook = FBSDKAccessToken.currentAccessToken().tokenString
-                    
-                    do {
-                        
-                        try self.loginManager.authenticateFBUserOnBinnersServer() {
-                            
-                            (inner:() throws -> AnyObject) in
-                            
-                            do {
-                               try self.saveUserInfoFromResultAndDismissViewController(inner)
-                                
-                            }catch let error
-                            {
-                                print(error)
-                            }
-                            
-                        }
-                        
-                    }catch let error {
-                        
-                        print(error)
-                        
-                    }
-
-                } else {
-                    //Handle error
-                }
-            }
-        })
-    }
-    
-    func removeFbData() {
-        //Remove FB Data
-        let fbManager = FBSDKLoginManager()
-        fbManager.logOut()
-        FBSDKAccessToken.setCurrentAccessToken(nil)
-    }
-    
-    
-    func createGoogleLoginButton(form:UIView, index:Int) -> UIView {
+    func createGoogleLoginButton(form: UIView, index: Int) -> UIView {
         let buttomWidth = CGFloat(form.frame.width/3 - 10)
         let buttomHeight = CGFloat(40)
-        let formView = UIButton(frame: CGRectMake(buttomWidth+10, 200, buttomWidth, buttomHeight))
+        let formView = UIButton(frame: CGRect(x: buttomWidth+10,
+            y: 200,
+            width: buttomWidth,
+            height: buttomHeight))
         let imageName = "login-google-buttom"
         let image = UIImage(named: imageName)
         formView.setImage(image, forState: .Normal)
-        formView.addTarget(self, action: #selector(BPLoginViewController.loginWithGoogle(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        formView.addTarget(self,
+                           action: #selector(BPLoginViewController.loginWithGoogle(_:)),
+                           forControlEvents: UIControlEvents.TouchUpInside)
         return formView
     }
     
-    
-    func loginWithGoogle(sender:UIButton)
-    {
-        GIDSignIn.sharedInstance().signIn()
-    }
-
-    func createTwitterLoginButton(form:UIView, index:Int) -> UIView {
+    func createTwitterLoginButton(form: UIView, index: Int) -> UIView {
         let buttomWidth = CGFloat(form.frame.width/3 - 10)
         let buttomHeight = CGFloat(40)
-        let formView = UIButton(frame: CGRectMake((buttomWidth*2)+20, 200, buttomWidth, buttomHeight))
+        let formView = UIButton(frame: CGRect(
+            x: (buttomWidth*2)+20,
+            y: 200,
+            width: buttomWidth,
+            height: buttomHeight))
         let imageName = "login-twitter-buttom"
         let image = UIImage(named: imageName)
         formView.setImage(image, forState: .Normal)
-        formView.addTarget(self, action: #selector(BPLoginViewController.loginWithTwitter(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        formView.addTarget(self,
+                           action: #selector(BPLoginViewController.loginWithTwitter(_:)),
+                           forControlEvents: UIControlEvents.TouchUpInside)
         return formView
     }
+
     
+    // MARK: Login - FB
+    
+    func loginWithFacebook(sender: UIButton) {
+        
+        loginViewModel.authenticateUserWithFacebook()
+    }
+    
+    
+    func loginWithGoogle(sender: UIButton) {
+        GIDSignIn.sharedInstance().signIn()
+    }
+
     // MARK: Login - TWITTER
     
     func loginWithTwitter(sender: UIButton) {
-        Twitter.sharedInstance().logInWithCompletion(
-            {session, error in
-                if let unwrappedSession = session {
-                    print("User \(unwrappedSession.userName) has logged in")
-                    
-                    self.loginManager.authTwitter = unwrappedSession.authToken
-                    self.loginManager.authSecretTwitter = unwrappedSession.authTokenSecret
-                    
-                    /* do {
-                        
-                        try self.loginManager.authenticateTwitterUserOnBinnersServer() {
 
-                            
-                            (inner:() throws -> AnyObject) in
-                            
-                            do
-                            {
-                                let value = try inner()
-                                print(value)
-                                
-                                
-                            }catch let error
-                            {
-                                print(error)
-                            }
-                            
-                        }
-                        
-                    }catch let error {
-                        
-                        print(error)
-                        
-                    } */
-                    
-                } else {
-                    NSLog("Login error: %@", error!.localizedDescription);
-                }
-            })
+        loginViewModel.authenticateUserWithTwitter()
     }
     
     // MARK: Login - Resident
     
-    func makeResidentLogin()
-    {
-        assert(textFieldEmail != nil && textFieldPassword != nil)
+    func makeResidentLogin() {
         
-        guard textFieldEmail!.text != "" && textFieldPassword!.text != "" else
-        {
-            print("email and password can't be empty") // change to ui alert view later
-            
-            BPMessageFactory.makeMessage(BPMessageType.ALERT, message: "Please inform your email and password").show()
+        let email = textFieldEmail!.text
+        let password = textFieldPassword!.text
         
-            return
+        let status = loginViewModel.validate(email, password: password)
+        
+        switch status {
+        case .Failed(let msg):
+            BPMessageFactory.makeMessage(.ERROR, message: msg).show()
+        default:
+            do {
+                try loginViewModel.loginResident(email!, password: password!)
+            } catch let error as NSError {
+                BPMessageFactory.makeMessage(.ERROR, message: error.description).show()
+            }
         }
         
-        let email = textFieldEmail!.text!
-        let password = textFieldPassword!.text!
-        
-        do {
-            
-            try loginManager.makeResidentStandardLogin(email, password: password, completion: {
-                
-                (inner:() throws -> AnyObject) in
-                
-                do {
-                    try self.saveUserInfoFromResultAndDismissViewController(inner)
-                    
-                }catch let error
-                {
-                    print(error)
-                }
-                
-                
-            })
-            
-
-        }catch let error
-        {
-            print(error)
-        }
-        
-        
-        
-    }
-    
-    func saveUserInfoFromResultAndDismissViewController(inner:()throws->AnyObject) throws {
-        try BPUser.setup(inner)
-        self.performSegueWithIdentifier(mainMenuSegueIdentifier, sender: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -463,47 +415,18 @@ class BPLoginViewController: UIViewController {
 
 }
 
-extension BPLoginViewController : GIDSignInUIDelegate, GIDSignInDelegate
-{
+extension BPLoginViewController : LoginDelegate {
     
-    // MARK: Login - Resident
-    
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+    func didLogin(success: Bool, errorMsg: String?) {
         
-        
-        if (error == nil) {
-            
-            loginManager.authGoogle = user.authentication.accessToken
-            
-            do {
-                
-                try loginManager.authenticateGoogleUserOnBinnersServer() {
-                    
-                    (inner:() throws -> AnyObject) in
-                    
-                    do
-                    {
-                        try self.saveUserInfoFromResultAndDismissViewController(inner)
-                        
-                    }catch let error
-                    {
-                        print(error)
-                    }
-                    
-                }
-                
-            }catch let error {
-                
-                print(error)
-                
-            }
-
-  
-        } else {
-            print("\(error.localizedDescription)")
+        switch success {
+        case true: self.performSegueWithIdentifier(mainMenuSegueIdentifier, sender: self)
+        default: BPMessageFactory.makeMessage(.ERROR, message: errorMsg!).show()
         }
         
     }
-
 }
 
+extension BPLoginViewController : GIDSignInUIDelegate {
+    
+}

@@ -5,24 +5,27 @@
 //  Created by Matheus Ruschel on 2/2/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
-
+// swiftlint:disable trailing_whitespace
+// swiftlint:disable type_name
+// swiftlint:disable line_length
 import UIKit
 
 protocol PageControlDataSource {
-    var pageIndex:Int? {get set}
+    var pageIndex: Int? {get set}
 }
 
 class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageViewControllerDataSource {
     
     @IBOutlet weak var skipButton: UIButton!
-    var pageViewController:UIPageViewController?
+    var pageViewController: UIPageViewController?
     var pages = 3
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProjectDescriptionPageViewController") as? UIPageViewController
+        self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProjectDescriptionPageViewController")
+            as? UIPageViewController
         
         self.pageViewController!.dataSource = self
         
@@ -30,7 +33,11 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
         
         let viewControllers = [startingViewController]
         
-        self.pageViewController?.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
+        self.pageViewController?.setViewControllers(
+            viewControllers,
+            direction: .Forward,
+            animated: true,
+            completion: nil)
         
         self.pageViewController!.view.backgroundColor = UIColor.binnersGreenColor()
         
@@ -66,7 +73,10 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
         
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(
+        pageViewController: UIPageViewController,
+        viewControllerAfterViewController
+        viewController: UIViewController) -> UIViewController? {
         
         let index = (viewController as? PageControlDataSource)?.pageIndex
         
@@ -75,14 +85,17 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
             return nil
         }
         
-        indexUw++
-        if (indexUw == self.pages) {
+        indexUw += 1
+        if indexUw == self.pages {
             return nil
         }
         return self.viewControllerAtIndex(indexUw)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(
+        pageViewController: UIPageViewController,
+        viewControllerBeforeViewController
+        viewController: UIViewController) -> UIViewController? {
         
         let index = (viewController as? PageControlDataSource)?.pageIndex
         
@@ -91,36 +104,37 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
             return nil
         }
         
-        if (indexUw == self.pages) {
-            return nil;
+        if indexUw == self.pages {
+            return nil
         }
         
-        indexUw--
+        indexUw -= 1
         return self.viewControllerAtIndex(indexUw)
     }
     
-    func viewControllerAtIndex(index:Int) -> UIViewController?
+    func viewControllerAtIndex(index: Int) -> UIViewController?
     {
         
-        var pageContentVC:UIViewController?
+        var pageContentVC: UIViewController?
         
-        switch (index) {
+        switch index {
             
-        case 0: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageTwoContentDescriptionViewController") as! BPPageTwoContentDescriptionLoginViewController
-        case 1: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageThreeContentDescriptionViewController") as! BPPageThreeContentDescriptionLoginViewController
-        case 2:  pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageFourContentDescriptionViewController") as! BPPageFourContentDescriptionLoginViewController
+        case 0: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier(
+            "PageTwoContentDescriptionViewController")
+            as? BPPageTwoContentDescriptionLoginViewController
+        case 1: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier(
+            "PageThreeContentDescriptionViewController")
+            as? BPPageThreeContentDescriptionLoginViewController
+        case 2:  pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier(
+            "PageFourContentDescriptionViewController")
+            as? BPPageFourContentDescriptionLoginViewController
         default: pageContentVC = nil
             
         }
         
-        if let page = pageContentVC
-        {
-            var pag = page as! PageControlDataSource
-            pag.pageIndex = index;
+        if var page = pageContentVC as? PageControlDataSource {
+                page.pageIndex = index
         }
-
-
-        
         return pageContentVC
     }
     

@@ -22,12 +22,10 @@ struct BPParser {
     
     static func parseTokenFromServerResponse(object:AnyObject) throws -> String {
         
-        if object["token"] != nil {
-            return object["token"] as! String
-        } else {
+        guard let token = object["token"] as? String else {
             throw Error.ErrorWithMsg(errorMsg: "Invalid data format")
-
         }
+        return token
     }
     
     static func parseDateFromServer(dateString:String) throws -> NSDate {

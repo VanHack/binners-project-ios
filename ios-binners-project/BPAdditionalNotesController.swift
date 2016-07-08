@@ -5,14 +5,16 @@
 //  Created by Thais on 22/03/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
+// swiftlint:disable trailing_whitespace
+// swiftlint:disable line_length
 
 import UIKit
 
-class BPAdditionalNotesController: UIViewController,UITextViewDelegate  {
+class BPAdditionalNotesController: UIViewController, UITextViewDelegate  {
 
     @IBOutlet weak var boldLabel: UILabel!
     @IBOutlet weak var txtViewAddNote: UITextView!
-    var pickup:BPPickup?
+    var pickup: BPPickup?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -27,15 +29,22 @@ class BPAdditionalNotesController: UIViewController,UITextViewDelegate  {
     
     func setupNavigationBar() {
         
-        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: #selector(BPAdditionalNotesController.nextButtonClicked))
+        let buttonRight = UIBarButtonItem(
+            title: "Next",
+            style: .Done,
+            target: self,
+            action: #selector(BPAdditionalNotesController.nextButtonClicked))
         buttonRight.tintColor = UIColor.whiteColor()
         
         self.navigationItem.rightBarButtonItem = buttonRight
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
-        buttonRight.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
+        buttonRight.setTitleTextAttributes(
+            [NSFontAttributeName:UIFont.binnersFontWithSize(16)!],
+            forState: .Normal)
         self.title = "Additional Notes"
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
     }
     func textViewDidBeginEditing(textView: UITextView) {
@@ -52,12 +61,11 @@ class BPAdditionalNotesController: UIViewController,UITextViewDelegate  {
     }
     
     func nextButtonClicked() {
-        if txtViewAddNote.textColor == UIColor.lightGrayColor(){
+        if txtViewAddNote.textColor == UIColor.lightGrayColor() {
             
-            BPMessageFactory.makeMessage(.ERROR, message: "You must provide instructions for the binner").show()
-        }
-        else{
-            
+            BPMessageFactory.makeMessage(.ERROR,
+                                         message: "You must provide instructions for the binner").show()
+        } else {
             self.performSegueWithIdentifier("reviewPickupSegue", sender: self)
 
         }
@@ -68,7 +76,11 @@ class BPAdditionalNotesController: UIViewController,UITextViewDelegate  {
         
         if segue.identifier == "reviewPickupSegue" {
             
-            let destVC = segue.destinationViewController as! BPReviewPickupViewController
+            guard let destVC = segue.destinationViewController
+                as? BPReviewPickupViewController else {
+                fatalError("Could not convert destination vc")
+            }
+            
             pickup?.instructions = self.txtViewAddNote.text
             destVC.pickup = self.pickup
         }
@@ -77,7 +89,7 @@ class BPAdditionalNotesController: UIViewController,UITextViewDelegate  {
     func cancelButtonClicked() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    func textViewPlaceHolder(){
+    func textViewPlaceHolder() {
         txtViewAddNote.text = "E.g. Hey! I've left my bottles and cans for you by the recycling bin in the alleyway."
         txtViewAddNote.textColor = UIColor.lightGrayColor()
         txtViewAddNote.delegate = self
@@ -89,9 +101,10 @@ class BPAdditionalNotesController: UIViewController,UITextViewDelegate  {
         self.view.endEditing(true)
     }
     // for textView
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n"
-        {
+    func textView(textView: UITextView,
+                  shouldChangeTextInRange range: NSRange,
+                                          replacementText text: String) -> Bool {
+        if text == "\n" {
             textView.resignFirstResponder()
             return false
         }

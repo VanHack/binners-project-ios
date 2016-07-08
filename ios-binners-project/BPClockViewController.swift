@@ -5,17 +5,18 @@
 //  Created by Matheus Ruschel on 3/1/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
+// swiftlint:disable trailing_whitespace
 
 import UIKit
 
 enum TimeMode {
-    case hours
-    case minutes
+    case Hours
+    case Minutes
 }
 
 enum TimePeriod {
-    case am
-    case pm
+    case Am
+    case Pm
 }
 
 
@@ -32,11 +33,11 @@ class BPClockViewController: UIViewController {
     
     @IBOutlet weak var labelDescription: UILabel!
     
-    var timeMode:TimeMode = .hours
-    var hours:Int = 0
-    var minutes:Int = 0
-    var pickup:BPPickup?
-    var timePeriod:TimePeriod = .am
+    var timeMode: TimeMode = .Hours
+    var hours: Int = 0
+    var minutes: Int = 0
+    var pickup: BPPickup?
+    var timePeriod: TimePeriod = .Am
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,14 +83,21 @@ class BPClockViewController: UIViewController {
     
     func setupNavigationBar() {
         
-        let buttonRight = UIBarButtonItem(title: "Next", style: .Done, target: self, action: "checkmarkButtonClicked")
-        buttonRight.setTitleTextAttributes([NSFontAttributeName:UIFont.binnersFontWithSize(16)!], forState: .Normal)
+        let buttonRight = UIBarButtonItem(
+            title: "Next",
+            style: .Done,
+            target: self,
+            action: #selector(BPClockViewController.checkmarkButtonClicked))
+        buttonRight.setTitleTextAttributes(
+            [NSFontAttributeName:UIFont.binnersFontWithSize(16)!],
+            forState: .Normal)
         buttonRight.tintColor = UIColor.whiteColor()
         
         self.navigationItem.rightBarButtonItem = buttonRight
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.title = "Time"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
 
     }
@@ -99,14 +107,16 @@ class BPClockViewController: UIViewController {
         var hours = Int(self.hoursButton.titleLabel!.text!)!
         let minutes = Int(self.minutesButton.titleLabel!.text!)!
 
-        if timePeriod == .pm {
+        if timePeriod == .Pm {
             hours += 12
         }
         
         let pickupDate = self.pickup?.date.changeHour(hours - 3).changeMinute(minutes)
         
         if(pickupDate!.compare(NSDate()) == .OrderedAscending) { // hour on clock is earlier than hour now
-            BPMessageFactory.makeMessage(.ALERT, message: "You have to schedule the pickup for at least X hours before it happens").show()
+            BPMessageFactory.makeMessage(
+                .ALERT,
+                message: "You have to schedule the pickup for at least X hours before it happens").show()
             
         } else {
             self.pickup?.date = self.pickup?.date.changeHour(hours)
@@ -127,7 +137,7 @@ class BPClockViewController: UIViewController {
         clockView.setTimeViaTouch = true
         clockView.faceBackgroundColor = UIColor.binnersGreenColor()
         
-        if timeMode == .hours {
+        if timeMode == .Hours {
             clockView.minuteHandAlpha = 0.0
         } else {
             clockView.hourHandAlpha = 0.0
@@ -138,7 +148,7 @@ class BPClockViewController: UIViewController {
     
     func aMButtonClicked() {
         
-        timePeriod = .am
+        timePeriod = .Am
         amButton.layer.masksToBounds = true
         amButton.layer.cornerRadius = amButton.layer.bounds.height / 2.0
         amButton.backgroundColor = UIColor.binnersGreenColor()
@@ -152,7 +162,7 @@ class BPClockViewController: UIViewController {
     
     func pMButtonClicked() {
         
-        timePeriod = .pm
+        timePeriod = .Pm
         pmButton.layer.masksToBounds = true
         pmButton.layer.cornerRadius = amButton.layer.bounds.height / 2.0
         pmButton.backgroundColor = UIColor.binnersGreenColor()
@@ -177,17 +187,29 @@ class BPClockViewController: UIViewController {
         hoursButton.titleLabel?.font   = UIFont.systemFontOfSize(50)
         labelTwoDots.font              = UIFont.systemFontOfSize(50)
         
-        if timeMode == .hours {
+        if timeMode == .Hours {
             minutesButton.alpha = 0.5
         } else {
             hoursButton.alpha = 0.5
         }
 
-        amButton.addTarget(self, action: #selector(BPClockViewController.aMButtonClicked), forControlEvents: .TouchUpInside)
-        pmButton.addTarget(self, action: #selector(BPClockViewController.pMButtonClicked), forControlEvents: .TouchUpInside)
+        amButton.addTarget(
+            self,
+            action: #selector(BPClockViewController.aMButtonClicked),
+            forControlEvents: .TouchUpInside)
+        pmButton.addTarget(
+            self,
+            action: #selector(BPClockViewController.pMButtonClicked),
+            forControlEvents: .TouchUpInside)
 
-        minutesButton.addTarget(self, action: #selector(BPClockViewController.minuteButtonClicked), forControlEvents: .TouchUpInside)
-        hoursButton.addTarget(self, action: #selector(BPClockViewController.hourButtonClicked), forControlEvents: .TouchUpInside)
+        minutesButton.addTarget(
+            self,
+            action: #selector(BPClockViewController.minuteButtonClicked),
+            forControlEvents: .TouchUpInside)
+        hoursButton.addTarget(
+            self,
+            action: #selector(BPClockViewController.hourButtonClicked),
+            forControlEvents: .TouchUpInside)
         
         labelAmPm.textColor = UIColor.binnersGreenColor()
         labelAmPm.alpha = 0.5
@@ -204,7 +226,7 @@ class BPClockViewController: UIViewController {
         clockView.hourHandAlpha = 0.0
         clockView.minuteHandAlpha = 1.0
         clockView.hourOrMinuteSelected = 1
-        timeMode = .minutes
+        timeMode = .Minutes
         clockView.reloadClock()
     }
     func hourButtonClicked() {
@@ -214,7 +236,7 @@ class BPClockViewController: UIViewController {
         clockView.minuteHandAlpha = 0.0
         clockView.hourHandAlpha = 1.0
         clockView.hourOrMinuteSelected = 0
-        timeMode = .hours
+        timeMode = .Hours
         clockView.reloadClock()
     }
     
@@ -222,7 +244,10 @@ class BPClockViewController: UIViewController {
         
         if segue.identifier == "quantitySegue" {
             
-            let destVc = segue.destinationViewController as! BPQuantityViewController
+            guard let destVc = segue.destinationViewController as? BPQuantityViewController else {
+                fatalError("Could not convert view controller")
+            }
+            
             destVc.pickup = pickup
         }
         
@@ -239,7 +264,7 @@ extension BPClockViewController :BEMAnalogClockDelegate {
     
     func currentTimeOnClock(clock: BEMAnalogClockView!, hours: String!,minutes: String!,seconds: String!) {
         
-        if timeMode == .hours {
+        if timeMode == .Hours {
             
             if clock.hours < 10 {
                 hoursButton.setTitle("0\(hours)", forState: .Normal)
@@ -260,7 +285,6 @@ extension BPClockViewController :BEMAnalogClockDelegate {
         
        self.hours = clock.hours
        self.minutes = clock.minutes
-        
         
     }
     

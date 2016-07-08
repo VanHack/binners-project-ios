@@ -5,7 +5,7 @@
 //  Created by Matheus Ruschel on 5/5/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
-
+// swiftlint:disable trailing_whitespace
 import UIKit
 import GoogleMaps
 
@@ -33,7 +33,8 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
         setupViewCorners()
         setupLabels()
         cancelPickupButton.imageView?.contentMode = .ScaleAspectFit
-        cancelPickupButton.imageView!.image = cancelPickupButton.imageView!.image!.imageWithRenderingMode(.AlwaysTemplate)
+        cancelPickupButton.imageView!.image =
+            cancelPickupButton.imageView!.image!.imageWithRenderingMode(.AlwaysTemplate)
         cancelPickupButton.tintColor = UIColor.grayColor()
     }
     
@@ -64,7 +65,9 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
         formatter.timeStyle = .ShortStyle
         formatter.dateStyle = .NoStyle
         labelTime.text = formatter.stringFromDate(pickup.date)
-        let location = CLLocation(latitude: pickup.address.location.latitude, longitude: pickup.address.location.longitude)
+        let location = CLLocation(
+            latitude: pickup.address.location.latitude,
+            longitude: pickup.address.location.longitude)
         centerMapOnLocation(location)
         
         mapView.userInteractionEnabled = false
@@ -75,7 +78,7 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 7.0
         self.layer.shadowOpacity = 0.2
         self.layer.shadowRadius = 2.0
-        self.layer.shadowOffset = CGSizeMake(-2.0, 2.0)
+        self.layer.shadowOffset = CGSize(width: -2.0, height: 2.0)
     }
     
     func centerMapOnLocation(location: CLLocation) {

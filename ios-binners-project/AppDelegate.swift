@@ -6,6 +6,9 @@
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
 
+// swiftlint:disable trailing_whitespace
+// swiftlint:disable line_length
+
 import UIKit
 import Fabric
 import TwitterKit
@@ -20,10 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // facebook sdk config
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKApplicationDelegate.sharedInstance().application(
+            application,
+            didFinishLaunchingWithOptions: launchOptions)
         
         // google sign in config
         var configureError: NSError?
@@ -43,7 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        if (BPUser.loadUser() != nil) {
+        BPUser.clearUserInfoLocally()
+        
+        if BPUser.loadUser() != nil {
             // set root vc to main tab bar
             self.window?.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier(mainTabBarVCID)
 
@@ -54,10 +62,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+    func application(app: UIApplication,
+                     openURL url: NSURL,
+                             options: [String : AnyObject]) -> Bool {
         
-        var option:String?
-        var option2:String?
+        var option: String?
+        var option2: String?
         
         if #available(iOS 9.0, *) {
              option = options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String
@@ -73,12 +83,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return GIDSignIn.sharedInstance().handleURL(url,
             sourceApplication: option,
             annotation: option2) ||
-        FBSDKApplicationDelegate.sharedInstance().application(app, openURL: url, sourceApplication: option, annotation: option2)
+        FBSDKApplicationDelegate.sharedInstance().application(app,
+                                                              openURL: url,
+                                                              sourceApplication: option,
+                                                              annotation: option2)
     }
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    func application(application: UIApplication,
+                     openURL url: NSURL,
+                             sourceApplication: String?,
+                             annotation: AnyObject) -> Bool {
         
-        var options:[String:AnyObject]?
+        var options: [String:AnyObject]?
         
         if #available(iOS 9.0, *) {
 
@@ -94,7 +110,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 
         
-        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation) ||
+        return FBSDKApplicationDelegate.sharedInstance().application(application,
+                                                                     openURL: url,
+                                                                     sourceApplication: sourceApplication,
+                                                                     annotation: annotation)
+            ||
             self.application(application,
             openURL: url,
             options: options!)
@@ -126,4 +146,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

@@ -45,6 +45,7 @@
 		2C38B6AF1D0F211F00EB37DE /* BPRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38B6AE1D0F211F00EB37DE /* BPRating.swift */; };
 		2C38B6B11D108D4400EB37DE /* BPEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38B6B01D108D4400EB37DE /* BPEncoder.swift */; };
 		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
+		2C64AA0D1D302FB800A29C1E /* BPLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C64AA0C1D302FB800A29C1E /* BPLoginViewModel.swift */; };
 		2C73BFDE1C971E33001FBFD4 /* BPPickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */; };
 		2C73BFE01C971F77001FBFD4 /* BPAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */; };
 		2C73BFE21C97204B001FBFD4 /* BPReedemable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFE11C97204B001FBFD4 /* BPReedemable.swift */; };
@@ -76,7 +77,6 @@
 		2CDB35841C937203005945B7 /* BPCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB35831C937203005945B7 /* BPCalendarViewController.swift */; };
 		2CDDE5B41CDBB8CC00B8A533 /* BPOnGoingPickupsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDDE5B31CDBB8CC00B8A533 /* BPOnGoingPickupsCollectionViewController.swift */; };
 		2CDDE5B81CDBBA2800B8A533 /* BPOnGoingPickupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDDE5B71CDBBA2800B8A533 /* BPOnGoingPickupCollectionViewCell.swift */; };
-		2CDDE5BB1CDD2C2200B8A533 /* BPCustomCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDDE5BA1CDD2C2200B8A533 /* BPCustomCollectionViewFlowLayout.swift */; };
 		2CF0F5BF1CA1F44F005055C2 /* BPAdditionalNotesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0F5BE1CA1F44F005055C2 /* BPAdditionalNotesController.swift */; };
 		2CF0F5C61CA9CE81005055C2 /* BPParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0F5C51CA9CE81005055C2 /* BPParser.swift */; };
 		2CF92CFE1C8615FD00DDB676 /* BPClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */; };
@@ -139,6 +139,7 @@
 		2C38B6AE1D0F211F00EB37DE /* BPRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRating.swift; sourceTree = "<group>"; };
 		2C38B6B01D108D4400EB37DE /* BPEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPEncoder.swift; sourceTree = "<group>"; };
 		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
+		2C64AA0C1D302FB800A29C1E /* BPLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPLoginViewModel.swift; sourceTree = "<group>"; };
 		2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickup.swift; sourceTree = "<group>"; };
 		2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPAddress.swift; sourceTree = "<group>"; };
 		2C73BFE11C97204B001FBFD4 /* BPReedemable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPReedemable.swift; sourceTree = "<group>"; };
@@ -170,7 +171,6 @@
 		2CDB35831C937203005945B7 /* BPCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPCalendarViewController.swift; sourceTree = "<group>"; };
 		2CDDE5B31CDBB8CC00B8A533 /* BPOnGoingPickupsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPOnGoingPickupsCollectionViewController.swift; sourceTree = "<group>"; };
 		2CDDE5B71CDBBA2800B8A533 /* BPOnGoingPickupCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPOnGoingPickupCollectionViewCell.swift; sourceTree = "<group>"; };
-		2CDDE5BA1CDD2C2200B8A533 /* BPCustomCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPCustomCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		2CF0F5BE1CA1F44F005055C2 /* BPAdditionalNotesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPAdditionalNotesController.swift; sourceTree = "<group>"; };
 		2CF0F5C51CA9CE81005055C2 /* BPParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPParser.swift; sourceTree = "<group>"; };
 		2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPClockViewController.swift; sourceTree = "<group>"; };
@@ -233,7 +233,6 @@
 		1B98D7E01C440AC200B6AA88 /* ios-binners-project */ = {
 			isa = PBXGroup;
 			children = (
-				2CDDE5B91CDBECA800B8A533 /* CollectionViewLayout */,
 				2CBDC96C1C7777BA00EC0F99 /* Models */,
 				2C29FBFB1C611A5B00C70837 /* Util */,
 				2C5CCB451C494B5700E734CE /* ViewControllers */,
@@ -398,6 +397,7 @@
 		2CC68E421D2D4233000C5F6E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2C64AA0C1D302FB800A29C1E /* BPLoginViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -435,14 +435,6 @@
 				2CDDE5B71CDBBA2800B8A533 /* BPOnGoingPickupCollectionViewCell.swift */,
 			);
 			name = CollectionViewCell;
-			sourceTree = "<group>";
-		};
-		2CDDE5B91CDBECA800B8A533 /* CollectionViewLayout */ = {
-			isa = PBXGroup;
-			children = (
-				2CDDE5BA1CDD2C2200B8A533 /* BPCustomCollectionViewFlowLayout.swift */,
-			);
-			name = CollectionViewLayout;
 			sourceTree = "<group>";
 		};
 		2CF92CFC1C86157B00DDB676 /* Pickup */ = {
@@ -487,6 +479,7 @@
 				5CB520D8A68F5846167AC75D /* Embed Pods Frameworks */,
 				F40C97D3C6D0F5A8CCBD6093 /* Copy Pods Resources */,
 				8C3CBFCC1C602C8500691C67 /* ShellScript */,
+				2CEE10B61D2EC1F0009F03D8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -625,6 +618,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2CEE10B61D2EC1F0009F03D8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		5CB520D8A68F5846167AC75D /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -698,6 +704,7 @@
 				2C73BFE61C98827F001FBFD4 /* BPMessageFactory.swift in Sources */,
 				2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */,
 				2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */,
+				2C64AA0D1D302FB800A29C1E /* BPLoginViewModel.swift in Sources */,
 				2CDB35841C937203005945B7 /* BPCalendarViewController.swift in Sources */,
 				2C73BFE81C98994B001FBFD4 /* BPQuantityViewController.swift in Sources */,
 				2C1C4D071C5C1F530045821F /* BPURLBuilder.swift in Sources */,
@@ -730,7 +737,6 @@
 				2C38B6AF1D0F211F00EB37DE /* BPRating.swift in Sources */,
 				2C35ADD51C5BD39E007DA4B6 /* BPServerRequestManager.swift in Sources */,
 				2CBDC96E1C7777FA00EC0F99 /* BPUser.swift in Sources */,
-				2CDDE5BB1CDD2C2200B8A533 /* BPCustomCollectionViewFlowLayout.swift in Sources */,
 				2CF0F5BF1CA1F44F005055C2 /* BPAdditionalNotesController.swift in Sources */,
 				2CBA2D2E1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift in Sources */,
 				2C1C4D051C5C1D370045821F /* BPLoginManager.swift in Sources */,
