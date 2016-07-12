@@ -46,6 +46,7 @@
 		2C38B6B11D108D4400EB37DE /* BPEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38B6B01D108D4400EB37DE /* BPEncoder.swift */; };
 		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
 		2C64AA0D1D302FB800A29C1E /* BPLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C64AA0C1D302FB800A29C1E /* BPLoginViewModel.swift */; };
+		2C6CA07C1D359C8F0030B7EA /* BPDesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA07B1D359C8F0030B7EA /* BPDesignableView.swift */; };
 		2C73BFDE1C971E33001FBFD4 /* BPPickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */; };
 		2C73BFE01C971F77001FBFD4 /* BPAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */; };
 		2C73BFE21C97204B001FBFD4 /* BPReedemable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFE11C97204B001FBFD4 /* BPReedemable.swift */; };
@@ -140,6 +141,7 @@
 		2C38B6B01D108D4400EB37DE /* BPEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPEncoder.swift; sourceTree = "<group>"; };
 		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
 		2C64AA0C1D302FB800A29C1E /* BPLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPLoginViewModel.swift; sourceTree = "<group>"; };
+		2C6CA07B1D359C8F0030B7EA /* BPDesignableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPDesignableView.swift; sourceTree = "<group>"; };
 		2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickup.swift; sourceTree = "<group>"; };
 		2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPAddress.swift; sourceTree = "<group>"; };
 		2C73BFE11C97204B001FBFD4 /* BPReedemable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPReedemable.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				1B98D7E31C440AC200B6AA88 /* BPLoginViewController.swift */,
+				2C6CA07B1D359C8F0030B7EA /* BPDesignableView.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				2CBB5BF11C99F02C00D58BFF /* BPMapTableViewCell.swift in Sources */,
 				2C921EF81CA0888B00B2FA46 /* BPIntructionsTableViewCell.swift in Sources */,
 				2C73BFE61C98827F001FBFD4 /* BPMessageFactory.swift in Sources */,
+				2C6CA07C1D359C8F0030B7EA /* BPDesignableView.swift in Sources */,
 				2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */,
 				2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */,
 				2C64AA0D1D302FB800A29C1E /* BPLoginViewModel.swift in Sources */,

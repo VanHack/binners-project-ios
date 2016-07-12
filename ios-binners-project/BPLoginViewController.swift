@@ -21,15 +21,8 @@ class BPLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.addSubview(createBackground(self.view))
-        self.view.addSubview(createLogo(self.view))
-        self.view.addSubview(createLoginOptionSelector(self.view))
-        
         self.view.addSubview(createResidentForm())
-        
         GIDSignIn.sharedInstance().uiDelegate = self
-        
-        self.view.bringSubviewToFront(self.view.viewWithTag(124)!)
         
         textFieldEmail?.text = "matheus.ruschel@gmail.com"
         textFieldPassword?.text = "12345"
@@ -41,14 +34,14 @@ class BPLoginViewController: UIViewController {
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         if userDefaults.boolForKey("FirstAppLaunch") == false {
             performSegueWithIdentifier("presentDescriptionPages", sender: self)
             userDefaults.setBool(true, forKey: "FirstAppLaunch")
             userDefaults.synchronize()
-
         }
        
     }
@@ -57,121 +50,23 @@ class BPLoginViewController: UIViewController {
         
     }
     
-    func createBackground(form: UIView) -> UIView {
-        let imageName = "login-background"
-        let image = UIImage(named: imageName)
-        let imageView = UIImageView(frame: CGRect(
-            x: 0,
-            y: 0,
-            width: form.frame.width,
-            height: form.frame.height))
-        imageView.image = image!
-        return imageView
-    }
-    
-    func createLogo(form: UIView) -> UIView {
-        let imageName = "login-top-logo"
-        let image = UIImage(named: imageName)
-        
-        //Screen and logo dimensions
-        let screenWidth = CGFloat(form.frame.width)
-        let imageWidth = CGFloat(162)
-        let imageHeight = CGFloat(80)
-
-        //Positioning the logo horizonatally centered
-        let imageView = UIImageView(frame: CGRect(
-            x: (screenWidth/2) - (imageWidth/2),
-            y: 40,
-            width: imageWidth,
-            height: imageHeight))
-        
-        imageView.image = image!
-        imageView.tag = 122
-        return imageView
-    }
-    
-    func createLoginOptionSelector(form: UIView) -> UIView {
-        
-        let logoView = form.viewWithTag(122)
-        let initYPos =
-            logoView!.frame.height +
-            logoView!.frame.origin.y +
-            logoView!.frame.height * 0.1 + 5
-        
-        let options = ["Binner", "Resident"]
-        
-        let segControl = UISegmentedControl(items: options)
-        segControl.tag = 124
-        
-        // Style the Segmented Control
-        segControl.layer.cornerRadius = 5.0
-        segControl.tintColor = UIColor.whiteColor()
-        
-        //Default selected option
-        segControl.selectedSegmentIndex = 1 //Resident
-        
-        // Set up Frame and SegmentedControl
-        let screenWidth = CGFloat(form.frame.width)
-        
-        segControl.frame = CGRect(
-            x: (screenWidth/2) - (235/2),
-            y: initYPos,
-            width: 235,
-            height: 29)
-
-        // Add target action method
-        segControl.addTarget(
-            self,
-            action: #selector(BPLoginViewController.segmentedControlOptionChanged(_:)),
-            forControlEvents: .ValueChanged)
-        
-        return segControl
-    }
-    
-    
-    //This is the segmented control handler
-    func segmentedControlOptionChanged(sender: UISegmentedControl) {
-        
-        switch sender.selectedSegmentIndex {
-            
-            case 0:
-                print("Binners login option selected")
-                if let viewWithTag = self.view.viewWithTag(999) {
-                    viewWithTag.removeFromSuperview()
-                }
-                self.view.addSubview(createBinnerForm())
-            case 1:
-                print("Residente login option selected")
-                if let viewWithTag = self.view.viewWithTag(998) {
-                    viewWithTag.removeFromSuperview()
-                }
-                //self.view.addSubview(createBackground(self.view))
-                //self.view.addSubview(createLogo(self.view))
-                //self.view.addSubview(createLoginOptionSelector(self.view))
-                self.view.addSubview(createResidentForm())
-            default:
-                print("Resident login option selected")
-        }
-    }
-    
     func createResidentForm() -> UIView {
         let formView = UIView(frame: CGRect(
             x: (self.view.frame.width - (self.view.frame.width * 0.9))/2,
-            y: ((self.view.frame.height - 340) - 15),
+            y: (self.view.frame.height * 0.4),
             width: self.view.frame.width * 0.9,
-            height: 340))
+            height: (self.view.frame.height * 0.6)))
         
         formView.tag = 999
         
         formView.addSubview(createInputText(formView, index: 1))
         formView.addSubview(createInputPassword(formView, index:  2))
         formView.addSubview(createButton(formView, index: 3))
-        formView.addSubview(createOrDivider(formView, index: 4))
-        formView.addSubview(createFacebookLoginButton(formView, index: 5))
-        formView.addSubview(createTwitterLoginButton(formView, index: 6))
-        formView.addSubview(createGoogleLoginButton(formView, index: 7))
-        formView.addSubview(createAnAccountLink(formView, index: 8))
-        formView.addSubview(createForgotPasswordLink(formView, index: 9))
+        formView.addSubview(createFacebookLoginButton(formView, index: 4))
+        formView.addSubview(createTwitterLoginButton(formView, index: 5))
+        formView.addSubview(createGoogleLoginButton(formView, index: 6))
+        formView.addSubview(createAnAccountLink(formView, index: 7))
+        formView.addSubview(createForgotPasswordLink(formView, index: 8))
         
         return formView
     }
@@ -179,7 +74,7 @@ class BPLoginViewController: UIViewController {
     func createAnAccountLink(form: UIView, index: Int) -> UIView {
         let formView = UIButton(frame: CGRect(
             x: 0,
-            y: form.frame.height - 40,
+            y: form.frame.height * 0.9,
             width: 120,
             height: 27))
         formView.center = formView.center
@@ -192,7 +87,7 @@ class BPLoginViewController: UIViewController {
     func createForgotPasswordLink(form: UIView, index: Int) -> UIView {
         let formView = UIButton(frame: CGRect(
             x: form.frame.width - 120,
-            y: form.frame.height - 40,
+            y: form.frame.height * 0.9,
             width: 120,
             height: 27))
         formView.center = formView.center
@@ -208,8 +103,6 @@ class BPLoginViewController: UIViewController {
     func presentForgotPasswordForm() {
         
     }
-
-    
     
     func createBinnerForm() -> UIView {
         let formView = UIView(frame: CGRect(
@@ -225,13 +118,10 @@ class BPLoginViewController: UIViewController {
     
     func createInputText(form: UIView, index: Int) -> UIView {
         
-        let yPosButton = CGFloat((165) / 2)
-        let segControl = self.view.viewWithTag(124)
-        let convertedRect = self.view.convertRect(segControl!.frame, toView: form)
-        let yPos = (yPosButton + convertedRect.origin.y + convertedRect.height) / 2 - 5
+        let yPosButton = form.frame.height * 0.1
         
         let formView = UITextField(frame: CGRect(x: 0,
-            y: yPos,
+            y: yPosButton,
             width: form.frame.width,
             height: 20))
         formView.tag = 123
@@ -275,7 +165,7 @@ class BPLoginViewController: UIViewController {
     
     func createButton(form: UIView, index: Int) -> UIView {
         
-        let yPos = (165) / 2 + form.frame.size.height * 0.1
+        let yPos = form.frame.size.height * 0.4
         
         let formView = UIButton(frame: CGRect(x: 0,
             y: yPos,
@@ -292,39 +182,21 @@ class BPLoginViewController: UIViewController {
         return formView
     }
     
-    func createOrDivider(form: UIView, index: Int) -> UIView {
-        let imageName = "login-divider-between-logins"
-        let image = UIImage(named: imageName)
-
-        //Screen and divider dimensions
-        let imageWidth = CGFloat(form.frame.width)
-        let imageHeight = CGFloat(8)
-        
-        //Positioning the divider horizonatally centered
-        let imageView = UIImageView(frame: CGRect(x: 0,
-            y: 165,
-            width: imageWidth,
-            height: imageHeight))
-        
-        imageView.image = image!
-        return imageView
-    }
-    
     func createFacebookLoginButton(form: UIView, index: Int) -> UIView {
         
         //Screen and divider dimensions
         let buttomWidth = CGFloat(form.frame.width/3 - 10)
-        let buttomHeight = CGFloat(40)
+        let buttomHeight = CGFloat(50)
         
         let formView = UIButton(frame: CGRect(x: 0,
-            y: 200,
+            y: form.frame.height * 0.6,
             width: buttomWidth,
             height: buttomHeight))
         
-        let imageName = "login-facebook-buttom"
+        let imageName = "facebookButton"
         let image = UIImage(named: imageName)
-        
-        formView.setImage(image, forState: .Normal)
+        formView.layer.contents = image!.CGImage
+        formView.layer.contentsGravity = kCAGravityResizeAspect
         
         formView.addTarget(self,
                            action: #selector(BPLoginViewController.loginWithFacebook(_:)),
@@ -335,14 +207,15 @@ class BPLoginViewController: UIViewController {
     
     func createGoogleLoginButton(form: UIView, index: Int) -> UIView {
         let buttomWidth = CGFloat(form.frame.width/3 - 10)
-        let buttomHeight = CGFloat(40)
+        let buttomHeight = CGFloat(50)
         let formView = UIButton(frame: CGRect(x: buttomWidth+10,
-            y: 200,
+            y: form.frame.height * 0.6,
             width: buttomWidth,
             height: buttomHeight))
-        let imageName = "login-google-buttom"
+        let imageName = "googleButton"
         let image = UIImage(named: imageName)
-        formView.setImage(image, forState: .Normal)
+        formView.layer.contents = image!.CGImage
+        formView.layer.contentsGravity = kCAGravityResizeAspect
         formView.addTarget(self,
                            action: #selector(BPLoginViewController.loginWithGoogle(_:)),
                            forControlEvents: UIControlEvents.TouchUpInside)
@@ -351,15 +224,16 @@ class BPLoginViewController: UIViewController {
     
     func createTwitterLoginButton(form: UIView, index: Int) -> UIView {
         let buttomWidth = CGFloat(form.frame.width/3 - 10)
-        let buttomHeight = CGFloat(40)
+        let buttomHeight = CGFloat(50)
         let formView = UIButton(frame: CGRect(
             x: (buttomWidth*2)+20,
-            y: 200,
+            y: form.frame.height * 0.6,
             width: buttomWidth,
             height: buttomHeight))
-        let imageName = "login-twitter-buttom"
+        let imageName = "TwitterButton"
         let image = UIImage(named: imageName)
-        formView.setImage(image, forState: .Normal)
+        formView.layer.contents = image!.CGImage
+        formView.layer.contentsGravity = kCAGravityResizeAspect
         formView.addTarget(self,
                            action: #selector(BPLoginViewController.loginWithTwitter(_:)),
                            forControlEvents: UIControlEvents.TouchUpInside)
