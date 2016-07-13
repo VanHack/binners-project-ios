@@ -43,10 +43,10 @@ class BPLoginManager
                 
                 do {
                     let user = try BPUser.setup(inner)
-                    completion( inner: { return user } )
+                    completion( inner: { return user })
                     
                 } catch {
-                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") } )
+                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") })
                 }
                 
         }
@@ -117,10 +117,10 @@ class BPLoginManager
                 
                 do {
                     let user = try BPUser.setup(inner)
-                    completion( inner: { return user } )
+                    completion( inner: { return user })
                     
                 } catch {
-                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") } )
+                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") })
                 }
                 
         }
@@ -141,7 +141,7 @@ class BPLoginManager
                     try self.authenticateTwitterUserOnBinnersServer(completion)
                 
                  } catch {
-                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to login on twitter") } )
+                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to login on twitter") })
                 }
             }
         })
@@ -173,10 +173,10 @@ class BPLoginManager
                 
                 do {
                     let user = try BPUser.setup(inner)
-                    completion( inner: { return user } )
+                    completion( inner: { return user })
                     
                 } catch {
-                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") } )
+                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") })
                 }
                 
         }
@@ -211,10 +211,10 @@ class BPLoginManager
                 
                 do {
                     let user = try BPUser.setup(inner)
-                    completion( inner: { return user } )
+                    completion( inner: { return user })
                     
                 } catch {
-                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") } )
+                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") })
                 }
         
         }

@@ -282,32 +282,7 @@
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjC-GK-OFk">
                                             <rect key="frame" x="8" y="175" width="476" height="32"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hR-Ai-wXy">
-                                                    <rect key="frame" x="213" y="0.5" width="50" height="32"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="51" id="uhL-8q-XWl"/>
-                                                    </constraints>
-                                                    <state key="normal" image="cancel_2"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="uhL-8q-XWl"/>
-                                                        </mask>
-                                                    </variation>
-                                                </button>
-                                            </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="4hR-Ai-wXy" firstAttribute="centerX" secondItem="GjC-GK-OFk" secondAttribute="centerX" id="Rzx-M4-ocT"/>
-                                                <constraint firstAttribute="bottom" secondItem="4hR-Ai-wXy" secondAttribute="bottom" id="ea2-U6-nOK"/>
-                                                <constraint firstItem="4hR-Ai-wXy" firstAttribute="centerY" secondItem="GjC-GK-OFk" secondAttribute="centerY" id="eam-NN-Sn7"/>
-                                                <constraint firstItem="4hR-Ai-wXy" firstAttribute="top" secondItem="GjC-GK-OFk" secondAttribute="top" id="jSQ-g4-epS"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="eam-NN-Sn7"/>
-                                                </mask>
-                                            </variation>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -357,7 +332,6 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <outlet property="cancelPickupButton" destination="4hR-Ai-wXy" id="quo-UC-Uth"/>
                                     <outlet property="labelBinnerName" destination="3fa-pe-dyN" id="OPr-BM-Yf5"/>
                                     <outlet property="labelBinnerText" destination="f7J-KK-AHw" id="d1m-X3-qlU"/>
                                     <outlet property="labelDate" destination="nrU-E7-X8G" id="RC3-Ys-4jU"/>
@@ -384,24 +358,40 @@
             </objects>
             <point key="canvasLocation" x="1794" y="752"/>
         </scene>
-        <!--Item 1-->
-        <scene sceneID="Qyg-lE-cre">
+        <!--Item-->
+        <scene sceneID="GOc-i9-Bqz">
             <objects>
-                <viewController id="dPx-xA-bi4" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="euE-eR-76o"/>
-                        <viewControllerLayoutGuide type="bottom" id="KFD-qF-GXV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="u9O-oY-YB2">
+                <collectionViewController id="Wec-Hl-tPA" customClass="BPHistoryViewControllerCollectionViewController" customModule="ios_binners_project" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="l9A-Z2-R2k">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" image="history" id="5l2-cw-b2v"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Io6-4V-eML" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eZv-E4-sxm">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hfY-fh-mAt" customClass="BPOnGoingPickupCollectionViewCell" customModule="ios_binners_project" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Wec-Hl-tPA" id="T8A-Wb-h0R"/>
+                            <outlet property="delegate" destination="Wec-Hl-tPA" id="9iP-an-O41"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Item" image="history" id="Jc8-sN-RUm"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Io-2l-d5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1853" y="19"/>
+            <point key="canvasLocation" x="1794" y="65"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oY9-Zy-Cu5">
@@ -451,7 +441,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="loginSegue" id="ED4-T7-Xys"/>
-                        <segue destination="dPx-xA-bi4" kind="relationship" relationship="viewControllers" id="3Td-JD-3kv"/>
+                        <segue destination="Wec-Hl-tPA" kind="relationship" relationship="viewControllers" id="qih-NH-rUz"/>
                         <segue destination="y9R-jO-vyD" kind="relationship" relationship="viewControllers" id="dzH-Eq-uqR"/>
                         <segue destination="Erf-xt-T8d" kind="relationship" relationship="viewControllers" id="hfd-B7-MSx"/>
                         <segue destination="6Y8-mE-WJK" kind="relationship" relationship="viewControllers" id="waR-ca-tbI"/>
@@ -1245,7 +1235,6 @@
         <image name="Vector Smart Object (2)" width="344" height="368"/>
         <image name="backgroundIntro" width="750" height="1334"/>
         <image name="backgroundMaskLogin" width="375" height="667"/>
-        <image name="cancel_2" width="50" height="50"/>
         <image name="history" width="50" height="50"/>
         <image name="megaphone" width="50" height="50"/>
         <image name="projectName" width="234" height="29"/>

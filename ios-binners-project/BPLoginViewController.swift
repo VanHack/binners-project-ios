@@ -12,25 +12,23 @@ import TwitterKit
 
 let mainMenuSegueIdentifier = "MainMenuSegue"
 
+let LoginButtonTag = 1
+
 class BPLoginViewController: UIViewController {
     
     var textFieldEmail: UITextField?
     var textFieldPassword: UITextField?
     var loginViewModel = BPLoginViewModel()
+    var activityIndicator:UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.addSubview(createResidentForm())
         GIDSignIn.sharedInstance().uiDelegate = self
-        
         textFieldEmail?.text = "matheus.ruschel@gmail.com"
         textFieldPassword?.text = "12345"
-        
         self.loginViewModel.loginDelegate = self
-        
-        // test purposes only
-        FBSDKLoginManager().logOut()
     }
     
     
@@ -79,7 +77,8 @@ class BPLoginViewController: UIViewController {
             height: 27))
         formView.center = formView.center
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        formView.titleLabel?.font = UIFont.systemFontOfSize(11)
+        formView.titleLabel!.textAlignment = .Left
+        formView.titleLabel?.font = UIFont.binnersFontWithSize(12)
         formView.setTitle("Create an account", forState: UIControlState.Normal)
         return formView
     }
@@ -90,9 +89,11 @@ class BPLoginViewController: UIViewController {
             y: form.frame.height * 0.9,
             width: 120,
             height: 27))
+        formView.tag = LoginButtonTag
         formView.center = formView.center
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        formView.titleLabel?.font = UIFont.systemFontOfSize(11)
+        formView.titleLabel!.textAlignment = .Right
+        formView.titleLabel?.font = UIFont.binnersFontWithSize(12)
         formView.setTitle("Forgot your password?", forState: UIControlState.Normal)
         formView.addTarget(self,
                            action: #selector(presentForgotPasswordForm),
@@ -170,12 +171,16 @@ class BPLoginViewController: UIViewController {
         let formView = UIButton(frame: CGRect(x: 0,
             y: yPos,
             width: form.frame.width,
-            height: 35))
-        formView.backgroundColor = UIColor.darkGrayColor()
+            height: form.frame.height * 0.15))
+        
+        activityIndicator = UIActivityIndicatorView(
+            frame: CGRect(x: 0,y: 0,width: 50,height: formView.frame.height))
+        
+        formView.backgroundColor = UIColor(netHex: 0x008DF0)
         formView.layer.cornerRadius = 4.0
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        formView.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
-        formView.setTitle("Login", forState: UIControlState.Normal)
+        formView.titleLabel?.font = UIFont.binnersFontWithSize(16)
+        formView.setTitle("Log In", forState: UIControlState.Normal)
         formView.addTarget(self,
                            action: #selector(BPLoginViewController.makeResidentLogin),
                            forControlEvents: .TouchUpInside)
@@ -244,7 +249,6 @@ class BPLoginViewController: UIViewController {
     // MARK: Login - FB
     
     func loginWithFacebook(sender: UIButton) {
-        
         loginViewModel.authenticateUserWithFacebook()
     }
     
@@ -256,14 +260,15 @@ class BPLoginViewController: UIViewController {
     // MARK: Login - TWITTER
     
     func loginWithTwitter(sender: UIButton) {
-
         loginViewModel.authenticateUserWithTwitter()
     }
     
     // MARK: Login - Resident
     
-    func makeResidentLogin() {
+    func makeResidentLogin(sender: UIButton) {
         
+        sender.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
         let email = textFieldEmail!.text
         let password = textFieldPassword!.text
         
@@ -273,6 +278,9 @@ class BPLoginViewController: UIViewController {
         case .Failed(let msg):
             BPMessageFactory.makeMessage(.ERROR, message: msg).show()
         default:
+            if let button = self.view.viewWithTag(LoginButtonTag) as? UIButton {
+                button.enabled = false
+            }
             do {
                 try loginViewModel.loginResident(email!, password: password!)
             } catch let error as NSError {
@@ -292,6 +300,11 @@ class BPLoginViewController: UIViewController {
 extension BPLoginViewController : LoginDelegate {
     
     func didLogin(success: Bool, errorMsg: String?) {
+        
+        if let button = self.view.viewWithTag(LoginButtonTag) as? UIButton {
+            button.enabled = true
+            self.activityIndicator.removeFromSuperview()
+        }
         
         switch success {
         case true: self.performSegueWithIdentifier(mainMenuSegueIdentifier, sender: self)

@@ -8,7 +8,7 @@
 // swiftlint:disable trailing_whitespace
 import UIKit
 
-private let reuseIdentifier = "OnGoingPickupCell"
+private let reuseIdentifier = "PickupCollectionViewCell"
 
 class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     
@@ -30,6 +30,9 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         activityIndicator.activityIndicatorViewStyle = .Gray
         configureEmptyLabel()
         configureRefreshControl()
+        let cellNib = UINib(nibName: "BPPickupCollectionViewCell", bundle: nil)
+        self.collectionView!.registerNib(cellNib, forCellWithReuseIdentifier: reuseIdentifier)
+
 
     }
     

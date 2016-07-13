@@ -24,7 +24,6 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var labelBinnerName: UILabel!
     @IBOutlet weak var labelTimeText: UILabel!
     @IBOutlet weak var labelTime: UILabel!
-    @IBOutlet weak var cancelPickupButton: UIButton!
     let formatter:NSDateFormatter = NSDateFormatter()
     
     override func awakeFromNib() {
@@ -32,10 +31,6 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = UIColor.whiteColor()
         setupViewCorners()
         setupLabels()
-        cancelPickupButton.imageView?.contentMode = .ScaleAspectFit
-        cancelPickupButton.imageView!.image =
-            cancelPickupButton.imageView!.image!.imageWithRenderingMode(.AlwaysTemplate)
-        cancelPickupButton.tintColor = UIColor.grayColor()
     }
     
     func setupLabels() {
