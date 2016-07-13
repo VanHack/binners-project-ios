@@ -159,6 +159,16 @@ class BPMainTabBarController: UITabBarController {
     
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         
+        if let itemSelected = (tabBar.items)?[4] {
+            
+            if item == itemSelected {
+                UIApplication.sharedApplication().openURL(
+                    NSURL(string:"https://www.gifttool.com/donations/Donate?ID=1453&AID=503&PID=4805")!)
+            }
+            
+        }
+        //self.tabBar.selectedItem = (tabBar.items)![0]
+        
     }
     
 
