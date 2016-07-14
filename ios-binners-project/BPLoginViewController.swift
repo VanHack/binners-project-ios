@@ -6,6 +6,7 @@
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
 // swiftlint:disable trailing_whitespace
+// swiftlint:disable line_length
 import UIKit
 import AVFoundation
 import TwitterKit
@@ -29,6 +30,7 @@ class BPLoginViewController: UIViewController {
         textFieldEmail?.text = "matheus.ruschel@gmail.com"
         textFieldPassword?.text = "12345"
         self.loginViewModel.loginDelegate = self
+        self.loginViewModel.passwordForgotDelegate = self
     }
     
     
@@ -100,11 +102,7 @@ class BPLoginViewController: UIViewController {
                            forControlEvents: .TouchUpInside)
         return formView
     }
-    
-    func presentForgotPasswordForm() {
-        
-    }
-    
+
     func createBinnerForm() -> UIView {
         let formView = UIView(frame: CGRect(
             x: (self.view.frame.width - (self.view.frame.width * 0.9))/2,
@@ -267,8 +265,6 @@ class BPLoginViewController: UIViewController {
     
     func makeResidentLogin(sender: UIButton) {
         
-        sender.addSubview(self.activityIndicator)
-        self.activityIndicator.startAnimating()
         let email = textFieldEmail!.text
         let password = textFieldPassword!.text
         
@@ -283,11 +279,22 @@ class BPLoginViewController: UIViewController {
             }
             do {
                 try loginViewModel.loginResident(email!, password: password!)
+                sender.addSubview(self.activityIndicator)
+                self.activityIndicator.startAnimating()
             } catch let error as NSError {
                 BPMessageFactory.makeMessage(.ERROR, message: error.description).show()
             }
         }
         
+    }
+    
+    func presentForgotPasswordForm() {
+        
+        let alert = BPMessageFactory.makeMessage(
+            .TEXT,
+            message: "Please provide your email, so we can reset your password.")
+        alert.delegate = self
+        alert.show()
     }
     
     override func didReceiveMemoryWarning() {
@@ -313,7 +320,51 @@ extension BPLoginViewController : LoginDelegate {
         
     }
 }
-
 extension BPLoginViewController : GIDSignInUIDelegate {
     
+}
+extension BPLoginViewController : UIAlertViewDelegate {
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        
+        if let textField = alertView.textFieldAtIndex(0) {
+            
+            if buttonIndex == 0 { // send
+                
+                switch loginViewModel.validateEmail(textField.text) {
+                case .Failed(let msg):
+                    BPMessageFactory.makeMessage(.ERROR, message: msg).show()
+                case .Passed:
+                    let email = textField.text!
+                    do {
+                        try loginViewModel.sendPasswordForgottenEmail(email)
+                    } catch let error as NSError {
+                        BPMessageFactory.makeMessage(
+                            .ALERT,
+                            message: error.description).show()
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+}
+extension BPLoginViewController : ForgotPasswordDelegate {
+    
+    func didSendEmail(success:Bool, errorMsg:String?) {
+        
+        if success {
+            BPMessageFactory.makeMessage(
+                .ALERT,
+                message: "We've sent you an email with instructions to reset your password, please check you email").show()
+        } else {
+            BPMessageFactory.makeMessage(
+                .ALERT,
+                message: errorMsg!).show()
+        }
+        
+    }
 }

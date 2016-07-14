@@ -77,6 +77,14 @@ class BPURLBuilder {
 
     }
     
+    static func getPasswordResetURL(email: String) -> String {
+        let baseUrl = BPServerSettings.baseServerUrl
+        let passwordResetUrl = BPServerSettings.passwordResetURL
+        
+        return "\(baseUrl)\(passwordResetUrl)\(email)"
+        
+    }
+    
     static func buildPickupPhotoUploadURL(pickupId:String) -> String {
         let baseUrl = BPServerSettings.baseServerUrl
         let finalPartUrl = BPServerSettings.photoUploadUrl

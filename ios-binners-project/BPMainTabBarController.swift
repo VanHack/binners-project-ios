@@ -167,7 +167,7 @@ class BPMainTabBarController: UITabBarController {
             }
             
         }
-        //self.tabBar.selectedItem = (tabBar.items)![0]
+       // self.selectedViewController = (tabBar.items)![0] as! UIViewController
         
     }
     

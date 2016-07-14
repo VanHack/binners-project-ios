@@ -239,6 +239,20 @@ class BPLoginManager
         
     }
     
+    func recoverPassword(
+        email: String,
+        completion:(inner:() throws -> AnyObject) -> Void) throws {
+        
+        
+        let finalUrl = BPURLBuilder.getPasswordResetURL(email)
+        let manager = AFHTTPSessionManager()
+        try BPServerRequestManager.sharedInstance.execute(
+            .GET,
+            urlString: finalUrl,
+            manager: manager,
+            param: nil,completion:completion)
+    }
+    
     func revalidateAuthToken(
         token:String,
         completion:(inner:() throws -> AnyObject) -> Void) throws {

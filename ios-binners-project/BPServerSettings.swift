@@ -22,5 +22,6 @@ struct BPServerSettings
     static let revalidateTokenUrl = "auth/revalidate"
     static let photoUploadUrl = "photos"
     static let pickupRetriveUrl = "pickups"
+    static let passwordResetURL = "auth/forgot/"
     
 }

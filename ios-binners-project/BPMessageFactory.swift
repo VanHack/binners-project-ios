@@ -10,7 +10,7 @@ import Foundation
 
 //Types of messages that the user could receive from the app
 enum BPMessageType {
-    case ALERT, ERROR, INFO
+    case ALERT, ERROR, INFO, TEXT
 }
 
 
@@ -34,10 +34,15 @@ class BPMessageFactory {
         case BPMessageType.INFO:
             alert.title = "Information"
             alert.addButtonWithTitle("OK")
+        case .TEXT:
+            alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
+            alert.addButtonWithTitle("Done")
+            alert.addButtonWithTitle("Cancel")
         }
         
         return alert
     }
+
 
 }
 

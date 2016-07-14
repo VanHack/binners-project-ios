@@ -12,11 +12,17 @@ protocol LoginDelegate {
     
     func didLogin(success:Bool, errorMsg:String?)
 }
+protocol ForgotPasswordDelegate {
+    
+    func didSendEmail(success:Bool, errorMsg:String?)
+}
+
 
 class BPLoginViewModel {
     
     var loginManager = BPLoginManager.sharedInstance
     var loginDelegate:LoginDelegate?
+    var passwordForgotDelegate:ForgotPasswordDelegate?
     
     enum ValidationStatus {
         case Passed
@@ -30,18 +36,36 @@ class BPLoginViewModel {
     
     func validate(userEmail: String?,password: String?) -> ValidationStatus {
         
-        guard let userEmail = userEmail,
-            password = password else {
-                return .Failed("Username and password can't be empty")
+        switch validateEmail(userEmail) {
+        case .Failed(let msg):
+            return .Failed(msg)
+        default: break
         }
         
-        if userEmail.stringByReplacingOccurrencesOfString(" ", withString: "") == "" ||
-            !userEmail.containsString("@") || password == "" {
+        guard let password = password else {
+                return .Failed("Password can't be empty")
+        }
+        
+        if password.stringByReplacingOccurrencesOfString(" ", withString: "") == "" {
             
-            return .Failed("Email or password is invalid")
+            return .Failed("Password can't be empty")
         }
         
         return .Passed
+    }
+    
+    func validateEmail(userEmail: String?) -> ValidationStatus {
+        
+        guard let userEmail = userEmail else {
+                return .Failed("Username can't be empty")
+        }
+        
+        if userEmail.stringByReplacingOccurrencesOfString(" ", withString: "") == "" ||
+            !userEmail.containsString("@") {
+            return .Failed("Email is invalid")
+        }
+        return .Passed
+
     }
     
     func loginResident(email:String, password: String) throws {
@@ -117,6 +141,22 @@ class BPLoginViewModel {
                 self.loginDelegate?.didLogin(false,errorMsg:"Could not login with google")
             }
             
+        }
+        
+    }
+    
+    func sendPasswordForgottenEmail(email: String) throws {
+        
+        try loginManager.recoverPassword(email) {
+            
+            inner in
+            
+            do {
+                try inner()
+                self.passwordForgotDelegate?.didSendEmail(true, errorMsg: nil)
+            } catch let error as NSError {
+                self.passwordForgotDelegate?.didSendEmail(false, errorMsg: error.description)
+            }
         }
         
     }
