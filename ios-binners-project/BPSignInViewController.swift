@@ -127,7 +127,7 @@ class BPSignInViewController: UIViewController {
         formView.layer.cornerRadius = 4.0
         formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         formView.titleLabel?.font = UIFont.binnersFontWithSize(16)
-        formView.setTitle("Sign In", forState: UIControlState.Normal)
+        formView.setTitle("Sign Up", forState: UIControlState.Normal)
         formView.tag = signInButtonTag
         formView.addTarget(self, action: #selector(signInUser), forControlEvents: .TouchUpInside)
         return formView
