@@ -124,6 +124,65 @@ final class BPUser {
         
     }
     
+    class func recoverPassword(
+        email: String,
+        completion:(inner:() throws -> AnyObject) -> Void) throws {
+        
+        
+        let finalUrl = BPURLBuilder.getPasswordResetURL(email)
+        let manager = AFHTTPSessionManager()
+        try BPServerRequestManager.sharedInstance.execute(
+            .GET,
+            urlString: finalUrl,
+            manager: manager,
+            param: nil,completion:completion)
+    }
+    
+    class func revalidateAuthToken(
+        token:String,
+        completion:(inner:() throws -> AnyObject) -> Void) throws {
+        
+        
+        let finalUrl = BPURLBuilder.getAuthTokenRevalidateURL()
+        let manager = AFHTTPSessionManager()
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
+        try BPServerRequestManager.sharedInstance.execute(
+            .POST,
+            urlString: finalUrl,
+            manager: manager,
+            param: nil,completion:completion)
+    }
+    
+    class func registerResident(
+        email:String,
+        password:String,
+        completion:(inner:() throws -> BPUser) -> Void) throws {
+        
+        let finalUrl = BPURLBuilder.getResidentUserRegistrationURL()
+        let manager = AFHTTPSessionManager()
+        let body = ["email":email, "password":password,"name":email]
+        
+        try BPServerRequestManager.sharedInstance.execute(
+            .POST,
+            urlString: finalUrl,
+            manager: manager,
+            param: body) {
+            
+            inner in
+            
+            do {
+                let user = try BPUser.setup(inner)
+                completion( inner: { return user })
+                
+            } catch {
+                completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") })
+            }
+            
+        }
+
+        
+    }
+    
 
 }
 
@@ -149,3 +208,4 @@ extension BPUser : Mappable {
     }
     
 }
+

@@ -42,8 +42,17 @@ class BPLoginViewModel {
         default: break
         }
         
+        switch validatePassword(password) {
+        case .Failed(let msg):
+            return .Failed(msg)
+        default: return .Passed
+        }
+    }
+    
+    func validatePassword(password: String?) -> ValidationStatus {
+        
         guard let password = password else {
-                return .Failed("Password can't be empty")
+            return .Failed("Password can't be empty")
         }
         
         if password.stringByReplacingOccurrencesOfString(" ", withString: "") == "" {
@@ -147,7 +156,7 @@ class BPLoginViewModel {
     
     func sendPasswordForgottenEmail(email: String) throws {
         
-        try loginManager.recoverPassword(email) {
+        try BPUser.recoverPassword(email) {
             
             inner in
             
@@ -175,8 +184,6 @@ extension BPLoginViewModel : GIDSignInDelegate {
             } catch let error as NSError {
                 self.loginDelegate?.didLogin(false,errorMsg:error.description)
             }
-            
-            
         } else {
             self.loginDelegate?.didLogin(false,errorMsg:error.description)
         }

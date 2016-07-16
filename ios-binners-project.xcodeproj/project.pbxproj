@@ -49,6 +49,8 @@
 		2C6CA07C1D359C8F0030B7EA /* BPDesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA07B1D359C8F0030B7EA /* BPDesignableView.swift */; };
 		2C6CA07F1D36D59B0030B7EA /* BPHistoryViewControllerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA07E1D36D59B0030B7EA /* BPHistoryViewControllerCollectionViewController.swift */; };
 		2C6CA0871D36DC040030B7EA /* BPPickupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C6CA0851D36DC040030B7EA /* BPPickupCollectionViewCell.xib */; };
+		2C6CA08A1D3844460030B7EA /* BPSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA0891D3844460030B7EA /* BPSignInViewController.swift */; };
+		2C6CA08D1D384F810030B7EA /* BPSignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA08C1D384F810030B7EA /* BPSignInViewModel.swift */; };
 		2C73BFDE1C971E33001FBFD4 /* BPPickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */; };
 		2C73BFE01C971F77001FBFD4 /* BPAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */; };
 		2C73BFE21C97204B001FBFD4 /* BPReedemable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFE11C97204B001FBFD4 /* BPReedemable.swift */; };
@@ -146,6 +148,8 @@
 		2C6CA07B1D359C8F0030B7EA /* BPDesignableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPDesignableView.swift; sourceTree = "<group>"; };
 		2C6CA07E1D36D59B0030B7EA /* BPHistoryViewControllerCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPHistoryViewControllerCollectionViewController.swift; sourceTree = "<group>"; };
 		2C6CA0851D36DC040030B7EA /* BPPickupCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPPickupCollectionViewCell.xib; sourceTree = "<group>"; };
+		2C6CA0891D3844460030B7EA /* BPSignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPSignInViewController.swift; sourceTree = "<group>"; };
+		2C6CA08C1D384F810030B7EA /* BPSignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPSignInViewModel.swift; sourceTree = "<group>"; };
 		2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickup.swift; sourceTree = "<group>"; };
 		2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPAddress.swift; sourceTree = "<group>"; };
 		2C73BFE11C97204B001FBFD4 /* BPReedemable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPReedemable.swift; sourceTree = "<group>"; };
@@ -341,6 +345,7 @@
 		2C5CCB451C494B5700E734CE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2C6CA0881D38441F0030B7EA /* SignIn */,
 				2CDDE5B21CDBB7E400B8A533 /* Login */,
 				2C6CA07D1D36D56E0030B7EA /* History */,
 				2CDDE5B11CDBB7D100B8A533 /* OnGoingPickups */,
@@ -357,6 +362,23 @@
 				2C6CA07E1D36D59B0030B7EA /* BPHistoryViewControllerCollectionViewController.swift */,
 			);
 			name = History;
+			sourceTree = "<group>";
+		};
+		2C6CA0881D38441F0030B7EA /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				2C6CA08B1D384F680030B7EA /* ViewModel */,
+				2C6CA0891D3844460030B7EA /* BPSignInViewController.swift */,
+			);
+			name = SignIn;
+			sourceTree = "<group>";
+		};
+		2C6CA08B1D384F680030B7EA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2C6CA08C1D384F810030B7EA /* BPSignInViewModel.swift */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		2CBA2D2B1C8DFAC50048C850 /* TableViewCell */ = {
@@ -714,10 +736,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6CA08A1D3844460030B7EA /* BPSignInViewController.swift in Sources */,
 				2C0BC2D61CE3793900663F9E /* BPObjectWrapper.swift in Sources */,
 				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,
 				2C73BFE01C971F77001FBFD4 /* BPAddress.swift in Sources */,
 				2CBB5BF11C99F02C00D58BFF /* BPMapTableViewCell.swift in Sources */,
+				2C6CA08D1D384F810030B7EA /* BPSignInViewModel.swift in Sources */,
 				2C921EF81CA0888B00B2FA46 /* BPIntructionsTableViewCell.swift in Sources */,
 				2C73BFE61C98827F001FBFD4 /* BPMessageFactory.swift in Sources */,
 				2C6CA07C1D359C8F0030B7EA /* BPDesignableView.swift in Sources */,

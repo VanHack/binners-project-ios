@@ -220,52 +220,5 @@ class BPLoginManager
         }
     }
     
-    func registerResident(
-        email:String,
-        password:String,
-        completion:(inner:() throws -> AnyObject) -> Void) throws {
-        
-        
-        let finalUrl = BPURLBuilder.getResidentUserRegistrationURL()
-        let manager = AFHTTPSessionManager()
-        let param = ["email":email,"password":password]
-        
-        try BPServerRequestManager.sharedInstance.execute(
-            .POST,
-            urlString: finalUrl,
-            manager: manager,
-            param: param,completion:completion)
-        
-        
-    }
-    
-    func recoverPassword(
-        email: String,
-        completion:(inner:() throws -> AnyObject) -> Void) throws {
-        
-        
-        let finalUrl = BPURLBuilder.getPasswordResetURL(email)
-        let manager = AFHTTPSessionManager()
-        try BPServerRequestManager.sharedInstance.execute(
-            .GET,
-            urlString: finalUrl,
-            manager: manager,
-            param: nil,completion:completion)
-    }
-    
-    func revalidateAuthToken(
-        token:String,
-        completion:(inner:() throws -> AnyObject) -> Void) throws {
-        
-        
-        let finalUrl = BPURLBuilder.getAuthTokenRevalidateURL()
-        let manager = AFHTTPSessionManager()
-        manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
-        try BPServerRequestManager.sharedInstance.execute(
-            .POST,
-            urlString: finalUrl,
-            manager: manager,
-            param: nil,completion:completion)
-    }
     
 }

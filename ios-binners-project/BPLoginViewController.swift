@@ -12,6 +12,8 @@ import AVFoundation
 import TwitterKit
 
 let mainMenuSegueIdentifier = "MainMenuSegue"
+let SignInSegueIdentifier = "SignInSegue"
+
 
 let LoginButtonTag = 1
 
@@ -48,6 +50,12 @@ class BPLoginViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        if segue.identifier == SignInSegueIdentifier {
+            if let destVC = segue.destinationViewController as? BPSignInViewController {
+                destVC.dismissDelegate = self
+            }
+        }
+        
     }
     
     func createResidentForm() -> UIView {
@@ -82,6 +90,10 @@ class BPLoginViewController: UIViewController {
         formView.titleLabel!.textAlignment = .Left
         formView.titleLabel?.font = UIFont.binnersFontWithSize(12)
         formView.setTitle("Create an account", forState: UIControlState.Normal)
+        formView.addTarget(self,
+                           action: #selector(createAccountButtonClicked),
+                           forControlEvents: .TouchUpInside)
+
         return formView
     }
     
@@ -297,6 +309,10 @@ class BPLoginViewController: UIViewController {
         alert.show()
     }
     
+    func createAccountButtonClicked() {
+        self.performSegueWithIdentifier(SignInSegueIdentifier, sender: self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -368,3 +384,10 @@ extension BPLoginViewController : ForgotPasswordDelegate {
         
     }
 }
+extension BPLoginViewController : SignInDismissDelegate {
+    
+    func didDismissView() {
+        self.performSegueWithIdentifier(mainMenuSegueIdentifier, sender: self)
+    }
+}
+
