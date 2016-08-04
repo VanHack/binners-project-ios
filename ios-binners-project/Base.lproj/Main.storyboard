@@ -170,9 +170,9 @@
                                         </userDefinedRuntimeAttributes>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="BRf-5J-rLU"/>
                                                 <exclude reference="IKN-xU-V0B"/>
                                                 <exclude reference="X1o-34-O5E"/>
-                                                <exclude reference="BRf-5J-rLU"/>
                                             </mask>
                                         </variation>
                                     </view>

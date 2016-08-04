@@ -25,11 +25,7 @@ class BPSignInViewModel : BPLoginViewModel {
         default: break
         }
         
-        switch validatePassword(confirmPassword) {
-        case .Failed(let msg):
-            return .Failed(msg)
-        default: return .Passed
-        }
+        return validatePassword(confirmPassword)
 
     }
     
@@ -40,10 +36,11 @@ class BPSignInViewModel : BPLoginViewModel {
             inner in
             
             do {
+                try inner()
                 self.signInDelegate?.didSignIn(true, errorMsg:nil)
                 
             } catch let error as NSError {
-                self.signInDelegate?.didSignIn(false, errorMsg: error.description)
+                self.signInDelegate?.didSignIn(false, errorMsg: error.localizedDescription)
             }
             
         }

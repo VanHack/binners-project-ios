@@ -294,7 +294,7 @@ class BPLoginViewController: UIViewController {
                 sender.addSubview(self.activityIndicator)
                 self.activityIndicator.startAnimating()
             } catch let error as NSError {
-                BPMessageFactory.makeMessage(.ERROR, message: error.description).show()
+                BPMessageFactory.makeMessage(.ERROR, message: error.localizedDescription).show()
             }
         }
         
@@ -357,7 +357,7 @@ extension BPLoginViewController : UIAlertViewDelegate {
                     } catch let error as NSError {
                         BPMessageFactory.makeMessage(
                             .ALERT,
-                            message: error.description).show()
+                            message: error.localizedDescription).show()
                     }
                     
                 }

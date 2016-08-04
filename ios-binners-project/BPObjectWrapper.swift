@@ -20,7 +20,7 @@ class BPObjectWrapper {
             body = try pickup.mapToData()
             header = BPUser.sharedInstance().token
             
-        }else {
+        } else {
             throw Error.ErrorWithMsg(errorMsg: "Invalid object wrapping")
         }
     }

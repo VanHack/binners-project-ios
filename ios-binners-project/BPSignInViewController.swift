@@ -155,7 +155,7 @@ class BPSignInViewController: UIViewController {
                 self.activityIndicator.startAnimating()
                 sender.enabled = false
             } catch let error as NSError {
-                BPMessageFactory.makeMessage(.ALERT, message: error.description).show()
+                BPMessageFactory.makeMessage(.ALERT, message: error.localizedDescription).show()
             }
         }
     }

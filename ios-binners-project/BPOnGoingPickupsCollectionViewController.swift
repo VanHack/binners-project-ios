@@ -12,34 +12,29 @@ private let reuseIdentifier = "PickupCollectionViewCell"
 
 class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     
-    var activityIndicator:UIActivityIndicatorView!
     let refreshControl = UIRefreshControl()
     var labelEmptyCollectionView:UILabel!
-    var dataFetched = false
-    var user = BPUser.sharedInstance
-    var onGoingPickups:[BPPickup] = []
-
+    var pickupsViewModel = BPPickupsViewModel()
+    var cellExpanded: UICollectionViewCell?
+    let flowLayout =  UICollectionViewFlowLayout()
+    var cellIsExpanded = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-        activityIndicator = UIActivityIndicatorView(frame: CGRect(
-            x: 0,
-            y: 0,
-            width: 50,
-            height: 50))
-        activityIndicator.activityIndicatorViewStyle = .Gray
         configureEmptyLabel()
         configureRefreshControl()
+        self.pickupsViewModel.pickupsDelegate = self
         let cellNib = UINib(nibName: "BPPickupCollectionViewCell", bundle: nil)
         self.collectionView!.registerNib(cellNib, forCellWithReuseIdentifier: reuseIdentifier)
-
 
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if !dataFetched {
+        refreshControl.beginRefreshing()
+        if !pickupsViewModel.dataFetched {
             fetchPickups()
         }
     }
@@ -52,7 +47,7 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     }
 
     func showEmptyLabelIfValid() {
-        if onGoingPickups.count == 0 {
+        if pickupsViewModel.showEmptyLabel {
             self.collectionView?.backgroundView = labelEmptyCollectionView
         } else {
             self.collectionView?.backgroundView = nil
@@ -76,7 +71,6 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     func configureCollectionView() {
         self.collectionView?.backgroundColor = UIColor.binnersGray1()
         
-        let flowLayout =  UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(
             width: self.view.frame.width * 0.9 ,
             height: self.view.frame.height * 0.23)
@@ -103,24 +97,22 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        if !dataFetched {return 0}
-        return 1
+        return pickupsViewModel.numberOfSections
     }
 
 
     override func collectionView(
         collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
-
-        if !dataFetched {return 0}
-        return onGoingPickups.count
         
+        return pickupsViewModel.numberOfItemsInSection
     }
 
     override func collectionView(
         collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath)
         -> UICollectionViewCell {
+            
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             reuseIdentifier,
             forIndexPath: indexPath)
@@ -130,50 +122,53 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
             cell = BPOnGoingPickupCollectionViewCell()
         }
         
-        cell?.pickup = onGoingPickups[indexPath.row]
-    
+        cell?.pickup = pickupsViewModel.onGoingPickups[indexPath.row]
     
         return cell!
     }
     
-    func reloadCollectionViewData() {
-        self.dataFetched = true
-        self.collectionView?.reloadData()
+    override func collectionView(collectionView: UICollectionView,
+                                 didSelectItemAtIndexPath
+        indexPath: NSIndexPath) {
+        
+        cellExpanded = collectionView.cellForItemAtIndexPath(indexPath)
+        cellIsExpanded = true
+        
+        self.collectionView?.reloadItemsAtIndexPaths([indexPath])
+        
     }
     
-    func startActivityIndicator() {
-        self.view.addSubview(activityIndicator)
-        self.activityIndicator.center = self.view.center
-        activityIndicator.startAnimating()
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        if cellExpanded == collectionView.cellForItemAtIndexPath(indexPath) && cellIsExpanded {
+            cellIsExpanded = false
+            return CGSize(
+                width: self.view.frame.width * 0.9,
+                height: self.view.frame.height * 0.73)
+        } else  {
+            return CGSize(
+                width: self.view.frame.width * 0.9,
+                height: self.view.frame.height * 0.23)
+        }
+        
     }
+    
     
     func fetchPickups() {
         
-        startActivityIndicator()
         do {
-            try BPPickup.fetchOnGoingPickups() { inner in
-                do {
-                    let pickups = try inner()
-                    self.onGoingPickups = pickups
-                    self.showEmptyLabelIfValid()
-                    self.reloadCollectionViewData()
-                } catch {
-                    self.showCouldNotFetchPickupsError()
-                }
-                self.refreshControl.endRefreshing()
-                self.activityIndicator.removeFromSuperview()
-                
-            }
-        } catch {
-            showCouldNotFetchPickupsError()
+            try pickupsViewModel.fetchOnGoingPickups()
+        } catch let error as NSError {
+            showCouldNotFetchPickupsError(error.localizedDescription)
             refreshControl.endRefreshing()
-            self.activityIndicator.removeFromSuperview()
         }
     }
     
-    func showCouldNotFetchPickupsError() {
+    func showCouldNotFetchPickupsError(msg:String) {
         self.showEmptyLabelIfValid()
-        BPMessageFactory.makeMessage(.ERROR, message: "Could not fetch pickups").show()
+        BPMessageFactory.makeMessage(.ERROR, message: msg).show()
     }
 
 
@@ -186,5 +181,19 @@ extension BPOnGoingPickupsCollectionViewController : UICollectionViewDelegateFlo
         return 20
     }
     
+}
+
+extension BPOnGoingPickupsCollectionViewController : PickupsDelegate {
+    
+    func didFinishFetchingOnGoingPickups(success: Bool, errorMsg: String?) {
+        
+        if success {
+            self.showEmptyLabelIfValid()
+            self.collectionView?.reloadData()
+        } else {
+            self.showCouldNotFetchPickupsError(errorMsg!)
+        }
+        self.refreshControl.endRefreshing()
+    }
     
 }

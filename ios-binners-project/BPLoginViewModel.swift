@@ -110,7 +110,7 @@ class BPLoginViewModel {
                 self.loginDelegate?.didLogin(true,errorMsg: nil)
                 
             } catch let error as NSError {
-                self.loginDelegate?.didLogin(false,errorMsg:error.description)
+                self.loginDelegate?.didLogin(false,errorMsg:error.localizedDescription)
             }
             
         }
@@ -164,7 +164,7 @@ class BPLoginViewModel {
                 try inner()
                 self.passwordForgotDelegate?.didSendEmail(true, errorMsg: nil)
             } catch let error as NSError {
-                self.passwordForgotDelegate?.didSendEmail(false, errorMsg: error.description)
+                self.passwordForgotDelegate?.didSendEmail(false, errorMsg: error.localizedDescription)
             }
         }
         
@@ -182,10 +182,10 @@ extension BPLoginViewModel : GIDSignInDelegate {
             do {
                 try self.authenticateUserWithGoogleLogin(user)
             } catch let error as NSError {
-                self.loginDelegate?.didLogin(false,errorMsg:error.description)
+                self.loginDelegate?.didLogin(false,errorMsg:error.localizedDescription)
             }
         } else {
-            self.loginDelegate?.didLogin(false,errorMsg:error.description)
+            self.loginDelegate?.didLogin(false,errorMsg:error.localizedDescription)
         }
         
     }

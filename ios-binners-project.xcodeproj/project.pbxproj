@@ -57,6 +57,7 @@
 		2C73BFE41C975B64001FBFD4 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFE31C975B64001FBFD4 /* NSDate+Extension.swift */; };
 		2C73BFE61C98827F001FBFD4 /* BPMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFE51C98827F001FBFD4 /* BPMessageFactory.swift */; };
 		2C73BFE81C98994B001FBFD4 /* BPQuantityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73BFE71C98994B001FBFD4 /* BPQuantityViewController.swift */; };
+		2C83FDC81D3EF8D700DB1F86 /* BPPickupsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C83FDC71D3EF8D700DB1F86 /* BPPickupsViewModel.swift */; };
 		2C8A4A711C88C56E00D8E0DB /* BPMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */; };
 		2C921EEF1CA06DFA00B2FA46 /* BPDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C921EED1CA06DFA00B2FA46 /* BPDateTableViewCell.swift */; };
 		2C921EF01CA06DFA00B2FA46 /* BPDateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C921EEE1CA06DFA00B2FA46 /* BPDateTableViewCell.xib */; };
@@ -156,6 +157,7 @@
 		2C73BFE31C975B64001FBFD4 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		2C73BFE51C98827F001FBFD4 /* BPMessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMessageFactory.swift; sourceTree = "<group>"; };
 		2C73BFE71C98994B001FBFD4 /* BPQuantityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPQuantityViewController.swift; sourceTree = "<group>"; };
+		2C83FDC71D3EF8D700DB1F86 /* BPPickupsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupsViewModel.swift; sourceTree = "<group>"; };
 		2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMapViewController.swift; sourceTree = "<group>"; };
 		2C921EED1CA06DFA00B2FA46 /* BPDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPDateTableViewCell.swift; sourceTree = "<group>"; };
 		2C921EEE1CA06DFA00B2FA46 /* BPDateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPDateTableViewCell.xib; sourceTree = "<group>"; };
@@ -381,6 +383,14 @@
 			name = ViewModel;
 			sourceTree = "<group>";
 		};
+		2C83FDC61D3EF8B000DB1F86 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2C83FDC71D3EF8D700DB1F86 /* BPPickupsViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		2CBA2D2B1C8DFAC50048C850 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +461,7 @@
 		2CDDE5B11CDBB7D100B8A533 /* OnGoingPickups */ = {
 			isa = PBXGroup;
 			children = (
+				2C83FDC61D3EF8B000DB1F86 /* ViewModel */,
 				2CDDE5B51CDBB9D200B8A533 /* CollectionViewCell */,
 				2CDDE5B31CDBB8CC00B8A533 /* BPOnGoingPickupsCollectionViewController.swift */,
 			);
@@ -736,6 +747,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C83FDC81D3EF8D700DB1F86 /* BPPickupsViewModel.swift in Sources */,
 				2C6CA08A1D3844460030B7EA /* BPSignInViewController.swift in Sources */,
 				2C0BC2D61CE3793900663F9E /* BPObjectWrapper.swift in Sources */,
 				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,

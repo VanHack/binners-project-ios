@@ -52,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if BPUser.loadUser() != nil {
             // set root vc to main tab bar
+            print(BPUser.sharedInstance().token)
             self.window?.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier(mainTabBarVCID)
 
         } else {
