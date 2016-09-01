@@ -4,8 +4,7 @@
 //
 //  Created by Matheus Ruschel on 5/5/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
-//
-// swiftlint:disable trailing_whitespace
+
 import UIKit
 import GoogleMaps
 
@@ -34,21 +33,8 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
     }
     
     func setupLabels() {
-        labelPickupStatus.font = UIFont.boldSystemFontOfSize(labelPickupStatus.font.pointSize)
-        labelTime.font = UIFont.boldSystemFontOfSize(13)
-        labelBinnerName.font = UIFont.boldSystemFontOfSize(13)
-        labelDate.font = UIFont.boldSystemFontOfSize(13)
-        
-        labelTimeText.font = UIFont.boldSystemFontOfSize(12)
-        labelBinnerText.font = UIFont.boldSystemFontOfSize(12)
-        labelDateText.font = UIFont.boldSystemFontOfSize(12)
-        
         labelBinnerName.textColor = UIColor.binnersGreenColor()
-        labelBinnerText.textColor = UIColor.grayColor()
-        labelTimeText.textColor = UIColor.grayColor()
-        labelDateText.textColor = UIColor.grayColor()
         labelPickupStatus.textColor = UIColor.binnersGreenColor()
-
     }
     
     func setupCell() {

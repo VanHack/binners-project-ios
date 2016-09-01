@@ -4,20 +4,23 @@
 //
 //  Created by Matheus Ruschel on 5/5/16.
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
-//
-// swiftlint:disable trailing_whitespace
+
 import UIKit
 
-private let reuseIdentifier = "PickupCollectionViewCell"
+private let notExpandedReuseIdentifier = "PickupCollectionViewCell"
+private let expandedCellReuseIdentifier = "ExpandedCell"
+private let notExpandedCellNibIdentifier = "BPPickupCollectionViewCell"
+private let expandedCellNibIdentifier = "BPExpandedPickupCollectionViewCell"
 
 class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     
     let refreshControl = UIRefreshControl()
     var labelEmptyCollectionView:UILabel!
     var pickupsViewModel = BPPickupsViewModel()
-    var cellExpanded: UICollectionViewCell?
+    var indexForPreviousExtendedCell: Int?
+    var indexForCurrentExtendedCell: Int?
+    var expandCell = false
     let flowLayout =  UICollectionViewFlowLayout()
-    var cellIsExpanded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +28,6 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         configureEmptyLabel()
         configureRefreshControl()
         self.pickupsViewModel.pickupsDelegate = self
-        let cellNib = UINib(nibName: "BPPickupCollectionViewCell", bundle: nil)
-        self.collectionView!.registerNib(cellNib, forCellWithReuseIdentifier: reuseIdentifier)
 
     }
     
@@ -39,19 +40,13 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         }
     }
     
+    // MARK: Configurations
+    
     func configureRefreshControl() {
         refreshControl.backgroundColor = UIColor.binnersGray1()
         refreshControl.tintColor = UIColor.grayColor()
         refreshControl.addTarget(self, action: #selector(fetchPickups), forControlEvents: .ValueChanged)
         self.collectionView!.addSubview(refreshControl)
-    }
-
-    func showEmptyLabelIfValid() {
-        if pickupsViewModel.showEmptyLabel {
-            self.collectionView?.backgroundView = labelEmptyCollectionView
-        } else {
-            self.collectionView?.backgroundView = nil
-        }
     }
     
     func configureEmptyLabel() {
@@ -86,75 +81,26 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
             bottom: 0,
             right: 0)
         self.collectionView?.contentInset = edgeInsets
+        
+        var cellNib = UINib(nibName: notExpandedCellNibIdentifier, bundle: nil)
+        self.collectionView!.registerNib(cellNib, forCellWithReuseIdentifier: notExpandedReuseIdentifier)
+        cellNib = UINib(nibName: expandedCellNibIdentifier, bundle: nil)
+        self.collectionView!.registerNib(cellNib, forCellWithReuseIdentifier: expandedCellReuseIdentifier)
 
+    }
+    
+    func showEmptyLabelIfValid() {
+        if pickupsViewModel.showEmptyLabel {
+            self.collectionView?.backgroundView = labelEmptyCollectionView
+        } else {
+            self.collectionView?.backgroundView = nil
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return pickupsViewModel.numberOfSections
-    }
-
-
-    override func collectionView(
-        collectionView: UICollectionView,
-        numberOfItemsInSection section: Int) -> Int {
-        
-        return pickupsViewModel.numberOfItemsInSection
-    }
-
-    override func collectionView(
-        collectionView: UICollectionView,
-        cellForItemAtIndexPath indexPath: NSIndexPath)
-        -> UICollectionViewCell {
-            
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            reuseIdentifier,
-            forIndexPath: indexPath)
-            as? BPOnGoingPickupCollectionViewCell
-        
-        if cell == nil {
-            cell = BPOnGoingPickupCollectionViewCell()
-        }
-        
-        cell?.pickup = pickupsViewModel.onGoingPickups[indexPath.row]
-    
-        return cell!
-    }
-    
-    override func collectionView(collectionView: UICollectionView,
-                                 didSelectItemAtIndexPath
-        indexPath: NSIndexPath) {
-        
-        cellExpanded = collectionView.cellForItemAtIndexPath(indexPath)
-        cellIsExpanded = true
-        
-        self.collectionView?.reloadItemsAtIndexPaths([indexPath])
-        
-    }
-    
-    func collectionView(collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        if cellExpanded == collectionView.cellForItemAtIndexPath(indexPath) && cellIsExpanded {
-            cellIsExpanded = false
-            return CGSize(
-                width: self.view.frame.width * 0.9,
-                height: self.view.frame.height * 0.73)
-        } else  {
-            return CGSize(
-                width: self.view.frame.width * 0.9,
-                height: self.view.frame.height * 0.23)
-        }
-        
-    }
-    
     
     func fetchPickups() {
         
@@ -170,15 +116,90 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         self.showEmptyLabelIfValid()
         BPMessageFactory.makeMessage(.ERROR, message: msg).show()
     }
-
-
+    
 }
+
+// MARK: UICollectionViewDataSource && Delegate
+extension BPOnGoingPickupsCollectionViewController {
+    
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return pickupsViewModel.numberOfSections
+    }
+    
+    override func collectionView(
+        collectionView: UICollectionView,
+        numberOfItemsInSection section: Int) -> Int {
+        
+        return pickupsViewModel.numberOfItemsInSection
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath)
+        -> UICollectionViewCell {
+            
+            if (expandCell && indexPath.row == indexForCurrentExtendedCell) {
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier(expandedCellReuseIdentifier, forIndexPath: indexPath)
+                    as! BPExpandedPickupCollectionViewCell
+                cell.pickup = pickupsViewModel.onGoingPickups[indexPath.row]
+                return cell
+            }
+            
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(notExpandedReuseIdentifier, forIndexPath: indexPath)
+                as! BPOnGoingPickupCollectionViewCell
+            cell.pickup = pickupsViewModel.onGoingPickups[indexPath.row]
+            return cell
+            
+            
+    }
+    
+    
+    override func collectionView(collectionView: UICollectionView,
+                                 didSelectItemAtIndexPath
+        indexPath: NSIndexPath) {
+        
+        indexForPreviousExtendedCell = indexForCurrentExtendedCell
+        indexForCurrentExtendedCell = indexPath.row
+        expandCell = !expandCell
+        
+        if let indexPrevious = indexForPreviousExtendedCell {
+            
+            if indexPrevious != indexForCurrentExtendedCell { // if cell expanded before is different than current than we expand other cell
+                expandCell = true
+            }
+            
+            let indexPath = NSIndexPath(forRow: indexPrevious, inSection: 0)
+            self.collectionView?.reloadItemsAtIndexPaths([indexPath])
+        }
+        
+        let indexPath = NSIndexPath(forRow: indexForCurrentExtendedCell!, inSection: 0)
+        self.collectionView?.reloadItemsAtIndexPaths([indexPath])
+        
+    }
+}
+
 extension BPOnGoingPickupsCollectionViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                                minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 20
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        if (expandCell && indexPath.row == indexForCurrentExtendedCell) {
+            return CGSize(
+                width: self.view.frame.width * 0.9,
+                height: self.view.frame.height * 0.73)
+            
+        } else  {
+
+            return CGSize(
+                width: self.view.frame.width * 0.9,
+                height: self.view.frame.height * 0.23)
+        }
+        
     }
     
 }

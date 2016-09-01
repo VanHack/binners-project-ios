@@ -3,8 +3,22 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Oxygen-Bold.ttf">
+            <string>Oxygen-Bold</string>
+            <string>Oxygen-Bold</string>
+            <string>Oxygen-Bold</string>
+            <string>Oxygen-Bold</string>
+        </mutableArray>
+        <mutableArray key="Oxygen.ttf">
+            <string>Oxygen</string>
+            <string>Oxygen</string>
+            <string>Oxygen</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -15,47 +29,47 @@
                 <rect key="frame" x="0.0" y="0.0" width="492" height="215"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Binner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQz-qN-Xjd">
-                        <rect key="frame" x="381" y="132" width="41.5" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="402.5" y="133" width="33.5" height="25"/>
+                        <fontDescription key="fontDescription" name="Oxygen" family="Oxygen" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="756" text="bruno" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXV-R8-aCB">
-                        <rect key="frame" x="431" y="128" width="45" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="445.5" y="133.5" width="37.5" height="25"/>
+                        <fontDescription key="fontDescription" name="Oxygen-Bold" family="Oxygen" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQ7-FW-JeT">
-                        <rect key="frame" x="16" y="128" width="30" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="13" y="133" width="26" height="25"/>
+                        <fontDescription key="fontDescription" name="Oxygen" family="Oxygen" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5C-IS-V4o">
-                        <rect key="frame" x="54" y="128" width="44" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="14:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5C-IS-V4o">
+                        <rect key="frame" x="45" y="136.5" width="34.5" height="22"/>
+                        <fontDescription key="fontDescription" name="Oxygen-Bold" family="Oxygen" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2b-bl-xqR">
-                        <rect key="frame" x="8" y="102" width="476" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="8" y="102" width="476" height="23.5"/>
+                        <fontDescription key="fontDescription" name="Oxygen-Bold" family="Oxygen" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="id9-Ul-Tx6">
-                        <rect key="frame" x="205" y="128" width="82.5" height="21"/>
+                        <rect key="frame" x="212.5" y="133" width="67.5" height="25"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bX-iX-RZy">
-                                <rect key="frame" x="0.0" y="0.0" width="30.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="25.5" height="25"/>
+                                <fontDescription key="fontDescription" name="Oxygen" family="Oxygen" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2E-q6-17U">
-                                <rect key="frame" x="38" y="0.0" width="44" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="33.5" y="0.0" width="34" height="25"/>
+                                <fontDescription key="fontDescription" name="Oxygen-Bold" family="Oxygen" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -78,16 +92,18 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstAttribute="trailingMargin" secondItem="zXV-R8-aCB" secondAttribute="trailing" constant="1" id="4ZW-t0-ac1"/>
                 <constraint firstItem="iKB-JA-nHe" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.45" id="9l6-XA-J3r"/>
                 <constraint firstItem="id9-Ul-Tx6" firstAttribute="top" secondItem="H2b-bl-xqR" secondAttribute="bottom" constant="8" id="DPH-8I-Vev"/>
                 <constraint firstItem="aQz-qN-Xjd" firstAttribute="bottom" secondItem="y5C-IS-V4o" secondAttribute="bottom" id="EV9-eb-OsR"/>
+                <constraint firstItem="XQ7-FW-JeT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" multiplier="1.5" constant="1" id="FYb-w7-URr"/>
                 <constraint firstItem="y5C-IS-V4o" firstAttribute="bottom" secondItem="XQ7-FW-JeT" secondAttribute="bottom" id="GVz-fd-AUL"/>
                 <constraint firstItem="H2b-bl-xqR" firstAttribute="top" secondItem="iKB-JA-nHe" secondAttribute="bottom" constant="5" id="Pcr-yO-Ytr"/>
                 <constraint firstItem="zXV-R8-aCB" firstAttribute="top" secondItem="H2b-bl-xqR" secondAttribute="bottom" constant="8" id="UqX-H9-rYT"/>
                 <constraint firstItem="iKB-JA-nHe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="VwQ-zJ-fqU"/>
                 <constraint firstAttribute="trailing" secondItem="zXV-R8-aCB" secondAttribute="trailing" constant="16" id="WRk-pc-7Ic"/>
                 <constraint firstItem="H2b-bl-xqR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="XCu-Ka-cZb"/>
-                <constraint firstItem="zXV-R8-aCB" firstAttribute="leading" secondItem="aQz-qN-Xjd" secondAttribute="trailing" constant="8" id="ZBw-UO-Jc6"/>
+                <constraint firstItem="zXV-R8-aCB" firstAttribute="leading" secondItem="aQz-qN-Xjd" secondAttribute="trailing" multiplier="1.02" constant="1" id="ZBw-UO-Jc6"/>
                 <constraint firstItem="id9-Ul-Tx6" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="boT-y7-Lfu"/>
                 <constraint firstItem="aQz-qN-Xjd" firstAttribute="bottom" secondItem="zXV-R8-aCB" secondAttribute="bottom" id="dSU-pb-lCO"/>
                 <constraint firstItem="XQ7-FW-JeT" firstAttribute="top" secondItem="H2b-bl-xqR" secondAttribute="bottom" constant="8" id="ggK-Ap-wDx"/>
@@ -95,9 +111,15 @@
                 <constraint firstAttribute="trailing" secondItem="H2b-bl-xqR" secondAttribute="trailing" constant="8" id="qsN-Zq-iDK"/>
                 <constraint firstItem="XQ7-FW-JeT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="tJy-7n-zzQ"/>
                 <constraint firstAttribute="trailing" secondItem="iKB-JA-nHe" secondAttribute="trailing" id="x1U-6c-pW4"/>
-                <constraint firstItem="y5C-IS-V4o" firstAttribute="leading" secondItem="XQ7-FW-JeT" secondAttribute="trailing" constant="8" id="xSV-Xg-1PL"/>
+                <constraint firstItem="y5C-IS-V4o" firstAttribute="leading" secondItem="XQ7-FW-JeT" secondAttribute="trailing" multiplier="1.1" constant="1" id="xSV-Xg-1PL"/>
             </constraints>
             <size key="customSize" width="314" height="155"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="tJy-7n-zzQ"/>
+                    <exclude reference="WRk-pc-7Ic"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="labelBinnerName" destination="zXV-R8-aCB" id="wno-31-pHb"/>
                 <outlet property="labelBinnerText" destination="aQz-qN-Xjd" id="BRq-Ie-RVR"/>

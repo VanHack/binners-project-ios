@@ -4,10 +4,7 @@
 //
 //  Created by Matheus Ruschel on 2/21/16.
 //  Copyright © 2016 Matheus Ruschel. All rights reserved.
-//
-// swiftlint:disable trailing_whitespace
-// swiftlint:disable opening_brace
-// swiftlint:disable cyclomatic_complexity
+
 import UIKit
 
 class MRMonthView: UIView {

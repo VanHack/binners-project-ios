@@ -131,23 +131,23 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundMaskLogin" translatesAutoresizingMaskIntoConstraints="NO" id="N1W-Ba-WT7">
-                                        <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                     </imageView>
-                                    <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfe-93-yKo" customClass="BPDesignableView" customModule="ios_binners_project" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfe-93-yKo" customClass="BPBlurView" customModule="ios_binners_project" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C51-1s-XTy" userLabel="clearView">
-                                        <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoppingCartLogo" translatesAutoresizingMaskIntoConstraints="NO" id="unb-Gj-pY7">
-                                                <rect key="frame" x="260" y="58" width="80" height="87"/>
+                                                <rect key="frame" x="260" y="60" width="80" height="90"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="projectName" translatesAutoresizingMaskIntoConstraints="NO" id="GDa-Dr-VEh">
-                                                <rect key="frame" x="183" y="145" width="234" height="58"/>
+                                                <rect key="frame" x="183" y="150" width="234" height="60"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="projectVersion" translatesAutoresizingMaskIntoConstraints="NO" id="dSr-hn-hRV">
-                                                <rect key="frame" x="237" y="194" width="126" height="17"/>
+                                                <rect key="frame" x="237" y="200.5" width="126" height="18"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -165,9 +165,6 @@
                                             <constraint firstItem="unb-Gj-pY7" firstAttribute="height" secondItem="C51-1s-XTy" secondAttribute="height" multiplier="0.15" id="e0K-Vn-TH9"/>
                                             <constraint firstItem="unb-Gj-pY7" firstAttribute="centerX" secondItem="C51-1s-XTy" secondAttribute="centerX" id="tb2-yP-Yen"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="colorHex" value="0x1E9D33"/>
-                                        </userDefinedRuntimeAttributes>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="BRf-5J-rLU"/>
@@ -182,13 +179,13 @@
                                     <constraint firstItem="gfe-93-yKo" firstAttribute="leading" secondItem="beM-Yx-3nd" secondAttribute="leading" id="52c-Dw-Ppb"/>
                                     <constraint firstAttribute="trailing" secondItem="gfe-93-yKo" secondAttribute="trailing" id="9gC-WF-HzY"/>
                                     <constraint firstAttribute="bottom" secondItem="gfe-93-yKo" secondAttribute="bottom" id="FcM-Mo-hy0"/>
-                                    <constraint firstItem="gfe-93-yKo" firstAttribute="top" secondItem="beM-Yx-3nd" secondAttribute="top" constant="20" id="REA-ri-gY1"/>
+                                    <constraint firstItem="gfe-93-yKo" firstAttribute="top" secondItem="beM-Yx-3nd" secondAttribute="top" id="REA-ri-gY1"/>
                                     <constraint firstAttribute="bottom" secondItem="C51-1s-XTy" secondAttribute="bottom" id="WCD-Uy-H4x"/>
                                     <constraint firstItem="N1W-Ba-WT7" firstAttribute="leading" secondItem="beM-Yx-3nd" secondAttribute="leading" id="WOj-81-OWv"/>
                                     <constraint firstItem="N1W-Ba-WT7" firstAttribute="leading" secondItem="beM-Yx-3nd" secondAttribute="leading" id="dNg-id-DKQ"/>
-                                    <constraint firstItem="C51-1s-XTy" firstAttribute="top" secondItem="beM-Yx-3nd" secondAttribute="top" constant="20" id="faW-ea-OmX"/>
+                                    <constraint firstItem="C51-1s-XTy" firstAttribute="top" secondItem="beM-Yx-3nd" secondAttribute="top" id="faW-ea-OmX"/>
                                     <constraint firstAttribute="trailing" secondItem="C51-1s-XTy" secondAttribute="trailing" id="fyG-oB-Tjq"/>
-                                    <constraint firstItem="N1W-Ba-WT7" firstAttribute="top" secondItem="beM-Yx-3nd" secondAttribute="top" constant="20" id="gzH-WA-F0s"/>
+                                    <constraint firstItem="N1W-Ba-WT7" firstAttribute="top" secondItem="beM-Yx-3nd" secondAttribute="top" id="gzH-WA-F0s"/>
                                     <constraint firstAttribute="trailing" secondItem="gfe-93-yKo" secondAttribute="trailing" id="jEc-mr-q0a"/>
                                     <constraint firstAttribute="trailing" secondItem="N1W-Ba-WT7" secondAttribute="trailing" id="kmi-Ue-SvE"/>
                                     <constraint firstAttribute="trailing" secondItem="N1W-Ba-WT7" secondAttribute="trailing" id="lP5-Du-mzy"/>
@@ -241,7 +238,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundMaskLogin" translatesAutoresizingMaskIntoConstraints="NO" id="IrR-8U-OfJ">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </imageView>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tA-Rw-IZF" customClass="BPDesignableView" customModule="ios_binners_project" customModuleProvider="target">
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tA-Rw-IZF" customClass="BPBlurView" customModule="ios_binners_project" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -273,9 +270,6 @@
                                     <constraint firstItem="7jl-fN-MP4" firstAttribute="height" secondItem="edm-8a-2aE" secondAttribute="height" multiplier="0.15" id="tmk-qD-tcH"/>
                                     <constraint firstItem="r7W-um-clA" firstAttribute="centerX" secondItem="edm-8a-2aE" secondAttribute="centerX" id="yF8-Vg-2Gr"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="colorHex" value="0x1E9D33"/>
-                                </userDefinedRuntimeAttributes>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Xy6-sk-acq"/>

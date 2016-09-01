@@ -8,11 +8,15 @@
 
 import UIKit
 
-
 @IBDesignable
-class BPDesignableView: UIView {
+class BPBlurView: UIView {
     
-    let colorHex = 0x1E9D33
+    let colorHex:Int = 0x1E9D33
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+         self.backgroundColor = UIColor(netHex: colorHex)
+    }
     
     override func prepareForInterfaceBuilder() {
         self.backgroundColor = UIColor(netHex: colorHex)

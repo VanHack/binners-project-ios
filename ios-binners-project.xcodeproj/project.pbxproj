@@ -44,9 +44,11 @@
 		2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C35ADD81C5BD8B7007DA4B6 /* BPErrorManager.swift */; };
 		2C38B6AF1D0F211F00EB37DE /* BPRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38B6AE1D0F211F00EB37DE /* BPRating.swift */; };
 		2C38B6B11D108D4400EB37DE /* BPEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38B6B01D108D4400EB37DE /* BPEncoder.swift */; };
+		2C4FB04D1D6CC09000B01E8D /* BPExpandedPickupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FB04B1D6CC09000B01E8D /* BPExpandedPickupCollectionViewCell.swift */; };
+		2C4FB04E1D6CC09000B01E8D /* BPExpandedPickupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4FB04C1D6CC09000B01E8D /* BPExpandedPickupCollectionViewCell.xib */; };
 		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
 		2C64AA0D1D302FB800A29C1E /* BPLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C64AA0C1D302FB800A29C1E /* BPLoginViewModel.swift */; };
-		2C6CA07C1D359C8F0030B7EA /* BPDesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA07B1D359C8F0030B7EA /* BPDesignableView.swift */; };
+		2C6CA07C1D359C8F0030B7EA /* BPBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA07B1D359C8F0030B7EA /* BPBlurView.swift */; };
 		2C6CA07F1D36D59B0030B7EA /* BPHistoryViewControllerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA07E1D36D59B0030B7EA /* BPHistoryViewControllerCollectionViewController.swift */; };
 		2C6CA0871D36DC040030B7EA /* BPPickupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C6CA0851D36DC040030B7EA /* BPPickupCollectionViewCell.xib */; };
 		2C6CA08A1D3844460030B7EA /* BPSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA0891D3844460030B7EA /* BPSignInViewController.swift */; };
@@ -144,9 +146,11 @@
 		2C35ADD81C5BD8B7007DA4B6 /* BPErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPErrorManager.swift; sourceTree = "<group>"; };
 		2C38B6AE1D0F211F00EB37DE /* BPRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRating.swift; sourceTree = "<group>"; };
 		2C38B6B01D108D4400EB37DE /* BPEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPEncoder.swift; sourceTree = "<group>"; };
+		2C4FB04B1D6CC09000B01E8D /* BPExpandedPickupCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPExpandedPickupCollectionViewCell.swift; sourceTree = "<group>"; };
+		2C4FB04C1D6CC09000B01E8D /* BPExpandedPickupCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPExpandedPickupCollectionViewCell.xib; sourceTree = "<group>"; };
 		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
 		2C64AA0C1D302FB800A29C1E /* BPLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPLoginViewModel.swift; sourceTree = "<group>"; };
-		2C6CA07B1D359C8F0030B7EA /* BPDesignableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPDesignableView.swift; sourceTree = "<group>"; };
+		2C6CA07B1D359C8F0030B7EA /* BPBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPBlurView.swift; sourceTree = "<group>"; };
 		2C6CA07E1D36D59B0030B7EA /* BPHistoryViewControllerCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPHistoryViewControllerCollectionViewController.swift; sourceTree = "<group>"; };
 		2C6CA0851D36DC040030B7EA /* BPPickupCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPPickupCollectionViewCell.xib; sourceTree = "<group>"; };
 		2C6CA0891D3844460030B7EA /* BPSignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPSignInViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +249,8 @@
 		1B98D7E01C440AC200B6AA88 /* ios-binners-project */ = {
 			isa = PBXGroup;
 			children = (
+				2C4FB0481D6CBE2800B01E8D /* Cells */,
+				2C4FB0471D6CBE2200B01E8D /* ViewModel */,
 				2CBDC96C1C7777BA00EC0F99 /* Models */,
 				2C29FBFB1C611A5B00C70837 /* Util */,
 				2C5CCB451C494B5700E734CE /* ViewControllers */,
@@ -344,6 +350,44 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2C4FB0471D6CBE2200B01E8D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2C6CA08B1D384F680030B7EA /* SignIn */,
+				2C83FDC61D3EF8B000DB1F86 /* OnGoingPickups */,
+				2CC68E421D2D4233000C5F6E /* Login */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		2C4FB0481D6CBE2800B01E8D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2CDDE5B51CDBB9D200B8A533 /* OnGoingPickupsCells */,
+				2CBA2D2B1C8DFAC50048C850 /* SearchBarCells */,
+				2CBB5BEE1C99EFFD00D58BFF /* TableViewReviewCells */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		2C4FB0491D6CC05C00B01E8D /* NotExpanded */ = {
+			isa = PBXGroup;
+			children = (
+				2CDDE5B71CDBBA2800B8A533 /* BPOnGoingPickupCollectionViewCell.swift */,
+				2C6CA0851D36DC040030B7EA /* BPPickupCollectionViewCell.xib */,
+			);
+			name = NotExpanded;
+			sourceTree = "<group>";
+		};
+		2C4FB04A1D6CC06900B01E8D /* Expanded */ = {
+			isa = PBXGroup;
+			children = (
+				2C4FB04B1D6CC09000B01E8D /* BPExpandedPickupCollectionViewCell.swift */,
+				2C4FB04C1D6CC09000B01E8D /* BPExpandedPickupCollectionViewCell.xib */,
+			);
+			name = Expanded;
+			sourceTree = "<group>";
+		};
 		2C5CCB451C494B5700E734CE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,35 +413,34 @@
 		2C6CA0881D38441F0030B7EA /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				2C6CA08B1D384F680030B7EA /* ViewModel */,
 				2C6CA0891D3844460030B7EA /* BPSignInViewController.swift */,
 			);
 			name = SignIn;
 			sourceTree = "<group>";
 		};
-		2C6CA08B1D384F680030B7EA /* ViewModel */ = {
+		2C6CA08B1D384F680030B7EA /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
 				2C6CA08C1D384F810030B7EA /* BPSignInViewModel.swift */,
 			);
-			name = ViewModel;
+			name = SignIn;
 			sourceTree = "<group>";
 		};
-		2C83FDC61D3EF8B000DB1F86 /* ViewModel */ = {
+		2C83FDC61D3EF8B000DB1F86 /* OnGoingPickups */ = {
 			isa = PBXGroup;
 			children = (
 				2C83FDC71D3EF8D700DB1F86 /* BPPickupsViewModel.swift */,
 			);
-			name = ViewModel;
+			name = OnGoingPickups;
 			sourceTree = "<group>";
 		};
-		2CBA2D2B1C8DFAC50048C850 /* TableViewCell */ = {
+		2CBA2D2B1C8DFAC50048C850 /* SearchBarCells */ = {
 			isa = PBXGroup;
 			children = (
 				2CBA2D2C1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift */,
 				2CBA2D2D1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib */,
 			);
-			name = TableViewCell;
+			name = SearchBarCells;
 			sourceTree = "<group>";
 		};
 		2CBB5BEE1C99EFFD00D58BFF /* TableViewReviewCells */ = {
@@ -440,12 +483,12 @@
 			name = IntroductionToApp;
 			sourceTree = "<group>";
 		};
-		2CC68E421D2D4233000C5F6E /* ViewModel */ = {
+		2CC68E421D2D4233000C5F6E /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				2C64AA0C1D302FB800A29C1E /* BPLoginViewModel.swift */,
 			);
-			name = ViewModel;
+			name = Login;
 			sourceTree = "<group>";
 		};
 		2CDB357A1C937128005945B7 /* Calendar */ = {
@@ -461,8 +504,6 @@
 		2CDDE5B11CDBB7D100B8A533 /* OnGoingPickups */ = {
 			isa = PBXGroup;
 			children = (
-				2C83FDC61D3EF8B000DB1F86 /* ViewModel */,
-				2CDDE5B51CDBB9D200B8A533 /* CollectionViewCell */,
 				2CDDE5B31CDBB8CC00B8A533 /* BPOnGoingPickupsCollectionViewController.swift */,
 			);
 			name = OnGoingPickups;
@@ -471,28 +512,25 @@
 		2CDDE5B21CDBB7E400B8A533 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				2CC68E421D2D4233000C5F6E /* ViewModel */,
 				1B98D7E31C440AC200B6AA88 /* BPLoginViewController.swift */,
-				2C6CA07B1D359C8F0030B7EA /* BPDesignableView.swift */,
+				2C6CA07B1D359C8F0030B7EA /* BPBlurView.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
 		};
-		2CDDE5B51CDBB9D200B8A533 /* CollectionViewCell */ = {
+		2CDDE5B51CDBB9D200B8A533 /* OnGoingPickupsCells */ = {
 			isa = PBXGroup;
 			children = (
-				2CDDE5B71CDBBA2800B8A533 /* BPOnGoingPickupCollectionViewCell.swift */,
-				2C6CA0851D36DC040030B7EA /* BPPickupCollectionViewCell.xib */,
+				2C4FB04A1D6CC06900B01E8D /* Expanded */,
+				2C4FB0491D6CC05C00B01E8D /* NotExpanded */,
 			);
-			name = CollectionViewCell;
+			name = OnGoingPickupsCells;
 			sourceTree = "<group>";
 		};
 		2CF92CFC1C86157B00DDB676 /* Pickup */ = {
 			isa = PBXGroup;
 			children = (
-				2CBB5BEE1C99EFFD00D58BFF /* TableViewReviewCells */,
 				2CDB357A1C937128005945B7 /* Calendar */,
-				2CBA2D2B1C8DFAC50048C850 /* TableViewCell */,
 				2C022F931C87810E003E497F /* ClockView */,
 				2CF92CFD1C8615FD00DDB676 /* BPClockViewController.swift */,
 				2C8A4A701C88C56E00D8E0DB /* BPMapViewController.swift */,
@@ -529,7 +567,6 @@
 				5CB520D8A68F5846167AC75D /* Embed Pods Frameworks */,
 				F40C97D3C6D0F5A8CCBD6093 /* Copy Pods Resources */,
 				8C3CBFCC1C602C8500691C67 /* ShellScript */,
-				2CEE10B61D2EC1F0009F03D8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -629,6 +666,7 @@
 				2CBA2D2F1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib in Resources */,
 				1B98D7EC1C440AC200B6AA88 /* LaunchScreen.storyboard in Resources */,
 				2C29FC091C626D5800C70837 /* Oxygen-Italic.ttf in Resources */,
+				2C4FB04E1D6CC09000B01E8D /* BPExpandedPickupCollectionViewCell.xib in Resources */,
 				2C29FC061C626D5800C70837 /* Oxygen-BoldItalic.ttf in Resources */,
 				2C6CA0871D36DC040030B7EA /* BPPickupCollectionViewCell.xib in Resources */,
 				2CBB5BF21C99F02C00D58BFF /* BPMapTableViewCell.xib in Resources */,
@@ -669,19 +707,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2CEE10B61D2EC1F0009F03D8 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
-		};
 		5CB520D8A68F5846167AC75D /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -756,7 +781,7 @@
 				2C6CA08D1D384F810030B7EA /* BPSignInViewModel.swift in Sources */,
 				2C921EF81CA0888B00B2FA46 /* BPIntructionsTableViewCell.swift in Sources */,
 				2C73BFE61C98827F001FBFD4 /* BPMessageFactory.swift in Sources */,
-				2C6CA07C1D359C8F0030B7EA /* BPDesignableView.swift in Sources */,
+				2C6CA07C1D359C8F0030B7EA /* BPBlurView.swift in Sources */,
 				2C35ADD91C5BD8B7007DA4B6 /* BPErrorManager.swift in Sources */,
 				2CD25F011C63E5AB00ACDEA5 /* BPPageFourContentDescriptionLoginViewController.swift in Sources */,
 				2C64AA0D1D302FB800A29C1E /* BPLoginViewModel.swift in Sources */,
@@ -783,6 +808,7 @@
 				2CDB35801C9371D7005945B7 /* MRMonthCalendarDelegate.swift in Sources */,
 				2C29FBFA1C610D1700C70837 /* BPPageContainerLoginDescriptionViewController.swift in Sources */,
 				2C022F911C877F49003E497F /* KSMHand.m in Sources */,
+				2C4FB04D1D6CC09000B01E8D /* BPExpandedPickupCollectionViewCell.swift in Sources */,
 				2C29FBFD1C62663F00C70837 /* UIColor+Extension.swift in Sources */,
 				2CF92CFE1C8615FD00DDB676 /* BPClockViewController.swift in Sources */,
 				2C73BFDE1C971E33001FBFD4 /* BPPickup.swift in Sources */,

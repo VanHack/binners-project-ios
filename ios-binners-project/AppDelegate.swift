@@ -6,9 +6,6 @@
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 //
 
-// swiftlint:disable trailing_whitespace
-// swiftlint:disable line_length
-
 import UIKit
 import Fabric
 import TwitterKit
