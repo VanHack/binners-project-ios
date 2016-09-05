@@ -13,7 +13,7 @@ enum EditType {
     case ADDRESS, TIME, DATE, RATE
 }
 
-protocol EditPickupProtocol {
+protocol EditPickupProtocol: class {
     
     func didClickEditButton(forCell:BPExpandedPickupCollectionViewCell, edit:EditType)
 }
@@ -43,7 +43,7 @@ class BPExpandedPickupCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var labelBinnerName: UILabel!
     @IBOutlet weak var labelBottles: UILabel!
     let formatter:NSDateFormatter = NSDateFormatter()
-    var editDelegate: EditPickupProtocol?
+    weak var editDelegate: EditPickupProtocol?
     
     var editingIsEnabled = false {
         didSet {

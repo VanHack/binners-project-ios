@@ -11,6 +11,7 @@ private let notExpandedReuseIdentifier = "PickupCollectionViewCell"
 private let expandedCellReuseIdentifier = "ExpandedCell"
 private let notExpandedCellNibIdentifier = "BPPickupCollectionViewCell"
 private let expandedCellNibIdentifier = "BPExpandedPickupCollectionViewCell"
+private let ratePickupIdentifier = "ratePickupSegueIdentifier"
 
 class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     
@@ -117,6 +118,13 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         BPMessageFactory.makeMessage(.ERROR, message: msg).show()
     }
     
+    // MARK : Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
+    }
+    
 }
 
 // MARK: UICollectionViewDataSource && Delegate
@@ -140,6 +148,7 @@ extension BPOnGoingPickupsCollectionViewController {
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier(expandedCellReuseIdentifier, forIndexPath: indexPath)
                     as! BPExpandedPickupCollectionViewCell
                 cell.pickup = pickupsViewModel.onGoingPickups[indexPath.row]
+                cell.editDelegate = self
                 return cell
             }
             
@@ -217,4 +226,18 @@ extension BPOnGoingPickupsCollectionViewController : PickupsDelegate {
         self.refreshControl.endRefreshing()
     }
     
+}
+
+extension BPOnGoingPickupsCollectionViewController : EditPickupProtocol {
+    
+    func didClickEditButton(forCell: BPExpandedPickupCollectionViewCell, edit: EditType) {
+        
+        switch edit {
+        case .RATE:
+            self.performSegueWithIdentifier(ratePickupIdentifier, sender: self)
+        default:
+            break
+        }
+        
+    }
 }

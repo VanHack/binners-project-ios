@@ -12,6 +12,14 @@
         <mutableArray key="Oxygen-Bold.ttf">
             <string>Oxygen-Bold</string>
         </mutableArray>
+        <mutableArray key="Oxygen.ttf">
+            <string>Oxygen</string>
+            <string>Oxygen</string>
+            <string>Oxygen</string>
+            <string>Oxygen</string>
+            <string>Oxygen</string>
+            <string>Oxygen</string>
+        </mutableArray>
     </customFonts>
     <scenes>
         <!--Page View Controller-->
@@ -484,64 +492,128 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rate Pickup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jn3-CX-zZS">
-                                <rect key="frame" x="261" y="28" width="91" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate Pickup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jn3-CX-zZS">
+                                <rect key="frame" x="20" y="20" width="560" height="26.5"/>
                                 <fontDescription key="fontDescription" name="Oxygen-Bold" family="Oxygen" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBB-q5-IBt">
-                                <rect key="frame" x="37" y="84" width="38" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBB-q5-IBt">
+                                <rect key="frame" x="60" y="84" width="32.5" height="31"/>
+                                <fontDescription key="fontDescription" name="Oxygen" family="Oxygen" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdF-FS-D0p">
+                                <rect key="frame" x="60" y="115" width="32" height="31"/>
+                                <fontDescription key="fontDescription" name="Oxygen" family="Oxygen" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmB-Qb-XmB">
+                                <rect key="frame" x="97" y="84" width="483" height="31"/>
+                                <fontDescription key="fontDescription" name="Oxygen" family="Oxygen" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdF-FS-D0p">
-                                <rect key="frame" x="41" y="119" width="36" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDw-qN-vO5">
+                                <rect key="frame" x="97" y="115" width="483" height="31"/>
+                                <fontDescription key="fontDescription" name="Oxygen" family="Oxygen" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmB-Qb-XmB">
-                                <rect key="frame" x="98" y="84" width="38" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Binner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEb-rp-BUe">
+                                <rect key="frame" x="20" y="153" width="560" height="39.5"/>
+                                <fontDescription key="fontDescription" name="Oxygen" family="Oxygen" pointSize="19"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDw-qN-vO5">
-                                <rect key="frame" x="104" y="119" width="36" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please leave a comment about the service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BiO-tE-fFs">
+                                <rect key="frame" x="20" y="215" width="560" height="41.5"/>
+                                <fontDescription key="fontDescription" name="Oxygen" family="Oxygen" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Binner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEb-rp-BUe">
-                                <rect key="frame" x="277" y="161" width="50" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please leave a comment about the service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BiO-tE-fFs">
-                                <rect key="frame" x="139" y="231" width="322" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="85f-34-MsY">
-                                <rect key="frame" x="148" y="295" width="308" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWz-Ft-PcQ">
+                                <rect key="frame" x="60" y="511" width="480" height="60"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Submit your review"/>
+                                <connections>
+                                    <action selector="buttonSubmitReviewClicked:" destination="GTz-b8-uZg" eventType="touchUpInside" id="2W4-cT-qNs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbo-PU-8YV">
+                                <rect key="frame" x="20" y="15" width="32" height="32"/>
+                                <state key="normal" image="delete_sign"/>
+                                <connections>
+                                    <action selector="buttonCancelClicked:" destination="GTz-b8-uZg" eventType="touchUpInside" id="8CO-Fb-oIc"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Leave a comment" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="85f-34-MsY">
+                                <rect key="frame" x="60" y="282" width="480" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWz-Ft-PcQ">
-                                <rect key="frame" x="218" y="505" width="132" height="30"/>
-                                <state key="normal" title="Submit your review"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dDw-qN-vO5" firstAttribute="centerY" secondItem="wdF-FS-D0p" secondAttribute="centerY" id="2z6-pi-Tbh"/>
+                            <constraint firstItem="UWz-Ft-PcQ" firstAttribute="centerX" secondItem="cEP-eC-dby" secondAttribute="centerX" id="3d5-iL-RKf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="85f-34-MsY" secondAttribute="trailing" multiplier="1.05" id="99q-iV-git"/>
+                            <constraint firstItem="LEb-rp-BUe" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" id="A6X-t7-xl6"/>
+                            <constraint firstItem="UWz-Ft-PcQ" firstAttribute="width" secondItem="cEP-eC-dby" secondAttribute="width" multiplier="0.8" id="DTv-BJ-Slq"/>
+                            <constraint firstItem="cmB-Qb-XmB" firstAttribute="centerY" secondItem="cBB-q5-IBt" secondAttribute="centerY" id="Eor-pZ-dxb"/>
+                            <constraint firstItem="LEb-rp-BUe" firstAttribute="top" secondItem="wdF-FS-D0p" secondAttribute="bottom" multiplier="1.05" id="FNd-QT-qqg"/>
+                            <constraint firstItem="wdF-FS-D0p" firstAttribute="top" secondItem="cBB-q5-IBt" secondAttribute="bottom" id="Fe7-hN-QKh"/>
+                            <constraint firstItem="85f-34-MsY" firstAttribute="leading" secondItem="UWz-Ft-PcQ" secondAttribute="leading" id="Hji-8V-Vo1"/>
+                            <constraint firstItem="cBB-q5-IBt" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" multiplier="3" id="Iyg-Mw-lVi"/>
+                            <constraint firstItem="UWz-Ft-PcQ" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" multiplier="1.1" id="K4E-MS-Z0d"/>
+                            <constraint firstItem="7Ix-eW-ojm" firstAttribute="top" secondItem="UWz-Ft-PcQ" secondAttribute="bottom" multiplier="1.05" id="KXK-cy-2XG"/>
+                            <constraint firstItem="Jn3-CX-zZS" firstAttribute="top" secondItem="GMl-wJ-vvs" secondAttribute="bottom" id="M9b-GI-Qge"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BiO-tE-fFs" secondAttribute="trailing" id="Mid-cX-BtD"/>
+                            <constraint firstItem="Bbo-PU-8YV" firstAttribute="top" secondItem="cEP-eC-dby" secondAttribute="topMargin" constant="15" id="UFM-ZZ-GtT"/>
+                            <constraint firstItem="LEb-rp-BUe" firstAttribute="centerX" secondItem="cEP-eC-dby" secondAttribute="centerX" id="UO8-aD-57L"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jn3-CX-zZS" secondAttribute="trailing" id="UOs-Up-wQF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cmB-Qb-XmB" secondAttribute="trailing" id="VaW-Hx-ATQ"/>
+                            <constraint firstItem="85f-34-MsY" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" constant="268" id="WWw-ii-7VH"/>
+                            <constraint firstItem="85f-34-MsY" firstAttribute="trailing" secondItem="UWz-Ft-PcQ" secondAttribute="trailing" id="YBV-L3-5FC"/>
+                            <constraint firstItem="dDw-qN-vO5" firstAttribute="leading" secondItem="cmB-Qb-XmB" secondAttribute="leading" id="c3N-Ba-f7f"/>
+                            <constraint firstItem="BiO-tE-fFs" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" id="dZo-om-bCm"/>
+                            <constraint firstItem="Bbo-PU-8YV" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" id="eTW-Wf-Man"/>
+                            <constraint firstItem="BiO-tE-fFs" firstAttribute="top" secondItem="LEb-rp-BUe" secondAttribute="bottom" multiplier="1.12" id="euq-MO-DUP"/>
+                            <constraint firstItem="Jn3-CX-zZS" firstAttribute="centerX" secondItem="cEP-eC-dby" secondAttribute="centerX" id="fRr-BJ-Vj0"/>
+                            <constraint firstItem="cBB-q5-IBt" firstAttribute="top" secondItem="Jn3-CX-zZS" secondAttribute="bottom" constant="37.5" id="fcw-8R-JEt"/>
+                            <constraint firstItem="wdF-FS-D0p" firstAttribute="leading" secondItem="cBB-q5-IBt" secondAttribute="leading" id="gJ9-Xx-F1d"/>
+                            <constraint firstItem="cmB-Qb-XmB" firstAttribute="leading" secondItem="cBB-q5-IBt" secondAttribute="trailing" constant="5" id="iO1-Uy-XJv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dDw-qN-vO5" secondAttribute="trailing" id="kHS-Ae-69y"/>
+                            <constraint firstItem="85f-34-MsY" firstAttribute="top" secondItem="BiO-tE-fFs" secondAttribute="bottom" multiplier="1.1" id="mv8-VA-e37"/>
+                            <constraint firstItem="UWz-Ft-PcQ" firstAttribute="height" secondItem="cEP-eC-dby" secondAttribute="height" multiplier="0.1" id="nOE-tO-Cnd"/>
+                            <constraint firstItem="Jn3-CX-zZS" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" id="s3z-KL-K0V"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UWz-Ft-PcQ" secondAttribute="trailing" multiplier="1.1" id="tJn-6G-b5Y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LEb-rp-BUe" secondAttribute="trailing" id="w5I-zy-lVB"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="UO8-aD-57L"/>
+                                <exclude reference="99q-iV-git"/>
+                                <exclude reference="WWw-ii-7VH"/>
+                                <exclude reference="K4E-MS-Z0d"/>
+                                <exclude reference="tJn-6G-b5Y"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="binnerLabel" destination="LEb-rp-BUe" id="G79-ff-3zj"/>
+                        <outlet property="buttonCancel" destination="Bbo-PU-8YV" id="ncG-YF-Sby"/>
+                        <outlet property="buttonSubmitReview" destination="UWz-Ft-PcQ" id="5Bb-UM-aLh"/>
+                        <outlet property="labelDate" destination="dDw-qN-vO5" id="gFn-zN-Q8V"/>
+                        <outlet property="labelTime" destination="cmB-Qb-XmB" id="wFK-Ss-3ef"/>
+                        <outlet property="textFieldComment" destination="85f-34-MsY" id="oQo-to-kbC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPa-he-sw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2661" y="746"/>
+            <point key="canvasLocation" x="2653" y="742"/>
         </scene>
         <!--Item-->
         <scene sceneID="GOc-i9-Bqz">
@@ -1420,6 +1492,7 @@
         <image name="Vector Smart Object (2)" width="344" height="368"/>
         <image name="backgroundIntro" width="750" height="1334"/>
         <image name="backgroundMaskLogin" width="375" height="667"/>
+        <image name="delete_sign" width="32" height="32"/>
         <image name="history" width="50" height="50"/>
         <image name="megaphone" width="50" height="50"/>
         <image name="projectName" width="234" height="29"/>
