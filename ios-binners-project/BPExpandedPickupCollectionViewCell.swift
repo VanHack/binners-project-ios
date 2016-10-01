@@ -10,12 +10,12 @@ import UIKit
 import GoogleMaps
 
 enum EditType {
-    case ADDRESS, TIME, DATE, RATE
+    case address, time, date, rate
 }
 
 protocol EditPickupProtocol: class {
     
-    func didClickEditButton(forCell:BPExpandedPickupCollectionViewCell, edit:EditType)
+    func didClickEditButton(forCell cell:BPExpandedPickupCollectionViewCell, edit:EditType, pickup:BPPickup)
 }
 
 class BPExpandedPickupCollectionViewCell: UICollectionViewCell {
@@ -42,7 +42,6 @@ class BPExpandedPickupCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var labelBinnerName: UILabel!
     @IBOutlet weak var labelBottles: UILabel!
-    let formatter:NSDateFormatter = NSDateFormatter()
     weak var editDelegate: EditPickupProtocol?
     
     var editingIsEnabled = false {
@@ -71,12 +70,8 @@ class BPExpandedPickupCollectionViewCell: UICollectionViewCell {
     func setupCellForPickup(pickup:BPPickup) {
         labelStatus.text = pickup.status
         labelAddress.text = pickup.address.formattedAddress
-        formatter.timeStyle = .ShortStyle
-        formatter.dateStyle = .NoStyle
-        labelTime.text = formatter.stringFromDate(pickup.date)
-        formatter.timeStyle = .NoStyle
-        formatter.dateStyle = .ShortStyle
-        labelDate.text = formatter.stringFromDate(pickup.date)
+        labelTime.text = pickup.date.formattedDate(.time)
+        labelDate.text = pickup.date.formattedDate(.date)
         labelBinnerName.text = "Adam"
         let location = CLLocation(
             latitude: pickup.address.location.latitude,
@@ -124,11 +119,14 @@ class BPExpandedPickupCollectionViewCell: UICollectionViewCell {
     // MARK: Button Actions
     
     @IBAction func editAddressButtonClicked(sender: UIButton) {
+        editDelegate?.didClickEditButton(forCell: self, edit: .address,pickup: pickup)
     }
     
     @IBAction func editTimeButtonClicked(sender: UIButton) {
+        editDelegate?.didClickEditButton(forCell: self, edit: .time, pickup: pickup)
     }
     @IBAction func editDateButtonCliked(sender: UIButton) {
+        editDelegate?.didClickEditButton(forCell: self, edit: .date, pickup: pickup)
     }
     
     @IBAction func editButtonClicked(sender: UIButton) {
@@ -143,7 +141,7 @@ class BPExpandedPickupCollectionViewCell: UICollectionViewCell {
     
     @IBAction func ratingButtonClicked(sender: UIButton) {
         // rate pickup
-        self.editDelegate?.didClickEditButton(self, edit: .RATE)
+        self.editDelegate?.didClickEditButton(forCell: self, edit: .rate, pickup: pickup)
     }
     
     

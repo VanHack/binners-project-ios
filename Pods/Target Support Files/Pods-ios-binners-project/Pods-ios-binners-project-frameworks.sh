@@ -82,3 +82,22 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-ios-binners-project/AFNetworking.framework"
+  install_framework "Pods-ios-binners-project/Bolts.framework"
+  install_framework "Pods-ios-binners-project/FBSDKCoreKit.framework"
+  install_framework "Pods-ios-binners-project/FBSDKLoginKit.framework"
+  install_framework "Pods-ios-binners-project/FBSDKShareKit.framework"
+  install_framework "Pods-ios-binners-project/FlatUIKit.framework"
+  install_framework "Pods-ios-binners-project/HCSStarRatingView.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-ios-binners-project/AFNetworking.framework"
+  install_framework "Pods-ios-binners-project/Bolts.framework"
+  install_framework "Pods-ios-binners-project/FBSDKCoreKit.framework"
+  install_framework "Pods-ios-binners-project/FBSDKLoginKit.framework"
+  install_framework "Pods-ios-binners-project/FBSDKShareKit.framework"
+  install_framework "Pods-ios-binners-project/FlatUIKit.framework"
+  install_framework "Pods-ios-binners-project/HCSStarRatingView.framework"
+fi

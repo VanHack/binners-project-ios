@@ -7,6 +7,10 @@
 
 import Foundation
 import TwitterKit
+import AFNetworking
+import FBSDKLoginKit
+import FBSDKCoreKit
+import FBSDKShareKit
 
 class BPLoginManager
 {

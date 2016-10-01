@@ -122,7 +122,16 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        guard let pickupCell = sender as? BPExpandedPickupCollectionViewCell else {
+            return
+        }
         
+        if segue.identifier == ratePickupIdentifier {
+            
+            if let ratePickupVC = segue.destinationViewController as? BPRatePickupViewController {
+                ratePickupVC.pickup = pickupCell.pickup
+            }
+        }
     }
     
 }
@@ -230,11 +239,11 @@ extension BPOnGoingPickupsCollectionViewController : PickupsDelegate {
 
 extension BPOnGoingPickupsCollectionViewController : EditPickupProtocol {
     
-    func didClickEditButton(forCell: BPExpandedPickupCollectionViewCell, edit: EditType) {
+    func didClickEditButton(forCell cell: BPExpandedPickupCollectionViewCell, edit: EditType, pickup:BPPickup) {
         
         switch edit {
-        case .RATE:
-            self.performSegueWithIdentifier(ratePickupIdentifier, sender: self)
+        case .rate:
+            self.performSegueWithIdentifier(ratePickupIdentifier, sender: cell)
         default:
             break
         }

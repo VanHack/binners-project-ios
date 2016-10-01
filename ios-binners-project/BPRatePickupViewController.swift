@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HCSStarRatingView
 
 class BPRatePickupViewController: UIViewController {
     
@@ -15,22 +16,36 @@ class BPRatePickupViewController: UIViewController {
     @IBOutlet weak var binnerLabel: UILabel!
     @IBOutlet weak var textFieldComment: UITextField!
     @IBOutlet weak var buttonSubmitReview: UIButton!
-
     @IBOutlet weak var buttonCancel: UIButton!
+    @IBOutlet weak var starView: HCSStarRatingView!
+    @IBOutlet weak var labelPleaseComment: UILabel!
     
+    var pickup: BPPickup!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        binnerLabel.enabled = false
+        setupUI()
+        setupView(forPickup: pickup)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    func setupUI() {
+        labelPleaseComment.adjustsFontSizeToFitWidth = true
+    }
+    
+    func setupView(forPickup pickup: BPPickup) {
+        labelDate.text = pickup.date.formattedDate(.date)
+        labelTime.text = pickup.date.formattedDate(.time)
     }
     
     // MARK: Button Action
     
     @IBAction func buttonSubmitReviewClicked(sender: UIButton) {
+        // code for submiting review here
     }
 
     @IBAction func buttonCancelClicked(sender: UIButton) {

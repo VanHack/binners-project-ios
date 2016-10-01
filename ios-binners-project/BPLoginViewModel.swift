@@ -18,7 +18,7 @@ protocol ForgotPasswordDelegate {
 }
 
 
-class BPLoginViewModel {
+class BPLoginViewModel : NSObject {
     
     var loginManager = BPLoginManager.sharedInstance
     var loginDelegate:LoginDelegate?
@@ -29,7 +29,8 @@ class BPLoginViewModel {
         case Failed(String)
     }
     
-    init() {
+    override init() {
+        super.init()
         GIDSignIn.sharedInstance().delegate = self
     }
     

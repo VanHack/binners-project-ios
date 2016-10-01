@@ -13,3 +13,4 @@
 #import <AFNetworking/AFNetworking.h>
 #import "BEMAnalogClockView.h"
 #import <FlatUIKit/FlatUIKit.h>
+#import <HCSStarRatingView/HCSStarRatingView.h>

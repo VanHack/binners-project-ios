@@ -1,7 +1,7 @@
 # Uncomment this line to define a global platform for your project
 # platform :ios, '7.1'
 # Uncomment this line if you're using Swift
-# use_frameworks!
+use_frameworks!
 
 target 'ios-binners-project' do
 pod "FBSDKCoreKit";
@@ -13,6 +13,7 @@ pod 'Google/SignIn';
 pod 'AFNetworking', '~> 3.0'
 pod 'GoogleMaps'
 pod 'FlatUIKit'
+pod 'HCSStarRatingView', '~> 1.4.5'
 end
 
 target 'ios-binners-projectTests' do

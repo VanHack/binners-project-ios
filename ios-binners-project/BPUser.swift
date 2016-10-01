@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import AFNetworking
 
 private var _userInstance: BPUser!
 

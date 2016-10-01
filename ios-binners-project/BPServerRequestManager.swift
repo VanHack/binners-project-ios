@@ -6,6 +6,7 @@
 //  Copyright © 2016 Rodrigo de Souza Reis. All rights reserved.
 
 import Foundation
+import AFNetworking
 
 enum KindOfRequest {
     case POST

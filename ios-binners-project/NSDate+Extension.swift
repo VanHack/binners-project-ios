@@ -8,11 +8,30 @@
 
 import UIKit
 
+enum DateFormatType {
+    case time, date
+}
+
 extension NSDate {
     
     func printDate() -> String {
-     
         return "\(self.dayMonthYear().1)/\(self.dayMonthYear().0)/\(self.dayMonthYear().2)"
+    }
+    
+    func formattedDate(dateType: DateFormatType) -> String {
+        
+        let formatter = NSDateFormatter()
+        
+        switch dateType {
+        case .date:
+            formatter.timeStyle = .NoStyle
+            formatter.dateStyle = .ShortStyle
+        case .time:
+            formatter.timeStyle = .ShortStyle
+            formatter.dateStyle = .NoStyle
+        }
+        
+        return formatter.stringFromDate(self)
     }
     
     func printTime() -> String {
