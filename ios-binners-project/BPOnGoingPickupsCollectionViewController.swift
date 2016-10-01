@@ -11,7 +11,8 @@ private let notExpandedReuseIdentifier = "PickupCollectionViewCell"
 private let expandedCellReuseIdentifier = "ExpandedCell"
 private let notExpandedCellNibIdentifier = "BPPickupCollectionViewCell"
 private let expandedCellNibIdentifier = "BPExpandedPickupCollectionViewCell"
-private let ratePickupIdentifier = "ratePickupSegueIdentifier"
+private let ratePickupSegueIdentifier = "ratePickupSegueIdentifier"
+private let editPickupTimeSegueIdentifier = "editPickupTimeSegueIdentifier"
 
 class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     
@@ -126,10 +127,14 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
             return
         }
         
-        if segue.identifier == ratePickupIdentifier {
+        if segue.identifier == ratePickupSegueIdentifier {
             
             if let ratePickupVC = segue.destinationViewController as? BPRatePickupViewController {
                 ratePickupVC.pickup = pickupCell.pickup
+            }
+        } else if segue.identifier == editPickupTimeSegueIdentifier {
+            if let clockPickupVC = segue.destinationViewController as? BPClockViewController {
+                clockPickupVC.pickup = pickupCell.pickup
             }
         }
     }
@@ -243,7 +248,9 @@ extension BPOnGoingPickupsCollectionViewController : EditPickupProtocol {
         
         switch edit {
         case .rate:
-            self.performSegueWithIdentifier(ratePickupIdentifier, sender: cell)
+            self.performSegueWithIdentifier(ratePickupSegueIdentifier, sender: cell)
+        case .time:
+            self.performSegueWithIdentifier(editPickupTimeSegueIdentifier, sender: cell)
         default:
             break
         }
