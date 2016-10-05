@@ -28,13 +28,13 @@ struct BPParser {
         return token
     }
     
-    static func parseDateFromServer(dateString:String) throws -> NSDate {
+    static func parseDateFromServer(dateString:String) -> NSDate? {
         
         let dateFor: NSDateFormatter = NSDateFormatter()
         dateFor.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.'000Z'"
         
         guard let date = dateFor.dateFromString(dateString) else {
-            throw Error.ErrorWithMsg(errorMsg:"Invalid date format")
+            return nil
         }
         
        return date

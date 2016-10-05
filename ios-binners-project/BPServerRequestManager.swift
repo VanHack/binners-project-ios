@@ -15,6 +15,9 @@ enum KindOfRequest {
     case PUT
 }
 
+typealias OnSuccessBlock = (object:AnyObject) -> Void
+typealias OnFailureBlock = (ErrorType) -> Void
+
 class BPServerRequestManager {
     static let sharedInstance = BPServerRequestManager()
     
@@ -22,16 +25,16 @@ class BPServerRequestManager {
                  urlString: String,
                  manager: AFHTTPSessionManager,
                  param: AnyObject?,
-                 completion: ((inner: () throws -> AnyObject ) -> Void )? ) throws {
+                 onSuccess successBlock:OnSuccessBlock, onFailure failureBlock:OnFailureBlock?) throws {
         
-        guard let url = NSURL(string: urlString) else {
-            throw Error.ErrorWithMsg(errorMsg: "Error with URL")
+         guard let url = NSURL(string: urlString) else {
+            throw Error.InvalidURL
         }
         
         
         switch request {
-        case .GET:      executeGET(url, manager:manager, param:param, completion: completion)
-        case .POST:     executePOST(url, manager:manager, param:param, completion: completion)
+        case .GET:      executeGET(url, manager:manager, param:param, onSuccess:successBlock, onFailure:failureBlock)
+        case .POST:     executePOST(url, manager:manager, param:param, onSuccess:successBlock, onFailure:failureBlock)
         case .DELETE:   fatalError("Operation not supported")
         case .PUT:      fatalError("Operation not supported")
 
@@ -43,26 +46,19 @@ class BPServerRequestManager {
         url:NSURL,
         manager:AFHTTPSessionManager,
         param:AnyObject?,
-        completion:((inner:() throws -> AnyObject ) -> Void )?) {
+        onSuccess:OnSuccessBlock, onFailure:OnFailureBlock?) {
         
         manager.GET(url.absoluteString, parameters: param, progress: nil, success: {
             
             _,response in
             
-            completion?(inner: {return response! })
+            onSuccess(object: response!)
             
-            },failure: {
+        },failure: {
                 
-                (_, error) in
+            (_, error) in
                 
-                completion?(inner: {
-                
-                    let error = try BPErrorManager.processErrorFromServer(error)
-                    throw error
-                
-                })
-
-                
+            onFailure?(error)
                 
         })
     }
@@ -71,25 +67,17 @@ class BPServerRequestManager {
         url:NSURL,
         manager:AFHTTPSessionManager,
         param:AnyObject?,
-        completion:((inner:() throws -> AnyObject ) -> Void )?) {
+        onSuccess:OnSuccessBlock, onFailure:OnFailureBlock?) {
         
         manager.POST(url.absoluteString, parameters: param, progress: nil, success: {
             
             _,response in
+            onSuccess(object: response!)
             
-            completion?(inner: {return response!})
-            
-            
-            },failure: {
+        },failure: {
                 
-                (_, error) in
-                
-                completion?(inner: {
-                    let error = try BPErrorManager.processErrorFromServer(error)
-                    throw error
-                
-                })
-                
+            (_, error) in
+            onFailure?(error)
                 
         })
     }

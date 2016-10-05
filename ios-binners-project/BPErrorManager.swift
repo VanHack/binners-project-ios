@@ -41,5 +41,7 @@ enum Error : ErrorType
 {
     case ErrorWithMsg(errorMsg:String)
     case ErrorWithCode(errorCode:String, errorMsg:String)
+    case InvalidURL
+    case ErrorConvertingFile
 
 }

@@ -9,6 +9,8 @@ import UIKit
 import MapKit
 import AFNetworking
 
+
+
 final class BPPickup : AnyObject {
 
     var reedemable: BPReedemable!
@@ -29,11 +31,9 @@ final class BPPickup : AnyObject {
         self.address = address
     }
     
-    init() {
-        
-    }
+    init() {}
     
-    func postPickupInBackgroundWithBock(completion:(inner:()throws->AnyObject)->Void)throws {
+    func postPickup(onSuccess:OnSuccessBlock, onFailure:OnFailureBlock) throws {
         
         let wrapper = BPObjectWrapper()
         try wrapper.wrapObject(self)
@@ -48,12 +48,13 @@ final class BPPickup : AnyObject {
             urlString: url,
             manager: manager,
             param: wrapper.body,
-            completion: completion)
+            onSuccess: onSuccess,
+            onFailure: onFailure)
         
         
     }
     
-    class func fetchOnGoingPickups(completion:(inner:()throws->[BPPickup]) -> Void)throws {
+    class func fetchOnGoingPickups(onSuccess:( [BPPickup]) -> Void, onFailure: (ErrorType) -> Void ) throws {
         
         guard let token = BPUser.sharedInstance().token else {
             throw Error.ErrorWithMsg(errorMsg: "Invalid user token")
@@ -69,24 +70,20 @@ final class BPPickup : AnyObject {
             urlString: url,
             manager: manager,
             param: nil,
-            completion: {
+            onSuccess: {
                 
-            pickupsFunc in
+            object in
             
             completion( inner: {
                 
-                guard let pickupsListDictionary = try pickupsFunc() as? [[String:AnyObject]] else {
-                    throw Error.ErrorWithMsg(errorMsg: "Could not convert file from server")
+                guard let pickupsListDictionary = object as? [[String:AnyObject]] else {
+                    throw Error.ErrorConvertingFile
                 }
                 
                 let pickups = try pickupsListDictionary.map( {
-                    
                     dictionary -> BPPickup in
-                    
-                    return try BPPickup.mapToModel(dictionary)
-                
+                    return BPPickup.mapToModel(dictionary)
                 })
-                
                 return pickups
             })
             
@@ -132,7 +129,7 @@ final class BPPickup : AnyObject {
 
 extension BPPickup : Mappable {
     
-    static func mapToModel(object: AnyObject) throws -> BPPickup {
+    static func mapToModel(object: AnyObject) -> BPPickup? {
         
         
         guard
@@ -141,28 +138,30 @@ extension BPPickup : Mappable {
         let items = object["items"]!,
         let date = object["time"] as? String,
         let addressJson = object["address"]! else {
-                throw Error.ErrorWithMsg(errorMsg:"Failed trying to parse pickup")
+                return nil
         }
         guard
         let quantityDic = items[0],
         let quantity = quantityDic["quantity"] as? String else {
-                throw Error.ErrorWithMsg(errorMsg:"Failed trying to parse items")
+                return nil
         }
         guard
             let addressString = addressJson["street"] as? String else {
-                throw Error.ErrorWithMsg(errorMsg:"Failed trying to parse address")
+                return nil
         }
         
         guard
             let locationDic = addressJson["location"]! else {
-                throw Error.ErrorWithMsg(errorMsg:"Failed trying to parse address")
+                return nil
         }
         guard
             let coordinates = locationDic["coordinates"] as? [Double] else {
-                throw Error.ErrorWithMsg(errorMsg:"Failed trying to parse coordinates")
+                return nil
         }
         
-        let dateObject = try BPParser.parseDateFromServer(date)
+        guard let dateObject = BPParser.parseDateFromServer(date) else {
+            return nil
+        }
         
         let address = BPAddress()
         let reedemable = BPReedemable(quantity: quantity)
