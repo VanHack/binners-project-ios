@@ -11,6 +11,9 @@ import AFNetworking
 
 private var _userInstance: BPUser!
 
+typealias UserRegistrationSucessBlock = (BPUser) -> Void
+typealias UserRegistrationFailureBlock = (ErrorType) -> Void
+
 final class BPUser {
     
     var email:String!
@@ -49,17 +52,20 @@ final class BPUser {
         userDefaults.synchronize()
     }
     
-    class func setup(inner:()throws->AnyObject) throws -> BPUser {
-
-        let value = try inner()
-        let user = try mapToModel(value)
-        BPUser.setup(user.token,address: user.address, userID: user.id, email: user.email)
+    class func setup(object:AnyObject) -> BPUser? {
+        
+        guard let user = mapToModel(object) else {
+            return nil
+        }
+        
+        BPUser.setup(user.token, address: user.address, userID: user.id, email: user.email)
         BPUser.sharedInstance().saveUser()
         return BPUser.sharedInstance()
     
     }
     
-    class func setup(token:String,address:String?,userID:String,email:String) -> BPUser {
+    
+    class func setup( token:String, address:String?, userID:String, email:String) -> BPUser {
         dispatch_once(&setupOnceToken) {
             _userInstance = BPUser(token: token,email: email, id: userID, address: address)
         }
@@ -121,42 +127,43 @@ final class BPUser {
         let appDomain = NSBundle.mainBundle().bundleIdentifier
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
         NSUserDefaults.standardUserDefaults().synchronize()
-        
     }
     
-    class func recoverPassword(
-        email: String,
-        completion:(inner:() throws -> AnyObject) -> Void) throws {
+    class func recoverPassword(email: String,
+                               onSuccess:OnSuccessBlock,
+                               onFailure:OnFailureBlock?) throws {
         
         
         let finalUrl = BPURLBuilder.getPasswordResetURL(email)
         let manager = AFHTTPSessionManager()
+        
         try BPServerRequestManager.sharedInstance.execute(
             .GET,
             urlString: finalUrl,
             manager: manager,
-            param: nil,completion:completion)
+            param: nil,onSuccess:onSuccess,onFailure:onFailure)
     }
     
-    class func revalidateAuthToken(
-        token:String,
-        completion:(inner:() throws -> AnyObject) -> Void) throws {
-        
+    class func revalidateAuthToken( token:String,
+                                    onSuccess:OnSuccessBlock,
+                                    onFailure:OnFailureBlock?) throws {
         
         let finalUrl = BPURLBuilder.getAuthTokenRevalidateURL()
         let manager = AFHTTPSessionManager()
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
+        
         try BPServerRequestManager.sharedInstance.execute(
             .POST,
             urlString: finalUrl,
             manager: manager,
-            param: nil,completion:completion)
+            param: nil,onSuccess:onSuccess,onFailure: onFailure)
     }
     
     class func registerResident(
         email:String,
         password:String,
-        completion:(inner:() throws -> BPUser) -> Void) throws {
+        onSucess:UserRegistrationSucessBlock,
+        onFailure:UserRegistrationFailureBlock?) throws {
         
         let finalUrl = BPURLBuilder.getResidentUserRegistrationURL()
         let manager = AFHTTPSessionManager()
@@ -166,21 +173,18 @@ final class BPUser {
             .POST,
             urlString: finalUrl,
             manager: manager,
-            param: body) {
-            
-            inner in
-            
-            do {
-                let user = try BPUser.setup(inner)
-                completion( inner: { return user })
+            param: body,
+            onSuccess: {
+                object in
                 
-            } catch {
-                completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") })
-            }
-            
-        }
-
+                if let user = BPUser.setup(object) {
+                    onSucess(user)
+                } else {
+                    onFailure?(ErrorUser.ErrorCreatingUser)
+                }
         
+            }, onFailure: onFailure)
+
     }
     
 
@@ -188,22 +192,26 @@ final class BPUser {
 
 extension BPUser : Mappable {
     
-    
-    internal static func mapToModel(object: AnyObject) throws -> BPUser {
+    internal static func mapToModel(object: AnyObject) -> BPUser? {
         
-        let token = try BPParser.parseTokenFromServerResponse(object)
-        
-        guard
-        let user = object["user"],
-        let email = user!["email"] as? String,
-        let id = user!["_id"] as? String else {
-            throw Error.ErrorWithMsg(errorMsg: "Invalid data format")
-        }
+        do {
+            let token = try BPParser.parseTokenFromServerResponse(object)
             
-        return BPUser(token: token,
-                      email: email,
-                      id: id,
-                      address: nil)
+            guard
+                let user = object["user"],
+                let email = user!["email"] as? String,
+                let id = user!["_id"] as? String else {
+                    return nil
+            }
+            
+            return BPUser(token: token,
+                          email: email,
+                          id: id,
+                          address: nil)
+            
+        } catch _ {
+            return nil
+        }
 
     }
     

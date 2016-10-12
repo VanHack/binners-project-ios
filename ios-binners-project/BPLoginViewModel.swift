@@ -81,20 +81,20 @@ class BPLoginViewModel : NSObject {
     func loginResident(email:String, password: String) throws {
         
             
-        try loginManager.makeResidentStandardLogin(email, password: password, completion: {
+        try loginManager.makeResidentStandardLogin(
+            email,
+            password: password,
+            onSuccess: {
             
-            (inner:() throws -> BPUser) in
-            
-            do {
-                try inner()
+            user in
                 self.loginDelegate?.didLogin(true,errorMsg: nil)
                 
-            } catch _ {
+            },onFailure: {
+        
+            error in
                 self.loginDelegate?.didLogin(false,errorMsg:"Could not login")
-            }
-            
-            
-        })
+        
+            })
         
     }
     
@@ -102,72 +102,61 @@ class BPLoginViewModel : NSObject {
     func authenticateUserWithGoogleLogin(user: GIDGoogleUser!) throws {
         
         loginManager.authGoogle = user.authentication.accessToken
-        try loginManager.authenticateGoogleUserOnBinnersServer() {
-            
-            (inner:() throws -> BPUser) in
-            
-            do {
-                try inner()
-                self.loginDelegate?.didLogin(true,errorMsg: nil)
-                
-            } catch let error as NSError {
-                self.loginDelegate?.didLogin(false,errorMsg:error.localizedDescription)
-            }
-            
-        }
+        try loginManager.authenticateGoogleUserOnBinnersServer(
+            {
         
+            user in
+                self.loginDelegate?.didLogin(true,errorMsg: nil)
+        
+        },onFailure: {
+            error in
+                self.loginDelegate?.didLogin(false, errorMsg: (error as NSError).localizedDescription)
+        
+        })
     }
     
     func authenticateUserWithFacebook() {
         
-         loginManager.authenticateUserOnFBAndBinnersServer() {
-            
-            (inner:() throws -> BPUser) in
-            
-            do {
-                try inner()
-                self.loginDelegate?.didLogin(true,errorMsg: nil)
-                
-            } catch _ {
-                self.loginDelegate?.didLogin(false,errorMsg:"Could not login with google")
-            }
-            
-        }
+        loginManager.authenticateUserOnFBAndBinnersServer(
+            {
+            user in
+            self.loginDelegate?.didLogin(true,errorMsg: nil)
+        
+        
+        },onFailure: {
+            error in
+            self.loginDelegate?.didLogin(false,errorMsg:"Could not login with google")
+        })
         
     }
     
     
     func authenticateUserWithTwitter() {
         
-        loginManager.authenticateUserOnTwitterAndBinnersServer() {
-            
-            (inner:() throws -> BPUser) in
-            
-            do {
-                try inner()
-                self.loginDelegate?.didLogin(true,errorMsg: nil)
-                
-            } catch _ {
-                self.loginDelegate?.didLogin(false,errorMsg:"Could not login with google")
-            }
-            
-        }
+        loginManager.authenticateUserOnTwitterAndBinnersServer({
+            user in
+            self.loginDelegate?.didLogin(true,errorMsg: nil)
+        
+        },onFailure: {
+            error in
+            self.loginDelegate?.didLogin(false,errorMsg:"Could not login with google")
+        
+        })
         
     }
     
     func sendPasswordForgottenEmail(email: String) throws {
         
-        try BPUser.recoverPassword(email) {
-            
-            inner in
-            
-            do {
-                try inner()
-                self.passwordForgotDelegate?.didSendEmail(true, errorMsg: nil)
-            } catch let error as NSError {
-                self.passwordForgotDelegate?.didSendEmail(false, errorMsg: error.localizedDescription)
-            }
-        }
+        try BPUser.recoverPassword(
+            email,
+            onSuccess:{
+                object in
+                    self.passwordForgotDelegate?.didSendEmail(true, errorMsg: nil)
+            },onFailure:{
+                error in
+                    self.loginDelegate?.didLogin(false, errorMsg: (error as NSError).localizedDescription)
+        
+            })
         
     }
 

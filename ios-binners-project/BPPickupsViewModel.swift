@@ -34,19 +34,21 @@ class BPPickupsViewModel {
         
         dataFetched = false
         self.onGoingPickups.removeAll()
-        try BPPickup.fetchOnGoingPickups() { inner in
-            do {
-                let pickups = try inner()
-                self.dataFetched = true
-                self.onGoingPickups.appendContentsOf(pickups)
-                self.pickupsDelegate?.didFinishFetchingOnGoingPickups(true, errorMsg: nil)
-                
-            } catch {
-                self.pickupsDelegate?.didFinishFetchingOnGoingPickups(false,
-                    errorMsg: "Could not fetch pickups")
-            }
+        
+        try BPPickup.fetchOnGoingPickups({
             
-        }
+            pickups in
+            
+            self.dataFetched = true
+            self.onGoingPickups.appendContentsOf(pickups)
+            self.pickupsDelegate?.didFinishFetchingOnGoingPickups(true, errorMsg: nil)
+            
+        }, onFailure: {
+            _ in
+            self.pickupsDelegate?.didFinishFetchingOnGoingPickups(false,
+                errorMsg: "Could not fetch pickups")
+            
+        })
 
     }
     

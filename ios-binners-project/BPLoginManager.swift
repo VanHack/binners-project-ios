@@ -12,8 +12,9 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import FBSDKShareKit
 
-class BPLoginManager
-{
+typealias OnSucessUserBlock = (BPUser) -> Void
+
+class BPLoginManager {
     var authBinners:String?
     var authFacebook:String?
     var authGoogle:String?
@@ -25,7 +26,8 @@ class BPLoginManager
     
     
     func authenticateFBUserOnBinnersServer(
-        completion:(inner:() throws -> BPUser) -> Void) throws {
+        onSuccess:OnSucessUserBlock,
+        onFailure:OnFailureBlock?) throws {
         
         guard let auth = authFacebook else {
             
@@ -40,23 +42,23 @@ class BPLoginManager
             .GET,
             urlString: finalUrl,
             manager: manager,
-            param: nil) {
-                
-                inner in
-                
-                do {
-                    let user = try BPUser.setup(inner)
-                    completion( inner: { return user })
-                    
-                } catch {
-                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") })
+            param: nil,
+            onSuccess: {
+        
+                object in
+        
+                if let user = BPUser.setup(object) {
+                    onSuccess(user)
                 }
                 
-        }
+            },onFailure: {
+                _ in
+                onFailure?(Error.ErrorWithMsg(errorMsg: "Failed to initialize user"))
+            })
     }
     
     func authenticateUserOnFBAndBinnersServer(
-        completion:(() throws -> BPUser) -> Void) {
+        onSuccess:OnSucessUserBlock,onFailure:OnFailureBlock?) {
         
         let fbloginManager = FBSDKLoginManager()
         fbloginManager.logInWithReadPermissions(
@@ -76,15 +78,14 @@ class BPLoginManager
                         self.authFacebook = FBSDKAccessToken.currentAccessToken().tokenString
                         
                         do {
-                            try self.authenticateFBUserOnBinnersServer(completion)
+                            try self.authenticateFBUserOnBinnersServer(onSuccess,onFailure: onFailure)
                             
                         } catch let error {
-                            completion({ throw error })
+                            onFailure?(error)
                         }
                         
                     } else {
-                        //Handle error
-                        completion({ throw error })
+                        onFailure?(error)
                     }
                 }
         })
@@ -99,10 +100,9 @@ class BPLoginManager
     }
     
     func authenticateGoogleUserOnBinnersServer(
-        completion:(inner:() throws -> BPUser) -> Void) throws {
+        onSuccess:OnSucessUserBlock,onFailure:OnFailureBlock?) throws {
         
         guard let auth = authGoogle else {
-            
             throw Error.ErrorWithMsg(errorMsg: "Google auth can't be nil")
         }
         
@@ -114,23 +114,24 @@ class BPLoginManager
             .GET,
             urlString: finalUrl,
             manager: manager,
-            param: nil) {
-                
-                inner in
-                
-                do {
-                    let user = try BPUser.setup(inner)
-                    completion( inner: { return user })
-                    
-                } catch {
-                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") })
+            param: nil,
+            onSuccess: {
+    
+                object in
+    
+                if let user = BPUser.setup(object) {
+                    onSuccess(user)
                 }
-                
-        }
+    
+            }, onFailure: {
+                _ in
+                onFailure?(Error.ErrorWithMsg(errorMsg: "Failed to initialize user"))
         
+            })
+                
     }
     
-    func authenticateUserOnTwitterAndBinnersServer(completion:(inner:() throws -> BPUser) -> Void) {
+    func authenticateUserOnTwitterAndBinnersServer(onSuccess:OnSucessUserBlock,onFailure:OnFailureBlock?) {
         
         Twitter.sharedInstance().logInWithCompletion({
             session, error in
@@ -140,11 +141,10 @@ class BPLoginManager
                 self.authSecretTwitter = unwrappedSession.authTokenSecret
                 
                  do {
-                 
-                    try self.authenticateTwitterUserOnBinnersServer(completion)
+                    try self.authenticateTwitterUserOnBinnersServer(onSuccess,onFailure: onFailure)
                 
                  } catch {
-                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to login on twitter") })
+                    onFailure?(Error.ErrorWithMsg(errorMsg: "Failed to login on twitter"))
                 }
             }
         })
@@ -152,7 +152,7 @@ class BPLoginManager
         
     }
     
-    func authenticateTwitterUserOnBinnersServer(completion:(inner:() throws -> BPUser) -> Void) throws {
+    func authenticateTwitterUserOnBinnersServer(onSuccess:OnSucessUserBlock,onFailure:OnFailureBlock?) throws {
         
         guard let auth = authTwitter else {
             throw Error.ErrorWithMsg(errorMsg: "Twitter auth can't be nil")
@@ -170,20 +170,20 @@ class BPLoginManager
             .GET,
             urlString: finalUrl,
             manager: manager,
-            param: nil) {
+            param: nil,
+            onSuccess: {
+            
+            object in
+            
+            if let user = BPUser.setup(object) {
+            onSuccess(user)
+            }
+            
+            }, onFailure: {
+                _ in
+                onFailure?(Error.ErrorWithMsg(errorMsg: "Failed to initialize user"))
                 
-                inner in
-                
-                do {
-                    let user = try BPUser.setup(inner)
-                    completion( inner: { return user })
-                    
-                } catch {
-                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") })
-                }
-                
-        }
-
+        })
         
         print("loggin out for test purposes")
         
@@ -196,9 +196,8 @@ class BPLoginManager
     func makeResidentStandardLogin(
         email:String,
         password:String,
-        completion:(
-        inner:() throws -> BPUser) -> Void) throws {
-        
+        onSuccess:OnSucessUserBlock,
+        onFailure:OnFailureBlock?) throws {
         
         let finalUrl = BPURLBuilder.getStandardUserLoginURL()
         let manager = AFHTTPSessionManager()
@@ -208,20 +207,21 @@ class BPLoginManager
             .POST,
             urlString: finalUrl,
             manager: manager,
-            param: param) {
-        
-                inner in
+            param: param,
+            onSuccess: {
                 
-                do {
-                    let user = try BPUser.setup(inner)
-                    completion( inner: { return user })
-                    
-                } catch {
-                    completion( inner: { throw Error.ErrorWithMsg(errorMsg: "Failed to initialize user") })
+                object in
+                
+                if let user = BPUser.setup(object) {
+                    onSuccess(user)
                 }
-        
-        }
+                
+            }, onFailure: {
+                _ in
+                onFailure?(Error.ErrorWithMsg(errorMsg: "Failed to initialize user"))
+                
+        })
     }
     
-    
+
 }

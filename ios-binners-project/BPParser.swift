@@ -15,7 +15,7 @@ protocol Wrappable {
 }
 protocol Mappable {
     
-    static func mapToModel(object:AnyObject) throws -> Self
+    static func mapToModel(object:AnyObject) throws -> Self?
 }
 
 struct BPParser {
@@ -23,7 +23,7 @@ struct BPParser {
     static func parseTokenFromServerResponse(object:AnyObject) throws -> String {
         
         guard let token = object["token"] as? String else {
-            throw Error.ErrorWithMsg(errorMsg: "Invalid data format")
+            throw ErrorServer.CouldNotGetToken
         }
         return token
     }

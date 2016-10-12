@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 import AFNetworking
 
+typealias PickupSucessBlock = ([BPPickup] -> Void)
 
 
 final class BPPickup : AnyObject {
@@ -33,7 +34,7 @@ final class BPPickup : AnyObject {
     
     init() {}
     
-    func postPickup(onSuccess:OnSuccessBlock, onFailure:OnFailureBlock) throws {
+    func postPickup(onSuccess:OnSuccessBlock, onFailure:OnFailureBlock?) throws {
         
         let wrapper = BPObjectWrapper()
         try wrapper.wrapObject(self)
@@ -54,11 +55,10 @@ final class BPPickup : AnyObject {
         
     }
     
-    class func fetchOnGoingPickups(onSuccess:( [BPPickup]) -> Void, onFailure: (ErrorType) -> Void ) throws {
+    class func fetchOnGoingPickups(onSuccess:PickupSucessBlock, onFailure:OnFailureBlock? ) throws {
         
         guard let token = BPUser.sharedInstance().token else {
-            throw Error.ErrorWithMsg(errorMsg: "Invalid user token")
-            
+            throw Error.InvalidToken
         }
         
         let url = BPURLBuilder.getGetPickupsURL()
@@ -73,28 +73,30 @@ final class BPPickup : AnyObject {
             onSuccess: {
                 
             object in
-            
-            completion( inner: {
                 
                 guard let pickupsListDictionary = object as? [[String:AnyObject]] else {
-                    throw Error.ErrorConvertingFile
+                     onFailure?(Error.ErrorConvertingFile)
+                    return
                 }
                 
-                let pickups = try pickupsListDictionary.map( {
-                    dictionary -> BPPickup in
-                    return BPPickup.mapToModel(dictionary)
+                var pickups:[BPPickup] = []
+                
+                pickupsListDictionary.forEach( {
+                    dictionary in
+                    if let pickup = BPPickup.mapToModel(dictionary) {
+                        pickups.append(pickup)
+                    }
                 })
-                return pickups
-            })
+                
+                onSuccess(pickups)
             
-            
-        })
+        },onFailure:onFailure)
         
         
     }
 
     
-    func postPickupPictureForPickupId(completion:(inner:() throws -> AnyObject?) ->Void)throws {
+    func postPickupPictureForPickupId(onSuccess:OnSuccessBlock, onFailure:OnFailureBlock?) {
         
         if (reedemable.picture != nil) {
             
@@ -108,18 +110,15 @@ final class BPPickup : AnyObject {
                 
                 }, success: {sessionDataTask,object in
                     
-                    completion(inner: {return object!})
+                    onSuccess(object!)
                     
-                }, failure: {sessionDataTask,error in
+                }, failure: {sessionDataTask, error in
                     
-                    completion(inner: {
-                        throw try BPErrorManager.processErrorFromServer(error)
-                    })
-                    
+                    onFailure?(BPErrorManager.processErrorFromServer(error))
             })
             
         } else {
-            completion(inner: {return nil})
+            onFailure?(ErrorPickup.PictureCantBeNil)
         }
         
 
@@ -131,17 +130,16 @@ extension BPPickup : Mappable {
     
     static func mapToModel(object: AnyObject) -> BPPickup? {
         
-        
         guard
         let id = object["_id"] as? String,
         let instructions = object["instructions"] as? String,
-        let items = object["items"]!,
+        let items = object["items"]! as? NSArray,
         let date = object["time"] as? String,
         let addressJson = object["address"]! else {
                 return nil
         }
         guard
-        let quantityDic = items[0],
+        let quantityDic = items[0] as? NSDictionary,
         let quantity = quantityDic["quantity"] as? String else {
                 return nil
         }

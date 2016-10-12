@@ -15,7 +15,7 @@ enum KindOfRequest {
     case PUT
 }
 
-typealias OnSuccessBlock = (object:AnyObject) -> Void
+typealias OnSuccessBlock = (AnyObject) -> Void
 typealias OnFailureBlock = (ErrorType) -> Void
 
 class BPServerRequestManager {
@@ -30,7 +30,6 @@ class BPServerRequestManager {
          guard let url = NSURL(string: urlString) else {
             throw Error.InvalidURL
         }
-        
         
         switch request {
         case .GET:      executeGET(url, manager:manager, param:param, onSuccess:successBlock, onFailure:failureBlock)
@@ -52,7 +51,7 @@ class BPServerRequestManager {
             
             _,response in
             
-            onSuccess(object: response!)
+            onSuccess(response!)
             
         },failure: {
                 
@@ -72,7 +71,7 @@ class BPServerRequestManager {
         manager.POST(url.absoluteString, parameters: param, progress: nil, success: {
             
             _,response in
-            onSuccess(object: response!)
+            onSuccess(response!)
             
         },failure: {
                 

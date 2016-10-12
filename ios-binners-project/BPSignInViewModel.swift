@@ -31,20 +31,21 @@ class BPSignInViewModel : BPLoginViewModel {
     
     func signInUser(email: String, password: String) throws {
         
-        try BPUser.registerResident(email, password: password) {
-            
-            inner in
-            
-            do {
-                try inner()
-                self.signInDelegate?.didSignIn(true, errorMsg:nil)
-                
-            } catch let error as NSError {
-                self.signInDelegate?.didSignIn(false, errorMsg: error.localizedDescription)
-            }
-            
-        }
+        try BPUser.registerResident(
+            email,
+            password: password,
+            onSucess: {
         
+                user in
+                self.signInDelegate?.didSignIn(true, errorMsg:nil)
+        
+        
+            },onFailure: {
+                error in
+                
+                self.signInDelegate?.didSignIn(false, errorMsg: (error as NSError).localizedDescription)
+        
+            })
     }
     
 }
