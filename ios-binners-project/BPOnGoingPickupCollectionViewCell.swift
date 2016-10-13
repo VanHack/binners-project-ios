@@ -38,7 +38,7 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
     }
     
     func setupCell() {
-        labelPickupStatus.text = pickup.status
+        labelPickupStatus.text = pickup.status.statusString()
         formatter.timeStyle = .NoStyle
         formatter.dateStyle = .ShortStyle
         labelDate.text = formatter.stringFromDate(pickup.date)

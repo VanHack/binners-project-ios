@@ -68,7 +68,7 @@ class BPExpandedPickupCollectionViewCell: UICollectionViewCell {
     // MARK: Setup
     
     func setupCellForPickup(pickup:BPPickup) {
-        labelStatus.text = pickup.status
+        labelStatus.text = pickup.status.statusString()
         labelAddress.text = pickup.address.formattedAddress
         labelTime.text = pickup.date.formattedDate(.time)
         labelDate.text = pickup.date.formattedDate(.date)

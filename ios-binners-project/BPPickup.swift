@@ -11,7 +11,6 @@ import AFNetworking
 
 typealias PickupSucessBlock = ([BPPickup] -> Void)
 
-
 final class BPPickup : AnyObject {
 
     var reedemable: BPReedemable!
@@ -21,15 +20,21 @@ final class BPPickup : AnyObject {
     var id: String!
     var rating: BPRating?
     var binnerID: String?
-    var status: String? = "Ongoing"
+    var status: PickupStatus = .OnGoing
     
-    init(id: String?, instructions: String, date: NSDate, reedemable: BPReedemable, address: BPAddress) {
+    init(id: String?,
+         instructions: String,
+         date: NSDate,
+         reedemable: BPReedemable,
+         address: BPAddress,
+         status:PickupStatus ) {
         
         self.id = id
         self.instructions = instructions
         self.date = date
         self.reedemable = reedemable
         self.address = address
+        self.status = status
     }
     
     init() {}
@@ -61,7 +66,7 @@ final class BPPickup : AnyObject {
             throw Error.InvalidToken
         }
         
-        let url = BPURLBuilder.getGetPickupsURL()
+        let url = BPURLBuilder.getOnGoingPickupsURL()
         let manager = AFHTTPSessionManager()
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
         
@@ -135,7 +140,8 @@ extension BPPickup : Mappable {
         let instructions = object["instructions"] as? String,
         let items = object["items"]! as? NSArray,
         let date = object["time"] as? String,
-        let addressJson = object["address"]! else {
+        let addressJson = object["address"]!,
+        let status = object["status"] as? String else {
                 return nil
         }
         guard
@@ -166,12 +172,16 @@ extension BPPickup : Mappable {
         address.formattedAddress = addressString
         address.location = CLLocationCoordinate2D(latitude: coordinates[0], longitude: coordinates[1])
         
+        guard let pickupStatus = PickupStatus(rawValue: status) else {
+            return nil
+        }
+        
         return BPPickup(id: id,
                         instructions: instructions,
                         date: dateObject,
                         reedemable: reedemable,
-                        address: address)
-        
+                        address: address,
+                        status: pickupStatus)
     }
 
 }
