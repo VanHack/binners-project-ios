@@ -14,6 +14,15 @@ enum DateFormatType {
 
 extension NSDate {
     
+    static func currentHour() -> Int {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        let dateNow = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let comp = calendar.components([.Hour], fromDate: dateNow)
+        return comp.hour
+    }
+    
     func printDate() -> String {
         return "\(self.dayMonthYear().1)/\(self.dayMonthYear().0)/\(self.dayMonthYear().2)"
     }

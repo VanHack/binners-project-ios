@@ -122,20 +122,21 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     // MARK : Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         guard let pickupCell = sender as? BPExpandedPickupCollectionViewCell else {
             return
         }
-        
         if segue.identifier == ratePickupSegueIdentifier {
-            
             if let ratePickupVC = segue.destinationViewController as? BPRatePickupViewController {
                 ratePickupVC.pickup = pickupCell.pickup
             }
-        } else if segue.identifier == editPickupTimeSegueIdentifier {
-            if let clockPickupVC = segue.destinationViewController as? BPClockViewController {
-                clockPickupVC.pickup = pickupCell.pickup
-            }
+        }
+    }
+    
+    func navigateToTimeVC(fromCell cell:BPExpandedPickupCollectionViewCell) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let timeVC = storyboard.instantiateViewControllerWithIdentifier("TimeVc") as? BPClockViewController {
+            timeVC.pickup = cell.pickup
+            presentViewController(BPNavigationController(rootViewController: timeVC), animated: true, completion: nil)
         }
     }
     
@@ -170,8 +171,6 @@ extension BPOnGoingPickupsCollectionViewController {
                 as! BPOnGoingPickupCollectionViewCell
             cell.pickup = pickupsViewModel.onGoingPickups[indexPath.row]
             return cell
-            
-            
     }
     
     
@@ -222,7 +221,6 @@ extension BPOnGoingPickupsCollectionViewController : UICollectionViewDelegateFlo
                 width: self.view.frame.width * 0.9,
                 height: self.view.frame.height * 0.23)
         }
-        
     }
     
 }
@@ -239,7 +237,6 @@ extension BPOnGoingPickupsCollectionViewController : PickupsDelegate {
         }
         self.refreshControl.endRefreshing()
     }
-    
 }
 
 extension BPOnGoingPickupsCollectionViewController : EditPickupProtocol {
@@ -250,7 +247,7 @@ extension BPOnGoingPickupsCollectionViewController : EditPickupProtocol {
         case .rate:
             self.performSegueWithIdentifier(ratePickupSegueIdentifier, sender: cell)
         case .time:
-            self.performSegueWithIdentifier(editPickupTimeSegueIdentifier, sender: cell)
+            navigateToTimeVC(fromCell: cell)
         default:
             break
         }

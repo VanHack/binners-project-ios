@@ -27,7 +27,7 @@ class BPMainTabBarController: UITabBarController {
         tabItem0.title = "History"
         tabItem1.title = "On-Going"
         tabItem2.title = "New Pickup"
-        tabItem3.title = "Notifications"
+        tabItem3.title = "Profile"
         tabItem4.title = "Donate"
         
         self.setupNavigationBar()
@@ -166,19 +166,7 @@ class BPMainTabBarController: UITabBarController {
             }
             
         }
-       // self.selectedViewController = (tabBar.items)![0] as! UIViewController
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

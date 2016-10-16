@@ -34,14 +34,10 @@ class BPAdditionalNotesController: UIViewController, UITextViewDelegate  {
         buttonRight.tintColor = UIColor.whiteColor()
         
         self.navigationItem.rightBarButtonItem = buttonRight
-        self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         buttonRight.setTitleTextAttributes(
             [NSFontAttributeName:UIFont.binnersFontWithSize(16)!],
             forState: .Normal)
         self.title = "Additional Notes"
-        
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
     }
     func textViewDidBeginEditing(textView: UITextView) {

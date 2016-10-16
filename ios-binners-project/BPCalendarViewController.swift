@@ -60,22 +60,14 @@ class BPCalendarViewController: UIViewController {
             forState: .Normal)
         buttonRight.tintColor = UIColor.whiteColor()
         let buttonLeft = UIBarButtonItem(
-            title: "✘",
-            style: .Done,
+            barButtonSystemItem: .Stop,
             target: self,
             action: #selector(BPCalendarViewController.cancelButtonClicked))
+        
         buttonLeft.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = buttonLeft
         self.navigationItem.rightBarButtonItem = buttonRight
-        self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.title = "Date"
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        
-        UINavigationBar.appearance().backIndicatorImage = UIImage()
-        UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage()
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-
         
     }
     

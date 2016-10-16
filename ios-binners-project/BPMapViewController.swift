@@ -123,8 +123,6 @@ class BPMapViewController: UIViewController {
         tableView!.dataSource = self
     }
     func setupNavigationBar() {
-        
-        self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.title = "Location"
     }
 
@@ -176,9 +174,10 @@ class BPMapViewController: UIViewController {
         } else {
             filteredHistory = history
         }
-        self.tableView!.reloadData()
-        self.tableView!.adjustHeightOfTableView()
+        self.tableView?.reloadData()
+        self.tableView?.adjustHeightOfTableView()
     }
+    
     func searchCoordinatesForAddress(address: String) {
         self.mapTasks.geocodeAddress(address, withCompletionHandler: {
 

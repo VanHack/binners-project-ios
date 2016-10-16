@@ -66,7 +66,7 @@ final class BPPickup : AnyObject {
             throw Error.InvalidToken
         }
         
-        let url = BPURLBuilder.getOnGoingPickupsURL()
+        let url = BPURLBuilder.getGetPickupsURL()
         let manager = AFHTTPSessionManager()
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
         

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BPEncoder {
+class BPEncoder {
     
     static func convertSwiftArrayToNSArrayWithData<T where T:NSCoding>(objects:[T]) -> NSArray {
         
@@ -20,14 +20,15 @@ struct BPEncoder {
         return encodedArray as NSArray
     }
     
-    static func convertNSArrayWithDataToSwiftArray(encodedObjects:NSArray) throws -> [AnyObject] {
+    static func convertNSArrayWithDataToSwiftArray(encodedObjects:NSArray) -> [AnyObject]? {
         
         var objectList = [AnyObject]()
         for encodedObject in encodedObjects {
             
-            guard let encodedObjectData = encodedObject as? NSData,
-            unarchivedData = NSKeyedUnarchiver.unarchiveObjectWithData(encodedObjectData) else {
-                throw Error.ErrorWithMsg(errorMsg: "Could not convert NSArray to Swift Array")
+            guard let
+                encodedObjectData = encodedObject as? NSData,
+                unarchivedData = NSKeyedUnarchiver.unarchiveObjectWithData(encodedObjectData) else {
+                return nil
             }
             
             objectList.append(unarchivedData)

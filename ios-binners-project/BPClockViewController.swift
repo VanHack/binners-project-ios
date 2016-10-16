@@ -49,17 +49,11 @@ class BPClockViewController: UIViewController {
         setupNavigationBar()
         configureClock()
         configureButtonsAndLabels()
-        //checkIfNowIsPMorAM()
     }
     
     func checkIfNowIsPMorAM() {
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
-        let dateNow = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let comp = calendar.components([.Hour], fromDate: dateNow)
-        let hour = comp.hour
+        let hour = NSDate().getHour()
         
         if hour < 12 {
             aMButtonClicked()
@@ -93,12 +87,8 @@ class BPClockViewController: UIViewController {
         buttonRight.tintColor = UIColor.whiteColor()
         
         self.navigationItem.rightBarButtonItem = buttonRight
-        self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.title = "Time"
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
-
     }
     
     func checkmarkButtonClicked() {
