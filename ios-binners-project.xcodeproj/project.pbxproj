@@ -72,6 +72,7 @@
 		2C921EF51CA07AD700B2FA46 /* BPQuantityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C921EF31CA07AD700B2FA46 /* BPQuantityTableViewCell.xib */; };
 		2C921EF81CA0888B00B2FA46 /* BPIntructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C921EF61CA0888B00B2FA46 /* BPIntructionsTableViewCell.swift */; };
 		2C921EF91CA0888B00B2FA46 /* BPIntructionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C921EF71CA0888B00B2FA46 /* BPIntructionsTableViewCell.xib */; };
+		2CAA460E1DBBCA2A002B13B0 /* BPUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA460D1DBBCA2A002B13B0 /* BPUserDefaults.swift */; };
 		2CAC35961D7A104100D1F2BF /* BPRatePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAC35951D7A104100D1F2BF /* BPRatePickupViewController.swift */; };
 		2CBA2D2E1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA2D2C1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift */; };
 		2CBA2D2F1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA2D2D1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib */; };
@@ -178,6 +179,7 @@
 		2C921EF31CA07AD700B2FA46 /* BPQuantityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPQuantityTableViewCell.xib; sourceTree = "<group>"; };
 		2C921EF61CA0888B00B2FA46 /* BPIntructionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPIntructionsTableViewCell.swift; sourceTree = "<group>"; };
 		2C921EF71CA0888B00B2FA46 /* BPIntructionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPIntructionsTableViewCell.xib; sourceTree = "<group>"; };
+		2CAA460D1DBBCA2A002B13B0 /* BPUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPUserDefaults.swift; sourceTree = "<group>"; };
 		2CAC35951D7A104100D1F2BF /* BPRatePickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRatePickupViewController.swift; sourceTree = "<group>"; };
 		2CBA2D2C1C8DFB050048C850 /* BPRecentAddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRecentAddressTableViewCell.swift; sourceTree = "<group>"; };
 		2CBA2D2D1C8DFB050048C850 /* BPRecentAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPRecentAddressTableViewCell.xib; sourceTree = "<group>"; };
@@ -497,6 +499,14 @@
 			name = OnGoingPickups;
 			sourceTree = "<group>";
 		};
+		2CAA460C1DBBCA19002B13B0 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				2CAA460D1DBBCA2A002B13B0 /* BPUserDefaults.swift */,
+			);
+			name = UserDefaults;
+			sourceTree = "<group>";
+		};
 		2CAC35941D7A102600D1F2BF /* Rate */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,6 +542,7 @@
 		2CBDC96C1C7777BA00EC0F99 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2CAA460C1DBBCA19002B13B0 /* UserDefaults */,
 				2C565B641DAF02EE0079DDD8 /* Pickup */,
 				2CBDC96D1C7777FA00EC0F99 /* BPUser.swift */,
 				2CDB35761C920505005945B7 /* BPMapTasks.swift */,
@@ -845,6 +856,7 @@
 			files = (
 				2C83FDC81D3EF8D700DB1F86 /* BPPickupsViewModel.swift in Sources */,
 				2C6CA08A1D3844460030B7EA /* BPSignInViewController.swift in Sources */,
+				2CAA460E1DBBCA2A002B13B0 /* BPUserDefaults.swift in Sources */,
 				2C0BC2D61CE3793900663F9E /* BPObjectWrapper.swift in Sources */,
 				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,
 				2C73BFE01C971F77001FBFD4 /* BPAddress.swift in Sources */,

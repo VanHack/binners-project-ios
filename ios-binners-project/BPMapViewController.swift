@@ -28,14 +28,11 @@ class BPMapViewController: UIViewController {
     var pickup: BPPickup = BPPickup()
     
     var history: [BPAddress] {
-        
-        do {
-            guard let historyList = try BPUser.loadPickupAdressHistory() else { return [] }
-            return historyList
-        } catch _ {
-            BPMessageFactory.makeMessage(.ERROR, message: "Could not retrieve address history").show()
+        if let addresses = BPUserDefaults.loadPickupAdressHistory() {
+            return addresses
+        } else {
+            return []
         }
-        return []
     }
     
     override func viewDidLoad() {
@@ -139,19 +136,9 @@ class BPMapViewController: UIViewController {
                     
                     fatalError("Destionation view controller is not UINavigationController or BPCalendarViewController ")
             }
-            addAddressToHistory()
+            BPUserDefaults.addAddressToHistory(pickup.address)
             calendarVC.pickup = self.pickup
         }
-    }
-    
-    func addAddressToHistory() {
-        
-        do {
-            try BPUser.addAddressToHistory(self.pickup.address)
-        } catch _ {
-            BPMessageFactory.makeMessage(.ERROR, message: "Could not retrieve address history").show()
-        }
-
     }
     
     func cancelButtonClicked() {

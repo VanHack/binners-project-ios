@@ -78,10 +78,10 @@ class BPLoginViewModel : NSObject {
 
     }
     
-    func loginResident(email:String, password: String) throws {
+    func loginResident(email:String, password: String) {
         
             
-        try loginManager.makeResidentStandardLogin(
+        loginManager.makeResidentStandardLogin(
             email,
             password: password,
             onSuccess: {

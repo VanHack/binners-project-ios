@@ -45,9 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        BPUser.clearUserInfoLocally()
+        BPUserDefaults.clearUserInfoLocally()
         
-        if BPUser.loadUser() != nil {
+        if BPUserDefaults.loadUser() != nil {
             // set root vc to main tab bar
             print(BPUser.sharedInstance().token)
             self.window?.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier(mainTabBarVCID)

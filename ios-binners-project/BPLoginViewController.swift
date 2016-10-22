@@ -287,13 +287,9 @@ class BPLoginViewController: UIViewController {
             if let button = self.view.viewWithTag(LoginButtonTag) as? UIButton {
                 button.enabled = false
             }
-            do {
-                try loginViewModel.loginResident(email!, password: password!)
-                sender.addSubview(self.activityIndicator)
-                self.activityIndicator.startAnimating()
-            } catch let error as NSError {
-                BPMessageFactory.makeMessage(.ERROR, message: error.localizedDescription).show()
-            }
+            loginViewModel.loginResident(email!, password: password!)
+            sender.addSubview(self.activityIndicator)
+            self.activityIndicator.startAnimating()
         }
         
     }
