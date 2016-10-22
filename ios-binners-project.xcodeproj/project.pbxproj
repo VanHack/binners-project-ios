@@ -331,18 +331,10 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		2C2A441D1DB0691000EDB0FC /* ActionBar */ = {
-			isa = PBXGroup;
-			children = (
-				2C2A441E1DB069D300EDB0FC /* BPActionBar.swift */,
-			);
-			name = ActionBar;
-			sourceTree = "<group>";
-		};
 		2C2A44201DB3F2C900EDB0FC /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				2C2A441D1DB0691000EDB0FC /* ActionBar */,
+				2C2A441E1DB069D300EDB0FC /* BPActionBar.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";

@@ -134,29 +134,35 @@ final class BPUser {
                                onFailure:OnFailureBlock?) throws {
         
         
-        let finalUrl = BPURLBuilder.getPasswordResetURL(email)
-        let manager = AFHTTPSessionManager()
+        if let finalUrl = BPURLBuilder.getPasswordResetURL(email) {
+            
+            BPServerRequestManager.sharedInstance.execute(
+                .GET,
+                url: finalUrl,
+                manager: AFHTTPSessionManager(),
+                param: nil,onSuccess:onSuccess,onFailure:onFailure)
+
+        }
         
-        try BPServerRequestManager.sharedInstance.execute(
-            .GET,
-            urlString: finalUrl,
-            manager: manager,
-            param: nil,onSuccess:onSuccess,onFailure:onFailure)
     }
     
     class func revalidateAuthToken( token:String,
                                     onSuccess:OnSuccessBlock,
                                     onFailure:OnFailureBlock?) throws {
         
-        let finalUrl = BPURLBuilder.getAuthTokenRevalidateURL()
-        let manager = AFHTTPSessionManager()
-        manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
+        if let finalUrl = BPURLBuilder.revalidateTokenURL {
+            
+            let manager = AFHTTPSessionManager()
+            manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
+            
+            BPServerRequestManager.sharedInstance.execute(
+                .POST,
+                url: finalUrl,
+                manager: manager,
+                param: nil,onSuccess:onSuccess,onFailure: onFailure)
+            
+        }
         
-        try BPServerRequestManager.sharedInstance.execute(
-            .POST,
-            urlString: finalUrl,
-            manager: manager,
-            param: nil,onSuccess:onSuccess,onFailure: onFailure)
     }
     
     class func registerResident(
@@ -165,26 +171,28 @@ final class BPUser {
         onSucess:UserRegistrationSucessBlock,
         onFailure:UserRegistrationFailureBlock?) throws {
         
-        let finalUrl = BPURLBuilder.getResidentUserRegistrationURL()
-        let manager = AFHTTPSessionManager()
-        let body = ["email":email, "password":password,"name":email]
+        if let finalUrl = BPURLBuilder.residentUserRegistrationURL {
+            
+            let body = ["email":email, "password":password,"name":email]
+            
+            BPServerRequestManager.sharedInstance.execute(
+                .POST,
+                url: finalUrl,
+                manager: AFHTTPSessionManager(),
+                param: body,
+                onSuccess: {
+                    object in
+                    
+                    if let user = BPUser.setup(object) {
+                        onSucess(user)
+                    } else {
+                        onFailure?(ErrorUser.ErrorCreatingUser)
+                    }
+                    
+                }, onFailure: onFailure)
+            
+        }
         
-        try BPServerRequestManager.sharedInstance.execute(
-            .POST,
-            urlString: finalUrl,
-            manager: manager,
-            param: body,
-            onSuccess: {
-                object in
-                
-                if let user = BPUser.setup(object) {
-                    onSucess(user)
-                } else {
-                    onFailure?(ErrorUser.ErrorCreatingUser)
-                }
-        
-            }, onFailure: onFailure)
-
     }
     
 

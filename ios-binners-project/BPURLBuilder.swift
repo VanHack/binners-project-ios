@@ -11,73 +11,48 @@ import Foundation
 
 class BPURLBuilder {
     
-    static func buildFBUserLoginURL(accessToken:String) -> String
+    static var residentUserRegistrationURL:NSURL? { return NSURL(string: BPServerSettings.residentUsersUrl) }
+    static var postPickupURL:NSURL? { return NSURL(string: BPServerSettings.postPickupUrl) }
+    static var getPickupsURL:NSURL? { return NSURL(string: BPServerSettings.getPickupsUrl) }
+    static var onGoingPickupsURL:NSURL? { return  NSURL(string: BPServerSettings.onGoingPickupsUrl) }
+    static var completedPickupsURL:NSURL? { return NSURL(string: BPServerSettings.completedPickupsUrl) }
+    static var waitingReviewPickupURL:NSURL? {return NSURL(string: BPServerSettings.waitingReviewPickupsUrl) }
+    static var standardLoginURL:NSURL? { return NSURL(string: BPServerSettings.standardLoginUrl) }
+    static var revalidateTokenURL:NSURL? { return NSURL(string: BPServerSettings.revalidateTokenUrl) }
+    
+    static func buildFBUserLoginURL(accessToken:String) -> NSURL?
     {
         let fbUserLoginUrl = BPServerSettings.facebookLoginUrl
         let fbUserLoginUrlFinal = "\(fbUserLoginUrl)\(accessToken)"
         
-        return fbUserLoginUrlFinal
+        return NSURL(string: fbUserLoginUrlFinal)
     }
     
-    static func buildGoogleUserLoginURL(accessToken:String) -> String
+    static func buildGoogleUserLoginURL(accessToken:String) -> NSURL?
     {
         let googleUserLoginUrl = BPServerSettings.googleLoginUrl
         let googleUserLoginUrlFinal = "\(googleUserLoginUrl)\(accessToken)"
         
-        return googleUserLoginUrlFinal
+        return NSURL(string: googleUserLoginUrlFinal)
     }
     
-    static func buildTwitterUserLoginURL(accessToken:String, accessSecret:String) -> String
+    static func buildTwitterUserLoginURL(accessToken:String, accessSecret:String) -> NSURL?
     {
         let twitterUserLoginUrl = BPServerSettings.twitterLoginUrl
         let twitterUserLoginUrlFinal = "\(twitterUserLoginUrl)/\(accessToken)/\(accessSecret)"
         
-        return twitterUserLoginUrlFinal
+        return NSURL(string: twitterUserLoginUrlFinal)
     }
     
-    static func getPostPickupURL() -> String {
-        return BPServerSettings.postPickupUrl
+    static func getPasswordResetURL(email: String) -> NSURL? {
+        return NSURL(string: "\(BPServerSettings.passwordResetURL)\(email)")
     }
     
-    static func getGetPickupsURL() -> String {
-        return BPServerSettings.getPickupsUrl
-    }
-    
-    static func getOnGoingPickupsURL() -> String {
-        return BPServerSettings.onGoingPickupsUrl
-    }
-
-    static func getCompletedPickupsURL() -> String {
-        return BPServerSettings.completedPickupsUrl
-    }
-    
-    static func getWaitingForReviewPickupsURL() -> String {
-        return BPServerSettings.waitingReviewPickupsUrl
-    }
-
-    static func getStandardUserLoginURL() -> String
-    {
-        return BPServerSettings.standardLoginUrl
-    }
-    
-    static func getResidentUserRegistrationURL() -> String
-    {
-        return BPServerSettings.residentUsersUrl
-    }
-    
-    static func getAuthTokenRevalidateURL() -> String {
-        return BPServerSettings.revalidateTokenUrl
-    }
-    
-    static func getPasswordResetURL(email: String) -> String {
-        return "\(BPServerSettings.passwordResetURL)\(email)"
-    }
-    
-    static func buildPickupPhotoUploadURL(pickupId:String) -> String {
+    static func buildPickupPhotoUploadURL(pickupId:String) -> NSURL? {
         let baseUrl = BPServerSettings.baseServerUrl
         let finalPartUrl = BPServerSettings.photoUploadUrl
         
-        return "\(baseUrl)\(pickupId)\(finalPartUrl)"
+        return NSURL(string: "\(baseUrl)\(pickupId)\(finalPartUrl)")
         
     }
     

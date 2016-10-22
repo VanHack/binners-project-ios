@@ -8,16 +8,11 @@
 import UIKit
 import MapKit
 
-class BPMapTasks: NSObject {
+class BPMapTasks {
     
     let baseURLGeocode = "https://maps.googleapis.com/maps/api/geocode/json?"
     
     var resultsList: [BPAddress] = []
-    
-    override init() {
-        super.init()
-    }
-    
     
     func geocodeAddress(
         address: String!,
@@ -36,12 +31,9 @@ class BPMapTasks: NSObject {
                 geocodeURLString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
             
             let geocodeURL = NSURL(string: geocodeURLString)
+            let geocodingResultsData = NSData(contentsOfURL: geocodeURL!)
             
-            dispatch_async(dispatch_get_global_queue(
-                DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    () -> Void in
-                    
-                let geocodingResultsData = NSData(contentsOfURL: geocodeURL!)
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
                 
                 do {
                     try self.parseGeocodeData(
@@ -50,7 +42,6 @@ class BPMapTasks: NSObject {
                     
                 } catch _ {
                     completionHandler(status: "Error", success: false)
-
                 }
                
                 
@@ -61,8 +52,7 @@ class BPMapTasks: NSObject {
     }
     
     
-    func parseGeocodeData(
-        data: NSData,
+    func parseGeocodeData( data: NSData,
         completionHandler: ((status: String, success: Bool) -> Void)) throws {
         
         guard
@@ -113,10 +103,7 @@ class BPMapTasks: NSObject {
         }
         dispatch_async(dispatch_get_main_queue(), {
             completionHandler(status: status, success: true)
-            
         })
-
-        
         
     }
 

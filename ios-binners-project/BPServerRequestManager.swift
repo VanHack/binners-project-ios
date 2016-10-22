@@ -22,14 +22,10 @@ class BPServerRequestManager {
     static let sharedInstance = BPServerRequestManager()
     
     func execute(request: KindOfRequest,
-                 urlString: String,
+                 url: NSURL,
                  manager: AFHTTPSessionManager,
                  param: AnyObject?,
-                 onSuccess successBlock:OnSuccessBlock, onFailure failureBlock:OnFailureBlock?) throws {
-        
-         guard let url = NSURL(string: urlString) else {
-            throw Error.InvalidURL
-        }
+                 onSuccess successBlock:OnSuccessBlock, onFailure failureBlock:OnFailureBlock?) {
         
         switch request {
         case .GET:      executeGET(url, manager:manager, param:param, onSuccess:successBlock, onFailure:failureBlock)

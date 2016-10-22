@@ -44,18 +44,20 @@ final class BPPickup : AnyObject {
         let wrapper = BPObjectWrapper()
         try wrapper.wrapObject(self)
         
-        let url = BPURLBuilder.getPostPickupURL()
-        let manager = AFHTTPSessionManager()
+        if let url = BPURLBuilder.postPickupURL {
+            
+            let manager = AFHTTPSessionManager()
         
-        manager.requestSerializer.setValue(wrapper.header!, forHTTPHeaderField: "Authorization")
+            manager.requestSerializer.setValue(wrapper.header!, forHTTPHeaderField: "Authorization")
         
-        try BPServerRequestManager.sharedInstance.execute(
-            .POST,
-            urlString: url,
-            manager: manager,
-            param: wrapper.body,
-            onSuccess: onSuccess,
-            onFailure: onFailure)
+            BPServerRequestManager.sharedInstance.execute(
+                .POST,
+                url: url,
+                manager: manager,
+                param: wrapper.body,
+                onSuccess: onSuccess,
+                onFailure: onFailure)
+        }
         
         
     }
@@ -66,68 +68,71 @@ final class BPPickup : AnyObject {
             throw Error.InvalidToken
         }
         
-        let url = BPURLBuilder.getGetPickupsURL()
-        let manager = AFHTTPSessionManager()
-        manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
-        
-        try BPServerRequestManager.sharedInstance.execute(
-            .GET,
-            urlString: url,
-            manager: manager,
-            param: nil,
-            onSuccess: {
-                
-            object in
-                
-                guard let pickupsListDictionary = object as? [[String:AnyObject]] else {
-                     onFailure?(Error.ErrorConvertingFile)
-                    return
-                }
-                
-                var pickups:[BPPickup] = []
-                
-                pickupsListDictionary.forEach( {
-                    dictionary in
-                    if let pickup = BPPickup.mapToModel(dictionary) {
-                        pickups.append(pickup)
-                    }
-                })
-                
-                onSuccess(pickups)
+        if let url = BPURLBuilder.getPickupsURL {
             
-        },onFailure:onFailure)
+            let manager = AFHTTPSessionManager()
+            manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
+            
+            BPServerRequestManager.sharedInstance.execute(
+                .GET,
+                url: url,
+                manager: manager,
+                param: nil,
+                onSuccess: {
+                    
+                    object in
+                    
+                    guard let pickupsListDictionary = object as? [[String:AnyObject]] else {
+                        onFailure?(Error.ErrorConvertingFile)
+                        return
+                    }
+                    
+                    var pickups:[BPPickup] = []
+                    
+                    pickupsListDictionary.forEach( {
+                        dictionary in
+                        if let pickup = BPPickup.mapToModel(dictionary) {
+                            pickups.append(pickup)
+                        }
+                    })
+                    
+                    onSuccess(pickups)
+                    
+                },onFailure:onFailure)
+            
+        }
         
         
     }
 
     
-    func postPickupPictureForPickupId(onSuccess:OnSuccessBlock, onFailure:OnFailureBlock?) {
-        
-        if (reedemable.picture != nil) {
-            
-            let finalUrl = BPURLBuilder.buildPickupPhotoUploadURL(id)
-            let manager = AFHTTPSessionManager()
-            
-            manager.POST(finalUrl, parameters: nil, constructingBodyWithBlock: { formData in
-                
-                let imageData = UIImageJPEGRepresentation(self.reedemable.picture, 0.5)
-                formData.appendPartWithFormData(imageData!, name: "pickupImage")
-                
-                }, success: {sessionDataTask,object in
-                    
-                    onSuccess(object!)
-                    
-                }, failure: {sessionDataTask, error in
-                    
-                    onFailure?(BPErrorManager.processErrorFromServer(error))
-            })
-            
-        } else {
-            onFailure?(ErrorPickup.PictureCantBeNil)
-        }
-        
-
-    }
+//    func postPickupPictureForPickupId(onSuccess:OnSuccessBlock, onFailure:OnFailureBlock?) {
+//        
+//        if (reedemable.picture != nil) {
+//            
+//            let finalUrl = BPURLBuilder.buildPickupPhotoUploadURL(id)
+//            let manager = AFHTTPSessionManager()
+//            
+//            manager.POST(finalUrl, parameters: nil, constructingBodyWithBlock: { formData in
+//                
+//                let imageData = UIImageJPEGRepresentation(self.reedemable.picture, 0.5)
+//                formData.appendPartWithFormData(imageData!, name: "pickupImage")
+//                
+//                }, success: {sessionDataTask,object in
+//                    
+//                    onSuccess(object!)
+//                    
+//                }, failure: {sessionDataTask, error in
+//                    
+//                    onFailure?(BPErrorManager.processErrorFromServer(error))
+//            })
+//            
+//        } else {
+//            onFailure?(ErrorPickup.PictureCantBeNil)
+//        }
+//        
+//
+//    }
     
 }
 
