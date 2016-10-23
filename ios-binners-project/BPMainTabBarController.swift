@@ -36,18 +36,18 @@ class BPMainTabBarController: UITabBarController {
     
     func setupTabBar() {
         
-        self.tabBar.tintColor = UIColor.whiteColor()
-        self.tabBar.translucent = false
+        self.tabBar.tintColor = UIColor.white
+        self.tabBar.isTranslucent = false
         
-        let unselectedColor = UIColor.grayColor()
-        self.tabBar.configureFlatTabBarWithColor(UIColor.whiteColor(), selectedColor: unselectedColor)
+        let unselectedColor = UIColor.gray
+        self.tabBar.configureFlatTabBar(with: UIColor.white, selectedColor: unselectedColor)
         
         UITabBarItem.appearance().setTitleTextAttributes(
             [NSForegroundColorAttributeName:unselectedColor],
-            forState: .Normal)
+            for: UIControlState())
         UITabBarItem.appearance().setTitleTextAttributes(
-            [NSForegroundColorAttributeName:UIColor.whiteColor()],
-            forState: .Selected)
+            [NSForegroundColorAttributeName:UIColor.white],
+            for: .selected)
         
         UITabBar.appearance().selectionIndicatorImage =
             UIImage().makeImageWithColorAndSize(
@@ -58,8 +58,8 @@ class BPMainTabBarController: UITabBarController {
         
         for item in self.tabBar.items! {
             item.image = item.selectedImage?.imageWithColor(
-                unselectedColor).imageWithRenderingMode(
-                UIImageRenderingMode.AlwaysOriginal)
+                unselectedColor).withRenderingMode(
+                UIImageRenderingMode.alwaysOriginal)
         }
 
         
@@ -75,24 +75,24 @@ class BPMainTabBarController: UITabBarController {
         
         let button = UIBarButtonItem(
             image: UIImage(named: "1455939101_menu-alt.png"),
-            style: .Done, target: self,
+            style: .done, target: self,
             action: #selector(BPMainTabBarController.showLateralMenu))
         
-        button.tintColor = UIColor.whiteColor() 
+        button.tintColor = UIColor.white 
         
         self.navigationItem.leftBarButtonItem = button
         self.navigationController?.navigationBar.barTintColor = UIColor.binnersGreenColor()
         self.navigationController?.navigationBar.topItem?.title = "Binner's Project"
         self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName : UIColor.whiteColor()]
+            [NSForegroundColorAttributeName : UIColor.white]
         self.navigationController?.navigationBar.backgroundColor = UIColor.binnersGreenColor()
     }
     
     
-    func addCenterButtonWithViewButtonView(target:AnyObject?,action:Selector)
+    func addCenterButtonWithViewButtonView(_ target:AnyObject?,action:Selector)
     {
         
-        let button = UIButton(type: .Custom)
+        let button = UIButton(type: .custom)
         button.frame = CGRect(x: 0.0, y: 0.0,width: 120.0, height: 120.0)
         button.backgroundColor = UIColor.binnersGreenColor()
         button.layer.cornerRadius = 0.5 * button.bounds.size.width
@@ -109,7 +109,7 @@ class BPMainTabBarController: UITabBarController {
         }
         
         
-        button.addTarget(target, action: action, forControlEvents: .TouchUpInside)
+        button.addTarget(target, action: action, for: .touchUpInside)
         self.view.addSubview(button)
         self.centerButton = button
         
@@ -121,10 +121,10 @@ class BPMainTabBarController: UITabBarController {
             width: 30.0,
             height: 40.0))
         plusLabel.text = "+"
-        plusLabel.font = UIFont.systemFontOfSize(40)
-        plusLabel.textColor = UIColor.whiteColor()
-        plusLabel.backgroundColor = UIColor.clearColor()
-        plusLabel.textAlignment = .Center
+        plusLabel.font = UIFont.systemFont(ofSize: 40)
+        plusLabel.textColor = UIColor.white
+        plusLabel.backgroundColor = UIColor.clear
+        plusLabel.textAlignment = .center
         button.addSubview(plusLabel)
         
         let textLabel = UILabel(frame: CGRect(
@@ -133,21 +133,21 @@ class BPMainTabBarController: UITabBarController {
             width: button.frame.size.width,
             height: 20.0))
         textLabel.text = "New Pick-Up"
-        textLabel.font = UIFont.systemFontOfSize(10)
-        textLabel.textColor = UIColor.whiteColor()
-        textLabel.backgroundColor = UIColor.clearColor()
-        textLabel.textAlignment = .Center
+        textLabel.font = UIFont.systemFont(ofSize: 10)
+        textLabel.textColor = UIColor.white
+        textLabel.backgroundColor = UIColor.clear
+        textLabel.textAlignment = .center
         button.addSubview(textLabel)
         
     }
     
-    func buttonPressed(sender:UIButton)
+    func buttonPressed(_ sender:UIButton)
     {
         self.selectedIndex = 0
-        self.performSegueWithIdentifier("newPickupSegue", sender: self)
+        self.performSegue(withIdentifier: "newPickupSegue", sender: self)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
 
@@ -156,13 +156,13 @@ class BPMainTabBarController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         
         if let itemSelected = (tabBar.items)?[4] {
             
             if item == itemSelected {
-                UIApplication.sharedApplication().openURL(
-                    NSURL(string:"https://www.gifttool.com/donations/Donate?ID=1453&AID=503&PID=4805")!)
+                UIApplication.shared.openURL(
+                    URL(string:"https://www.gifttool.com/donations/Donate?ID=1453&AID=503&PID=4805")!)
             }
             
         }

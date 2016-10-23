@@ -21,7 +21,7 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProjectDescriptionPageViewController")
+        self.pageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProjectDescriptionPageViewController")
             as? UIPageViewController
         
         self.pageViewController!.dataSource = self
@@ -32,7 +32,7 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
         
         self.pageViewController?.setViewControllers(
             viewControllers,
-            direction: .Forward,
+            direction: .forward,
             animated: true,
             completion: nil)
         
@@ -42,19 +42,19 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
         
         self.view.addSubview(self.pageViewController!.view)
         
-        self.pageViewController!.didMoveToParentViewController(self)
+        self.pageViewController!.didMove(toParentViewController: self)
         
         // configure skip button font
         self.skipButton.tintColor = UIColor.binnersSkipButtonColor()
         self.skipButton.titleLabel?.font = UIFont.binnersFont()
-        self.view.bringSubviewToFront(self.skipButton)
+        self.view.bringSubview(toFront: self.skipButton)
         
         // configure page control
         
         let pageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = UIColor.binnersSkipButtonColor()
-        pageControl.currentPageIndicatorTintColor =  UIColor.whiteColor()
-        pageControl.backgroundColor = UIColor.clearColor()
+        pageControl.currentPageIndicatorTintColor =  UIColor.white
+        pageControl.backgroundColor = UIColor.clear
         
         
     }
@@ -64,15 +64,15 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func skipButtonPressed(sender: UIButton) {
+    @IBAction func skipButtonPressed(_ sender: UIButton) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         
     }
     
     func pageViewController(
-        pageViewController: UIPageViewController,
-        viewControllerAfterViewController
+        _ pageViewController: UIPageViewController,
+        viewControllerAfter
         viewController: UIViewController) -> UIViewController? {
         
         let index = (viewController as? PageControlDataSource)?.pageIndex
@@ -90,8 +90,8 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
     }
     
     func pageViewController(
-        pageViewController: UIPageViewController,
-        viewControllerBeforeViewController
+        _ pageViewController: UIPageViewController,
+        viewControllerBefore
         viewController: UIViewController) -> UIViewController? {
         
         let index = (viewController as? PageControlDataSource)?.pageIndex
@@ -109,21 +109,21 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
         return self.viewControllerAtIndex(indexUw)
     }
     
-    func viewControllerAtIndex(index: Int) -> UIViewController?
+    func viewControllerAtIndex(_ index: Int) -> UIViewController?
     {
         
         var pageContentVC: UIViewController?
         
         switch index {
             
-        case 0: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier(
-            "PageTwoContentDescriptionViewController")
+        case 0: pageContentVC = self.storyboard?.instantiateViewController(
+            withIdentifier: "PageTwoContentDescriptionViewController")
             as? BPPageTwoContentDescriptionLoginViewController
-        case 1: pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier(
-            "PageThreeContentDescriptionViewController")
+        case 1: pageContentVC = self.storyboard?.instantiateViewController(
+            withIdentifier: "PageThreeContentDescriptionViewController")
             as? BPPageThreeContentDescriptionLoginViewController
-        case 2:  pageContentVC = self.storyboard?.instantiateViewControllerWithIdentifier(
-            "PageFourContentDescriptionViewController")
+        case 2:  pageContentVC = self.storyboard?.instantiateViewController(
+            withIdentifier: "PageFourContentDescriptionViewController")
             as? BPPageFourContentDescriptionLoginViewController
         default: pageContentVC = nil
             
@@ -135,11 +135,11 @@ class BPPageContainerLoginDescriptionViewController: UIViewController, UIPageVie
         return pageContentVC
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return self.pages
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
 

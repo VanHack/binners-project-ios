@@ -22,7 +22,7 @@ class BPMapViewController: UIViewController {
     let regionRadius: CLLocationDistance = 1000
     let locationManager = CLLocationManager()
     let mapTasks = BPMapTasks()
-    private var kvoContext: UInt8 = 1
+    fileprivate var kvoContext: UInt8 = 1
     var didFindMyLocation = false
     var marker: GMSMarker!
     var pickup: BPPickup = BPPickup()
@@ -38,40 +38,25 @@ class BPMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        filteredHistory.appendContentsOf(history)
+        filteredHistory.append(contentsOf: history)
         setupNavigationBar()
         setupMap()
         setupSearchBarAndTableView()
         locationManager.delegate = self
-        
-        if #available(iOS 8.0, *) {
-            if locationManager.respondsToSelector(
-                #selector(CLLocationManager.requestAlwaysAuthorization)) {
-                if #available(iOS 8.0, *) {
-                    locationManager.requestAlwaysAuthorization()
-                    
-                } else {
-                    // Fallback on earlier versions
-                    locationManager.startUpdatingLocation()
-                }
-                locationManager.location?.coordinate.latitude
-            }
-        } else {
-            // Fallback on earlier versions
-        }
+        locationManager.requestAlwaysAuthorization()
         mapView.addObserver(self,
                             forKeyPath: "myLocation",
-                            options: NSKeyValueObservingOptions.New,
+                            options: NSKeyValueObservingOptions.new,
                             context: nil)
     }
-    override func observeValueForKeyPath(
-        keyPath: String?,
-        ofObject object: AnyObject?,
-        change: [String : AnyObject]?,
-        context: UnsafeMutablePointer<Void>) {
+    override func observeValue(
+        forKeyPath keyPath: String?,
+        of object: Any?,
+        change: [NSKeyValueChangeKey : Any]?,
+        context: UnsafeMutableRawPointer?) {
         if !didFindMyLocation {
             
-            if let myLocation: CLLocation = change![NSKeyValueChangeNewKey] as? CLLocation {
+            if let myLocation: CLLocation = change![NSKeyValueChangeKey.newKey] as? CLLocation {
                 centerMapOnLocation(myLocation)
                 mapView.settings.myLocationButton = true
                 didFindMyLocation = true
@@ -80,17 +65,17 @@ class BPMapViewController: UIViewController {
     }
     func setupMap() {
         self.mapView.delegate = self
-        self.mapView.myLocationEnabled = true
+        self.mapView.isMyLocationEnabled = true
     }
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
-        let touch = event!.allTouches()
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        let touch = event!.allTouches
         
         if let searchBar = self.searchBar,
             let touch = touch {
-            if searchBar.isFirstResponder() && (touch.first != self.searchBar) {
+            if searchBar.isFirstResponder && (touch.first != self.searchBar) {
                 self.searchBar!.resignFirstResponder()
-                self.mapView.userInteractionEnabled = true
+                self.mapView.isUserInteractionEnabled = true
             }
         }
         
@@ -102,7 +87,7 @@ class BPMapViewController: UIViewController {
             width: self.view.frame.size.width - (self.mapView.frame.size.width) * 0.04,
             height: 40))
         searchBar!.delegate = self
-        let frame = self.view.convertRect(self.searchBar!.frame, fromView: self.mapView!)
+        let frame = self.view.convert(self.searchBar!.frame, from: self.mapView!)
         searchBar!.frame = frame
         self.view.addSubview(searchBar!)
         tableView = UITableView(frame: CGRect(
@@ -110,10 +95,10 @@ class BPMapViewController: UIViewController {
             y: searchBar!.frame.origin.y + searchBar!.frame.size.height + 5,
             width: searchBar!.frame.size.width,
             height: (cellHeight * CGFloat(history.count) + headerHeight)),
-                                style:.Plain)
+                                style:.plain)
         
         let cellNib = UINib(nibName: "BPRecentAddressTableViewCell", bundle: nil)
-        tableView!.registerNib(cellNib, forCellReuseIdentifier: "searchTableViewCell")
+        tableView!.register(cellNib, forCellReuseIdentifier: "searchTableViewCell")
 
         tableView!.backgroundColor = UIColor.binnersGray1()
         tableView!.delegate = self
@@ -127,11 +112,11 @@ class BPMapViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "newPickupSegue" {
             
-            guard let destVc = segue.destinationViewController as? UINavigationController,
+            guard let destVc = segue.destination as? UINavigationController,
                 let calendarVC = destVc.viewControllers[0] as? BPCalendarViewController else {
                     
                     fatalError("Destionation view controller is not UINavigationController or BPCalendarViewController ")
@@ -143,20 +128,20 @@ class BPMapViewController: UIViewController {
     
     func cancelButtonClicked() {
         self.mapView.removeObserver(self, forKeyPath: "myLocation")
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
-    func centerMapOnLocation(location: CLLocation) {
-        self.mapView.camera = GMSCameraPosition.cameraWithTarget(location.coordinate, zoom: 15.0)
+    func centerMapOnLocation(_ location: CLLocation) {
+        self.mapView.camera = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15.0)
     }
     
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
          let trimmedString =
-            searchText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            searchText.trimmingCharacters(in: CharacterSet.whitespaces)
         if trimmedString != "" {
             filteredHistory = history.filter {
                 address in
                 let streetAddress = address.formattedAddress
-                return streetAddress.lowercaseString.containsString(searchText.lowercaseString)
+                return streetAddress!.lowercased().contains(searchText.lowercased())
             }
         } else {
             filteredHistory = history
@@ -165,7 +150,7 @@ class BPMapViewController: UIViewController {
         self.tableView?.adjustHeightOfTableView()
     }
     
-    func searchCoordinatesForAddress(address: String) {
+    func searchCoordinatesForAddress(_ address: String) {
         self.mapTasks.geocodeAddress(address, withCompletionHandler: {
 
             (status, success) -> Void in
@@ -188,15 +173,15 @@ class BPMapViewController: UIViewController {
         
     }
     func goToNewPickup() {
-        self.performSegueWithIdentifier("newPickupSegue", sender: self)
+        self.performSegue(withIdentifier: "newPickupSegue", sender: self)
     }
 }
 extension BPMapViewController : UISearchBarDelegate {
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         let trimmedString =
-            searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            searchBar.text!.trimmingCharacters(in: CharacterSet.whitespaces)
         
         if trimmedString != "" {
             searchCoordinatesForAddress(searchBar.text!)
@@ -205,16 +190,16 @@ extension BPMapViewController : UISearchBarDelegate {
 
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         self.view.addSubview(self.tableView!)
         tableView!.reloadData()
     }
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
 
         self.tableView?.removeFromSuperview()
     }
@@ -224,40 +209,40 @@ extension BPMapViewController : UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(
-        tableView: UITableView,
-        cellForRowAtIndexPath
-        indexPath: NSIndexPath) -> UITableViewCell {
+        _ tableView: UITableView,
+        cellForRowAt
+        indexPath: IndexPath) -> UITableViewCell {
         
         var cell =
-            tableView.dequeueReusableCellWithIdentifier("searchTableViewCell")
+            tableView.dequeueReusableCell(withIdentifier: "searchTableViewCell")
                 as? BPRecentAddressTableViewCell
         
         if cell == nil {
             cell =
                 BPRecentAddressTableViewCell(
-                    style: .Default,
+                    style: .default,
                     reuseIdentifier: "searchTableViewCell")
 
         }
         
-        if indexPath.section == 0 && self.filteredHistory.count > 0 {
+        if (indexPath as NSIndexPath).section == 0 && self.filteredHistory.count > 0 {
             if  self.searchBar!.text != "" {
-                cell!.address = filteredHistory[indexPath.row]
+                cell!.address = filteredHistory[(indexPath as NSIndexPath).row]
             } else {
-                cell!.address = history[indexPath.row]
+                cell!.address = history[(indexPath as NSIndexPath).row]
             }
         } else {
-            cell!.address = self.searchResults[indexPath.row]
+            cell!.address = self.searchResults[(indexPath as NSIndexPath).row]
         }
         return cell!
     }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         mapView.clear()
         view.endEditing(true)
         
         guard let cellSelected =
-            tableView.cellForRowAtIndexPath(indexPath)
+            tableView.cellForRow(at: indexPath)
                 as? BPRecentAddressTableViewCell else {
             fatalError("Could not convert cell")
         }
@@ -280,7 +265,7 @@ extension BPMapViewController : UITableViewDelegate, UITableViewDataSource {
             
         }
     }
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         if self.filteredHistory.count == 0 && self.searchResults.count == 0 {
             return 0
@@ -291,7 +276,7 @@ extension BPMapViewController : UITableViewDelegate, UITableViewDataSource {
         }
         return 2
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
             
         if section == 0 && self.filteredHistory.count > 0 {
@@ -309,7 +294,7 @@ extension BPMapViewController : UITableViewDelegate, UITableViewDataSource {
         
 
     }
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         var titleHeader = "Results"
         
@@ -324,7 +309,7 @@ extension BPMapViewController : UITableViewDelegate, UITableViewDataSource {
             width: self.tableView!.frame.size.width,
             height: headerHeight
             ))
-        viewHeader.backgroundColor = UIColor.whiteColor()
+        viewHeader.backgroundColor = UIColor.white
         let titleLabel = UILabel(frame: CGRect(
             x: 10,
             y: 0,
@@ -332,19 +317,19 @@ extension BPMapViewController : UITableViewDelegate, UITableViewDataSource {
             height: headerHeight
             ))
         titleLabel.font = UIFont.binnersFontWithSize(16)
-        titleLabel.textColor = UIColor.blackColor()
+        titleLabel.textColor = UIColor.black
         titleLabel.text = titleHeader
         viewHeader.addSubview(titleLabel)
         
         return viewHeader
         
     }
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return headerHeight
     }
     func tableView(
-        tableView: UITableView,
-        heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        _ tableView: UITableView,
+        heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeight
     }
 }
@@ -360,7 +345,7 @@ extension UITableView {
         }
         
         
-        UIView.animateWithDuration(0.25, animations: {
+        UIView.animate(withDuration: 0.25, animations: {
             
             var frame = self.frame
             frame.size.height = height
@@ -371,23 +356,23 @@ extension UITableView {
 }
 extension BPMapViewController: UIAlertViewDelegate {
     
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         
     }
 }
 extension BPMapViewController : GMSMapViewDelegate {
     
-    func mapView(mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-        button.setTitle("+ Request pickup here", forState: .Normal)
-        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        button.setTitle("+ Request pickup here", for: UIControlState())
+        button.setTitleColor(UIColor.white, for: UIControlState())
         button.backgroundColor = UIColor.binnersMapBlueColor()
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         return button
     }
     
-    func mapView(mapView: GMSMapView, didTapInfoWindowOfMarker marker: GMSMarker) {
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         goToNewPickup()
     }
 }
@@ -395,8 +380,8 @@ extension BPMapViewController : GMSMapViewDelegate {
 extension BPMapViewController : CLLocationManagerDelegate {
     
     func locationManager(
-        manager: CLLocationManager,
-        didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        _ manager: CLLocationManager,
+        didChangeAuthorization status: CLAuthorizationStatus) {
            // centerMapOnLocation(locationManager.location!)
     }
 }

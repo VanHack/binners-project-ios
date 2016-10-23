@@ -39,9 +39,9 @@ class BPCalendarViewController: UIViewController {
             height: self.view.frame.size.height * 0.2))
         
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.font = UIFont.boldSystemFontOfSize(12.0)
+        descriptionLabel.font = UIFont.boldSystemFont(ofSize: 12.0)
         descriptionLabel.text = "Please provide your preferred date for a pick-up."
-        descriptionLabel.textAlignment = .Center
+        descriptionLabel.textAlignment = .center
         
         self.view.addSubview(descriptionLabel)
 
@@ -52,19 +52,19 @@ class BPCalendarViewController: UIViewController {
         
         let buttonRight = UIBarButtonItem(
             title: "Next",
-            style: .Done,
+            style: .done,
             target: self,
             action: #selector(BPCalendarViewController.checkmarkButtonClicked))
         buttonRight.setTitleTextAttributes(
             [NSFontAttributeName:UIFont.binnersFontWithSize(16)!],
-            forState: .Normal)
-        buttonRight.tintColor = UIColor.whiteColor()
+            for: UIControlState())
+        buttonRight.tintColor = UIColor.white
         let buttonLeft = UIBarButtonItem(
-            barButtonSystemItem: .Stop,
+            barButtonSystemItem: .stop,
             target: self,
             action: #selector(BPCalendarViewController.cancelButtonClicked))
         
-        buttonLeft.tintColor = UIColor.whiteColor()
+        buttonLeft.tintColor = UIColor.white
         self.navigationItem.leftBarButtonItem = buttonLeft
         self.navigationItem.rightBarButtonItem = buttonRight
         self.title = "Date"
@@ -72,20 +72,20 @@ class BPCalendarViewController: UIViewController {
     }
     
     func cancelButtonClicked() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func checkmarkButtonClicked() {
         
         let calendarDate = self.monthView.date.changeHour(0).changeMinute(0)
-        let todaysDate = NSDate().changeMinute(0).changeHour(0)
+        let todaysDate = Date().changeMinute(0).changeHour(0)
         
-        if calendarDate.compare(todaysDate) == .OrderedAscending  {
+        if calendarDate.compare(todaysDate) == .orderedAscending  {
             // month view's date is earlier than today's date
-            BPMessageFactory.makeMessage(.ALERT, message: "You can't go back to the past, lol").show()
+            BPMessageFactory.makeMessage(.alert, message: "You can't go back to the past, lol").show()
             
         } else {
-            self.performSegueWithIdentifier("toClockSegue", sender: self)
+            self.performSegue(withIdentifier: "toClockSegue", sender: self)
         }
    
     }
@@ -100,11 +100,11 @@ class BPCalendarViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier == "toClockSegue" {
             
-            guard let destVC = segue.destinationViewController as? BPClockViewController else {
+            guard let destVC = segue.destination as? BPClockViewController else {
                 fatalError("could not convert view controller")
             }
             pickup?.date = self.monthView.date

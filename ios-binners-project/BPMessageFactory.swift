@@ -10,7 +10,7 @@ import Foundation
 
 //Types of messages that the user could receive from the app
 enum BPMessageType {
-    case ALERT, ERROR, INFO, TEXT
+    case alert, error, info, text
 }
 
 
@@ -18,26 +18,26 @@ enum BPMessageType {
 class BPMessageFactory {
     
 
-    static func makeMessage(type:BPMessageType, message:String) -> UIAlertView {
+    static func makeMessage(_ type:BPMessageType, message:String) -> UIAlertView {
         
         let alert = UIAlertView()
         alert.message = message
         
         switch type {
             
-        case BPMessageType.ALERT:
+        case BPMessageType.alert:
             alert.title = "Alert"
-            alert.addButtonWithTitle("OK")
-        case BPMessageType.ERROR:
+            alert.addButton(withTitle: "OK")
+        case BPMessageType.error:
             alert.title = "Error"
-            alert.addButtonWithTitle("OK")
-        case BPMessageType.INFO:
+            alert.addButton(withTitle: "OK")
+        case BPMessageType.info:
             alert.title = "Information"
-            alert.addButtonWithTitle("OK")
-        case .TEXT:
-            alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
-            alert.addButtonWithTitle("Done")
-            alert.addButtonWithTitle("Cancel")
+            alert.addButton(withTitle: "OK")
+        case .text:
+            alert.alertViewStyle = UIAlertViewStyle.plainTextInput
+            alert.addButton(withTitle: "Done")
+            alert.addButton(withTitle: "Cancel")
         }
         
         return alert

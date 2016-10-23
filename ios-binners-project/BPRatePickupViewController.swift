@@ -24,7 +24,7 @@ class BPRatePickupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        binnerLabel.enabled = false
+        binnerLabel.isEnabled = false
         setupUI()
         setupView(forPickup: pickup)
     }
@@ -44,11 +44,11 @@ class BPRatePickupViewController: UIViewController {
     
     // MARK: Button Action
     
-    @IBAction func buttonSubmitReviewClicked(sender: UIButton) {
+    @IBAction func buttonSubmitReviewClicked(_ sender: UIButton) {
         // code for submiting review here
     }
 
-    @IBAction func buttonCancelClicked(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func buttonCancelClicked(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

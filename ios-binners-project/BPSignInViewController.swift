@@ -51,7 +51,7 @@ class BPSignInViewController: UIViewController {
         return formView
     }
     
-    func createInputText(form: UIView) -> UIView {
+    func createInputText(_ form: UIView) -> UIView {
         
         let yPosButton = form.frame.height * 0.1
         
@@ -60,19 +60,19 @@ class BPSignInViewController: UIViewController {
             width: form.frame.width,
             height: 20))
         formView.tag = 123
-        formView.autocapitalizationType = .None
+        formView.autocapitalizationType = .none
         formView.background = UIImage(named: "login-email-input-field.png")
-        formView.textColor = UIColor.whiteColor()
+        formView.textColor = UIColor.white
         formView.attributedPlaceholder =
             NSAttributedString(string: "Email",
-                               attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
-        formView.textAlignment = .Center
+                               attributes: [NSForegroundColorAttributeName : UIColor.white])
+        formView.textAlignment = .center
         formView.tag = 123
         textFieldEmail = formView
         return formView
     }
     
-    func createInputPassword(text: String, form: UIView,belowView: UIView?) -> UIView {
+    func createInputPassword(_ text: String, form: UIView,belowView: UIView?) -> UIView {
         
         let viewEmail = form.viewWithTag(123)
     
@@ -92,15 +92,15 @@ class BPSignInViewController: UIViewController {
             y: initialPos,
             width: form.frame.width,
             height: 20))
-        formView.autocapitalizationType = .None
+        formView.autocapitalizationType = .none
         formView.background = UIImage(named: "login-password-input-field.png")
-        formView.secureTextEntry = true
-        formView.textColor = UIColor.whiteColor()
+        formView.isSecureTextEntry = true
+        formView.textColor = UIColor.white
         formView.attributedPlaceholder =
             NSAttributedString(string: text,
                                attributes:
-                [NSForegroundColorAttributeName : UIColor.whiteColor()])
-        formView.textAlignment = .Center
+                [NSForegroundColorAttributeName : UIColor.white])
+        formView.textAlignment = .center
         
         if belowView != nil {
             textFieldPassword = formView
@@ -111,7 +111,7 @@ class BPSignInViewController: UIViewController {
     }
 
     
-    func createButton(form: UIView) -> UIView {
+    func createButton(_ form: UIView) -> UIView {
         
         let yPos = form.frame.size.height * 0.4
         
@@ -125,38 +125,34 @@ class BPSignInViewController: UIViewController {
         
         formView.backgroundColor = UIColor(netHex: 0x008DF0)
         formView.layer.cornerRadius = 4.0
-        formView.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        formView.setTitleColor(UIColor.white, for: UIControlState())
         formView.titleLabel?.font = UIFont.binnersFontWithSize(16)
-        formView.setTitle("Sign Up", forState: UIControlState.Normal)
+        formView.setTitle("Sign Up", for: UIControlState())
         formView.tag = signInButtonTag
-        formView.addTarget(self, action: #selector(signInUser), forControlEvents: .TouchUpInside)
+        formView.addTarget(self, action: #selector(signInUser), for: .touchUpInside)
         return formView
     }
     
-    func signInUser(sender: UIButton) {
+    func signInUser(_ sender: UIButton) {
         
         let email = textFieldEmail?.text
         let password = textFieldPassword?.text
         let confirmPassword = textFieldConfirmPassword?.text
         
         switch signInViewModel.validateEmail(email) {
-        case .Failed(let msg):
-            BPMessageFactory.makeMessage(.ALERT, message: msg).show()
-        case .Passed: break
+        case .failed(let msg):
+            BPMessageFactory.makeMessage(.alert, message: msg).show()
+        case .passed: break
         }
         
         switch signInViewModel.validatePasswords(password, confirmPassword: confirmPassword) {
-        case .Failed(let msg):
-            BPMessageFactory.makeMessage(.ALERT, message: msg).show()
-        case .Passed:
-            do {
-                try self.signInViewModel.signInUser(email!, password: password!)
+        case .failed(let msg):
+            BPMessageFactory.makeMessage(.alert, message: msg).show()
+        case .passed:
+                self.signInViewModel.signInUser(email!, password: password!)
                 sender.addSubview(self.activityIndicator)
                 self.activityIndicator.startAnimating()
-                sender.enabled = false
-            } catch let error as NSError {
-                BPMessageFactory.makeMessage(.ALERT, message: error.localizedDescription).show()
-            }
+                sender.isEnabled = false
         }
     }
 
@@ -170,23 +166,23 @@ class BPSignInViewController: UIViewController {
 
 extension BPSignInViewController : SignInDelegate {
     
-    func didSignIn(success: Bool, errorMsg: String?) {
+    func didSignIn(_ success: Bool, errorMsg: String?) {
         
         if let button = self.view.viewWithTag(signInButtonTag) as? UIButton {
-            button.enabled = true
+            button.isEnabled = true
             self.activityIndicator.removeFromSuperview()
         }
 
         
         if success {
             
-            self.dismissViewControllerAnimated(true, completion: {
+            self.dismiss(animated: true, completion: {
                 self.dismissDelegate?.didDismissView()
             })
             
         } else {
             BPMessageFactory.makeMessage(
-                .ALERT,
+                .alert,
                 message: errorMsg!).show()
         }
         

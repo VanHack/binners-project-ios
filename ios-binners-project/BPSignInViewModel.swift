@@ -10,18 +10,18 @@ import UIKit
 
 protocol SignInDelegate {
     
-    func didSignIn(success:Bool,errorMsg: String?)
+    func didSignIn(_ success:Bool,errorMsg: String?)
 }
 
 class BPSignInViewModel : BPLoginViewModel {
     
     var signInDelegate:SignInDelegate?
 
-    func validatePasswords(passwod: String?,confirmPassword: String?) -> BPLoginViewModel.ValidationStatus {
+    func validatePasswords(_ passwod: String?,confirmPassword: String?) -> BPLoginViewModel.ValidationStatus {
         
         switch validatePassword(passwod) {
-        case .Failed(let msg):
-            return .Failed(msg)
+        case .failed(let msg):
+            return .failed(msg)
         default: break
         }
         
@@ -29,21 +29,17 @@ class BPSignInViewModel : BPLoginViewModel {
 
     }
     
-    func signInUser(email: String, password: String) throws {
+    func signInUser(_ email: String, password: String) {
         
-        try BPUser.registerResident(
+        BPUser.registerResident(
             email,
             password: password,
-            onSucess: {
-        
-                user in
+            onSucess: { (user: BPUser) in
                 self.signInDelegate?.didSignIn(true, errorMsg:nil)
         
-        
-            },onFailure: {
-                error in
+            },onFailure: { (error: BPError) in
                 
-                self.signInDelegate?.didSignIn(false, errorMsg: (error as NSError).localizedDescription)
+                self.signInDelegate?.didSignIn(false, errorMsg: error.errorMsg())
         
             })
     }

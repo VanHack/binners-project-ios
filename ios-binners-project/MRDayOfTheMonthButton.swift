@@ -14,17 +14,17 @@ class MRDayOfTheMonthButton: UIButton {
     var day_dayOfTheWeek_Month_Year:(String,String,String,String)? {
         
         didSet {
-            self.setTitle(day_dayOfTheWeek_Month_Year!.0, forState: .Normal)
+            self.setTitle(day_dayOfTheWeek_Month_Year!.0, for: UIControlState())
         }
         
     }
     
-    func setSelectedDay(color:UIColor) {
+    func setSelectedDay(_ color:UIColor) {
         
         self.layer.masksToBounds = true
         self.layer.cornerRadius = self.layer.bounds.height / 2.0
         self.layer.borderWidth = 1.0
-        self.layer.borderColor = color.CGColor
+        self.layer.borderColor = color.cgColor
 
 
     }

@@ -22,8 +22,8 @@ class BPBlurView: UIView {
         self.backgroundColor = UIColor(netHex: colorHex)
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         self.backgroundColor = UIColor(netHex: colorHex)
     }
     

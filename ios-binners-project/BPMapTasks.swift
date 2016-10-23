@@ -15,9 +15,9 @@ class BPMapTasks {
     var resultsList: [BPAddress] = []
     
     func geocodeAddress(
-        address: String!,
+        _ address: String!,
         withCompletionHandler
-        completionHandler: ((status: String, success: Bool) -> Void)) {
+        completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         resultsList.removeAll()
         
@@ -28,12 +28,12 @@ class BPMapTasks {
                 "address=" +
                 lookupAddress + ",Vancouver&components=country:ca&latlng=49.246292,-123.116226"
             geocodeURLString =
-                geocodeURLString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+                geocodeURLString.addingPercentEscapes(using: String.Encoding.utf8)!
             
-            let geocodeURL = NSURL(string: geocodeURLString)
-            let geocodingResultsData = NSData(contentsOfURL: geocodeURL!)
+            let geocodeURL = URL(string: geocodeURLString)
+            let geocodingResultsData = try? Data(contentsOf: geocodeURL!)
             
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async(execute: { () -> Void in
                 
                 do {
                     try self.parseGeocodeData(
@@ -41,69 +41,68 @@ class BPMapTasks {
                         completionHandler: completionHandler)
                     
                 } catch _ {
-                    completionHandler(status: "Error", success: false)
+                    completionHandler("Error", false)
                 }
                
                 
             })
         } else {
-            completionHandler(status: "Not a valid address", success: false)
+            completionHandler("Not a valid address", false)
         }
     }
     
     
-    func parseGeocodeData( data: NSData,
-        completionHandler: ((status: String, success: Bool) -> Void)) throws {
+    func parseGeocodeData( _ data: Data,
+                           completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) throws {
         
-        guard
-            let dictionary =
-            try NSJSONSerialization.JSONObjectWithData(
-                data, options: NSJSONReadingOptions.MutableContainers)
-                as? Dictionary<NSObject, AnyObject>,
-            let status = dictionary["status"] as? String else {
-                
-                completionHandler(status:"Error getting data from maps", success: false)
-                return
-        }
+        let dictionary = try JSONSerialization.jsonObject(
+            with: data,
+            options: JSONSerialization.ReadingOptions.mutableContainers)
+            as AnyObject
         
-        // Get the response status.
-        
-        if status == "OK" {
+        if let status = dictionary["status"] as? String {
             
-            guard let allResults = dictionary["results"]
-                as? Array<Dictionary<NSObject, AnyObject>> else {
-                    completionHandler(status:"Error getting data from maps", success: false)
-                    return
-            }
-            
-            for result in allResults {
+            if status == "OK" {
                 
-                guard
-                    let formattedAddress = result["formatted_address"] as? String,
-                    let geometry = result["geometry"] as? Dictionary<NSObject, AnyObject>,
-                    let coordinates = geometry["location"] as?
-                        Dictionary<NSObject, AnyObject>,
-                    let longitude = coordinates["lng"] as? Double,
-                    let latitude = coordinates["lat"] as? Double else {
-                        completionHandler(
-                            status:"Error getting data from maps",
-                            success: false)
-                        return
+                if let allResults = dictionary["results"]
+                    as? Array<Dictionary<String, AnyObject>> {
+                    
+                    for result in allResults {
+                        
+                        guard
+                            let formattedAddress = result["formatted_address"] as? String,
+                            let geometry = result["geometry"] as? Dictionary<String, AnyObject>,
+                            let coordinates = geometry["location"] as?
+                                Dictionary<String, AnyObject>,
+                            let longitude = coordinates["lng"] as? Double,
+                            let latitude = coordinates["lat"] as? Double else {
+                                completionHandler(
+                                    "Error getting data from maps",
+                                    false)
+                                return
+                        }
+                        
+                        let location = CLLocationCoordinate2DMake(latitude, longitude)
+                        let address = BPAddress()
+                        address.formattedAddress = formattedAddress
+                        address.location = location
+                        
+                        self.resultsList.append(address)
+                        
+                    }
+                    
                 }
-                
-                let location = CLLocationCoordinate2DMake(latitude, longitude)
-                let address = BPAddress()
-                address.formattedAddress = formattedAddress
-                address.location = location
-                
-                self.resultsList.append(address)
-                
+                DispatchQueue.main.async(execute: {
+                    completionHandler(status, true)
+                })
             }
-            
+            else {
+                DispatchQueue.main.async(execute: {
+                    completionHandler(status, false)
+                })
+
+            }
         }
-        dispatch_async(dispatch_get_main_queue(), {
-            completionHandler(status: status, success: true)
-        })
         
     }
 

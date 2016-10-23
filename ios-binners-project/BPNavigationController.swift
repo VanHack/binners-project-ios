@@ -15,15 +15,15 @@ class BPNavigationController: UINavigationController {
         configureNavigationBar()
     }
     
-    private func configureNavigationBar() {
+    fileprivate func configureNavigationBar() {
         
         UINavigationBar.appearance().backIndicatorImage = UIImage()
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage()
         
         self.navigationBar.barTintColor = UIColor.binnersGreenColor()
-        self.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationBar.tintColor = UIColor.white
         self.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName : UIColor.whiteColor()]
+            [NSForegroundColorAttributeName : UIColor.white]
     }
     
 }

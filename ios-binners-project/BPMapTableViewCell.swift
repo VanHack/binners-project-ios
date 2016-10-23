@@ -12,7 +12,7 @@ class BPMapTableViewCell: UITableViewCell {
 
     @IBOutlet weak var locationLabel: UILabel! {
         didSet {
-            self.locationLabel!.textAlignment = .Center
+            self.locationLabel!.textAlignment = .center
             self.locationLabel!.font = UIFont.binnersFontWithSize(15.0)
         }
     }
@@ -33,8 +33,8 @@ class BPMapTableViewCell: UITableViewCell {
         
         didSet {
             self.locationLabel.text = address!.formattedAddress
-            self.mapView.camera = GMSCameraPosition.cameraWithLatitude(
-                address!.location.latitude,
+            self.mapView.camera = GMSCameraPosition.camera(
+                withLatitude: address!.location.latitude,
                 longitude: address!.location.longitude,
                 zoom: 15.0)
             let  position = CLLocationCoordinate2DMake(
@@ -48,12 +48,12 @@ class BPMapTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.locationLabel.backgroundColor = UIColor.whiteColor()
+        self.locationLabel.backgroundColor = UIColor.white
         self.backgroundColor = UIColor.binnersGrayBackgroundColor()
         
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

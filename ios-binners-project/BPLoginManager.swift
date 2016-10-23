@@ -25,14 +25,14 @@ class BPLoginManager {
     
     
     func authenticateFBUserOnBinnersServer(
-        fbToken:String,
-        onSuccess:OnSucessUserBlock,
+        _ fbToken:String,
+        onSuccess:@escaping OnSucessUserBlock,
         onFailure:OnFailureBlock?) {
         
         if let finalUrl = BPURLBuilder.buildFBUserLoginURL(fbToken) {
             
             BPServerRequestManager.sharedInstance.execute(
-                .GET,
+                .get,
                 url: finalUrl,
                 manager: AFHTTPSessionManager(),
                 param: nil,
@@ -40,41 +40,44 @@ class BPLoginManager {
                     
                     object in
                     
-                    if let user = BPUser.setup(object) {
-                        onSuccess(user)
+                    do {
+                        try BPUser.sharedInstance.initialize(object)
+                        onSuccess(BPUser.sharedInstance)
+                    } catch let error {
+                        onFailure?(error as! BPError)
                     }
                     
-                },onFailure: {
-                    error in
-                    onFailure?(error)
-            })
+                },onFailure: onFailure)
 
         }
     }
     
     func authenticateUserOnFBAndBinnersServer(
-        onSuccess:OnSucessUserBlock,onFailure:OnFailureBlock?) {
+        _ onSuccess: @escaping OnSucessUserBlock, onFailure: OnFailureBlock?) {
         
         let fbloginManager = FBSDKLoginManager()
-        fbloginManager.logInWithReadPermissions(
-            facebookPermissions,
-            handler: {(result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
+        
+        fbloginManager.logIn(
+            withReadPermissions: facebookPermissions,
+            handler: { (result: FBSDKLoginManagerLoginResult?, error: Error?) -> Void in
                 
                 if error != nil {
                     // Process error
                     self.removeFbData()
-                } else if result.isCancelled {
+                     onFailure?(BPError.serverError(error!))
+                } else if result!.isCancelled {
                     self.removeFbData()
                 } else {
                     //Success
-                    if result.grantedPermissions.contains("email") &&
-                        result.grantedPermissions.contains("public_profile") {
+                    if result!.grantedPermissions.contains("email") &&
+                        result!.grantedPermissions.contains("public_profile") {
 
-                        let fbToken = FBSDKAccessToken.currentAccessToken().tokenString
-                        self.authenticateFBUserOnBinnersServer(fbToken,onSuccess: onSuccess,onFailure: onFailure)
+                        if let fbToken = FBSDKAccessToken.current().tokenString {
+                            self.authenticateFBUserOnBinnersServer(fbToken,onSuccess: onSuccess,onFailure: onFailure)
+                        }
                         
                     } else {
-                        onFailure?(error)
+                        onFailure?(BPError.fbPublicProfileNotProvided)
                     }
                 }
         })
@@ -82,23 +85,22 @@ class BPLoginManager {
     }
     
     func removeFbData() {
-        //Remove FB Data
         let fbManager = FBSDKLoginManager()
         fbManager.logOut()
-        FBSDKAccessToken.setCurrentAccessToken(nil)
+        FBSDKAccessToken.setCurrent(nil)
     }
     
     func authenticateGoogleUserOnBinnersServer(
-        onSuccess:OnSucessUserBlock,onFailure:OnFailureBlock?) throws {
+        _ onSuccess:@escaping OnSucessUserBlock,onFailure:OnFailureBlock?) throws {
         
         guard let auth = authGoogle else {
-            throw Error.ErrorWithMsg(errorMsg: "Google auth can't be nil")
+            throw BPError.googleAuthMissing
         }
         
         if let finalUrl = BPURLBuilder.buildGoogleUserLoginURL(auth) {
             
             BPServerRequestManager.sharedInstance.execute(
-                .GET,
+                .get,
                 url: finalUrl,
                 manager: AFHTTPSessionManager(),
                 param: nil,
@@ -106,23 +108,21 @@ class BPLoginManager {
                     
                     object in
                     
-                    if let user = BPUser.setup(object) {
-                        onSuccess(user)
+                    do {
+                        try BPUser.sharedInstance.initialize(object)
+                        onSuccess(BPUser.sharedInstance)
+                    } catch let error {
+                        onFailure?(error as! BPError)
                     }
                     
-                }, onFailure: {
-                    _ in
-                    onFailure?(Error.ErrorWithMsg(errorMsg: "Failed to initialize user"))
-                    
-            })
+                }, onFailure: onFailure)
 
-            
         }
     }
     
-    func authenticateUserOnTwitterAndBinnersServer(onSuccess:OnSucessUserBlock,onFailure:OnFailureBlock?) {
+    func authenticateUserOnTwitterAndBinnersServer(_ onSuccess:@escaping OnSucessUserBlock,onFailure:OnFailureBlock?) {
         
-        Twitter.sharedInstance().logInWithCompletion({
+        Twitter.sharedInstance().logIn(completion: {
             session, error in
             if let unwrappedSession = session {
                 
@@ -133,7 +133,7 @@ class BPLoginManager {
                     try self.authenticateTwitterUserOnBinnersServer(onSuccess,onFailure: onFailure)
                 
                  } catch {
-                    onFailure?(Error.ErrorWithMsg(errorMsg: "Failed to login on twitter"))
+                    onFailure?(BPError.twitterAuthMissing)
                 }
             }
         })
@@ -141,21 +141,21 @@ class BPLoginManager {
         
     }
     
-    func authenticateTwitterUserOnBinnersServer(onSuccess:OnSucessUserBlock,onFailure:OnFailureBlock?) throws {
+    func authenticateTwitterUserOnBinnersServer(_ onSuccess:@escaping OnSucessUserBlock,onFailure:OnFailureBlock?) throws {
         
         guard let auth = authTwitter else {
-            throw Error.ErrorWithMsg(errorMsg: "Twitter auth can't be nil")
+            throw BPError.twitterAuthMissing
         }
         
         guard let authSecret = authSecretTwitter else {
-            throw Error.ErrorWithMsg(errorMsg: "Twitter auth token secret can't be nil")
+            throw BPError.twitterAuthMissing
         }
         
         if let finalUrl = BPURLBuilder.buildTwitterUserLoginURL(auth, accessSecret: authSecret) {
             
             //TODO: Waiting for the API endpoint for twitter auth
             BPServerRequestManager.sharedInstance.execute(
-                .GET,
+                .get,
                 url: finalUrl,
                 manager: AFHTTPSessionManager(),
                 param: nil,
@@ -163,15 +163,14 @@ class BPLoginManager {
                     
                     object in
                     
-                    if let user = BPUser.setup(object) {
-                        onSuccess(user)
+                    do {
+                        try BPUser.sharedInstance.initialize(object)
+                        onSuccess(BPUser.sharedInstance)
+                    } catch let error {
+                        onFailure?(error as! BPError)
                     }
                     
-                }, onFailure: {
-                    _ in
-                    onFailure?(Error.ErrorWithMsg(errorMsg: "Failed to initialize user"))
-                    
-            })
+                }, onFailure: onFailure)
             
             print("loggin out for test purposes")
             
@@ -184,17 +183,17 @@ class BPLoginManager {
     }
 
     func makeResidentStandardLogin(
-        email:String,
+        _ email:String,
         password:String,
-        onSuccess:OnSucessUserBlock,
+        onSuccess:@escaping OnSucessUserBlock,
         onFailure:OnFailureBlock?) {
         
         if let finalUrl = BPURLBuilder.standardLoginURL {
             
-            let param = ["email":email,"password":password]
+            let param = ["email":email,"password":password] as AnyObject
             
             BPServerRequestManager.sharedInstance.execute(
-                .POST,
+                .post,
                 url: finalUrl,
                 manager: AFHTTPSessionManager(),
                 param: param,
@@ -202,13 +201,16 @@ class BPLoginManager {
                     
                     object in
                     
-                    if let user = BPUser.setup(object) {
-                        onSuccess(user)
+                    do {
+                        try BPUser.sharedInstance.initialize(object)
+                        onSuccess(BPUser.sharedInstance)
+                    } catch let error {
+                        onFailure?(error as! BPError)
                     }
                     
                 }, onFailure: {
-                    _ in
-                    onFailure?(Error.ErrorWithMsg(errorMsg: "Failed to initialize user"))
+                    error in
+                    onFailure?(error)
                     
             })
             

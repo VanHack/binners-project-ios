@@ -19,9 +19,9 @@ class BPAddress: NSObject, NSCoding {
         self.init()
         
         guard
-        let formattedAddress = decoder.decodeObjectForKey("formattedAddress") as? String,
-        latitude = decoder.decodeObjectForKey("latitude") as? Double,
-        longitude = decoder.decodeObjectForKey("longitude") as? Double else {
+        let formattedAddress = decoder.decodeObject(forKey: "formattedAddress") as? String,
+        let latitude = decoder.decodeObject(forKey: "latitude") as? Double,
+        let longitude = decoder.decodeObject(forKey: "longitude") as? Double else {
             
             fatalError("Could not decode object")
         }
@@ -32,10 +32,10 @@ class BPAddress: NSObject, NSCoding {
 
     }
     
-    func encodeWithCoder(coder: NSCoder) {
-        coder.encodeObject(formattedAddress, forKey: "formattedAddress")
-        coder.encodeObject(location.latitude, forKey: "latitude")
-        coder.encodeObject(location.longitude, forKey: "longitude")
+    func encode(with coder: NSCoder) {
+        coder.encode(formattedAddress, forKey: "formattedAddress")
+        coder.encode(location.latitude, forKey: "latitude")
+        coder.encode(location.longitude, forKey: "longitude")
     }
 
 }

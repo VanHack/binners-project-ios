@@ -6,20 +6,40 @@
 //  Copyright © 2016 Matheus Ruschel. All rights reserved.
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class MRMonthView: UIView {
 
-    private var labelDayOfTheWeek: UILabel?
-    private var labelDayOfTheMonth: UILabel?
-    private var labelMonth: UILabel?
-    private var labelYear: UILabel?
-    private var separationView: UIView?
-    private var viewContainerMonthAndYear: UIView?
-    private var viewContainerDays: UIView?
-    private var dayButtons: [MRDayOfTheMonthButton] = []
-    private var daySelected: String?
+    fileprivate var labelDayOfTheWeek: UILabel?
+    fileprivate var labelDayOfTheMonth: UILabel?
+    fileprivate var labelMonth: UILabel?
+    fileprivate var labelYear: UILabel?
+    fileprivate var separationView: UIView?
+    fileprivate var viewContainerMonthAndYear: UIView?
+    fileprivate var viewContainerDays: UIView?
+    fileprivate var dayButtons: [MRDayOfTheMonthButton] = []
+    fileprivate var daySelected: String?
     var buttonsArrowColor: UIColor = UIColor.binnersGreenColor()
-    var date = NSDate()
+    var date = Date()
     
     
     var delegate: MRMonthCalendarDelegate?
@@ -57,7 +77,7 @@ class MRMonthView: UIView {
     }
     
     //MARK: VIEW LOGIC
-    func updateCalendar(date: NSDate) {
+    func updateCalendar(_ date: Date) {
 //        UIView.animateWithDuration(0.25, animations: {
 //            
 //            self.labelDayOfTheWeek?.alpha = 0.0
@@ -78,7 +98,7 @@ class MRMonthView: UIView {
         
     }
     
-    private func updateCalendarLayoutElements(date: NSDate) {
+    fileprivate func updateCalendarLayoutElements(_ date: Date) {
         
         let dayMonthYear = date.dayMonthYear()
         
@@ -94,8 +114,8 @@ class MRMonthView: UIView {
         
     }
     
-    private func correctButtonTitles(
-        dayDayOfTheWeekMonthYearList:[( String, String, String, String )]) {
+    fileprivate func correctButtonTitles(
+        _ dayDayOfTheWeekMonthYearList:[( String, String, String, String )]) {
         
 
         for button in dayButtons {
@@ -112,8 +132,8 @@ class MRMonthView: UIView {
         
     }
     
-    private func makeViewsAndLabelsAppear() {
-        UIView.animateWithDuration(0.25, animations: {
+    fileprivate func makeViewsAndLabelsAppear() {
+        UIView.animate(withDuration: 0.25, animations: {
             
             self.labelDayOfTheWeek?.alpha = 1.0
             self.labelDayOfTheMonth?.alpha = 1.0
@@ -128,7 +148,7 @@ class MRMonthView: UIView {
         
     }
     
-    func getAllDaysInWeeksInMonthFor(date: NSDate) ->
+    func getAllDaysInWeeksInMonthFor(_ date: Date) ->
         [(String, String, String, String)] {
          let pastMonthDaysStrings = getAllDaysInFirstWeekOfPastMonthFor(date)
          let currentMonthDaysStrings = date.daysOfTheMonth(date)
@@ -140,7 +160,7 @@ class MRMonthView: UIView {
     }
     
     
-    func getAllDaysInFirstWeekOfPastMonthFor(date: NSDate) ->
+    func getAllDaysInFirstWeekOfPastMonthFor(_ date: Date) ->
         [( String, String, String, String )]
     {
         var daysStrings = [(String, String, String, String)]()
@@ -160,7 +180,7 @@ class MRMonthView: UIView {
                 String(currentDay),
                 String(daysOutOfTheMonth),
                 String(date.getPastMonth().dayMonthYear().1),
-                String(date.getPastMonth().dayMonthYear().2)), atIndex: 0)
+                String(date.getPastMonth().dayMonthYear().2)), at: 0)
             
             currentDay -= 1
             daysOutOfTheMonth -= 1
@@ -171,7 +191,7 @@ class MRMonthView: UIView {
         return daysStrings
     }
     
-    func getAllDaysInFirstWeekOfNextMonthForWeekDayOfLastDay(date: NSDate) ->
+    func getAllDaysInFirstWeekOfNextMonthForWeekDayOfLastDay(_ date: Date) ->
         [ (String, String, String, String) ]
     {
         var daysStrings = [(String, String, String, String)]()
@@ -182,7 +202,9 @@ class MRMonthView: UIView {
         var index: Int = weekDay
         for _ in 1...2 {
             
-            for ; index <= 7; index += 1 {//in weekDay...7 {
+            for _ in index...7 {
+            
+            //for ; index <= 7; index += 1 {//in weekDay...7 {
             
             daysStrings.append((
             String(dayInit),
@@ -228,7 +250,7 @@ class MRMonthView: UIView {
         self.delegate?.calendarDidChangeDate(date)
     }
     
-    internal func didSelectDate(sender: MRDayOfTheMonthButton) {
+    internal func didSelectDate(_ sender: MRDayOfTheMonthButton) {
         let day_dayOfTheWeek_Month_Year = sender.day_dayOfTheWeek_Month_Year
         
         if Int(day_dayOfTheWeek_Month_Year!.3) < date.dayMonthYear().2 {
@@ -297,7 +319,7 @@ class MRMonthView: UIView {
     
     //MARK: VIEW LAYOUT SETUP
     
-    private func configureTopCalendar() {
+    fileprivate func configureTopCalendar() {
         configureLabelDayOfTheWeek()
         configureLabelDayOfTheMonth()
         configureLabelMonthAndYear()
@@ -306,21 +328,21 @@ class MRMonthView: UIView {
     }
     
     
-    private func configureLabelDayOfTheWeek() {
+    fileprivate func configureLabelDayOfTheWeek() {
         labelDayOfTheWeek = UILabel(frame: CGRect(
             x: self.bounds.origin.x,
             y: self.bounds.size.height * 0.1,
             width: self.bounds.size.width,
             height: 20.0))
         labelDayOfTheWeek!.text = "Tuesday"
-        labelDayOfTheWeek?.textAlignment = .Center
+        labelDayOfTheWeek?.textAlignment = .center
         labelDayOfTheWeek!.textColor = UIColor.binnersGreenColor()
 
         
         self.addSubview(labelDayOfTheWeek!)
     }
     
-    private func configureLabelDayOfTheMonth() {
+    fileprivate func configureLabelDayOfTheMonth() {
         
         labelDayOfTheMonth = UILabel(frame: CGRect(
             x: 0,
@@ -329,55 +351,55 @@ class MRMonthView: UIView {
             height: self.frame.size.height * 0.20))
 
         labelDayOfTheMonth!.center.x = labelDayOfTheWeek!.center.x
-        labelDayOfTheMonth!.font = UIFont.systemFontOfSize(100.0)
+        labelDayOfTheMonth!.font = UIFont.systemFont(ofSize: 100.0)
         labelDayOfTheMonth!.text = "7"
-        labelDayOfTheMonth?.textAlignment = .Center
+        labelDayOfTheMonth?.textAlignment = .center
         labelDayOfTheMonth?.textColor = UIColor.binnersGreenColor()
         
         self.addSubview(labelDayOfTheMonth!)
 
     }
     
-    private func configureSideDayOfTheMonthButtons() {
+    fileprivate func configureSideDayOfTheMonthButtons() {
         
         let width: CGFloat = 30.0
         let positionXForLeftButton = (labelDayOfTheMonth!.frame.origin.x / 2.0) - width
         
         // left button
-        let buttonLeft = UIButton(type: .System)
+        let buttonLeft = UIButton(type: .system)
         buttonLeft.frame = CGRect(
             x: positionXForLeftButton,
             y: 0,
             width: width,
             height: 30.0)
-        buttonLeft.setTitle("<", forState: .Normal)
+        buttonLeft.setTitle("<", for: UIControlState())
         buttonLeft.tintColor = buttonsArrowColor
-        buttonLeft.backgroundColor = UIColor.clearColor()
+        buttonLeft.backgroundColor = UIColor.clear
         buttonLeft.center.y = labelDayOfTheMonth!.center.y
-        buttonLeft.titleLabel!.font = UIFont.systemFontOfSize(20)
+        buttonLeft.titleLabel!.font = UIFont.systemFont(ofSize: 20)
         buttonLeft.addTarget(self,
                              action: #selector(MRMonthView.goToPreviousDay),
-                             forControlEvents: .TouchUpInside)
+                             for: .touchUpInside)
         
         // add target to left button
         
         // right button
         
-        let buttonRight = UIButton(type: .System)
+        let buttonRight = UIButton(type: .system)
         buttonRight.frame = CGRect(
             x: (labelDayOfTheMonth!.frame.origin.x +
                 labelDayOfTheMonth!.frame.size.width + self.frame.size.width) / 2.0,
             y: 0,
             width: width,
             height: 30.0)
-        buttonRight.setTitle(">", forState: .Normal)
+        buttonRight.setTitle(">", for: UIControlState())
         buttonRight.tintColor = buttonsArrowColor
-        buttonRight.backgroundColor = UIColor.clearColor()
+        buttonRight.backgroundColor = UIColor.clear
         buttonRight.center.y = labelDayOfTheMonth!.center.y
-        buttonRight.titleLabel!.font = UIFont.systemFontOfSize(20)
+        buttonRight.titleLabel!.font = UIFont.systemFont(ofSize: 20)
         buttonRight.addTarget(self,
                               action: #selector(MRMonthView.goToNextDay),
-                              forControlEvents: .TouchUpInside)
+                              for: .touchUpInside)
         
         // add target to right button
         self.addSubview(buttonRight)
@@ -386,7 +408,7 @@ class MRMonthView: UIView {
         
     }
     
-    private func configureLabelMonthAndYear() {
+    fileprivate func configureLabelMonthAndYear() {
         
         labelMonth = UILabel(frame: CGRect(
             x: 0,
@@ -394,7 +416,7 @@ class MRMonthView: UIView {
             width: 100.0,
             height: 30.0))
         labelMonth!.text = "January"
-        labelMonth?.textAlignment = .Center
+        labelMonth?.textAlignment = .center
         //labelMonth?.sizeToFit()
         
         labelYear = UILabel(frame: CGRect(
@@ -424,60 +446,60 @@ class MRMonthView: UIView {
         
     }
     
-    private func configureSideMonthAndYearButtons() {
+    fileprivate func configureSideMonthAndYearButtons() {
         
         // left button
-        let buttonLeft = UIButton(type: .System)
+        let buttonLeft = UIButton(type: .system)
         buttonLeft.frame = CGRect(
             x: 10,
             y: 0,
             width: 30.0,
             height: 30.0)
-        buttonLeft.setTitle("<", forState: .Normal)
+        buttonLeft.setTitle("<", for: UIControlState())
         buttonLeft.tintColor = buttonsArrowColor
-        buttonLeft.backgroundColor = UIColor.clearColor()
+        buttonLeft.backgroundColor = UIColor.clear
         buttonLeft.center.y = viewContainerMonthAndYear!.center.y
-        buttonLeft.titleLabel!.font = UIFont.systemFontOfSize(20)
+        buttonLeft.titleLabel!.font = UIFont.systemFont(ofSize: 20)
         buttonLeft.addTarget(self,
                              action: #selector(MRMonthView.didGoToPreviousMonth),
-                             forControlEvents: .TouchUpInside)
+                             for: .touchUpInside)
         
         // right button
         
-        let buttonRight = UIButton(type: .System)
+        let buttonRight = UIButton(type: .system)
         buttonRight.frame = CGRect(
             x: self.frame.size.width - 40,
             y: 0,
             width: 30.0,
             height: 30.0)
-        buttonRight.setTitle(">", forState: .Normal)
+        buttonRight.setTitle(">", for: UIControlState())
         buttonRight.tintColor = buttonsArrowColor
-        buttonRight.backgroundColor = UIColor.clearColor()
+        buttonRight.backgroundColor = UIColor.clear
         buttonRight.center.y = viewContainerMonthAndYear!.center.y
-        buttonRight.titleLabel!.font = UIFont.systemFontOfSize(20)
+        buttonRight.titleLabel!.font = UIFont.systemFont(ofSize: 20)
         buttonRight.addTarget(self,
                               action: #selector(MRMonthView.didGoToNextMonth),
-                              forControlEvents: .TouchUpInside)
+                              for: .touchUpInside)
         
         self.addSubview(buttonRight)
         self.addSubview(buttonLeft)
 
     }
     
-    private func configureBottomCalendar() {
+    fileprivate func configureBottomCalendar() {
         separationView = UIView(frame: CGRect(
             x: 0,
             y: self.frame.size.height * 0.55,
             width: self.frame.size.width - 30,
             height: 1.0))
-        separationView!.center.x = CGRectGetMidX(self.bounds)
+        separationView!.center.x = self.bounds.midX
         separationView!.backgroundColor = UIColor.calendarSeparationColor()
         
         self.addSubview(separationView!)
         setupWeekDaysLabels()
     }
     
-    private func setupWeekDaysLabels() {
+    fileprivate func setupWeekDaysLabels() {
         
         for index in 0..<7 {
             let initialPosY = separationView!.frame.origin.y - 18
@@ -491,8 +513,8 @@ class MRMonthView: UIView {
                 width: labelWidth,
                 height: 15))
             weekLabel.textColor = UIColor.binnersGreenColor()
-            weekLabel.textAlignment = .Center
-            weekLabel.font = UIFont.boldSystemFontOfSize(14)
+            weekLabel.textAlignment = .center
+            weekLabel.font = UIFont.boldSystemFont(ofSize: 14)
             
             var text = ""
     
@@ -516,8 +538,8 @@ class MRMonthView: UIView {
         
     }
     
-    private func addDayButtonsToColumnFromLabel(
-        weekIndex: Int,
+    fileprivate func addDayButtonsToColumnFromLabel(
+        _ weekIndex: Int,
         positionX: CGFloat,
         width: CGFloat) {
         let originY = (separationView!.frame.origin.y + separationView!.frame.size.height)
@@ -532,7 +554,7 @@ class MRMonthView: UIView {
                 width: separationView!.frame.size.width,
                 height: (self.frame.size.height - originY)
                 ))
-            viewContainerDays?.backgroundColor = UIColor.clearColor()
+            viewContainerDays?.backgroundColor = UIColor.clear
             self.addSubview(viewContainerDays!)
             
         }
@@ -543,22 +565,22 @@ class MRMonthView: UIView {
             let initialPosY = (CGFloat(index) * labelHeight)
             
             
-            let weekDayButton = MRDayOfTheMonthButton(type: .Custom)
+            let weekDayButton = MRDayOfTheMonthButton(type: .custom)
              weekDayButton.frame = CGRect(
                 x: positionXInContainer,
                 y: initialPosY,
                 width: width,
                 height: labelHeight)
 
-            weekDayButton.titleLabel!.textAlignment = .Center
-            weekDayButton.titleLabel!.font = UIFont.boldSystemFontOfSize(14)
+            weekDayButton.titleLabel!.textAlignment = .center
+            weekDayButton.titleLabel!.font = UIFont.boldSystemFont(ofSize: 14)
             weekDayButton.number = weekIndexInit + (index * 7)
-            weekDayButton.setTitle("\(weekDayButton.number!)", forState: .Normal)
-            weekDayButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            weekDayButton.setTitle("\(weekDayButton.number!)", for: UIControlState())
+            weekDayButton.setTitleColor(UIColor.black, for: UIControlState())
             weekDayButton.addTarget(
                 self,
                 action: #selector(MRMonthView.didSelectDate(_:)),
-                forControlEvents: .TouchUpInside)
+                for: .touchUpInside)
             
             viewContainerDays!.addSubview(weekDayButton)
             dayButtons.append(weekDayButton)

@@ -33,7 +33,7 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         refreshControl.beginRefreshing()
@@ -46,8 +46,8 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     
     func configureRefreshControl() {
         refreshControl.backgroundColor = UIColor.binnersGray1()
-        refreshControl.tintColor = UIColor.grayColor()
-        refreshControl.addTarget(self, action: #selector(fetchPickups), forControlEvents: .ValueChanged)
+        refreshControl.tintColor = UIColor.gray
+        refreshControl.addTarget(self, action: #selector(fetchPickups), for: .valueChanged)
         self.collectionView!.addSubview(refreshControl)
     }
     
@@ -58,7 +58,7 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
             width: self.view.frame.width - 100,
             height: 80))
         labelEmptyCollectionView.font = UIFont.binnersFontWithSize(17.0)
-        labelEmptyCollectionView.textAlignment = .Center
+        labelEmptyCollectionView.textAlignment = .center
         labelEmptyCollectionView.text = "There are no pickups at the moment. Please pull to refresh."
         labelEmptyCollectionView.numberOfLines = 0
         labelEmptyCollectionView.sizeToFit()
@@ -71,7 +71,7 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         flowLayout.itemSize = CGSize(
             width: self.view.frame.width * 0.9 ,
             height: self.view.frame.height * 0.23)
-        flowLayout.scrollDirection = .Vertical
+        flowLayout.scrollDirection = .vertical
         self.collectionView!.collectionViewLayout = flowLayout
         self.collectionView!.setNeedsLayout()
         self.collectionView!.setNeedsDisplay()
@@ -85,9 +85,9 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         self.collectionView?.contentInset = edgeInsets
         
         var cellNib = UINib(nibName: notExpandedCellNibIdentifier, bundle: nil)
-        self.collectionView!.registerNib(cellNib, forCellWithReuseIdentifier: notExpandedReuseIdentifier)
+        self.collectionView!.register(cellNib, forCellWithReuseIdentifier: notExpandedReuseIdentifier)
         cellNib = UINib(nibName: expandedCellNibIdentifier, bundle: nil)
-        self.collectionView!.registerNib(cellNib, forCellWithReuseIdentifier: expandedCellReuseIdentifier)
+        self.collectionView!.register(cellNib, forCellWithReuseIdentifier: expandedCellReuseIdentifier)
 
     }
     
@@ -114,19 +114,19 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
         }
     }
     
-    func showCouldNotFetchPickupsError(msg:String) {
+    func showCouldNotFetchPickupsError(_ msg:String) {
         self.showEmptyLabelIfValid()
-        BPMessageFactory.makeMessage(.ERROR, message: msg).show()
+        BPMessageFactory.makeMessage(.error, message: msg).show()
     }
     
     // MARK : Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let pickupCell = sender as? BPExpandedPickupCollectionViewCell else {
             return
         }
         if segue.identifier == ratePickupSegueIdentifier {
-            if let ratePickupVC = segue.destinationViewController as? BPRatePickupViewController {
+            if let ratePickupVC = segue.destination as? BPRatePickupViewController {
                 ratePickupVC.pickup = pickupCell.pickup
             }
         }
@@ -134,9 +134,9 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
     
     func navigateToTimeVC(fromCell cell:BPExpandedPickupCollectionViewCell) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let timeVC = storyboard.instantiateViewControllerWithIdentifier("TimeVc") as? BPClockViewController {
+        if let timeVC = storyboard.instantiateViewController(withIdentifier: "TimeVc") as? BPClockViewController {
             timeVC.pickup = cell.pickup
-            presentViewController(BPNavigationController(rootViewController: timeVC), animated: true, completion: nil)
+            present(BPNavigationController(rootViewController: timeVC), animated: true, completion: nil)
         }
     }
     
@@ -145,41 +145,41 @@ class BPOnGoingPickupsCollectionViewController: UICollectionViewController {
 // MARK: UICollectionViewDataSource && Delegate
 extension BPOnGoingPickupsCollectionViewController {
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return pickupsViewModel.numberOfSections
     }
     
     override func collectionView(
-        collectionView: UICollectionView,
+        _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
         
         return pickupsViewModel.numberOfItemsInSection
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath)
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
         -> UICollectionViewCell {
             
-            if (expandCell && indexPath.row == indexForCurrentExtendedCell) {
-                let cell = collectionView.dequeueReusableCellWithReuseIdentifier(expandedCellReuseIdentifier, forIndexPath: indexPath)
+            if (expandCell && (indexPath as NSIndexPath).row == indexForCurrentExtendedCell) {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: expandedCellReuseIdentifier, for: indexPath)
                     as! BPExpandedPickupCollectionViewCell
-                cell.pickup = pickupsViewModel.onGoingPickups[indexPath.row]
+                cell.pickup = pickupsViewModel.onGoingPickups[(indexPath as NSIndexPath).row]
                 cell.editDelegate = self
                 return cell
             }
             
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(notExpandedReuseIdentifier, forIndexPath: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: notExpandedReuseIdentifier, for: indexPath)
                 as! BPOnGoingPickupCollectionViewCell
-            cell.pickup = pickupsViewModel.onGoingPickups[indexPath.row]
+            cell.pickup = pickupsViewModel.onGoingPickups[(indexPath as NSIndexPath).row]
             return cell
     }
     
     
-    override func collectionView(collectionView: UICollectionView,
-                                 didSelectItemAtIndexPath
-        indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView,
+                                 didSelectItemAt
+        indexPath: IndexPath) {
         
         indexForPreviousExtendedCell = indexForCurrentExtendedCell
-        indexForCurrentExtendedCell = indexPath.row
+        indexForCurrentExtendedCell = (indexPath as NSIndexPath).row
         expandCell = !expandCell
         
         if let indexPrevious = indexForPreviousExtendedCell {
@@ -188,29 +188,29 @@ extension BPOnGoingPickupsCollectionViewController {
                 expandCell = true
             }
             
-            let indexPath = NSIndexPath(forRow: indexPrevious, inSection: 0)
-            self.collectionView?.reloadItemsAtIndexPaths([indexPath])
+            let indexPath = IndexPath(row: indexPrevious, section: 0)
+            self.collectionView?.reloadItems(at: [indexPath])
         }
         
-        let indexPath = NSIndexPath(forRow: indexForCurrentExtendedCell!, inSection: 0)
-        self.collectionView?.reloadItemsAtIndexPaths([indexPath])
+        let indexPath = IndexPath(row: indexForCurrentExtendedCell!, section: 0)
+        self.collectionView?.reloadItems(at: [indexPath])
         
     }
 }
 
 extension BPOnGoingPickupsCollectionViewController : UICollectionViewDelegateFlowLayout {
     
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                               minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+                               minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
     
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+                               sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        if (expandCell && indexPath.row == indexForCurrentExtendedCell) {
+        if (expandCell && (indexPath as NSIndexPath).row == indexForCurrentExtendedCell) {
             return CGSize(
                 width: self.view.frame.width * 0.9,
                 height: self.view.frame.height * 0.73)
@@ -227,7 +227,7 @@ extension BPOnGoingPickupsCollectionViewController : UICollectionViewDelegateFlo
 
 extension BPOnGoingPickupsCollectionViewController : PickupsDelegate {
     
-    func didFinishFetchingOnGoingPickups(success: Bool, errorMsg: String?) {
+    func didFinishFetchingOnGoingPickups(_ success: Bool, errorMsg: String?) {
         
         if success {
             self.showEmptyLabelIfValid()
@@ -245,7 +245,7 @@ extension BPOnGoingPickupsCollectionViewController : EditPickupProtocol {
         
         switch edit {
         case .rate:
-            self.performSegueWithIdentifier(ratePickupSegueIdentifier, sender: cell)
+            self.performSegue(withIdentifier: ratePickupSegueIdentifier, sender: cell)
         case .time:
             navigateToTimeVC(fromCell: cell)
         default:

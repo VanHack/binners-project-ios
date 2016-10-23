@@ -15,7 +15,7 @@ extension UIFont {
         return UIFont(name: "Oxygen",size: 16)
     }
     
-    static func binnersFontWithSize(size:CGFloat) -> UIFont? {
+    static func binnersFontWithSize(_ size:CGFloat) -> UIFont? {
         
         return UIFont(name: "Oxygen",size: size)
     }

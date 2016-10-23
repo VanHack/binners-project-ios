@@ -9,12 +9,12 @@ import UIKit
 import MapKit
 import AFNetworking
 
-typealias PickupSucessBlock = ([BPPickup] -> Void)
+typealias PickupSucessBlock = (([BPPickup]) -> Void)
 
 final class BPPickup : AnyObject {
 
     var reedemable: BPReedemable!
-    var date: NSDate!
+    var date: Date!
     var instructions: String!
     var address: BPAddress!
     var id: String!
@@ -24,7 +24,7 @@ final class BPPickup : AnyObject {
     
     init(id: String?,
          instructions: String,
-         date: NSDate,
+         date: Date,
          reedemable: BPReedemable,
          address: BPAddress,
          status:PickupStatus ) {
@@ -39,10 +39,10 @@ final class BPPickup : AnyObject {
     
     init() {}
     
-    func postPickup(onSuccess:OnSuccessBlock, onFailure:OnFailureBlock?) throws {
+    func postPickup(_ onSuccess: @escaping OnSuccessBlock, onFailure:OnFailureBlock?) {
         
         let wrapper = BPObjectWrapper()
-        try wrapper.wrapObject(self)
+        wrapper.wrapObject(self)
         
         if let url = BPURLBuilder.postPickupURL {
             
@@ -51,7 +51,7 @@ final class BPPickup : AnyObject {
             manager.requestSerializer.setValue(wrapper.header!, forHTTPHeaderField: "Authorization")
         
             BPServerRequestManager.sharedInstance.execute(
-                .POST,
+                .post,
                 url: url,
                 manager: manager,
                 param: wrapper.body,
@@ -62,10 +62,10 @@ final class BPPickup : AnyObject {
         
     }
     
-    class func fetchOnGoingPickups(onSuccess:PickupSucessBlock, onFailure:OnFailureBlock? ) throws {
+    class func fetchOnGoingPickups(_ onSuccess: @escaping PickupSucessBlock, onFailure:OnFailureBlock? ) throws {
         
-        guard let token = BPUser.sharedInstance().token else {
-            throw Error.InvalidToken
+        guard let token = BPUser.sharedInstance.token else {
+            throw BPError.invalidToken
         }
         
         if let url = BPURLBuilder.getPickupsURL {
@@ -74,7 +74,7 @@ final class BPPickup : AnyObject {
             manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
             
             BPServerRequestManager.sharedInstance.execute(
-                .GET,
+                .get,
                 url: url,
                 manager: manager,
                 param: nil,
@@ -83,7 +83,7 @@ final class BPPickup : AnyObject {
                     object in
                     
                     guard let pickupsListDictionary = object as? [[String:AnyObject]] else {
-                        onFailure?(Error.ErrorConvertingFile)
+                        onFailure?(BPError.errorConvertingFile)
                         return
                     }
                     
@@ -91,7 +91,7 @@ final class BPPickup : AnyObject {
                     
                     pickupsListDictionary.forEach( {
                         dictionary in
-                        if let pickup = BPPickup.mapToModel(dictionary) {
+                        if let pickup = BPPickup.mapToModel(withData: dictionary as AnyObject) {
                             pickups.append(pickup)
                         }
                     })
@@ -104,48 +104,20 @@ final class BPPickup : AnyObject {
         
         
     }
-
-    
-//    func postPickupPictureForPickupId(onSuccess:OnSuccessBlock, onFailure:OnFailureBlock?) {
-//        
-//        if (reedemable.picture != nil) {
-//            
-//            let finalUrl = BPURLBuilder.buildPickupPhotoUploadURL(id)
-//            let manager = AFHTTPSessionManager()
-//            
-//            manager.POST(finalUrl, parameters: nil, constructingBodyWithBlock: { formData in
-//                
-//                let imageData = UIImageJPEGRepresentation(self.reedemable.picture, 0.5)
-//                formData.appendPartWithFormData(imageData!, name: "pickupImage")
-//                
-//                }, success: {sessionDataTask,object in
-//                    
-//                    onSuccess(object!)
-//                    
-//                }, failure: {sessionDataTask, error in
-//                    
-//                    onFailure?(BPErrorManager.processErrorFromServer(error))
-//            })
-//            
-//        } else {
-//            onFailure?(ErrorPickup.PictureCantBeNil)
-//        }
-//        
-//
-//    }
     
 }
 
 extension BPPickup : Mappable {
     
-    static func mapToModel(object: AnyObject) -> BPPickup? {
+    static func mapToModel(withData object: AnyObject) -> BPPickup? {
+        
+        let addressJson = object["address"] as AnyObject
         
         guard
         let id = object["_id"] as? String,
         let instructions = object["instructions"] as? String,
         let items = object["items"]! as? NSArray,
         let date = object["time"] as? String,
-        let addressJson = object["address"]!,
         let status = object["status"] as? String else {
                 return nil
         }
@@ -159,16 +131,14 @@ extension BPPickup : Mappable {
                 return nil
         }
         
-        guard
-            let locationDic = addressJson["location"]! else {
-                return nil
-        }
+        let locationDic = addressJson["location"] as AnyObject
+
         guard
             let coordinates = locationDic["coordinates"] as? [Double] else {
                 return nil
         }
         
-        guard let dateObject = BPParser.parseDateFromServer(date) else {
+        guard let dateObject = Date.parseDateFromServer(date) else {
             return nil
         }
         
@@ -193,10 +163,10 @@ extension BPPickup : Mappable {
 
 extension BPPickup : Wrappable {
     
-     func mapToData() throws -> AnyObject {
+     func mapToData() -> AnyObject {
         
         let items = [
-            "quantity": String(reedemable.quantity)
+            "quantity": reedemable.quantity
         ]
         
         let location = [
@@ -206,15 +176,15 @@ extension BPPickup : Wrappable {
         let address = [
             "street": self.address.formattedAddress,
             "location": location
-        ]
+        ] as [String : Any]
         
-        let pickupDic = [
-            "requester": BPUser.sharedInstance().id,
+        let pickupDic: [String: Any] = [
+            "requester": BPUser.sharedInstance.id,
             "address": address,
             "time": self.date,
             "instructions": self.instructions,
             "items": [items]
         ]
-        return pickupDic
+        return pickupDic as AnyObject
     }
 }

@@ -10,28 +10,28 @@ import Foundation
 
 class BPEncoder {
     
-    static func convertSwiftArrayToNSArrayWithData<T where T:NSCoding>(objects:[T]) -> NSArray {
+    static func convertSwiftArrayToNSArrayWithData<T>(_ objects:[T]) -> NSArray where T:NSCoding {
         
-        let dataArray = objects.map({ value in return NSKeyedArchiver.archivedDataWithRootObject(value)})
+        let dataArray = objects.map({ value in return NSKeyedArchiver.archivedData(withRootObject: value)})
         
         let encodedArray = NSMutableArray()
         
-        for encodedObject in dataArray { encodedArray.addObject(encodedObject) }
+        for encodedObject in dataArray { encodedArray.add(encodedObject) }
         return encodedArray as NSArray
     }
     
-    static func convertNSArrayWithDataToSwiftArray(encodedObjects:NSArray) -> [AnyObject]? {
+    static func convertNSArrayWithDataToSwiftArray(_ encodedObjects:NSArray) -> [AnyObject]? {
         
         var objectList = [AnyObject]()
         for encodedObject in encodedObjects {
             
             guard let
-                encodedObjectData = encodedObject as? NSData,
-                unarchivedData = NSKeyedUnarchiver.unarchiveObjectWithData(encodedObjectData) else {
+                encodedObjectData = encodedObject as? Data,
+                let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: encodedObjectData) else {
                 return nil
             }
             
-            objectList.append(unarchivedData)
+            objectList.append(unarchivedData as AnyObject)
         }
         
         return objectList

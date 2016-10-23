@@ -10,7 +10,7 @@ import Foundation
 
 protocol PickupsDelegate {
     
-    func didFinishFetchingOnGoingPickups(success:Bool,errorMsg: String?)
+    func didFinishFetchingOnGoingPickups(_ success:Bool,errorMsg: String?)
 }
 
 
@@ -40,7 +40,7 @@ class BPPickupsViewModel {
             pickups in
             
             self.dataFetched = true
-            self.onGoingPickups.appendContentsOf(pickups)
+            self.onGoingPickups.append(contentsOf: pickups)
             self.pickupsDelegate?.didFinishFetchingOnGoingPickups(true, errorMsg: nil)
             
         }, onFailure: {

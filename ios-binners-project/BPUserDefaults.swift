@@ -11,23 +11,25 @@ import Foundation
 class BPUserDefaults {
     
     class func loadUser() -> BPUser? {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults = UserDefaults.standard
         
         guard
-            let email = userDefaults.stringForKey("email"),
-            let id = userDefaults.stringForKey("id"),
-            let token = userDefaults.stringForKey("token") else {
+            let email = userDefaults.string(forKey: "email"),
+            let id = userDefaults.string(forKey: "id"),
+            let token = userDefaults.string(forKey: "token") else {
                 return nil
         }
-        let address = userDefaults.stringForKey("address")
-        return BPUser.setup(token,address: address, userID: id, email: email)
+        let address = userDefaults.string(forKey: "address")
+        
+        BPUser.sharedInstance.initialize(token,email: email, id: id, address: address)
+        return BPUser.sharedInstance
     }
     
-    class func addAddressToHistory(address:BPAddress) {
+    class func addAddressToHistory(_ address:BPAddress) {
         
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults = UserDefaults.standard
         
-        if let codedAddressList = userDefaults.objectForKey("addressList") as? NSArray  {
+        if let codedAddressList = userDefaults.object(forKey: "addressList") as? NSArray  {
             
             let codedAddressMutableList = NSMutableArray(array: codedAddressList)
             
@@ -35,48 +37,48 @@ class BPUserDefaults {
                 BPEncoder.convertNSArrayWithDataToSwiftArray(codedAddressList)
                     as? [BPAddress] {
                 
-                if !historyList.contains({ addressIt in return addressIt == address}) {
-                    let encodedAddress = NSKeyedArchiver.archivedDataWithRootObject(address)
+                if !historyList.contains(where: { addressIt in return addressIt == address}) {
+                    let encodedAddress = NSKeyedArchiver.archivedData(withRootObject: address)
                     
                     if codedAddressMutableList.count >= 5 {
-                        codedAddressMutableList.removeObjectAtIndex(codedAddressMutableList.count - 1)
-                        codedAddressMutableList.insertObject(encodedAddress, atIndex: 0)
+                        codedAddressMutableList.removeObject(at: codedAddressMutableList.count - 1)
+                        codedAddressMutableList.insert(encodedAddress, at: 0)
                     } else {
-                        codedAddressMutableList.insertObject(encodedAddress, atIndex: 0)
+                        codedAddressMutableList.insert(encodedAddress, at: 0)
                     }
                     
-                    userDefaults.setObject(codedAddressMutableList, forKey: "addressList")
+                    userDefaults.set(codedAddressMutableList, forKey: "addressList")
                 }
 
             }
             
             
         } else {
-            let addressList = NSArray(array: [NSKeyedArchiver.archivedDataWithRootObject(address)])
+            let addressList = NSArray(array: [NSKeyedArchiver.archivedData(withRootObject: address)])
             userDefaults.setValue(addressList, forKey: "addressList")
         }
     }
     
     class func clearUserInfoLocally() {
-        let appDomain = NSBundle.mainBundle().bundleIdentifier
-        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        let appDomain = Bundle.main.bundleIdentifier
+        UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+        UserDefaults.standard.synchronize()
     }
 
-    class func saveUser(user:BPUser) {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setObject(user.email, forKey: "email")
-        userDefaults.setObject(user.address, forKey: "address")
-        userDefaults.setObject(user.id, forKey: "id")
-        userDefaults.setObject(user.token, forKey: "token")
+    class func saveUser(_ user:BPUser) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(user.email, forKey: "email")
+        userDefaults.set(user.address, forKey: "address")
+        userDefaults.set(user.id, forKey: "id")
+        userDefaults.set(user.token, forKey: "token")
         userDefaults.synchronize()
     }
     
     class func loadPickupAdressHistory() -> [BPAddress]? {
         
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults = UserDefaults.standard
         
-        if let addressListEncoded = userDefaults.objectForKey("addressList") as? NSArray {
+        if let addressListEncoded = userDefaults.object(forKey: "addressList") as? NSArray {
             return BPEncoder.convertNSArrayWithDataToSwiftArray(addressListEncoded) as? [BPAddress]
         }
         return nil

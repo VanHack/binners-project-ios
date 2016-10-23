@@ -12,35 +12,35 @@ enum DateFormatType {
     case time, date
 }
 
-extension NSDate {
+extension Date {
     
     static func currentHour() -> Int {
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
-        let dateNow = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let comp = calendar.components([.Hour], fromDate: dateNow)
-        return comp.hour
+        let dateNow = Date()
+        let calendar = Calendar.current
+        let comp = (calendar as NSCalendar).components([.hour], from: dateNow)
+        return comp.hour!
     }
     
     func printDate() -> String {
         return "\(self.dayMonthYear().1)/\(self.dayMonthYear().0)/\(self.dayMonthYear().2)"
     }
     
-    func formattedDate(dateType: DateFormatType) -> String {
+    func formattedDate(_ dateType: DateFormatType) -> String {
         
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         
         switch dateType {
         case .date:
-            formatter.timeStyle = .NoStyle
-            formatter.dateStyle = .ShortStyle
+            formatter.timeStyle = .none
+            formatter.dateStyle = .short
         case .time:
-            formatter.timeStyle = .ShortStyle
-            formatter.dateStyle = .NoStyle
+            formatter.timeStyle = .short
+            formatter.dateStyle = .none
         }
         
-        return formatter.stringFromDate(self)
+        return formatter.string(from: self)
     }
     
     func printTime() -> String {
@@ -68,80 +68,80 @@ extension NSDate {
     }
     
     func dayMonthYear() -> ( Int, Int, Int ) {
-        let calendar = NSCalendar.currentCalendar()
+        let calendar = Calendar.current
         let components =
-            calendar.components(
-                [.Year, .Month, .Day, .WeekOfMonth, .Weekday],
-                fromDate: self)
+            (calendar as NSCalendar).components(
+                [.year, .month, .day, .weekOfMonth, .weekday],
+                from: self)
         
-        return ( components.day, components.month, components.year)
+        return ( components.day!, components.month!, components.year!)
         
     }
     
-    func changeDay(day: Int) -> NSDate {
+    func changeDay(_ day: Int) -> Date {
         
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(
-            [.Year, .Month, .Day, .WeekOfMonth, .Weekday],
-            fromDate: self)
+        let calendar = Calendar.current
+        var components = (calendar as NSCalendar).components(
+            [.year, .month, .day, .weekOfMonth, .weekday],
+            from: self)
         components.day = day
-        let date = calendar.dateFromComponents(components)
+        let date = calendar.date(from: components)
         return date!
     }
     
     func getHour() -> Int {
         
-        let calendar = NSCalendar.currentCalendar()
+        let calendar = Calendar.current
         let components =
-            calendar.components(
-                [.Year, .Month, .Day, .WeekOfMonth, .Weekday, .Hour, .Minute],
-                fromDate: self)
+            (calendar as NSCalendar).components(
+                [.year, .month, .day, .weekOfMonth, .weekday, .hour, .minute],
+                from: self)
         
-        return components.hour
+        return components.hour!
     }
     
     func getMinute() -> Int {
         
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(
-            [.Year, .Month, .Day, .WeekOfMonth, .Weekday, .Hour, .Minute],
-            fromDate: self)
-        return components.minute
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components(
+            [.year, .month, .day, .weekOfMonth, .weekday, .hour, .minute],
+            from: self)
+        return components.minute!
     }
 
     
-    func changeHour(hour: Int) -> NSDate {
+    func changeHour(_ hour: Int) -> Date {
         
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(
-            [.Year, .Month, .Day, .WeekOfMonth, .Weekday, .Hour, .Minute],
-            fromDate: self)
+        let calendar = Calendar.current
+        var components = (calendar as NSCalendar).components(
+            [.year, .month, .day, .weekOfMonth, .weekday, .hour, .minute],
+            from: self)
         components.hour = hour
-        let date = calendar.dateFromComponents(components)
+        let date = calendar.date(from: components)
         return date!
     }
     
-    func changeMinute(minute: Int) -> NSDate {
+    func changeMinute(_ minute: Int) -> Date {
         
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(
-            [.Year, .Month, .Day, .WeekOfMonth, .Weekday, .Hour, .Minute],
-            fromDate: self)
+        let calendar = Calendar.current
+        var components = (calendar as NSCalendar).components(
+            [.year, .month, .day, .weekOfMonth, .weekday, .hour, .minute],
+            from: self)
         components.minute = minute
-        let date = calendar.dateFromComponents(components)
+        let date = calendar.date(from: components)
         return date!
     }
     
     func dayOfTheWeek() -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(
-            [.Year, .Month, .Day, .WeekOfMonth, .Weekday],
-            fromDate: self)
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components(
+            [.year, .month, .day, .weekOfMonth, .weekday],
+            from: self)
         
-        return components.weekday
+        return components.weekday!
     }
     
-    func daysOfTheMonth(date: NSDate) -> [(String, String, String, String)] {
+    func daysOfTheMonth(_ date: Date) -> [(String, String, String, String)] {
         
         var dayStrings = [( String, String, String, String)]()
         var weekDay = date.getDateForFirstDayOfTheMonth().dayOfTheWeek()
@@ -165,62 +165,70 @@ extension NSDate {
         
     }
     
-    func getDateForFirstDayOfTheMonth() -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(
-            [.Year, .Month, .Day, .WeekOfMonth, .Weekday],
-            fromDate: self)
+    func getDateForFirstDayOfTheMonth() -> Date {
+        let calendar = Calendar.current
+        var components = (calendar as NSCalendar).components(
+            [.year, .month, .day, .weekOfMonth, .weekday],
+            from: self)
         components.day = 1
-        let date = calendar.dateFromComponents(components)
+        let date = calendar.date(from: components)
         return date!
     }
     
-    func getPastMonth() -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(
-            [.Year, .Month, .Day, .WeekOfMonth, .Weekday], fromDate: self)
-        components.month = components.month - 1
-        let date = calendar.dateFromComponents(components)
+    func getPastMonth() -> Date {
+        let calendar = Calendar.current
+        var components = (calendar as NSCalendar).components(
+            [.year, .month, .day, .weekOfMonth, .weekday], from: self)
+        components.month = components.month! - 1
+        let date = calendar.date(from: components)
         return date!
     }
     
-    func getNextMonth() -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(
-            [.Year, .Month, .Day, .WeekOfMonth, .Weekday],
-            fromDate: self)
-        components.month = components.month + 1
-        let date = calendar.dateFromComponents(components)
+    func getNextMonth() -> Date {
+        let calendar = Calendar.current
+        var components = (calendar as NSCalendar).components(
+            [.year, .month, .day, .weekOfMonth, .weekday],
+            from: self)
+        components.month = components.month! + 1
+        let date = calendar.date(from: components)
         return date!
     }
     
-    func nextDayDate() -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let components =
-            calendar.components(
-                [.Year, .Month, .Day, .WeekOfMonth, .Weekday],
-                fromDate: self)
-        components.day = components.day + 1
-        let date = calendar.dateFromComponents(components)
+    func nextDayDate() -> Date {
+        let calendar = Calendar.current
+        var components =
+            (calendar as NSCalendar).components(
+                [.year, .month, .day, .weekOfMonth, .weekday],
+                from: self)
+        components.day = components.day! + 1
+        let date = calendar.date(from: components)
         return date!
     }
     
-    func previousDayDate() -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(
-            [.Year, .Month, .Day, .WeekOfMonth, .Weekday],
-            fromDate: self)
-        components.day = components.day - 1
-        let date = calendar.dateFromComponents(components)
+    func previousDayDate() -> Date {
+        let calendar = Calendar.current
+        var components = (calendar as NSCalendar).components(
+            [.year, .month, .day, .weekOfMonth, .weekday],
+            from: self)
+        components.day = components.day! - 1
+        let date = calendar.date(from: components)
         return date!
     }
-    
     
     func getDaysOfTheMonth() -> NSRange {
-        let calendar = NSCalendar.currentCalendar()
-        let daysRange = calendar.rangeOfUnit(.Day, inUnit: .Month, forDate: self)
+        let calendar = Calendar.current
+        let daysRange = (calendar as NSCalendar).range(of: .day, in: .month, for: self)
         return daysRange
     }
+    
+    static func parseDateFromServer(_ dateString:String) -> Date? {
+        
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.'000Z'"
+        
+        return dateFormatter.date(from: dateString)
+    }
+
     
     func monthLiteral() -> String {
         let month = self.dayMonthYear().1

@@ -25,7 +25,7 @@ extension UIColor {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
     
-    static func colorWith(redValue: CGFloat,
+    static func colorWith(_ redValue: CGFloat,
                           greenValue: CGFloat,
                           blueValue: CGFloat,
                           alpha: CGFloat) -> UIColor {

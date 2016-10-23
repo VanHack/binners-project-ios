@@ -13,16 +13,12 @@ class BPObjectWrapper {
     var header:String?
     var body:AnyObject?
     
-    func wrapObject(object:AnyObject) throws {
+    func wrapObject(_ object:AnyObject) {
         
         if let pickup = object as? BPPickup {
             
-            body = try pickup.mapToData()
-            header = BPUser.sharedInstance().token
-            
-        } else {
-            throw Error.ErrorWithMsg(errorMsg: "Invalid object wrapping")
+            body = pickup.mapToData()
+            header = BPUser.sharedInstance.token
         }
     }
-
 }

@@ -10,5 +10,5 @@ import UIKit
 
 protocol MRMonthCalendarDelegate {
 
-    func calendarDidChangeDate(date:NSDate)
+    func calendarDidChangeDate(_ date:Date)
 }

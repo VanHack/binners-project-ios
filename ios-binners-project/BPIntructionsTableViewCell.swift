@@ -10,7 +10,7 @@ import UIKit
 
 protocol FinishedPickupDelegate {
     
-    func finishPickupButtonClicked(sender:UIButton)
+    func finishPickupButtonClicked(_ sender:UIButton)
 }
 
 class BPIntructionsTableViewCell: UITableViewCell {
@@ -19,10 +19,10 @@ class BPIntructionsTableViewCell: UITableViewCell {
     @IBOutlet weak var buttonFinish: UIButton! {
         didSet {
             buttonFinish.backgroundColor = UIColor.binnersGreenColor()
-            buttonFinish.tintColor = UIColor.whiteColor()
+            buttonFinish.tintColor = UIColor.white
             buttonFinish.addTarget(self,
                                    action: #selector(buttonFinishClicked),
-                                   forControlEvents: .TouchUpInside)
+                                   for: .touchUpInside)
             buttonFinish.layer.cornerRadius = 10
             buttonFinish.clipsToBounds = true
         }
@@ -31,13 +31,13 @@ class BPIntructionsTableViewCell: UITableViewCell {
     
     var instructions:String? {
         didSet {
-            labelText.backgroundColor = UIColor.whiteColor()
+            labelText.backgroundColor = UIColor.white
             labelText.text = instructions!
         }
     }
     var finishedPickupDelegate:FinishedPickupDelegate?
     
-    func buttonFinishClicked(sender:UIButton) {
+    func buttonFinishClicked(_ sender:UIButton) {
         finishedPickupDelegate?.finishPickupButtonClicked(sender)
     }
     
@@ -47,7 +47,7 @@ class BPIntructionsTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.binnersGrayBackgroundColor()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

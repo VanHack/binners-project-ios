@@ -16,7 +16,7 @@ class BPDateTableViewCell: UITableViewCell {
     @IBOutlet weak var timeSelectedLabel: UILabel!
     @IBOutlet weak var dateSelectedLabel: UILabel!
     
-    var date:NSDate? {
+    var date:Date? {
         didSet {
             
             self.timeSelectedLabel.text = date!.printTime()
@@ -32,7 +32,7 @@ class BPDateTableViewCell: UITableViewCell {
         
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

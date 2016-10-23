@@ -10,11 +10,11 @@ import UIKit
 
 protocol LoginDelegate {
     
-    func didLogin(success:Bool, errorMsg:String?)
+    func didLogin(_ success:Bool, errorMsg:String?)
 }
 protocol ForgotPasswordDelegate {
     
-    func didSendEmail(success:Bool, errorMsg:String?)
+    func didSendEmail(_ success:Bool, errorMsg:String?)
 }
 
 
@@ -25,8 +25,8 @@ class BPLoginViewModel : NSObject {
     var passwordForgotDelegate:ForgotPasswordDelegate?
     
     enum ValidationStatus {
-        case Passed
-        case Failed(String)
+        case passed
+        case failed(String)
     }
     
     override init() {
@@ -35,50 +35,50 @@ class BPLoginViewModel : NSObject {
     }
     
     
-    func validate(userEmail: String?,password: String?) -> ValidationStatus {
+    func validate(_ userEmail: String?,password: String?) -> ValidationStatus {
         
         switch validateEmail(userEmail) {
-        case .Failed(let msg):
-            return .Failed(msg)
+        case .failed(let msg):
+            return .failed(msg)
         default: break
         }
         
         switch validatePassword(password) {
-        case .Failed(let msg):
-            return .Failed(msg)
-        default: return .Passed
+        case .failed(let msg):
+            return .failed(msg)
+        default: return .passed
         }
     }
     
-    func validatePassword(password: String?) -> ValidationStatus {
+    func validatePassword(_ password: String?) -> ValidationStatus {
         
         guard let password = password else {
-            return .Failed("Password can't be empty")
+            return .failed("Password can't be empty")
         }
         
-        if password.stringByReplacingOccurrencesOfString(" ", withString: "") == "" {
+        if password.replacingOccurrences(of: " ", with: "") == "" {
             
-            return .Failed("Password can't be empty")
+            return .failed("Password can't be empty")
         }
         
-        return .Passed
+        return .passed
     }
     
-    func validateEmail(userEmail: String?) -> ValidationStatus {
+    func validateEmail(_ userEmail: String?) -> ValidationStatus {
         
         guard let userEmail = userEmail else {
-                return .Failed("Username can't be empty")
+                return .failed("Username can't be empty")
         }
         
-        if userEmail.stringByReplacingOccurrencesOfString(" ", withString: "") == "" ||
-            !userEmail.containsString("@") {
-            return .Failed("Email is invalid")
+        if userEmail.replacingOccurrences(of: " ", with: "") == "" ||
+            !userEmail.contains("@") {
+            return .failed("Email is invalid")
         }
-        return .Passed
+        return .passed
 
     }
     
-    func loginResident(email:String, password: String) {
+    func loginResident(_ email:String, password: String) {
         
             
         loginManager.makeResidentStandardLogin(
@@ -99,18 +99,17 @@ class BPLoginViewModel : NSObject {
     }
     
     
-    func authenticateUserWithGoogleLogin(user: GIDGoogleUser!) throws {
+    func authenticateUserWithGoogleLogin(_ user: GIDGoogleUser!) throws {
         
         loginManager.authGoogle = user.authentication.accessToken
         try loginManager.authenticateGoogleUserOnBinnersServer(
             {
-        
             user in
                 self.loginDelegate?.didLogin(true,errorMsg: nil)
         
         },onFailure: {
-            error in
-                self.loginDelegate?.didLogin(false, errorMsg: (error as NSError).localizedDescription)
+            (error: BPError) in
+                self.loginDelegate?.didLogin(false, errorMsg: error.errorMsg())
         
         })
     }
@@ -145,17 +144,18 @@ class BPLoginViewModel : NSObject {
         
     }
     
-    func sendPasswordForgottenEmail(email: String) throws {
+    func sendPasswordForgottenEmail(_ email: String) {
         
-        try BPUser.recoverPassword(
+        BPUser.recoverPassword(
             email,
             onSuccess:{
                 object in
                     self.passwordForgotDelegate?.didSendEmail(true, errorMsg: nil)
             },onFailure:{
-                error in
-                    self.loginDelegate?.didLogin(false, errorMsg: (error as NSError).localizedDescription)
-        
+                (error: BPError) in
+                
+                self.loginDelegate?.didLogin(false, errorMsg: error.errorMsg())
+                
             })
         
     }
@@ -164,9 +164,9 @@ class BPLoginViewModel : NSObject {
 
 extension BPLoginViewModel : GIDSignInDelegate {
     
-    @objc func signIn(signIn: GIDSignIn!,
-                didSignInForUser user: GIDGoogleUser!,
-                                 withError error: NSError!) {
+    @objc func sign(_ signIn: GIDSignIn!,
+                didSignInFor user: GIDGoogleUser!,
+                                 withError error: Error!) {
         if error == nil {
             
             do {

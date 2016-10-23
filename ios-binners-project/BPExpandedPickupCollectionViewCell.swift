@@ -60,14 +60,14 @@ class BPExpandedPickupCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
         setupViewCorners()
         setupCell()
     }
     
     // MARK: Setup
     
-    func setupCellForPickup(pickup:BPPickup) {
+    func setupCellForPickup(_ pickup:BPPickup) {
         labelStatus.text = pickup.status.statusString()
         labelAddress.text = pickup.address.formattedAddress
         labelTime.text = pickup.date.formattedDate(.time)
@@ -86,7 +86,7 @@ class BPExpandedPickupCollectionViewCell: UICollectionViewCell {
         labelTime.adjustsFontSizeToFitWidth = true
         labelAddress.adjustsFontSizeToFitWidth = true
         labelDate.adjustsFontSizeToFitWidth = true
-        map.userInteractionEnabled = false
+        map.isUserInteractionEnabled = false
         enableViews(editingIsEnabled)
     }
     
@@ -100,46 +100,46 @@ class BPExpandedPickupCollectionViewCell: UICollectionViewCell {
 
     //MARK: Enable/Disable views for editing
     
-    func enableViews(enabled:Bool) {
+    func enableViews(_ enabled:Bool) {
         
-        buttonEditDate.enabled =    enabled
-        buttonEditAddress.enabled = enabled
-        buttonEditTime.enabled =    enabled
-        buttonEditDate.hidden =     !enabled
-        buttonEditAddress.hidden =  !enabled
-        buttonEditTime.hidden =     !enabled
+        buttonEditDate.isEnabled =    enabled
+        buttonEditAddress.isEnabled = enabled
+        buttonEditTime.isEnabled =    enabled
+        buttonEditDate.isHidden =     !enabled
+        buttonEditAddress.isHidden =  !enabled
+        buttonEditTime.isHidden =     !enabled
     }
     
     // MARK: Map
     
-    func centerMapOnLocation(location: CLLocation) {
-        self.map.camera = GMSCameraPosition.cameraWithTarget(location.coordinate, zoom: 15.0)
+    func centerMapOnLocation(_ location: CLLocation) {
+        self.map.camera = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15.0)
     }
 
     // MARK: Button Actions
     
-    @IBAction func editAddressButtonClicked(sender: UIButton) {
+    @IBAction func editAddressButtonClicked(_ sender: UIButton) {
         editDelegate?.didClickEditButton(forCell: self, edit: .address,pickup: pickup)
     }
     
-    @IBAction func editTimeButtonClicked(sender: UIButton) {
+    @IBAction func editTimeButtonClicked(_ sender: UIButton) {
         editDelegate?.didClickEditButton(forCell: self, edit: .time, pickup: pickup)
     }
-    @IBAction func editDateButtonCliked(sender: UIButton) {
+    @IBAction func editDateButtonCliked(_ sender: UIButton) {
         editDelegate?.didClickEditButton(forCell: self, edit: .date, pickup: pickup)
     }
     
-    @IBAction func editButtonClicked(sender: UIButton) {
+    @IBAction func editButtonClicked(_ sender: UIButton) {
         editingIsEnabled = !editingIsEnabled
         
         // save after clicking twice?
     }
     
-    @IBAction func cancelButtonClicked(sender: UIButton) {
+    @IBAction func cancelButtonClicked(_ sender: UIButton) {
         // cancels pickup
     }
     
-    @IBAction func ratingButtonClicked(sender: UIButton) {
+    @IBAction func ratingButtonClicked(_ sender: UIButton) {
         // rate pickup
         self.editDelegate?.didClickEditButton(forCell: self, edit: .rate, pickup: pickup)
     }

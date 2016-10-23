@@ -17,14 +17,14 @@ class BPQuantityTableViewCell: UITableViewCell {
     var reedemable:BPReedemable? {
         didSet {
             
-            buttonImageOrText.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            buttonImageOrText.backgroundColor = UIColor.whiteColor()
+            buttonImageOrText.setTitleColor(UIColor.black, for: UIControlState())
+            buttonImageOrText.backgroundColor = UIColor.white
             
             if reedemable!.picture == nil {
-                buttonImageOrText.setTitle(reedemable!.quantity, forState: .Normal)
+                buttonImageOrText.setTitle(reedemable!.quantity, for: UIControlState())
             } else {
-                buttonImageOrText.imageView!.contentMode = .ScaleAspectFill
-                buttonImageOrText.setImage(reedemable!.picture, forState: .Normal)
+                buttonImageOrText.imageView!.contentMode = .scaleAspectFill
+                buttonImageOrText.setImage(reedemable!.picture, for: UIControlState())
             }
         }
     }
@@ -35,7 +35,7 @@ class BPQuantityTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.binnersGrayBackgroundColor()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

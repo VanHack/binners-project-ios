@@ -10,8 +10,8 @@ import UIKit
 
 @objc protocol BPActionBar: class {
  
-    optional func configureActionBar()
-    optional func dismiss()
+    @objc optional func configureActionBar()
+    @objc optional func dismiss()
     func barTitle() -> String
     func showCloseButton() -> Bool
     func rightBarButtonItem() -> UIBarButtonItem?
@@ -19,31 +19,31 @@ import UIKit
 
 extension BPActionBar where Self: UIViewController {
     
-    func configureActionBar() {
-        
-        if showCloseButton() {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(dismiss))
-        }
-
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem()
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
-        
-        
-        if let binnersFont = UIFont.binnersFontWithSize(16) {
-            self.navigationItem.leftBarButtonItem?.setTitleTextAttributes(
-                [NSFontAttributeName:binnersFont],
-                forState: .Normal)
-            self.navigationItem.rightBarButtonItem?.setTitleTextAttributes(
-                [NSFontAttributeName:binnersFont],
-                forState: .Normal)
-        }
-        
-        self.title = barTitle()
-    }
+//    func configureActionBar() {
+//        
+//        if showCloseButton() {
+//            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissView))
+//        }
+//
+//        self.navigationItem.rightBarButtonItem = rightBarButtonItem()
+//        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+//        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+//        
+//        
+//        if let binnersFont = UIFont.binnersFontWithSize(16) {
+//            self.navigationItem.leftBarButtonItem?.setTitleTextAttributes(
+//                [NSFontAttributeName:binnersFont],
+//                for: UIControlState())
+//            self.navigationItem.rightBarButtonItem?.setTitleTextAttributes(
+//                [NSFontAttributeName:binnersFont],
+//                for: UIControlState())
+//        }
+//        
+//        self.title = barTitle()
+//    }
     
     
-    func dismiss() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func dismissView() {
+        self.dismiss(animated: true, completion: nil)
     }
 }

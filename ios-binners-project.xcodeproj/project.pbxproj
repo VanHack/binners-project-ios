@@ -445,6 +445,8 @@
 		2C565B641DAF02EE0079DDD8 /* Pickup */ = {
 			isa = PBXGroup;
 			children = (
+				2C73BFE11C97204B001FBFD4 /* BPReedemable.swift */,
+				2C38B6AE1D0F211F00EB37DE /* BPRating.swift */,
 				2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */,
 				2C565B651DAF03020079DDD8 /* BPPickupStatus.swift */,
 			);
@@ -499,6 +501,14 @@
 			name = OnGoingPickups;
 			sourceTree = "<group>";
 		};
+		2C900BE61DBD2132001D6F44 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				2CDB35761C920505005945B7 /* BPMapTasks.swift */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
 		2CAA460C1DBBCA19002B13B0 /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,13 +552,11 @@
 		2CBDC96C1C7777BA00EC0F99 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2C900BE61DBD2132001D6F44 /* Location */,
 				2CAA460C1DBBCA19002B13B0 /* UserDefaults */,
 				2C565B641DAF02EE0079DDD8 /* Pickup */,
 				2CBDC96D1C7777FA00EC0F99 /* BPUser.swift */,
-				2CDB35761C920505005945B7 /* BPMapTasks.swift */,
-				2C38B6AE1D0F211F00EB37DE /* BPRating.swift */,
 				2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */,
-				2C73BFE11C97204B001FBFD4 /* BPReedemable.swift */,
 				2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */,
 			);
 			name = Models;
@@ -702,18 +710,22 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Rodrigo de Souza Reis";
 				TargetAttributes = {
 					1B98D7DD1C440AC200B6AA88 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = P9BMV4WXD2;
+						LastSwiftMigration = 0800;
 					};
 					1B98D7F11C440AC300B6AA88 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 1B98D7DD1C440AC200B6AA88;
 					};
 					1B98D7FC1C440AC300B6AA88 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 1B98D7DD1C440AC200B6AA88;
 					};
 				};
@@ -980,8 +992,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1003,7 +1017,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1024,8 +1038,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1041,9 +1057,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1053,8 +1070,10 @@
 			baseConfigurationReference = 18919B0009DEF6F8B625DD73 /* Pods-ios-binners-project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = P9BMV4WXD2;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "ios-binners-project/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1063,6 +1082,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vanhack.ios-binners-project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios-binners-project/Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1071,8 +1091,10 @@
 			baseConfigurationReference = E2FEAFF8576C3B37F8B9E646 /* Pods-ios-binners-project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = P9BMV4WXD2;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "ios-binners-project/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1081,6 +1103,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vanhack.ios-binners-project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios-binners-project/Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1092,6 +1115,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vanhack.ios-binners-projectTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-binners-project.app/ios-binners-project";
 			};
 			name = Debug;
@@ -1104,6 +1128,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vanhack.ios-binners-projectTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-binners-project.app/ios-binners-project";
 			};
 			name = Release;
@@ -1115,6 +1140,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vanhack.ios-binners-projectUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "ios-binners-project";
 				USES_XCTRUNNER = YES;
 			};
@@ -1127,6 +1153,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vanhack.ios-binners-projectUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "ios-binners-project";
 				USES_XCTRUNNER = YES;
 			};

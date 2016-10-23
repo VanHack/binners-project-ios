@@ -23,11 +23,11 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var labelBinnerName: UILabel!
     @IBOutlet weak var labelTimeText: UILabel!
     @IBOutlet weak var labelTime: UILabel!
-    let formatter:NSDateFormatter = NSDateFormatter()
+    let formatter:DateFormatter = DateFormatter()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
         setupViewCorners()
         setupLabels()
     }
@@ -39,19 +39,19 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
     
     func setupCell() {
         labelPickupStatus.text = pickup.status.statusString()
-        formatter.timeStyle = .NoStyle
-        formatter.dateStyle = .ShortStyle
-        labelDate.text = formatter.stringFromDate(pickup.date)
+        formatter.timeStyle = .none
+        formatter.dateStyle = .short
+        labelDate.text = formatter.string(from: pickup.date as Date)
         labelBinnerName.text = "Adam"
-        formatter.timeStyle = .ShortStyle
-        formatter.dateStyle = .NoStyle
-        labelTime.text = formatter.stringFromDate(pickup.date)
+        formatter.timeStyle = .short
+        formatter.dateStyle = .none
+        labelTime.text = formatter.string(from: pickup.date as Date)
         let location = CLLocation(
             latitude: pickup.address.location.latitude,
             longitude: pickup.address.location.longitude)
         centerMapOnLocation(location)
         
-        mapView.userInteractionEnabled = false
+        mapView.isUserInteractionEnabled = false
     }
     
     func setupViewCorners() {
@@ -62,8 +62,8 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
         self.layer.shadowOffset = CGSize(width: -2.0, height: 2.0)
     }
     
-    func centerMapOnLocation(location: CLLocation) {
-        self.mapView.camera = GMSCameraPosition.cameraWithTarget(location.coordinate, zoom: 15.0)
+    func centerMapOnLocation(_ location: CLLocation) {
+        self.mapView.camera = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15.0)
     }
     
     override init(frame: CGRect) {

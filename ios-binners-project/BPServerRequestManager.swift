@@ -9,70 +9,67 @@ import Foundation
 import AFNetworking
 
 enum KindOfRequest {
-    case POST
-    case GET
-    case DELETE
-    case PUT
+    case post
+    case get
+    case delete
+    case put
 }
 
 typealias OnSuccessBlock = (AnyObject) -> Void
-typealias OnFailureBlock = (ErrorType) -> Void
+typealias OnFailureBlock = (BPError) -> Void
 
 class BPServerRequestManager {
     static let sharedInstance = BPServerRequestManager()
     
-    func execute(request: KindOfRequest,
-                 url: NSURL,
+    func execute(_ request: KindOfRequest,
+                 url: URL,
                  manager: AFHTTPSessionManager,
                  param: AnyObject?,
-                 onSuccess successBlock:OnSuccessBlock, onFailure failureBlock:OnFailureBlock?) {
+                 onSuccess successBlock:@escaping OnSuccessBlock, onFailure failureBlock:OnFailureBlock?) {
         
         switch request {
-        case .GET:      executeGET(url, manager:manager, param:param, onSuccess:successBlock, onFailure:failureBlock)
-        case .POST:     executePOST(url, manager:manager, param:param, onSuccess:successBlock, onFailure:failureBlock)
-        case .DELETE:   fatalError("Operation not supported")
-        case .PUT:      fatalError("Operation not supported")
+        case .get:      executeGET(url, manager:manager, param:param, onSuccess:successBlock, onFailure:failureBlock)
+        case .post:     executePOST(url, manager:manager, param:param, onSuccess:successBlock, onFailure:failureBlock)
+        case .delete:   fatalError("Operation not supported")
+        case .put:      fatalError("Operation not supported")
 
         }
         
     }
     
     internal func executeGET(
-        url:NSURL,
+        _ url:URL,
         manager:AFHTTPSessionManager,
         param:AnyObject?,
-        onSuccess:OnSuccessBlock, onFailure:OnFailureBlock?) {
+        onSuccess:@escaping OnSuccessBlock, onFailure:OnFailureBlock?) {
         
-        manager.GET(url.absoluteString, parameters: param, progress: nil, success: {
+        manager.get(url.absoluteString, parameters: param, progress: nil, success: {
             
-            _,response in
+            (_,response: Any) in
             
-            onSuccess(response!)
+            onSuccess(response as AnyObject)
             
-        },failure: {
+        },failure: { (_, error: Error) in
                 
-            (_, error) in
-                
-            onFailure?(error)
+            onFailure?(BPError.serverError(error))
                 
         })
     }
     
     internal func executePOST(
-        url:NSURL,
+        _ url:URL,
         manager:AFHTTPSessionManager,
         param:AnyObject?,
-        onSuccess:OnSuccessBlock, onFailure:OnFailureBlock?) {
+        onSuccess:@escaping OnSuccessBlock, onFailure:OnFailureBlock?) {
         
-        manager.POST(url.absoluteString, parameters: param, progress: nil, success: {
+        manager.post(url.absoluteString, parameters: param, progress: nil, success: {
             
-            _,response in
-            onSuccess(response!)
+            (_,response: Any) in
+            onSuccess(response as AnyObject)
             
-        },failure: {
-                
-            (_, error) in
-            onFailure?(error)
+        },failure: { (_, error: Error) in
+            
+            onFailure?(BPError.serverError(error))
                 
         })
     }

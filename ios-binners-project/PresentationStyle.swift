@@ -9,5 +9,5 @@
 import Foundation
 
 enum PresentationStyle: Int {
-    case Navigation, Modal
+    case navigation, modal
 }

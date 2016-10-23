@@ -8,9 +8,9 @@
 import UIKit
 
 enum QuantitySelection {
-    case Nothing
-    case Photo
-    case Number
+    case nothing
+    case photo
+    case number
 }
 
 class BPQuantityViewController:  UIViewController {
@@ -23,7 +23,7 @@ class BPQuantityViewController:  UIViewController {
         "26 - 35 (About 4 grocery bags)",
         "36 - 50 (About 1/2 garbage bag)",
         "51+ (About 1 black garbage bag)"]
-    var quantitySelection:QuantitySelection = .Nothing
+    var quantitySelection:QuantitySelection = .nothing
     @IBOutlet weak var quantityButton: UIButton!
     @IBOutlet weak var takeAPictureButton: UIButton!
     
@@ -43,7 +43,7 @@ class BPQuantityViewController:  UIViewController {
     
     func dismissPicker() {
         
-        UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions(), animations: {
             
             var frame = self.valuePicker.frame
             frame.origin.y = self.view.frame.size.height
@@ -67,22 +67,22 @@ class BPQuantityViewController:  UIViewController {
             height: self.view.frame.size.height * 0.33
             ))
         
-        valuePicker.backgroundColor = UIColor.whiteColor()
+        valuePicker.backgroundColor = UIColor.white
         valuePicker.delegate = self
         valuePicker.dataSource = self
     }
     
     func setupButtons() {
         
-        quantityButton.backgroundColor = UIColor.whiteColor()
+        quantityButton.backgroundColor = UIColor.white
         quantityButton.addTarget(self,
                                  action: #selector(BPQuantityViewController.openValuePicker),
-                                 forControlEvents: .TouchUpInside)
-        quantityButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        takeAPictureButton.backgroundColor = UIColor.whiteColor()
+                                 for: .touchUpInside)
+        quantityButton.setTitleColor(UIColor.black, for: UIControlState())
+        takeAPictureButton.backgroundColor = UIColor.white
         takeAPictureButton.addTarget(self,
                                      action: #selector(BPQuantityViewController.openCamera),
-                                     forControlEvents: .TouchUpInside)
+                                     for: .touchUpInside)
         
     }
     
@@ -90,7 +90,7 @@ class BPQuantityViewController:  UIViewController {
         
         self.view.addSubview(self.valuePicker)
         
-        UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions(), animations: {
             
             
             var frame = self.valuePicker.frame
@@ -105,22 +105,22 @@ class BPQuantityViewController:  UIViewController {
         
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = .Camera
+        imagePicker.sourceType = .camera
         
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        self.present(imagePicker, animated: true, completion: nil)
 
     }
     
     func setupNavigationBar() {
         
         let buttonRight = UIBarButtonItem(title: "Next",
-                                          style: .Done,
+                                          style: .done,
                                           target: self,
                                           action: #selector(BPQuantityViewController.nextButtonClicked))
         buttonRight.setTitleTextAttributes(
             [NSFontAttributeName:UIFont.binnersFontWithSize(16)!],
-            forState: .Normal)
-        buttonRight.tintColor = UIColor.whiteColor()
+            for: UIControlState())
+        buttonRight.tintColor = UIColor.white
         
         self.navigationItem.rightBarButtonItem = buttonRight
         self.title = "Quantity"
@@ -129,16 +129,16 @@ class BPQuantityViewController:  UIViewController {
     
     func nextButtonClicked() {
         
-        guard quantitySelection != .Nothing else {
+        guard quantitySelection != .nothing else {
             
-            BPMessageFactory.makeMessage(.ERROR,
+            BPMessageFactory.makeMessage(.error,
                                          message: "You must select a number of items or a photo").show()
             return
         }
         
         var reedemable:BPReedemable!
         
-        if quantitySelection == .Photo {
+        if quantitySelection == .photo {
             
              reedemable = BPReedemable(picture: self.takeAPictureButton!.imageView!.image!)
         } else {
@@ -147,15 +147,15 @@ class BPQuantityViewController:  UIViewController {
         }
         
         self.pickup!.reedemable = reedemable
-        self.performSegueWithIdentifier("additionalNotesSegue", sender: self)
+        self.performSegue(withIdentifier: "additionalNotesSegue", sender: self)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "additionalNotesSegue" {
-            let destVc = segue.destinationViewController as? BPAdditionalNotesController
+            let destVc = segue.destination as? BPAdditionalNotesController
             destVc!.pickup = self.pickup
         } else {
-            let destVc = segue.destinationViewController as? BPReviewPickupViewController
+            let destVc = segue.destination as? BPReviewPickupViewController
             destVc!.pickup = self.pickup
         }
     }
@@ -171,39 +171,39 @@ class BPQuantityViewController:  UIViewController {
 extension BPQuantityViewController : UIImagePickerControllerDelegate {
     
     func imagePickerController(
-        picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        imagePicker.dismiss(animated: true, completion: nil)
          let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        takeAPictureButton.imageView!.contentMode = .ScaleAspectFill
-        takeAPictureButton.setImage(image, forState: .Normal)
-        self.quantityButton.setTitle(nil, forState: .Normal)
-        quantitySelection = .Photo
+        takeAPictureButton.imageView!.contentMode = .scaleAspectFill
+        takeAPictureButton.setImage(image, for: UIControlState())
+        self.quantityButton.setTitle(nil, for: UIControlState())
+        quantitySelection = .photo
     }
 
 }
 extension BPQuantityViewController : UIPickerViewDelegate, UIPickerViewDataSource {
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         let title = self.pickerView(pickerView, titleForRow: row, forComponent: component)
-        self.quantityButton.setTitle(title!, forState: .Normal)
-        takeAPictureButton.setImage(nil, forState: .Normal)
-        quantitySelection = .Number
+        self.quantityButton.setTitle(title!, for: UIControlState())
+        takeAPictureButton.setImage(nil, for: UIControlState())
+        quantitySelection = .number
     }
     
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return values[row]
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return values.count
     }
     

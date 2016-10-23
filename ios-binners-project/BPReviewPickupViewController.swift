@@ -29,13 +29,13 @@ class BPReviewPickupViewController: UIViewController {
         self.tableView.dataSource = self
         
         var cellNib = UINib(nibName: "BPMapTableViewCell", bundle: nil)
-        tableView.registerNib(cellNib, forCellReuseIdentifier: "mapTableViewCell")
+        tableView.register(cellNib, forCellReuseIdentifier: "mapTableViewCell")
         cellNib = UINib(nibName: "BPDateTableViewCell", bundle: nil)
-        tableView.registerNib(cellNib, forCellReuseIdentifier: "dateTableViewCell")
+        tableView.register(cellNib, forCellReuseIdentifier: "dateTableViewCell")
         cellNib = UINib(nibName: "BPQuantityTableViewCell", bundle: nil)
-        tableView.registerNib(cellNib, forCellReuseIdentifier: "quantityTableViewCell")
+        tableView.register(cellNib, forCellReuseIdentifier: "quantityTableViewCell")
         cellNib = UINib(nibName: "BPIntructionsTableViewCell", bundle: nil)
-        tableView.registerNib(cellNib, forCellReuseIdentifier: "instructionsTableViewCell")
+        tableView.register(cellNib, forCellReuseIdentifier: "instructionsTableViewCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,18 +47,18 @@ class BPReviewPickupViewController: UIViewController {
 
 extension BPReviewPickupViewController : UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 4
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        switch (indexPath.row) {
+        switch ((indexPath as NSIndexPath).row) {
         case 0: return 331.0
         case 1: return 100.0
         case 2:
@@ -70,31 +70,31 @@ extension BPReviewPickupViewController : UITableViewDelegate, UITableViewDataSou
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell:UITableViewCell?
         
-        switch indexPath.row {
+        switch (indexPath as NSIndexPath).row {
         case 0: cell =
-            self.tableView.dequeueReusableCellWithIdentifier("mapTableViewCell")
+            self.tableView.dequeueReusableCell(withIdentifier: "mapTableViewCell")
             as? BPMapTableViewCell
                 let cellMap = cell as? BPMapTableViewCell
                 cellMap!.address = self.pickup!.address
                 cell = cellMap
         case 1: cell =
-            self.tableView.dequeueReusableCellWithIdentifier("dateTableViewCell")
+            self.tableView.dequeueReusableCell(withIdentifier: "dateTableViewCell")
             as? BPDateTableViewCell
                 let cellDate = cell as? BPDateTableViewCell
                 cellDate!.date = pickup!.date
                 cell = cellDate
         case 2: cell =
-            self.tableView.dequeueReusableCellWithIdentifier("quantityTableViewCell")
+            self.tableView.dequeueReusableCell(withIdentifier: "quantityTableViewCell")
             as? BPQuantityTableViewCell
                 let cellQuantity = cell as? BPQuantityTableViewCell
                 cellQuantity!.reedemable = self.pickup!.reedemable
                 cell = cellQuantity
         case 3: cell =
-            self.tableView.dequeueReusableCellWithIdentifier("instructionsTableViewCell")
+            self.tableView.dequeueReusableCell(withIdentifier: "instructionsTableViewCell")
             as? BPIntructionsTableViewCell
                 let cellInstructions = cell as? BPIntructionsTableViewCell
                 cellInstructions!.instructions = self.pickup!.instructions
@@ -108,41 +108,36 @@ extension BPReviewPickupViewController : UITableViewDelegate, UITableViewDataSou
         
     }
     
-    func showPostPickupErrorAndEnablePostButton(sender:UIButton) {
+    func showPostPickupErrorAndEnablePostButton(_ sender:UIButton) {
         
         self.activityIndicator.removeFromSuperview()
-        sender.enabled = true
-        BPMessageFactory.makeMessage(.ERROR, message: "There was an error while uploading the pickup").show()
+        sender.isEnabled = true
+        BPMessageFactory.makeMessage(.error, message: "There was an error while uploading the pickup").show()
     }
     
 }
 
 extension BPReviewPickupViewController : FinishedPickupDelegate {
     
-    func finishPickupButtonClicked(sender:UIButton) {
-        sender.enabled = false
+    func finishPickupButtonClicked(_ sender:UIButton) {
+        sender.isEnabled = false
         sender.addSubview(self.activityIndicator)
         self.activityIndicator.startAnimating()
         
         if let pickup = pickup {
             
-            do{
-                try pickup.postPickup({
-                    
+            pickup.postPickup({
+                
+                _ in
+                self.activityIndicator.removeFromSuperview()
+                self.dismiss(animated: true, completion: nil)
+                sender.isEnabled = true
+                
+                
+                }, onFailure: {
                     _ in
-                    self.activityIndicator.removeFromSuperview()
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                    sender.enabled = true
-                    
-                    
-                    }, onFailure: {
-                        _ in
-                        self.showPostPickupErrorAndEnablePostButton(sender)
-                })
-            } catch {
-                showPostPickupErrorAndEnablePostButton(sender)
-            }
-            
+                    self.showPostPickupErrorAndEnablePostButton(sender)
+            })
             
         }
         
