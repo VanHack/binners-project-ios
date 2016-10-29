@@ -18,7 +18,15 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+    
+    <key>NSCameraUsageDescription</key>
+    <string>$(PRODUCT_NAME) needs access to use your camera</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>$(PRODUCT_NAME) needs access to use your photo library</string>
+    
+    
 	<key>CFBundleURLTypes</key>
+    
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>

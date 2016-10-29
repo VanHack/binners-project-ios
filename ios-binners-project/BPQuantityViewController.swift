@@ -104,6 +104,7 @@ class BPQuantityViewController:  UIViewController {
     func openCamera() {
         
         imagePicker = UIImagePickerController()
+        
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         
@@ -117,11 +118,7 @@ class BPQuantityViewController:  UIViewController {
                                           style: .done,
                                           target: self,
                                           action: #selector(BPQuantityViewController.nextButtonClicked))
-        buttonRight.setTitleTextAttributes(
-            [NSFontAttributeName:UIFont.binnersFontWithSize(16)!],
-            for: UIControlState())
-        buttonRight.tintColor = UIColor.white
-        
+        buttonRight.configureBarButton()
         self.navigationItem.rightBarButtonItem = buttonRight
         self.title = "Quantity"
         
