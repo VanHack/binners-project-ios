@@ -124,7 +124,7 @@ class BPLoginViewModel : NSObject {
         
         },onFailure: {
             error in
-            self.loginDelegate?.didLogin(false,errorMsg:"Could not login with google")
+            self.loginDelegate?.didLogin(false,errorMsg:"Could not login with facebook")
         })
         
     }

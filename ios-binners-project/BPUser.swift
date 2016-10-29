@@ -111,20 +111,21 @@ final class BPUser {
 extension BPUser : Mappable {
     
     static func mapToModel(withData object: AnyObject) -> BPUser? {
-    
-        let userJson = object["user"] as AnyObject
         
-            guard
-                let token = object["token"] as? String,
-                let email = userJson["email"] as? String,
-                let id = userJson["_id"] as? String else {
-                    return nil
-            }
+        guard let userJson = object["user"] as? [AnyHashable: Any],
+            let token = object["token"] as? String else  {
+                return nil
+        }
+        guard
+            let email = userJson["email"] as? String,
+            let id = userJson["_id"] as? String else {
+                return nil
+        }
         
         let user = BPUser.sharedInstance
         user.initialize(token, email: email, id: id, address: nil)
         return user
-    }
+        }
     
 }
 

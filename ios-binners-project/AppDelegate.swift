@@ -59,9 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func application(_ app: UIApplication,
-                     open url: URL,
-                             options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         
         var option: String!
         var option2: String!
@@ -69,13 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 9.0, *) {
              option = options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String
              option2 = options[UIApplicationOpenURLOptionsKey.annotation] as? String
-        } else {
-            // Fallback on earlier versions
-             option = options[UIApplicationLaunchOptionsKey.sourceApplication.rawValue]
-             option2 = options[UIApplicationLaunchOptionsKey.annotation.rawValue]
-
         }
-        
 
         return GIDSignIn.sharedInstance().handle(url,
             sourceApplication: option,
@@ -86,35 +78,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                               annotation: option2)
     }
     
-    func application(_ application: UIApplication,
-                     open url: URL,
-                             sourceApplication: String?,
-                             annotation: Any) -> Bool {
-        
-        var options: [String : AnyObject]?
-        
-        if #available(iOS 9.0, *) {
-
-             options = [UIApplicationOpenURLOptionsKey.sourceApplication.rawValue: sourceApplication! as AnyObject,
-                UIApplicationOpenURLOptionsKey.annotation.rawValue: annotation as AnyObject]
-            
-        } else {
-            // Fallback on earlier versions
-             options = [UIApplicationLaunchOptionsKey.sourceApplication.rawValue: sourceApplication! as AnyObject,
-                UIApplicationLaunchOptionsKey.annotation.rawValue: annotation as AnyObject]
-            
-        }
-        
-
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         
         return FBSDKApplicationDelegate.sharedInstance().application(application,
                                                                      open: url,
                                                                      sourceApplication: sourceApplication,
                                                                      annotation: annotation)
             ||
-            self.application(application,
-            open: url,
-            options: options as! [UIApplicationOpenURLOptionsKey : Any])
+            GIDSignIn.sharedInstance().handle(url,
+                                              sourceApplication: sourceApplication,
+                                              annotation: annotation)
 
     }
     

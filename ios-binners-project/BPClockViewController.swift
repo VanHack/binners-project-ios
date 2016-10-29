@@ -251,7 +251,7 @@ class BPClockViewController: UIViewController {
 
 extension BPClockViewController :BEMAnalogClockDelegate {
     
-    func currentTime(onClock clock: BEMAnalogClockView!, hours: String!,minutes: String!,seconds: String!) {
+    func currentTime(onClock clock: BEMAnalogClockView!, hours: String ,minutes: String , seconds: String ) {
         
         if timeMode == .hours {
             

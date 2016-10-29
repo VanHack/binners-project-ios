@@ -82,7 +82,7 @@ final class BPPickup : AnyObject {
                     
                     object in
                     
-                    guard let pickupsListDictionary = object as? [[String:AnyObject]] else {
+                    guard let pickupsListDictionary = object as? [[AnyHashable : AnyObject]] else {
                         onFailure?(BPError.errorConvertingFile)
                         return
                     }
@@ -111,7 +111,9 @@ extension BPPickup : Mappable {
     
     static func mapToModel(withData object: AnyObject) -> BPPickup? {
         
-        let addressJson = object["address"] as AnyObject
+        guard let addressJson = object["address"] as? [AnyHashable : Any] else {
+            return nil
+        }
         
         guard
         let id = object["_id"] as? String,
@@ -131,7 +133,9 @@ extension BPPickup : Mappable {
                 return nil
         }
         
-        let locationDic = addressJson["location"] as AnyObject
+        guard let locationDic = addressJson["location"] as? [AnyHashable : Any] else {
+            return nil
+        }
 
         guard
             let coordinates = locationDic["coordinates"] as? [Double] else {
@@ -157,6 +161,7 @@ extension BPPickup : Mappable {
                         reedemable: reedemable,
                         address: address,
                         status: pickupStatus)
+        
     }
 
 }
