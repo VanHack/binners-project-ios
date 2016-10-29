@@ -8,9 +8,38 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let historyCellReuseIdentifier = "PickupCollectionViewCell"
+private let historyCellNibIdentifier = "BPPickupCollectionViewCell"
 
-class BPHistoryViewControllerCollectionViewController: BPOnGoingPickupsCollectionViewController {
+class BPHistoryViewControllerCollectionViewController: PickupsCollectionViewController {
 
+    override func fetchPickups() {
+        
+        do {
+            try pickupsViewModel.fetchOnGoingPickups()
+        } catch let error as NSError {
+            showCouldNotFetchPickupsError(error.localizedDescription)
+            refreshControl.endRefreshing()
+        }
+    }
 
+    override func registerNibs() {
+        let cellNib = UINib(nibName: historyCellNibIdentifier, bundle: Bundle.main)
+        self.collectionView!.register(cellNib, forCellWithReuseIdentifier: historyCellReuseIdentifier)
+    }
+
+}
+extension BPHistoryViewControllerCollectionViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: historyCellReuseIdentifier, for: indexPath) as? BPPickupCollectionViewCell {
+            cell.configure(style: .rating)
+            cell.pickup = pickupsViewModel.onGoingPickups[(indexPath as NSIndexPath).row]
+            return cell
+        }
+        return BPPickupCollectionViewCell()
+    }
+    
+    
 }

@@ -7,8 +7,14 @@
 
 import UIKit
 import GoogleMaps
+import HCSStarRatingView
 
-class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
+
+enum PickupCellStyle {
+    case rating, standard
+}
+
+class BPPickupCollectionViewCell: UICollectionViewCell {
     
     var pickup: BPPickup! {
         didSet{
@@ -23,6 +29,8 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var labelBinnerName: UILabel!
     @IBOutlet weak var labelTimeText: UILabel!
     @IBOutlet weak var labelTime: UILabel!
+    @IBOutlet weak var starRatingView: HCSStarRatingView!
+    
     let formatter:DateFormatter = DateFormatter()
     
     override func awakeFromNib() {
@@ -30,6 +38,12 @@ class BPOnGoingPickupCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = UIColor.white
         setupViewCorners()
         setupLabels()
+    }
+    
+    func configure(style: PickupCellStyle = .standard) {
+        starRatingView.isHidden = style == .standard
+        starRatingView.isEnabled = false
+        starRatingView.tintColor = UIColor.golden
     }
     
     func setupLabels() {

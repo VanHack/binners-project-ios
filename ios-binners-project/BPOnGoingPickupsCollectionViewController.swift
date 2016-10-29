@@ -7,10 +7,11 @@
 
 import UIKit
 
-private let notExpandedReuseIdentifier = "PickupCollectionViewCell"
+private let notExpandedCellReuseIdentifier = "PickupCollectionViewCell"
 private let expandedCellReuseIdentifier = "ExpandedCell"
 private let notExpandedCellNibIdentifier = "BPPickupCollectionViewCell"
 private let expandedCellNibIdentifier = "BPExpandedPickupCollectionViewCell"
+// Segues
 private let ratePickupSegueIdentifier = "ratePickupSegueIdentifier"
 private let editPickupTimeSegueIdentifier = "editPickupTimeSegueIdentifier"
 
@@ -32,7 +33,7 @@ class BPOnGoingPickupsCollectionViewController: PickupsCollectionViewController 
     
     override func registerNibs() {
         var cellNib = UINib(nibName: notExpandedCellNibIdentifier, bundle: nil)
-        self.collectionView!.register(cellNib, forCellWithReuseIdentifier: notExpandedReuseIdentifier)
+        self.collectionView!.register(cellNib, forCellWithReuseIdentifier: notExpandedCellReuseIdentifier)
         cellNib = UINib(nibName: expandedCellNibIdentifier, bundle: nil)
         self.collectionView!.register(cellNib, forCellWithReuseIdentifier: expandedCellReuseIdentifier)
     }
@@ -74,7 +75,6 @@ extension BPOnGoingPickupsCollectionViewController {
                 height: self.view.frame.height * 0.73)
             
         } else  {
-            
             return super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath)
         }
     }
@@ -97,8 +97,9 @@ extension BPOnGoingPickupsCollectionViewController {
                 return cell
             }
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: notExpandedReuseIdentifier, for: indexPath)
-                as! BPOnGoingPickupCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: notExpandedCellReuseIdentifier, for: indexPath)
+                as! BPPickupCollectionViewCell
+            cell.configure()
             cell.pickup = pickupsViewModel.onGoingPickups[(indexPath as NSIndexPath).row]
             return cell
     }

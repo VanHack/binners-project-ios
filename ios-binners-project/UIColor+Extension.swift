@@ -10,6 +10,8 @@ import Foundation
 
 extension UIColor {
     
+    static var golden: UIColor { return UIColor(netHex: 0xFBB93E) }
+    
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
         assert(green >= 0 && green <= 255, "Invalid green component")
@@ -81,4 +83,5 @@ extension UIColor {
         return UIColor(netHex: 0x4d5155)
         
     }
+    
 }

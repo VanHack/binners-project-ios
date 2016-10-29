@@ -8,8 +8,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 protocol PickupsCustomCollectionView {
     func fetchPickups()
     func registerNibs()
@@ -131,7 +129,7 @@ extension PickupsCollectionViewController : UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize( width: self.view.frame.width * 0.9, height: self.view.frame.height * 0.23)
+        return CGSize( width: self.view.frame.width * 0.9, height: self.view.frame.height * 0.3)
     }
     
 }
