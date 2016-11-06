@@ -8,17 +8,42 @@
 
 import Foundation
 
-
 class BPURLBuilder {
     
     static var residentUserRegistrationURL:URL? { return URL(string: BPServerSettings.residentUsersUrl) }
     static var postPickupURL:URL? { return URL(string: BPServerSettings.postPickupUrl) }
-    static var getPickupsURL:URL? { return URL(string: BPServerSettings.getPickupsUrl) }
-    static var onGoingPickupsURL:URL? { return  URL(string: BPServerSettings.onGoingPickupsUrl) }
-    static var completedPickupsURL:URL? { return URL(string: BPServerSettings.completedPickupsUrl) }
-    static var waitingReviewPickupURL:URL? {return URL(string: BPServerSettings.waitingReviewPickupsUrl) }
     static var standardLoginURL:URL? { return URL(string: BPServerSettings.standardLoginUrl) }
     static var revalidateTokenURL:URL? { return URL(string: BPServerSettings.revalidateTokenUrl) }
+    
+    static func getPickupsURL( _ pickupStatus: PickupStatus) -> URL? {
+    
+        switch pickupStatus {
+        case .completed:
+            return URL(string: BPServerSettings.completedPickupsUrl)
+        case .onGoing:
+            return URL(string: BPServerSettings.onGoingPickupsUrl)
+        case .waitingForReview:
+            return URL(string:BPServerSettings.waitingReviewPickupsUrl)
+        }
+    }
+    
+    static func getPickupsURL( _ pickupStatuses: [PickupStatus], withLimit limit: UInt) -> URL? {
+        
+        
+        var stringURL = BPServerSettings.statusTrackingPickupsUrl
+        pickupStatuses.forEach({ pickupStatus in
+        
+            stringURL += "status=" + pickupStatus.statusUrlString()
+            
+            if pickupStatuses.last != pickupStatus {
+                stringURL += "&"
+            }
+        })
+        stringURL += "?limit=\(limit)"
+        
+        return URL(string: stringURL)
+        
+    }
     
     static func buildFBUserLoginURL(_ accessToken:String) -> URL?
     {

@@ -13,18 +13,18 @@ import GoogleMaps
 class BPMapViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
-    var tableView: UITableView?
-    var searchBar: UISearchBar?
-    var filteredHistory: [BPAddress]    = []
-    var searchResults: [BPAddress]  = []
-    let cellHeight: CGFloat          = 60.0
-    let headerHeight: CGFloat        = 30.0
-    let regionRadius: CLLocationDistance = 1000
-    let locationManager = CLLocationManager()
-    let mapTasks = BPMapTasks()
+    fileprivate var tableView: UITableView?
+    fileprivate var searchBar: UISearchBar?
+    fileprivate var filteredHistory: [BPAddress]    = []
+    fileprivate var searchResults: [BPAddress]  = []
+    fileprivate let cellHeight: CGFloat          = 60.0
+    fileprivate let headerHeight: CGFloat        = 30.0
+    fileprivate let regionRadius: CLLocationDistance = 1000
+    fileprivate let locationManager = CLLocationManager()
+    fileprivate let mapTasks = BPMapTasks()
     fileprivate var kvoContext: UInt8 = 1
-    var didFindMyLocation = false
-    var marker: GMSMarker!
+    fileprivate var didFindMyLocation = false
+    fileprivate var marker: GMSMarker!
     var pickup: BPPickup = BPPickup()
     
     var history: [BPAddress] {
@@ -331,27 +331,6 @@ extension BPMapViewController : UITableViewDelegate, UITableViewDataSource {
         _ tableView: UITableView,
         heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeight
-    }
-}
-extension UITableView {
-    
-    func adjustHeightOfTableView() {
-        
-        var height = self.contentSize.height
-        let maxHeight = self.superview!.frame.size.height - self.frame.origin.y
-        
-        if height > maxHeight {
-            height = maxHeight
-        }
-        
-        
-        UIView.animate(withDuration: 0.25, animations: {
-            
-            var frame = self.frame
-            frame.size.height = height
-            self.frame = frame
-            
-        })
     }
 }
 extension BPMapViewController: UIAlertViewDelegate {

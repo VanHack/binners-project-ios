@@ -25,6 +25,6 @@ struct BPServerSettings
     static let photoUploadUrl =             "photos"
     static let onGoingPickupsUrl =          "\(getPickupsUrl)/ongoing"
     static let waitingReviewPickupsUrl =    "\(getPickupsUrl)/waitingreview"
-    static let completedPickupsUrl =          "\(getPickupsUrl)/completed"
-    
+    static let completedPickupsUrl =        "\(getPickupsUrl)/completed"
+    static let statusTrackingPickupsUrl =   "\(getPickupsUrl)/status-tracking?"
 }

@@ -146,7 +146,7 @@ class BPLoginViewModel : NSObject {
     
     func sendPasswordForgottenEmail(_ email: String) {
         
-        BPUser.recoverPassword(
+        BPUserService.recoverPassword(
             email,
             onSuccess:{
                 object in
@@ -158,6 +158,10 @@ class BPLoginViewModel : NSObject {
                 
             })
         
+    }
+    
+    private func saveUser() {
+        BPUserDefaults.saveUser(BPUser.sharedInstance)
     }
 
 }

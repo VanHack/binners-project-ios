@@ -126,7 +126,7 @@ extension BPReviewPickupViewController : FinishedPickupDelegate {
         
         if let pickup = pickup {
             
-            pickup.postPickup({
+            BPPickupService.postPickup(pickup, onSuccess: {
                 
                 _ in
                 self.activityIndicator.removeFromSuperview()

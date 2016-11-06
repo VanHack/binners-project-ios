@@ -55,6 +55,10 @@
 		2C565B661DAF03020079DDD8 /* BPPickupStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C565B651DAF03020079DDD8 /* BPPickupStatus.swift */; };
 		2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */; };
 		2C64AA0D1D302FB800A29C1E /* BPLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C64AA0C1D302FB800A29C1E /* BPLoginViewModel.swift */; };
+		2C6C84861DCE299D001A9281 /* BPPickupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C84851DCE299D001A9281 /* BPPickupService.swift */; };
+		2C6C84881DCE2C99001A9281 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C84871DCE2C99001A9281 /* UITableView+Extension.swift */; };
+		2C6C848A1DCE2D9B001A9281 /* BPPickupsViewModell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C84891DCE2D9B001A9281 /* BPPickupsViewModell.swift */; };
+		2C6C848C1DCEB202001A9281 /* BPUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C848B1DCEB202001A9281 /* BPUserService.swift */; };
 		2C6CA07C1D359C8F0030B7EA /* BPBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA07B1D359C8F0030B7EA /* BPBlurView.swift */; };
 		2C6CA07F1D36D59B0030B7EA /* BPHistoryViewControllerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA07E1D36D59B0030B7EA /* BPHistoryViewControllerCollectionViewController.swift */; };
 		2C6CA0871D36DC040030B7EA /* BPPickupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C6CA0851D36DC040030B7EA /* BPPickupCollectionViewCell.xib */; };
@@ -165,6 +169,10 @@
 		2C565B651DAF03020079DDD8 /* BPPickupStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupStatus.swift; sourceTree = "<group>"; };
 		2C5CCB4A1C49524500E734CE /* BPMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPMainTabBarController.swift; sourceTree = "<group>"; };
 		2C64AA0C1D302FB800A29C1E /* BPLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPLoginViewModel.swift; sourceTree = "<group>"; };
+		2C6C84851DCE299D001A9281 /* BPPickupService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupService.swift; sourceTree = "<group>"; };
+		2C6C84871DCE2C99001A9281 /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		2C6C84891DCE2D9B001A9281 /* BPPickupsViewModell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPPickupsViewModell.swift; sourceTree = "<group>"; };
+		2C6C848B1DCEB202001A9281 /* BPUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPUserService.swift; sourceTree = "<group>"; };
 		2C6CA07B1D359C8F0030B7EA /* BPBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPBlurView.swift; sourceTree = "<group>"; };
 		2C6CA07E1D36D59B0030B7EA /* BPHistoryViewControllerCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPHistoryViewControllerCollectionViewController.swift; sourceTree = "<group>"; };
 		2C6CA0851D36DC040030B7EA /* BPPickupCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPPickupCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -363,6 +371,7 @@
 				2C73BFE31C975B64001FBFD4 /* NSDate+Extension.swift */,
 				2CFBF6BF1CBC0C2300524F62 /* UIImage+Extension.swift */,
 				2C0031981DC4E0BA00A5C517 /* Button+Extension.swift */,
+				2C6C84871DCE2C99001A9281 /* UITableView+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -393,6 +402,8 @@
 				2C1C4D041C5C1D370045821F /* BPLoginManager.swift */,
 				2C1C4D061C5C1F530045821F /* BPURLBuilder.swift */,
 				2CF0F5C51CA9CE81005055C2 /* BPParser.swift */,
+				2C6C84851DCE299D001A9281 /* BPPickupService.swift */,
+				2C6C848B1DCEB202001A9281 /* BPUserService.swift */,
 			);
 			name = ServerCommunicationLayer;
 			sourceTree = "<group>";
@@ -416,7 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				2C6CA08B1D384F680030B7EA /* SignIn */,
-				2C83FDC61D3EF8B000DB1F86 /* OnGoingPickups */,
+				2C83FDC61D3EF8B000DB1F86 /* Pickups */,
 				2CC68E421D2D4233000C5F6E /* Login */,
 			);
 			name = ViewModel;
@@ -445,6 +456,7 @@
 		2C565B641DAF02EE0079DDD8 /* Pickup */ = {
 			isa = PBXGroup;
 			children = (
+				2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */,
 				2C73BFE11C97204B001FBFD4 /* BPReedemable.swift */,
 				2C38B6AE1D0F211F00EB37DE /* BPRating.swift */,
 				2C73BFDD1C971E33001FBFD4 /* BPPickup.swift */,
@@ -484,12 +496,13 @@
 			name = SignIn;
 			sourceTree = "<group>";
 		};
-		2C83FDC61D3EF8B000DB1F86 /* OnGoingPickups */ = {
+		2C83FDC61D3EF8B000DB1F86 /* Pickups */ = {
 			isa = PBXGroup;
 			children = (
 				2C83FDC71D3EF8D700DB1F86 /* BPPickupsViewModel.swift */,
+				2C6C84891DCE2D9B001A9281 /* BPPickupsViewModell.swift */,
 			);
-			name = OnGoingPickups;
+			name = Pickups;
 			sourceTree = "<group>";
 		};
 		2C900BE61DBD2132001D6F44 /* Location */ = {
@@ -547,7 +560,6 @@
 				2CAA460C1DBBCA19002B13B0 /* UserDefaults */,
 				2C565B641DAF02EE0079DDD8 /* Pickup */,
 				2CBDC96D1C7777FA00EC0F99 /* BPUser.swift */,
-				2C73BFDF1C971F77001FBFD4 /* BPAddress.swift */,
 				2C35ADD21C5BCF64007DA4B6 /* ServerCommunicationLayer */,
 			);
 			name = Models;
@@ -870,6 +882,7 @@
 				2C5CCB4B1C49524500E734CE /* BPMainTabBarController.swift in Sources */,
 				2C0031991DC4E0BA00A5C517 /* Button+Extension.swift in Sources */,
 				2C73BFE01C971F77001FBFD4 /* BPAddress.swift in Sources */,
+				2C6C84861DCE299D001A9281 /* BPPickupService.swift in Sources */,
 				2C2A44261DB406D300EDB0FC /* BPNavigationController.swift in Sources */,
 				2CBB5BF11C99F02C00D58BFF /* BPMapTableViewCell.swift in Sources */,
 				2C6CA08D1D384F810030B7EA /* BPSignInViewModel.swift in Sources */,
@@ -891,6 +904,7 @@
 				2CFBF6C01CBC0C2300524F62 /* UIImage+Extension.swift in Sources */,
 				1B98D7E41C440AC200B6AA88 /* BPLoginViewController.swift in Sources */,
 				2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */,
+				2C6C848A1DCE2D9B001A9281 /* BPPickupsViewModell.swift in Sources */,
 				2C921EF41CA07AD700B2FA46 /* BPQuantityTableViewCell.swift in Sources */,
 				2CDB35821C9371D7005945B7 /* MRMonthView.swift in Sources */,
 				2C00319B1DC4E6A800A5C517 /* PickupsCollectionViewController.swift in Sources */,
@@ -898,6 +912,7 @@
 				2CAC35961D7A104100D1F2BF /* BPRatePickupViewController.swift in Sources */,
 				2C2A441F1DB069D300EDB0FC /* BPActionBar.swift in Sources */,
 				2CDB35771C920505005945B7 /* BPMapTasks.swift in Sources */,
+				2C6C84881DCE2C99001A9281 /* UITableView+Extension.swift in Sources */,
 				2CDDE5B41CDBB8CC00B8A533 /* BPOnGoingPickupsCollectionViewController.swift in Sources */,
 				2C8A4A711C88C56E00D8E0DB /* BPMapViewController.swift in Sources */,
 				2C38B6B11D108D4400EB37DE /* BPEncoder.swift in Sources */,
@@ -908,6 +923,7 @@
 				2C4FB04D1D6CC09000B01E8D /* BPExpandedPickupCollectionViewCell.swift in Sources */,
 				2C29FBFD1C62663F00C70837 /* UIColor+Extension.swift in Sources */,
 				2CF92CFE1C8615FD00DDB676 /* BPClockViewController.swift in Sources */,
+				2C6C848C1DCEB202001A9281 /* BPUserService.swift in Sources */,
 				2C73BFDE1C971E33001FBFD4 /* BPPickup.swift in Sources */,
 				2C022F921C877F49003E497F /* BEMAnalogClockView.m in Sources */,
 				1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */,

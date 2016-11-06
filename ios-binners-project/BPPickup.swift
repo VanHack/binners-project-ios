@@ -11,7 +11,7 @@ import AFNetworking
 
 typealias PickupSucessBlock = (([BPPickup]) -> Void)
 
-final class BPPickup : AnyObject {
+final class BPPickup {
 
     var reedemable: BPReedemable!
     var date: Date!
@@ -20,7 +20,7 @@ final class BPPickup : AnyObject {
     var id: String!
     var rating: BPRating?
     var binnerID: String?
-    var status: PickupStatus = .OnGoing
+    var status: PickupStatus = .onGoing
     
     init(id: String?,
          instructions: String,
@@ -38,72 +38,6 @@ final class BPPickup : AnyObject {
     }
     
     init() {}
-    
-    func postPickup(_ onSuccess: @escaping OnSuccessBlock, onFailure:OnFailureBlock?) {
-        
-        let wrapper = BPObjectWrapper()
-        wrapper.wrapObject(self)
-        
-        if let url = BPURLBuilder.postPickupURL {
-            
-            let manager = AFHTTPSessionManager()
-        
-            manager.requestSerializer.setValue(wrapper.header!, forHTTPHeaderField: "Authorization")
-        
-            BPServerRequestManager.sharedInstance.execute(
-                .post,
-                url: url,
-                manager: manager,
-                param: wrapper.body,
-                onSuccess: onSuccess,
-                onFailure: onFailure)
-        }
-        
-        
-    }
-    
-    class func fetchOnGoingPickups(_ onSuccess: @escaping PickupSucessBlock, onFailure:OnFailureBlock? ) throws {
-        
-        guard let token = BPUser.sharedInstance.token else {
-            throw BPError.invalidToken
-        }
-        
-        if let url = BPURLBuilder.getPickupsURL {
-            
-            let manager = AFHTTPSessionManager()
-            manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
-            
-            BPServerRequestManager.sharedInstance.execute(
-                .get,
-                url: url,
-                manager: manager,
-                param: nil,
-                onSuccess: {
-                    
-                    object in
-                    
-                    guard let pickupsListDictionary = object as? [[AnyHashable : AnyObject]] else {
-                        onFailure?(BPError.errorConvertingFile)
-                        return
-                    }
-                    
-                    var pickups:[BPPickup] = []
-                    
-                    pickupsListDictionary.forEach( {
-                        dictionary in
-                        if let pickup = BPPickup.mapToModel(withData: dictionary as AnyObject) {
-                            pickups.append(pickup)
-                        }
-                    })
-                    
-                    onSuccess(pickups)
-                    
-                },onFailure:onFailure)
-            
-        }
-        
-        
-    }
     
 }
 

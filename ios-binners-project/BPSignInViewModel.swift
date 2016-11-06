@@ -31,7 +31,7 @@ class BPSignInViewModel : BPLoginViewModel {
     
     func signInUser(_ email: String, password: String) {
         
-        BPUser.registerResident(
+        BPUserService.registerResident(
             email,
             password: password,
             onSucess: { (user: BPUser) in

@@ -10,20 +10,32 @@ import Foundation
 
 enum PickupStatus: String {
     case
-    OnGoing = "on_going",
-    Completed = "completed",
-    WaitingForReview = "waiting_for_review"
+    onGoing = "on_going",
+    completed = "completed",
+    waitingForReview = "waiting_for_review"
     
     
     func statusString() -> String {
         
         switch self {
-        case .OnGoing:
+        case .onGoing:
             return "On going"
-        case .Completed:
+        case .completed:
             return "Completed"
-        case .WaitingForReview:
+        case .waitingForReview:
             return "Waiting for review"
         }
+    }
+    
+    func statusUrlString() -> String {
+        switch self {
+        case .onGoing:
+            return "ongoing"
+        case .completed:
+            return "completed"
+        case .waitingForReview:
+            return "waitingreview"
+        }
+
     }
 }

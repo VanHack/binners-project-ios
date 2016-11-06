@@ -9,10 +9,8 @@
 import Foundation
 
 protocol PickupsDelegate {
-    
     func didFinishFetchingOnGoingPickups(_ success:Bool,errorMsg: String?)
 }
-
 
 class BPPickupsViewModel {
     
@@ -23,7 +21,7 @@ class BPPickupsViewModel {
         return onGoingPickups.count
     }
     var numberOfSections: Int {
-        if !self.dataFetched {return 0}
+        if !self.dataFetched { return 0 }
         return 1
     }
     var showEmptyLabel: Bool {
@@ -35,7 +33,7 @@ class BPPickupsViewModel {
         dataFetched = false
         self.onGoingPickups.removeAll()
         
-        try BPPickup.fetchOnGoingPickups({
+        try BPPickupService.fetchPickups([.onGoing], withLimit: 20, onSuccess: {
             
             pickups in
             
