@@ -16,14 +16,13 @@ class BPUserService {
                                onFailure:OnFailureBlock?) {
         
         
-        if let finalUrl = BPURLBuilder.getPasswordResetURL(email) {
+        if let finalUrl = URL(binnersPath:.passwordReset(email)) {
             
             BPServerRequestManager.sharedInstance.execute(
                 .get,
                 url: finalUrl,
                 manager: AFHTTPSessionManager(),
                 param: nil,onSuccess:onSuccess,onFailure:onFailure)
-            
         }
         
     }
@@ -32,7 +31,7 @@ class BPUserService {
                                     onSuccess:@escaping OnSuccessBlock,
                                     onFailure:OnFailureBlock?) {
         
-        if let finalUrl = BPURLBuilder.revalidateTokenURL {
+        if let finalUrl =  URL(binnersPath: .revalidateToken) {
             
             let manager = AFHTTPSessionManager()
             manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
@@ -53,7 +52,7 @@ class BPUserService {
         onSucess:@escaping UserRegistrationSucessBlock,
         onFailure:OnFailureBlock?) {
         
-        if let finalUrl = BPURLBuilder.residentUserRegistrationURL {
+        if let finalUrl = URL(binnersPath: .residentRegistration) {
             
             let body = ["email": email, "password": password,"name": email] as AnyObject
             

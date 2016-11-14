@@ -45,6 +45,8 @@ extension BPPickup : Mappable {
     
     static func mapToModel(withData object: AnyObject) -> BPPickup? {
         
+        let address = BPAddress()
+        
         guard let addressJson = object["address"] as? [AnyHashable : Any] else {
             return nil
         }
@@ -71,19 +73,18 @@ extension BPPickup : Mappable {
             return nil
         }
 
-        guard
-            let coordinates = locationDic["coordinates"] as? [Double] else {
-                return nil
+        if let coordinates = locationDic["coordinates"] as? [Double], coordinates.count == 2 {
+            address.location = CLLocationCoordinate2D(latitude: coordinates[0], longitude: coordinates[1])
+        } else {
+             address.location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
         }
         
         guard let dateObject = Date.parseDateFromServer(date) else {
             return nil
         }
         
-        let address = BPAddress()
         let reedemable = BPReedemable(quantity: quantity)
         address.formattedAddress = addressString
-        address.location = CLLocationCoordinate2D(latitude: coordinates[0], longitude: coordinates[1])
         
         guard let pickupStatus = PickupStatus(rawValue: status) else {
             return nil

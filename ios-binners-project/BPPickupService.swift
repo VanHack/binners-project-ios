@@ -17,7 +17,7 @@ class BPPickupService {
             throw BPError.invalidToken
         }
         
-        if let url = BPURLBuilder.getPickupsURL(pickupStatusList, withLimit: limit) {
+        if let url =  URL(binnersPath: .getPickups(pickupStatuses: pickupStatusList, limit: limit)) {
             
             let manager = AFHTTPSessionManager()
             manager.requestSerializer.setValue(token, forHTTPHeaderField: "Authorization")
@@ -57,7 +57,7 @@ class BPPickupService {
         let wrapper = BPObjectWrapper()
         wrapper.wrapObject(pickup)
         
-        if let url = BPURLBuilder.postPickupURL {
+        if let url = URL(binnersPath: .postPickup) {
             
             let manager = AFHTTPSessionManager()
             

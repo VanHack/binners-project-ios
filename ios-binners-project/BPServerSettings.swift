@@ -12,19 +12,54 @@ import Foundation
 struct BPServerSettings
 {
     //static let baseServerUrl = "http://dev-b.leomcabral.com/api/v1.0/"
-    static let baseServerUrl =          "http://binners.herokuapp.com/api/v1.0/"
-    static let facebookLoginUrl =           "\(baseServerUrl)auth/facebook/"
-    static let googleLoginUrl =             "\(baseServerUrl)auth/google/"
-    static let twitterLoginUrl =            "\(baseServerUrl)auth/twitter"
-    static let postPickupUrl =              "\(baseServerUrl)pickup"
-    static let getPickupsUrl =              "\(baseServerUrl)pickups"
-    static let residentUsersUrl =           "\(baseServerUrl)users"
-    static let standardLoginUrl =           "\(baseServerUrl)auth"
-    static let revalidateTokenUrl =         "\(baseServerUrl)auth/revalidate"
-    static let passwordResetURL =           "\(baseServerUrl)auth/forgot/"
-    static let photoUploadUrl =             "photos"
-    static let onGoingPickupsUrl =          "\(getPickupsUrl)/ongoing"
-    static let waitingReviewPickupsUrl =    "\(getPickupsUrl)/waitingreview"
-    static let completedPickupsUrl =        "\(getPickupsUrl)/completed"
-    static let statusTrackingPickupsUrl =   "\(getPickupsUrl)/status-tracking?"
+    static let baseServerPath =          "http://binners.herokuapp.com/api/v1.0/"
+    static let facebookLoginPath =           "\(baseServerPath)auth/facebook/"
+    static let googleLoginPath =             "\(baseServerPath)auth/google/"
+    static let twitterLoginPath =            "\(baseServerPath)auth/twitter"
+    static let postPickupPath =              "\(baseServerPath)pickup"
+    static let getPickupsPath =              "\(baseServerPath)pickups"
+    static let residentUsersPath =           "\(baseServerPath)users"
+    static let standardLoginPath =           "\(baseServerPath)auth"
+    static let revalidateTokenPath =         "\(baseServerPath)auth/revalidate"
+    static let passwordResetPath =           "\(baseServerPath)auth/forgot/"
+    static let photoUploadPath =             "photos"
+    static let statusTrackingPickupsPath =   "\(getPickupsPath)/status-tracking?"
+    
+    static func pickupPhotoUpload(_ pickupId:String) -> String {
+        return "\(baseServerPath)\(pickupId)\(photoUploadPath)"
+    }
+    
+    static func passwordReset(_ email: String) -> String {
+        return "\(passwordResetPath)\(email)"
+    }
+    
+    static func fBUserLogin(_ accessToken:String) -> String {
+        return "\(facebookLoginPath)\(accessToken)"
+    }
+    
+    static func googleUserLogin(_ accessToken:String) -> String {
+        return "\(googleLoginPath)\(accessToken)"
+    }
+    
+    static func twitterUserLogin(_ accessToken:String, accessSecret:String) -> String {
+        return "\(twitterLoginPath)/\(accessToken)/\(accessSecret)"
+    }
+    
+    static func getPickups( _ pickupStatuses: [PickupStatus], withLimit limit: UInt) -> String {
+        
+        var stringURL = statusTrackingPickupsPath
+        pickupStatuses.forEach({ pickupStatus in
+            
+            stringURL += "status=" + pickupStatus.statusUrlString()
+            
+            if pickupStatuses.last != pickupStatus {
+                stringURL += "&"
+            }
+        })
+        stringURL += "?limit=\(limit)"
+        
+        return stringURL
+        
+    }
+    
 }

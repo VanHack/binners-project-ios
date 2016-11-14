@@ -29,7 +29,7 @@ class BPLoginManager {
         onSuccess:@escaping OnSucessUserBlock,
         onFailure:OnFailureBlock?) {
         
-        if let finalUrl = BPURLBuilder.buildFBUserLoginURL(fbToken) {
+        if let finalUrl = URL(binnersPath: .facebook(accessToken: fbToken)) {
             
             BPServerRequestManager.sharedInstance.execute(
                 .get,
@@ -97,7 +97,7 @@ class BPLoginManager {
             throw BPError.googleAuthMissing
         }
         
-        if let finalUrl = BPURLBuilder.buildGoogleUserLoginURL(auth) {
+        if let finalUrl = URL(binnersPath: .google(accessToken: auth)) {
             
             BPServerRequestManager.sharedInstance.execute(
                 .get,
@@ -151,7 +151,7 @@ class BPLoginManager {
             throw BPError.twitterAuthMissing
         }
         
-        if let finalUrl = BPURLBuilder.buildTwitterUserLoginURL(auth, accessSecret: authSecret) {
+        if let finalUrl = URL(binnersPath: .twitter(accessToken: auth, accessSecret: authSecret)) {
             
             //TODO: Waiting for the API endpoint for twitter auth
             BPServerRequestManager.sharedInstance.execute(
@@ -188,7 +188,7 @@ class BPLoginManager {
         onSuccess:@escaping OnSucessUserBlock,
         onFailure:OnFailureBlock?) {
         
-        if let finalUrl = BPURLBuilder.standardLoginURL {
+        if let finalUrl = URL(binnersPath: .standardLogin) {
             
             let param = ["email":email,"password":password] as AnyObject
             
