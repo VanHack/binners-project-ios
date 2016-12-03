@@ -19,7 +19,7 @@ enum TimePeriod {
 }
 
 
-class BPClockViewController: UIViewController {
+class BPClockViewController: CloseButtonViewController {
 
     @IBOutlet weak var labelAmPm: UILabel!
     @IBOutlet weak var labelTwoDots: UILabel!
@@ -29,6 +29,7 @@ class BPClockViewController: UIViewController {
     @IBOutlet weak var amButton: UIButton!
     @IBOutlet weak var clockView: BEMAnalogClockView!
     var viewInitialized = false
+    var isPresenting = false
     
     @IBOutlet weak var labelDescription: UILabel!
     
@@ -40,15 +41,15 @@ class BPClockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         self.view.backgroundColor = UIColor.binnersGrayBackgroundColor()
-
         self.labelDescription.sizeToFit()
         self.labelDescription.adjustsFontSizeToFitWidth = true
         
         setupNavigationBar()
         configureClock()
         configureButtonsAndLabels()
+        hideCloseButton = !isPresenting
     }
     
     func checkIfNowIsPMorAM() {

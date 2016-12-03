@@ -15,7 +15,7 @@ protocol SignInDismissDelegate {
 
 let signInButtonTag = 1
 
-class BPSignInViewController: UIViewController {
+class BPSignInViewController: CloseButtonViewController {
     
     var textFieldEmail: UITextField?
     var textFieldPassword: UITextField?
@@ -26,7 +26,6 @@ class BPSignInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.signInViewModel.signInDelegate = self
         self.view.addSubview(createForm())
     }

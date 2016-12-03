@@ -55,6 +55,7 @@ class BPOnGoingPickupsCollectionViewController: PickupsCollectionViewController 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let timeVC = storyboard.instantiateViewController(withIdentifier: "TimeVc") as? BPClockViewController {
             timeVC.pickup = cell.pickup
+            timeVC.isPresenting = true
             present(BPNavigationController(rootViewController: timeVC), animated: true, completion: nil)
         }
     }
