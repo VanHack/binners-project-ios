@@ -33,7 +33,7 @@ class BPPickupsViewModel {
         dataFetched = false
         self.onGoingPickups.removeAll()
         
-        try BPPickupService.fetchPickups([.onGoing], withLimit: 20, onSuccess: {
+        try BPPickupService.fetchPickups([.waitingForReview, .onGoing], withLimit: 20, onSuccess: {
             
             pickups in
             
@@ -48,6 +48,28 @@ class BPPickupsViewModel {
             
         })
 
+    }
+    
+    func fetchCompletedPickups() throws {
+        
+        dataFetched = false
+        self.onGoingPickups.removeAll()
+        
+        try BPPickupService.fetchPickups([.completed], withLimit: 20, onSuccess: {
+            
+            pickups in
+            
+            self.dataFetched = true
+            self.onGoingPickups.append(contentsOf: pickups)
+            self.pickupsDelegate?.didFinishFetchingOnGoingPickups(true, errorMsg: nil)
+            
+        }, onFailure: {
+            _ in
+            self.pickupsDelegate?.didFinishFetchingOnGoingPickups(false,
+                                                                  errorMsg: "Could not fetch pickups")
+            
+        })
+        
     }
     
     

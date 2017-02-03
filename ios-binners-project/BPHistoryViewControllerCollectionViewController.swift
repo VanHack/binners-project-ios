@@ -16,7 +16,7 @@ class BPHistoryViewControllerCollectionViewController: PickupsCollectionViewCont
     override func fetchPickups() {
         
         do {
-            try pickupsViewModel.fetchOnGoingPickups()
+            try pickupsViewModel.fetchCompletedPickups()
         } catch let error as NSError {
             showCouldNotFetchPickupsError(error.localizedDescription)
             refreshControl.endRefreshing()

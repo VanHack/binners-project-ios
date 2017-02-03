@@ -47,7 +47,7 @@ struct BPServerSettings
     
     static func getPickups( _ pickupStatuses: [PickupStatus], withLimit limit: UInt) -> String {
         
-        var stringURL = statusTrackingPickupsPath + "status=["
+        var stringURL = statusTrackingPickupsPath + "limit=\(limit)&status=["
         pickupStatuses.forEach({ pickupStatus in
             
             stringURL += "\"" + pickupStatus.statusUrlString() + "\""
@@ -55,8 +55,10 @@ struct BPServerSettings
             if pickupStatuses.last != pickupStatus {
                 stringURL += ","
             }
+            else {
+                stringURL += "]"
+            }
         })
-        stringURL += "]&limit=\(limit)"
         stringURL = stringURL.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         
         return stringURL

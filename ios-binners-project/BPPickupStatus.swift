@@ -12,7 +12,7 @@ enum PickupStatus: String {
     case
     onGoing = "on_going",
     completed = "completed",
-    waitingForReview = "waiting_for_review"
+    waitingForReview = "waiting_review"
     
     
     func statusString() -> String {

@@ -91,18 +91,29 @@ extension BPOnGoingPickupsCollectionViewController {
         -> UICollectionViewCell {
             
             if (expandCell && (indexPath as NSIndexPath).row == indexForCurrentExtendedCell) {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: expandedCellReuseIdentifier, for: indexPath)
-                    as! BPExpandedPickupCollectionViewCell
-                cell.pickup = pickupsViewModel.onGoingPickups[(indexPath as NSIndexPath).row]
-                cell.editDelegate = self
-                return cell
+                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: expandedCellReuseIdentifier, for: indexPath)
+                    as? BPExpandedPickupCollectionViewCell {
+                        cell.pickup = pickupsViewModel.onGoingPickups[(indexPath as NSIndexPath).row]
+                        cell.editDelegate = self
+                        if cell.pickup.status != .waitingForReview {
+                            cell.buttonRate.isHidden = true
+                    }
+                        else {
+                            cell.buttonRate.isHidden = false
+                    }
+                        return cell
+                }
             }
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: notExpandedCellReuseIdentifier, for: indexPath)
-                as! BPPickupCollectionViewCell
-            cell.configure()
-            cell.pickup = pickupsViewModel.onGoingPickups[(indexPath as NSIndexPath).row]
-            return cell
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: notExpandedCellReuseIdentifier, for: indexPath)
+                as? BPPickupCollectionViewCell {
+                    cell.configure()
+                    if pickupsViewModel.onGoingPickups.count > 0 {
+                        cell.pickup = pickupsViewModel.onGoingPickups[(indexPath as NSIndexPath).row]
+                    }
+                    return cell
+            }
+            return BPPickupCollectionViewCell()
     }
     
     

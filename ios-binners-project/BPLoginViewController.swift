@@ -25,12 +25,16 @@ class BPLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BPLoginViewController.dismissKeyboard))
+        
         self.view.addSubview(createResidentForm())
         GIDSignIn.sharedInstance().uiDelegate = self
         textFieldEmail?.text = "matheus.ruschel@gmail.com"
         textFieldPassword?.text = "12345"
         self.loginViewModel.loginDelegate = self
         self.loginViewModel.passwordForgotDelegate = self
+        
+        view.addGestureRecognizer(tap)
     }
     
     
@@ -141,7 +145,8 @@ class BPLoginViewController: UIViewController {
             NSAttributedString(string: "Email",
                                attributes: [NSForegroundColorAttributeName : UIColor.white])
         formView.textAlignment = .center
-        
+        formView.keyboardType = UIKeyboardType.emailAddress
+        formView.endEditing(true)
         textFieldEmail = formView
         return formView
     }
@@ -310,6 +315,18 @@ class BPLoginViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
     }
 
 }
