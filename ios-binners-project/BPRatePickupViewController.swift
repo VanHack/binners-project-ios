@@ -16,14 +16,20 @@ class BPRatePickupViewController: UIViewController {
     @IBOutlet weak var binnerLabel: UILabel!
     @IBOutlet weak var textFieldComment: UITextField!
     @IBOutlet weak var buttonSubmitReview: UIButton!
-    @IBOutlet weak var buttonCancel: UIButton!
     @IBOutlet weak var starView: HCSStarRatingView!
     @IBOutlet weak var labelPleaseComment: UILabel!
     
     var pickup: BPPickup!
+    var rateViewModel = BPRatePickupViewModel()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupNavigationBar()
+        
+        self.view.backgroundColor = UIColor.binnersGrayBackgroundColor()
+        self.rateViewModel.rateDelegate = self
         binnerLabel.isEnabled = false
         setupUI()
         setupView(forPickup: pickup)
@@ -33,8 +39,41 @@ class BPRatePickupViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func setupNavigationBar() {
+        
+        let buttonLeft = UIBarButtonItem(
+            barButtonSystemItem: .stop,
+            target: self,
+            action: #selector(self.cancelButtonClicked))
+        
+        buttonLeft.tintColor = UIColor.white
+        self.navigationItem.leftBarButtonItem = buttonLeft
+        self.title = "Rate The Pickup"
+    }
+    
+    func cancelButtonClicked() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func setupUI() {
         labelPleaseComment.adjustsFontSizeToFitWidth = true
+        starView.backgroundColor = UIColor.binnersGrayBackgroundColor()
+        starView.tintColor = UIColor.binnersGreenColor()
+        buttonSubmitReview.backgroundColor = UIColor.binnersGreenColor()
+        buttonSubmitReview.tintColor = UIColor.white
+    }
+    
+    func makeItReadOnly(isEnabled: Bool){
+        if isEnabled {
+            self.buttonSubmitReview.isEnabled = false
+            self.starView.isEnabled = false
+            self.textFieldComment.isEnabled = false
+        }
+        else {
+            self.buttonSubmitReview.isEnabled = true
+            self.starView.isEnabled = true
+            self.textFieldComment.isEnabled = true
+        }
     }
     
     func setupView(forPickup pickup: BPPickup) {
@@ -45,10 +84,31 @@ class BPRatePickupViewController: UIViewController {
     // MARK: Button Action
     
     @IBAction func buttonSubmitReviewClicked(_ sender: UIButton) {
-        // code for submiting review here
+        if Int(starView.value) < 1 || Int(starView.value) > 5 {
+            BPMessageFactory.makeMessage(.error, message: "You must select a star").show()
+        }
+        else if textFieldComment.text! == "" {
+            BPMessageFactory.makeMessage(.error, message: "You enter a comment").show()
+        }
+        else{
+            self.makeItReadOnly(isEnabled: true)
+            
+            do{
+                try self.rateViewModel.ratePickup(pickupID: pickup.id, rate: Int(starView.value), comment: textFieldComment.text!)
+            } catch let error as NSError {
+                BPMessageFactory.makeMessage(.error, message: error.localizedDescription).show()
+            }
+        }
     }
+}
 
-    @IBAction func buttonCancelClicked(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+extension BPRatePickupViewController : RateDelegate {
+    func didFinishRatingPickup(_ success: Bool, errorMsg: String?) {
+        self.makeItReadOnly(isEnabled: false)
+
+        switch success {
+        case true: self.dismiss(animated: true, completion: nil)
+        default: BPMessageFactory.makeMessage(.error, message: errorMsg!).show()
+        }
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17CDF68A1E4CDBF900A5D7A0 /* BPRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CDF6891E4CDBF900A5D7A0 /* BPRateService.swift */; };
+		17F142011E4BBE3900B01080 /* BPRatePickupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F142001E4BBE3900B01080 /* BPRatePickupViewModel.swift */; };
 		1B98D7E21C440AC200B6AA88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D7E11C440AC200B6AA88 /* AppDelegate.swift */; };
 		1B98D7E41C440AC200B6AA88 /* BPLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98D7E31C440AC200B6AA88 /* BPLoginViewController.swift */; };
 		1B98D7E71C440AC200B6AA88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B98D7E51C440AC200B6AA88 /* Main.storyboard */; };
@@ -123,7 +125,9 @@
 
 /* Begin PBXFileReference section */
 		0B3BE7EFA9711D62092AFBA2 /* Pods-ios-binners-projectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-binners-projectUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-binners-projectUITests/Pods-ios-binners-projectUITests.release.xcconfig"; sourceTree = "<group>"; };
+		17CDF6891E4CDBF900A5D7A0 /* BPRateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRateService.swift; sourceTree = "<group>"; };
 		17D01E9DD14F3A62CB40C12C /* Pods-ios-binners-project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-binners-project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-binners-project/Pods-ios-binners-project.debug.xcconfig"; sourceTree = "<group>"; };
+		17F142001E4BBE3900B01080 /* BPRatePickupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRatePickupViewModel.swift; sourceTree = "<group>"; };
 		1B98D7DE1C440AC200B6AA88 /* ios-binners-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-binners-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B98D7E11C440AC200B6AA88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B98D7E31C440AC200B6AA88 /* BPLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPLoginViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +257,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17F141FF1E4BBDF500B01080 /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				17F142001E4BBE3900B01080 /* BPRatePickupViewModel.swift */,
+			);
+			name = Rate;
+			sourceTree = "<group>";
+		};
 		1B98D7D51C440AC200B6AA88 = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +393,7 @@
 				2CF0F5C51CA9CE81005055C2 /* BPParser.swift */,
 				2C6C84851DCE299D001A9281 /* BPPickupService.swift */,
 				2C6C848B1DCEB202001A9281 /* BPUserService.swift */,
+				17CDF6891E4CDBF900A5D7A0 /* BPRateService.swift */,
 			);
 			name = ServerCommunicationLayer;
 			sourceTree = "<group>";
@@ -403,6 +416,7 @@
 		2C4FB0471D6CBE2200B01E8D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				17F141FF1E4BBDF500B01080 /* Rate */,
 				2C6CA08B1D384F680030B7EA /* SignIn */,
 				2C83FDC61D3EF8B000DB1F86 /* Pickups */,
 				2CC68E421D2D4233000C5F6E /* Login */,
@@ -972,6 +986,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17F142011E4BBE3900B01080 /* BPRatePickupViewModel.swift in Sources */,
 				2C83FDC81D3EF8D700DB1F86 /* BPPickupsViewModel.swift in Sources */,
 				2C6CA08A1D3844460030B7EA /* BPSignInViewController.swift in Sources */,
 				2CAA460E1DBBCA2A002B13B0 /* BPUserDefaults.swift in Sources */,
@@ -1000,6 +1015,7 @@
 				2CF0F5C61CA9CE81005055C2 /* BPParser.swift in Sources */,
 				2CFBF6C01CBC0C2300524F62 /* UIImage+Extension.swift in Sources */,
 				2CF378F31DF32D92009C9977 /* CloseViewController.swift in Sources */,
+				17CDF68A1E4CDBF900A5D7A0 /* BPRateService.swift in Sources */,
 				1B98D7E41C440AC200B6AA88 /* BPLoginViewController.swift in Sources */,
 				2CD25EFF1C63CFB600ACDEA5 /* BPPageThreeContentDescriptionLoginViewController.swift in Sources */,
 				2C6C848A1DCE2D9B001A9281 /* BPPickupsViewModell.swift in Sources */,

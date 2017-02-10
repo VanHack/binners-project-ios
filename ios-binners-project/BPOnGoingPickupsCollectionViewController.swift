@@ -44,9 +44,11 @@ class BPOnGoingPickupsCollectionViewController: PickupsCollectionViewController 
         if let pickupCell = sender as? BPExpandedPickupCollectionViewCell {
             
             if segue.identifier == ratePickupSegueIdentifier {
-                if let ratePickupVC = segue.destination as? BPRatePickupViewController {
-                    ratePickupVC.pickup = pickupCell.pickup
+                guard let destVc = segue.destination as? UINavigationController,
+                    let ratePickupVC = destVc.viewControllers[0] as? BPRatePickupViewController else {
+                        fatalError("Destionation view controller is not UINavigationController or BPRatePickupViewController")
                 }
+                ratePickupVC.pickup = pickupCell.pickup
             }
         }
     }

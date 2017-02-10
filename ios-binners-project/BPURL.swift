@@ -13,6 +13,7 @@ enum BinnersStringPaths {
     case facebook(accessToken: String)
     case google(accessToken: String)
     case getPickups(pickupStatuses: [PickupStatus], limit: UInt)
+    case ratePickup(pickupId: String)
     case passwordReset(String)
     case pickupPhotoUpload(pickupId: String)
     case residentRegistration
@@ -41,6 +42,8 @@ extension URL {
             self.init(string: BPServerSettings.passwordReset(email))
         case .getPickups(let pickupStatuses, let limit):
             self.init(string:BPServerSettings.getPickups(pickupStatuses, withLimit: limit))
+        case.ratePickup(let pickupId):
+            self.init(string:BPServerSettings.ratePickup(pickupId: pickupId))
         case .google(let accessToken):
             self.init(string: BPServerSettings.googleUserLogin(accessToken))
         case .facebook(let accessToken):

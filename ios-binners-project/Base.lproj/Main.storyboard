@@ -13,9 +13,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Oxygen-Bold.ttf">
-            <string>Oxygen-Bold</string>
-        </array>
         <array key="Oxygen.ttf">
             <string>Oxygen</string>
         </array>
@@ -471,7 +468,7 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Item" image="synchronize" id="DSG-e3-8hc"/>
                     <connections>
-                        <segue destination="GTz-b8-uZg" kind="presentation" identifier="ratePickupSegueIdentifier" id="GjX-e0-M7F"/>
+                        <segue destination="m3L-82-lIb" kind="presentation" identifier="ratePickupSegueIdentifier" id="vdm-2A-JfJ"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNc-8l-tJc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -490,12 +487,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rate The Pickup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jn3-CX-zZS">
-                                <rect key="frame" x="20" y="20" width="560" height="27"/>
-                                <fontDescription key="fontDescription" name="Oxygen-Bold" family="Oxygen" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" misplaced="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBB-q5-IBt">
                                 <rect key="frame" x="60" y="84" width="32.5" height="31"/>
                                 <fontDescription key="fontDescription" name="Oxygen" family="Oxygen" pointSize="15"/>
@@ -534,27 +525,18 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWz-Ft-PcQ">
                                 <rect key="frame" x="60" y="511" width="480" height="60"/>
-                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Submit your review"/>
                                 <connections>
                                     <action selector="buttonSubmitReviewClicked:" destination="GTz-b8-uZg" eventType="touchUpInside" id="2W4-cT-qNs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbo-PU-8YV">
-                                <rect key="frame" x="20" y="15" width="32" height="32"/>
-                                <state key="normal" image="delete_sign"/>
-                                <connections>
-                                    <action selector="buttonCancelClicked:" destination="GTz-b8-uZg" eventType="touchUpInside" id="8CO-Fb-oIc"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="752" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Leave a comment" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="85f-34-MsY">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="752" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your comment here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="85f-34-MsY">
                                 <rect key="frame" x="60" y="282" width="480" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="745" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HLq-jw-5gt" customClass="HCSStarRatingView">
                                 <rect key="frame" x="60" y="332" width="480" height="150"/>
-                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -571,29 +553,23 @@
                             <constraint firstItem="cBB-q5-IBt" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" multiplier="3" id="Iyg-Mw-lVi"/>
                             <constraint firstItem="UWz-Ft-PcQ" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" multiplier="1.1" id="K4E-MS-Z0d"/>
                             <constraint firstItem="7Ix-eW-ojm" firstAttribute="top" secondItem="UWz-Ft-PcQ" secondAttribute="bottom" multiplier="1.05" id="KXK-cy-2XG"/>
-                            <constraint firstItem="Jn3-CX-zZS" firstAttribute="top" secondItem="GMl-wJ-vvs" secondAttribute="bottom" id="M9b-GI-Qge"/>
                             <constraint firstItem="HLq-jw-5gt" firstAttribute="top" secondItem="85f-34-MsY" secondAttribute="bottom" constant="20" id="Mc5-D1-snW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BiO-tE-fFs" secondAttribute="trailing" id="Mid-cX-BtD"/>
-                            <constraint firstItem="Bbo-PU-8YV" firstAttribute="top" secondItem="cEP-eC-dby" secondAttribute="topMargin" constant="15" id="UFM-ZZ-GtT"/>
                             <constraint firstItem="LEb-rp-BUe" firstAttribute="centerX" secondItem="cEP-eC-dby" secondAttribute="centerX" id="UO8-aD-57L"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Jn3-CX-zZS" secondAttribute="trailing" id="UOs-Up-wQF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cmB-Qb-XmB" secondAttribute="trailing" id="VaW-Hx-ATQ"/>
                             <constraint firstItem="85f-34-MsY" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" constant="268" id="WWw-ii-7VH"/>
                             <constraint firstItem="85f-34-MsY" firstAttribute="trailing" secondItem="UWz-Ft-PcQ" secondAttribute="trailing" id="YBV-L3-5FC"/>
                             <constraint firstItem="dDw-qN-vO5" firstAttribute="leading" secondItem="cmB-Qb-XmB" secondAttribute="leading" id="c3N-Ba-f7f"/>
                             <constraint firstItem="BiO-tE-fFs" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" id="dZo-om-bCm"/>
-                            <constraint firstItem="Bbo-PU-8YV" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" id="eTW-Wf-Man"/>
                             <constraint firstItem="BiO-tE-fFs" firstAttribute="top" secondItem="LEb-rp-BUe" secondAttribute="bottom" multiplier="1.12" id="euq-MO-DUP"/>
-                            <constraint firstItem="Jn3-CX-zZS" firstAttribute="centerX" secondItem="cEP-eC-dby" secondAttribute="centerX" id="fRr-BJ-Vj0"/>
-                            <constraint firstItem="cBB-q5-IBt" firstAttribute="top" secondItem="Jn3-CX-zZS" secondAttribute="bottom" constant="37.5" id="fcw-8R-JEt"/>
                             <constraint firstItem="wdF-FS-D0p" firstAttribute="leading" secondItem="cBB-q5-IBt" secondAttribute="leading" id="gJ9-Xx-F1d"/>
                             <constraint firstItem="cmB-Qb-XmB" firstAttribute="leading" secondItem="cBB-q5-IBt" secondAttribute="trailing" constant="5" id="iO1-Uy-XJv"/>
                             <constraint firstItem="HLq-jw-5gt" firstAttribute="height" secondItem="cEP-eC-dby" secondAttribute="height" multiplier="0.25" id="iiI-ar-avh"/>
+                            <constraint firstItem="cBB-q5-IBt" firstAttribute="top" secondItem="GMl-wJ-vvs" secondAttribute="bottom" constant="20" id="kGL-xO-cbG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dDw-qN-vO5" secondAttribute="trailing" id="kHS-Ae-69y"/>
                             <constraint firstItem="85f-34-MsY" firstAttribute="top" secondItem="BiO-tE-fFs" secondAttribute="bottom" multiplier="1.1" id="mv8-VA-e37"/>
                             <constraint firstItem="UWz-Ft-PcQ" firstAttribute="height" secondItem="cEP-eC-dby" secondAttribute="height" multiplier="0.1" id="nOE-tO-Cnd"/>
                             <constraint firstItem="HLq-jw-5gt" firstAttribute="leading" secondItem="UWz-Ft-PcQ" secondAttribute="leading" id="rdU-2w-5Ev"/>
-                            <constraint firstItem="Jn3-CX-zZS" firstAttribute="leading" secondItem="cEP-eC-dby" secondAttribute="leadingMargin" id="s3z-KL-K0V"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UWz-Ft-PcQ" secondAttribute="trailing" multiplier="1.1" id="tJn-6G-b5Y"/>
                             <constraint firstItem="HLq-jw-5gt" firstAttribute="trailing" secondItem="UWz-Ft-PcQ" secondAttribute="trailing" id="uqe-0I-GVA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LEb-rp-BUe" secondAttribute="trailing" id="w5I-zy-lVB"/>
@@ -612,9 +588,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="fVK-lV-ZUF"/>
                     <connections>
                         <outlet property="binnerLabel" destination="LEb-rp-BUe" id="G79-ff-3zj"/>
-                        <outlet property="buttonCancel" destination="Bbo-PU-8YV" id="ncG-YF-Sby"/>
                         <outlet property="buttonSubmitReview" destination="UWz-Ft-PcQ" id="5Bb-UM-aLh"/>
                         <outlet property="labelDate" destination="dDw-qN-vO5" id="gFn-zN-Q8V"/>
                         <outlet property="labelPleaseComment" destination="BiO-tE-fFs" id="o8d-pl-MuJ"/>
@@ -625,7 +601,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPa-he-sw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2653" y="742"/>
+            <point key="canvasLocation" x="3620" y="752"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fGL-MJ-ysK">
+            <objects>
+                <navigationController id="m3L-82-lIb" customClass="BPNavigationController" customModule="ios_binners_project" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qAN-mC-q67">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="GTz-b8-uZg" kind="relationship" relationship="rootViewController" id="h4V-xQ-2nO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1dU-xu-v81" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2692" y="752"/>
         </scene>
         <!--Item-->
         <scene sceneID="GOc-i9-Bqz">
@@ -1502,7 +1494,6 @@
         <image name="Vector Smart Object (2)" width="344" height="368"/>
         <image name="backgroundIntro" width="750" height="1334"/>
         <image name="backgroundMaskLogin" width="375" height="667"/>
-        <image name="delete_sign" width="24" height="24"/>
         <image name="gender_neutral_user" width="25" height="25"/>
         <image name="history" width="25" height="25"/>
         <image name="projectName" width="234" height="29"/>

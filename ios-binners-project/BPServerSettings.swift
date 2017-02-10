@@ -45,6 +45,10 @@ struct BPServerSettings
         return "\(twitterLoginPath)/\(accessToken)/\(accessSecret)"
     }
     
+    static func ratePickup(pickupId: String) -> String {
+        return "\(getPickupsPath)/\(pickupId)/review"
+    }
+    
     static func getPickups( _ pickupStatuses: [PickupStatus], withLimit limit: UInt) -> String {
         
         var stringURL = statusTrackingPickupsPath + "limit=\(limit)&status=["
