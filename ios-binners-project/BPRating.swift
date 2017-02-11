@@ -11,19 +11,19 @@ import Foundation
 struct BPRating {
     
     var comment:String?
-    var rating:Int {
-        
-        set {
-            if newValue > 5 {
-                rating = 5
-            } else if newValue < 1 {
-                rating = 1
-            } else {
-                rating = newValue
-            }
+    var rating:Int
+    
+    
+    init(comment:String?, rating:Int){
+        self.comment = comment
+        if rating > 5 {
+            self.rating = 5
         }
-        get {
-            return self.rating
+        else if rating < 1 {
+            self.rating = 1
+        }
+        else {
+            self.rating = rating
         }
     }
     

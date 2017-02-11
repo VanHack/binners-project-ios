@@ -59,6 +59,8 @@ class BPRatePickupViewController: UIViewController {
         labelPleaseComment.adjustsFontSizeToFitWidth = true
         starView.backgroundColor = UIColor.binnersGrayBackgroundColor()
         starView.tintColor = UIColor.binnersGreenColor()
+        starView.maximumValue = 5
+        starView.minimumValue = 1.0
         buttonSubmitReview.backgroundColor = UIColor.binnersGreenColor()
         buttonSubmitReview.tintColor = UIColor.white
     }

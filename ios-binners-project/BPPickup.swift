@@ -27,6 +27,7 @@ final class BPPickup {
          date: Date,
          reedemable: BPReedemable,
          address: BPAddress,
+         rating: BPRating?,
          status:PickupStatus ) {
         
         self.id = id
@@ -34,6 +35,7 @@ final class BPPickup {
         self.date = date
         self.reedemable = reedemable
         self.address = address
+        self.rating = rating
         self.status = status
     }
     
@@ -46,9 +48,16 @@ extension BPPickup : Mappable {
     static func mapToModel(withData object: AnyObject) -> BPPickup? {
         
         let address = BPAddress()
+        var rating:BPRating?
         
         guard let addressJson = object["address"] as? [AnyHashable : Any] else {
             return nil
+        }
+        
+        if let ratingJson = object ["review"] as? [AnyHashable : Any] {
+            let ratingComment = ratingJson["comment"] as? String
+            let ratingValue = ratingJson["rate"] as? Int
+            rating = BPRating(comment: ratingComment, rating: ratingValue!)
         }
         
         guard
@@ -95,6 +104,7 @@ extension BPPickup : Mappable {
                         date: dateObject,
                         reedemable: reedemable,
                         address: address,
+                        rating: rating,
                         status: pickupStatus)
         
     }

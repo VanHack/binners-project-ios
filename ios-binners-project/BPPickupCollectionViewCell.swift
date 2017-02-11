@@ -66,6 +66,10 @@ class BPPickupCollectionViewCell: UICollectionViewCell {
         centerMapOnLocation(location)
         
         mapView.isUserInteractionEnabled = false
+        
+        if pickup.rating != nil {
+            starRatingView.value = CGFloat((pickup.rating?.rating)!)
+        }
     }
     
     func setupViewCorners() {
