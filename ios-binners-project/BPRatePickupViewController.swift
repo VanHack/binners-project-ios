@@ -28,11 +28,14 @@ class BPRatePickupViewController: UIViewController {
         
         setupNavigationBar()
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BPLoginViewController.dismissKeyboard))
+        
         self.view.backgroundColor = UIColor.binnersGrayBackgroundColor()
         self.rateViewModel.rateDelegate = self
-        binnerLabel.isEnabled = false
+        //binnerLabel.isEnabled = false
         setupUI()
         setupView(forPickup: pickup)
+        view.addGestureRecognizer(tap)
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,6 +86,11 @@ class BPRatePickupViewController: UIViewController {
         labelTime.text = pickup.date.formattedDate(.time)
     }
     
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
     // MARK: Button Action
     
     @IBAction func buttonSubmitReviewClicked(_ sender: UIButton) {
@@ -90,7 +98,7 @@ class BPRatePickupViewController: UIViewController {
             BPMessageFactory.makeMessage(.error, message: "You must select a star").show()
         }
         else if textFieldComment.text! == "" {
-            BPMessageFactory.makeMessage(.error, message: "You enter a comment").show()
+            BPMessageFactory.makeMessage(.error, message: "You must enter a comment").show()
         }
         else{
             self.makeItReadOnly(isEnabled: true)

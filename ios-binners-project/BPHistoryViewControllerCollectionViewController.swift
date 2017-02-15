@@ -35,7 +35,9 @@ extension BPHistoryViewControllerCollectionViewController {
     
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: historyCellReuseIdentifier, for: indexPath) as? BPPickupCollectionViewCell {
             cell.configure(style: .rating)
-            cell.pickup = pickupsViewModel.onGoingPickups[(indexPath as NSIndexPath).row]
+            if pickupsViewModel.onGoingPickups.count > 0 {
+                cell.pickup = pickupsViewModel.onGoingPickups[(indexPath as NSIndexPath).row]
+            }
             return cell
         }
         return BPPickupCollectionViewCell()

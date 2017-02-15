@@ -31,9 +31,9 @@ class PickupsCollectionViewController: UICollectionViewController {
     
     override final func viewWillAppear(_ animated: Bool) {
         refreshControl.beginRefreshing()
-        if !pickupsViewModel.dataFetched {
+        //if !pickupsViewModel.dataFetched {
             fetchPickups()
-        }
+        //}
     }
     
     // MARK: Configurations
